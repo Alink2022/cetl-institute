@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { Container } from "@/components/ui/Container";
 
 const NAV_LINKS = [
   { label: "About", href: "#about" },
@@ -14,21 +15,31 @@ export function NavBar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  const rafRef = useRef<number | null>(null);
+
   useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handler);
-    return () => window.removeEventListener("scroll", handler);
+    const handler = () => {
+      if (rafRef.current !== null) return;
+      rafRef.current = requestAnimationFrame(() => {
+        setScrolled(window.scrollY > 20);
+        rafRef.current = null;
+      });
+    };
+    handler(); // set initial state on mount
+    window.addEventListener("scroll", handler, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handler);
+      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+    };
   }, []);
 
+  const navBg = scrolled
+    ? "bg-cetl-darker/95 backdrop-blur-md border-b border-cetl-border"
+    : "bg-transparent";
+
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-cetl-darker/95 backdrop-blur-md border-b border-cetl-border"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${navBg}`}>
+      <Container>
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <a href="#" className="flex items-center gap-3 group">
@@ -70,6 +81,7 @@ export function NavBar() {
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"
             aria-expanded={mobileOpen}
+            aria-controls="mobile-menu"
           >
             <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
               {mobileOpen ? (
@@ -91,13 +103,13 @@ export function NavBar() {
 
         {/* Mobile menu */}
         {mobileOpen && (
-          <div className="md:hidden border-t border-cetl-border py-4 flex flex-col gap-4">
+          <div id="mobile-menu" className="md:hidden border-t border-cetl-border py-4 flex flex-col gap-4">
             {NAV_LINKS.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className="text-cetl-text-muted hover:text-cetl-text text-sm font-medium tracking-wide transition-colors px-2 py-1"
+                className="text-cetl-text-muted hover:text-cetl-text text-sm font-medium tracking-wide transition-colors px-2 py-3"
               >
                 {link.label}
               </a>
@@ -111,7 +123,7 @@ export function NavBar() {
             </a>
           </div>
         )}
-      </div>
+      </Container>
     </nav>
   );
 }

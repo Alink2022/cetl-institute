@@ -1,3 +1,5 @@
+import { Container } from "@/components/ui/Container";
+
 const PARTNERS = [
   { name: "TU Wien", sub: "Academic Partner" },
   { name: "City of Vienna", sub: "Government Partner" },
@@ -9,7 +11,7 @@ const PARTNERS = [
 export function PartnerLogos() {
   return (
     <section id="partners" className="py-20 bg-cetl-surface border-y border-cetl-border">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <Container>
         <p className="text-center text-cetl-text-muted text-xs font-semibold tracking-widest uppercase mb-12">
           Trusted by Leading Institutions &amp; Organizations
         </p>
@@ -20,7 +22,7 @@ export function PartnerLogos() {
               key={partner.name}
               className="flex flex-col items-center gap-1 group"
             >
-              <div className="px-6 py-3 border border-cetl-border bg-cetl-dark/60 hover:border-cetl-gold/30 transition-colors duration-300">
+              <div className="px-6 py-3 border border-cetl-border bg-cetl-dark/60 hover:border-cetl-gold/30 hover:-translate-y-0.5 transition-all duration-300">
                 <span className="text-cetl-text-muted group-hover:text-cetl-text font-semibold text-sm tracking-wide transition-colors duration-200 whitespace-nowrap">
                   {partner.name}
                 </span>
@@ -33,12 +35,12 @@ export function PartnerLogos() {
         <div className="mt-14 max-w-2xl mx-auto text-center">
           <p className="text-cetl-text-muted text-sm leading-relaxed">
             Flagship organizer of the{" "}
-            <span className="text-cetl-text font-medium">Europe Tech Hackathon</span> —
+            <span className="text-cetl-text font-medium">Europe Tech Hackathon</span>,
             bringing together public institutions, global enterprises, and academic leaders
             to accelerate technology-driven transformation across Central Europe.
           </p>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

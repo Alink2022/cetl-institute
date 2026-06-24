@@ -1,7 +1,9 @@
+import { Container } from "@/components/ui/Container";
+
 export function Footer() {
   return (
     <footer className="border-t border-cetl-border bg-cetl-darker">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12">
+      <Container className="py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {/* Brand */}
           <div className="flex flex-col gap-4">
@@ -55,7 +57,7 @@ export function Footer() {
             All advisory activities are strictly limited to non-insurance sectors.
           </p>
         </div>
-      </div>
+      </Container>
     </footer>
   );
 }

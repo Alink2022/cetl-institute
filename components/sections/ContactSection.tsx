@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { Container } from "@/components/ui/Container";
 
 export function ContactSection() {
   const [submitted, setSubmitted] = useState(false);
@@ -13,9 +14,13 @@ export function ContactSection() {
     message: "",
   });
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`CETL Inquiry — ${form.interest || "General"}`);
+    const subject = encodeURIComponent(`CETL Inquiry: ${form.interest || "General"}`);
     const body = encodeURIComponent(
       `Name: ${form.name}\nCompany: ${form.company}\nEmail: ${form.email}\nInterest: ${form.interest}\n\n${form.message}`
     );
@@ -25,14 +30,14 @@ export function ContactSection() {
 
   return (
     <section id="contact" className="py-24 lg:py-32 bg-cetl-dark">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <Container>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* Left: Info */}
           <div className="flex flex-col gap-8">
             <SectionHeader
               label="Contact"
               title="Start the Conversation"
-              subtitle="Whether you're exploring ELaaS, need a strategic advisory engagement, or want to schedule an AI literacy briefing — we'd like to hear from you."
+              subtitle="Whether you're exploring ELaaS, need a strategic advisory engagement, or want to schedule an AI literacy briefing: we'd like to hear from you."
               align="left"
             />
 
@@ -45,12 +50,12 @@ export function ContactSection() {
                 },
                 {
                   label: "Location",
-                  value: "Vienna, Austria — Central Europe",
+                  value: "Vienna, Austria (Central Europe)",
                   href: null,
                 },
                 {
                   label: "Academic Partnership",
-                  value: "TU Wien — Academic Director",
+                  value: "TU Wien, Academic Director",
                   href: null,
                 },
               ].map((item) => (
@@ -101,27 +106,31 @@ export function ContactSection() {
               <form onSubmit={handleSubmit} className="flex flex-col gap-5">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div className="flex flex-col gap-2">
-                    <label className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase">
+                    <label htmlFor="contact-name" className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase">
                       Full Name *
                     </label>
                     <input
+                      id="contact-name"
+                      name="name"
                       required
                       type="text"
                       value={form.name}
-                      onChange={(e) => setForm({ ...form, name: e.target.value })}
+                      onChange={handleChange}
                       className="bg-cetl-dark border border-cetl-border text-cetl-text text-sm px-4 py-3 focus:outline-none focus:border-cetl-gold/60 transition-colors placeholder:text-cetl-text-muted/40"
                       placeholder="Dr. Jane Smith"
                     />
                   </div>
                   <div className="flex flex-col gap-2">
-                    <label className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase">
+                    <label htmlFor="contact-company" className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase">
                       Organization *
                     </label>
                     <input
+                      id="contact-company"
+                      name="company"
                       required
                       type="text"
                       value={form.company}
-                      onChange={(e) => setForm({ ...form, company: e.target.value })}
+                      onChange={handleChange}
                       className="bg-cetl-dark border border-cetl-border text-cetl-text text-sm px-4 py-3 focus:outline-none focus:border-cetl-gold/60 transition-colors placeholder:text-cetl-text-muted/40"
                       placeholder="Acme Corporation"
                     />
@@ -129,31 +138,35 @@ export function ContactSection() {
                 </div>
 
                 <div className="flex flex-col gap-2">
-                  <label className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase">
+                  <label htmlFor="contact-email" className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase">
                     Email *
                   </label>
                   <input
+                    id="contact-email"
+                    name="email"
                     required
                     type="email"
                     value={form.email}
-                    onChange={(e) => setForm({ ...form, email: e.target.value })}
+                    onChange={handleChange}
                     className="bg-cetl-dark border border-cetl-border text-cetl-text text-sm px-4 py-3 focus:outline-none focus:border-cetl-gold/60 transition-colors placeholder:text-cetl-text-muted/40"
                     placeholder="jane@company.com"
                   />
                 </div>
 
                 <div className="flex flex-col gap-2">
-                  <label className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase">
+                  <label htmlFor="contact-interest" className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase">
                     Area of Interest
                   </label>
                   <select
+                    id="contact-interest"
+                    name="interest"
                     value={form.interest}
-                    onChange={(e) => setForm({ ...form, interest: e.target.value })}
+                    onChange={handleChange}
                     className="bg-cetl-dark border border-cetl-border text-cetl-text text-sm px-4 py-3 focus:outline-none focus:border-cetl-gold/60 transition-colors"
                   >
                     <option value="">Select a program area</option>
                     <option>Executive Education / AI Literacy</option>
-                    <option>ELaaS — Executional Learning</option>
+                    <option>ELaaS: Executional Learning</option>
                     <option>Strategic Advisory</option>
                     <option>Technical Assessment</option>
                     <option>Forward Deployed Engineer</option>
@@ -163,13 +176,15 @@ export function ContactSection() {
                 </div>
 
                 <div className="flex flex-col gap-2">
-                  <label className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase">
+                  <label htmlFor="contact-message" className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase">
                     Message
                   </label>
                   <textarea
+                    id="contact-message"
+                    name="message"
                     rows={4}
                     value={form.message}
-                    onChange={(e) => setForm({ ...form, message: e.target.value })}
+                    onChange={handleChange}
                     className="bg-cetl-dark border border-cetl-border text-cetl-text text-sm px-4 py-3 focus:outline-none focus:border-cetl-gold/60 transition-colors resize-none placeholder:text-cetl-text-muted/40"
                     placeholder="Tell us about your organization's current challenges and goals..."
                   />
@@ -185,7 +200,7 @@ export function ContactSection() {
             )}
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }
