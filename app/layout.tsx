@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -29,6 +31,8 @@ export default function RootLayout({
     <html lang="en" className={`${spaceGrotesk.variable} h-full`}>
       <body className="min-h-full flex flex-col antialiased bg-cetl-dark text-cetl-text">
         {children}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
