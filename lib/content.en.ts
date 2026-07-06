@@ -302,7 +302,7 @@ export const en: ContentBundle = {
     nav: { ctaContact: "Get in Touch", toggleMenu: "Toggle menu" },
     hero: {
       badgeLocation: "CETL · Vienna",
-      headlineLine1: "Bridging the Gap:",
+      headlineLine1: "",
       headlineGradient: "Academic Excellence",
       headlineLine3: "Meets Industry Execution",
       paragraph:
