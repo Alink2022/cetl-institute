@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Container } from "@/components/ui/Container";
 import { MagneticButton } from "@/components/ui/MagneticButton";
@@ -25,13 +26,21 @@ export function LeadershipSection() {
         />
 
         <div className="gradient-edge grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-10 lg:gap-16 bg-cetl-surface rounded-2xl border border-cetl-border p-8 lg:p-12">
-          {/* Avatar + identity */}
+          {/* Photo + identity */}
           <div className="flex flex-col items-center lg:items-start gap-5 text-center lg:text-left">
-            <div className="relative w-32 h-32 lg:w-40 lg:h-40 shrink-0">
-              <div className="absolute -inset-1 rounded-full bg-gradient-to-br from-cetl-gold-light via-cetl-gold to-cetl-violet opacity-60 blur-md" />
-              <div className="relative w-full h-full rounded-full bg-gradient-to-br from-cetl-gold-light via-cetl-gold to-cetl-violet flex items-center justify-center">
-                <span className="font-display text-4xl lg:text-5xl font-extrabold text-cetl-darker">
-                  {MANAGING_DIRECTOR.initials}
+            <div className="relative w-full max-w-[280px]">
+              <div className="absolute -inset-2 rounded-2xl bg-gradient-to-br from-cetl-gold-light via-cetl-gold to-cetl-violet opacity-50 blur-xl" />
+              <div className="gradient-edge relative w-full aspect-[4/5] rounded-2xl overflow-hidden">
+                <Image
+                  src="/alin-kalam.png"
+                  alt="Alin Kalam speaking on AI and human-centered innovation"
+                  fill
+                  sizes="280px"
+                  className="object-cover object-[58%_22%]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-cetl-darker via-transparent to-transparent opacity-70" />
+                <span className="absolute bottom-3 left-3 right-3 text-cetl-gold-light text-[10px] font-semibold tracking-widest uppercase">
+                  AI Keynote Speaker
                 </span>
               </div>
             </div>

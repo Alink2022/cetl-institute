@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/Badge";
 import { Container } from "@/components/ui/Container";
@@ -47,6 +48,30 @@ export function HeroSection() {
         </div>
         <div className="absolute bottom-[6%] right-[2%] animate-float" style={{ animationDelay: "-4.5s" }}>
           <Badge variant="gold" className="shadow-[0_0_30px_-8px_rgba(212,175,90,0.5)]">Forward Deployed Engineers</Badge>
+        </div>
+      </div>
+
+      {/* Floating speaker photo */}
+      <div
+        className="absolute bottom-[8%] left-[3%] w-36 xl:w-44 pointer-events-none hidden lg:block animate-float"
+        style={{ animationDelay: "-1.5s" }}
+        aria-hidden="true"
+      >
+        <div className="relative rotate-[-4deg]">
+          <div className="absolute -inset-2 rounded-2xl bg-gradient-to-br from-cetl-gold-light via-cetl-gold to-cetl-violet opacity-40 blur-lg" />
+          <div className="gradient-edge relative aspect-[4/5] rounded-2xl overflow-hidden border border-cetl-border/60 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.7)]">
+            <Image
+              src="/alin-kalam.png"
+              alt=""
+              fill
+              sizes="176px"
+              className="object-cover object-[58%_22%]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-cetl-darker via-transparent to-transparent opacity-60" />
+            <span className="absolute bottom-2 left-2 right-2 text-cetl-gold-light text-[9px] font-semibold tracking-widest uppercase">
+              Managing Director
+            </span>
+          </div>
         </div>
       </div>
 
