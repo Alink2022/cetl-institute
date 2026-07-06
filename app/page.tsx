@@ -10,6 +10,8 @@ import { PartnerLogos } from "@/components/sections/PartnerLogos";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { WordMarquee } from "@/components/sections/WordMarquee";
 import { LeadershipSection } from "@/components/sections/LeadershipSection";
+import { ResearchSection } from "@/components/sections/ResearchSection";
+import { FAQSection } from "@/components/sections/FAQSection";
 
 export default function Home() {
   return (
@@ -19,6 +21,8 @@ export default function Home() {
         <HeroSection />
         <WordMarquee />
         <ProblemSection />
+        <GoldDivider />
+        <ResearchSection />
         <GoldDivider />
         <ThreePillars />
         <GoldDivider />
@@ -30,6 +34,7 @@ export default function Home() {
         <GoldDivider />
         <PartnerLogos />
         <GoldDivider />
+        <FAQSection />
         <ContactSection />
       </main>
       <Footer />

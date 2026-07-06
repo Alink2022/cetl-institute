@@ -15,6 +15,7 @@ export const SITE = {
 
 export const NAV_LINKS = [
   { label: "About", href: "#about" },
+  { label: "Research", href: "#research" },
   { label: "Services", href: "#services" },
   { label: "ELaaS", href: "#elaas" },
   { label: "Programs", href: "#programs" },
@@ -210,6 +211,109 @@ export const PROBLEM_ITEMS = [
   {
     title: "Management unable to execute AI strategy",
     desc: "Leadership teams fluent in buzzwords, not outcomes.",
+  },
+  {
+    title: "Data & governance treated as an afterthought",
+    desc: "Models built on ungoverned data rarely survive contact with production.",
+  },
+];
+
+export interface ResearchStat {
+  id: string;
+  kind: "ring" | "gauge" | "bars" | "trend";
+  value: string;
+  label: string;
+  detail: string;
+  source: string;
+}
+
+export const RESEARCH_STATS: ResearchStat[] = [
+  {
+    id: "transformations-fail",
+    kind: "ring",
+    value: "70%",
+    label: "of large-scale transformations fail to meet their stated goals",
+    detail: "Most failures trace back to execution and adoption, not technology choice.",
+    source: "McKinsey & Company, Transformation research",
+  },
+  {
+    id: "ai-projects-fail",
+    kind: "gauge",
+    value: "85%",
+    label: "of AI projects fail to deliver on their intended business value",
+    detail: "Poor data quality, unclear ownership, and weak governance are the leading causes.",
+    source: "Gartner, AI research",
+  },
+  {
+    id: "ai-financial-benefit",
+    kind: "bars",
+    value: "10%",
+    label: "of companies report significant financial benefit from AI at scale",
+    detail: "The gap separates organizations that build lasting capability from those that pilot indefinitely.",
+    source: "BCG × MIT Sloan Management Review, \"Expanding AI's Impact With Organizational Learning\"",
+  },
+  {
+    id: "ai-investment-growth",
+    kind: "trend",
+    value: "~13×",
+    label: "growth in global private AI investment over the past decade",
+    detail: "Capital is accelerating faster than most organizations' ability to absorb and operationalize it.",
+    source: "Stanford HAI, AI Index Report",
+  },
+];
+
+export const EXECUTION_GAP = {
+  label: "CETL Execution Readiness Index",
+  detail: "Proprietary benchmark across CETL client assessments — illustrative, not a scientific study.",
+  rows: [
+    { label: "Leadership AI awareness", value: 82 },
+    { label: "Documented AI strategy", value: 54 },
+    { label: "Governance & data readiness", value: 37 },
+    { label: "Operational execution capability", value: 24 },
+  ],
+} as const;
+
+export interface Quote {
+  quote: string;
+  author: string;
+  role: string;
+}
+
+export const QUOTES: Quote[] = [
+  {
+    quote: "AI is the new electricity.",
+    author: "Andrew Ng",
+    role: "Co-founder, Google Brain; Founder, DeepLearning.AI",
+  },
+  {
+    quote:
+      "We always overestimate the change that will occur in the next two years and underestimate the change that will occur in the next ten.",
+    author: "Bill Gates",
+    role: "Co-founder, Microsoft",
+  },
+  {
+    quote: "Culture eats strategy for breakfast.",
+    author: "Peter Drucker",
+    role: "Management theorist",
+  },
+];
+
+export const FAQ_ITEMS = [
+  {
+    q: "How is CETL different from a traditional consultancy?",
+    a: "Consultancies deliver recommendations and leave. CETL embeds capability: Forward Deployed Engineers, structured knowledge transfer, and governance frameworks stay with your organization after the engagement ends.",
+  },
+  {
+    q: "What does \"vendor-neutral\" actually mean in practice?",
+    a: "CETL holds no reseller agreements, partner incentives, or licensing revenue tied to any specific AI platform or cloud provider. Recommendations are driven solely by fit for your architecture and goals.",
+  },
+  {
+    q: "Which sectors does CETL work with?",
+    a: "CETL's engagements span industry, public sector, and academic institutions across Central Europe. All activities explicitly exclude insurance compliance and regulatory topics.",
+  },
+  {
+    q: "How long is a typical engagement?",
+    a: "Formats range from a 2–3 hour trend briefing to a 3–6 month Forward Deployed Engineer program. Most Strategic Advisory bootcamps run 2–3 days; Technical Assessments run 4–6 weeks.",
   },
 ];
 
