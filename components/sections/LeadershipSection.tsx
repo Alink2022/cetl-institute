@@ -1,8 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Container } from "@/components/ui/Container";
 import { MagneticButton } from "@/components/ui/MagneticButton";
-import { MANAGING_DIRECTOR } from "@/lib/content";
+import { useLanguage } from "@/lib/i18n";
 
 function LinkedInIcon() {
   return (
@@ -13,15 +15,19 @@ function LinkedInIcon() {
 }
 
 export function LeadershipSection() {
+  const { t } = useLanguage();
+  const leadership = t.UI.leadership;
+  const md = t.MANAGING_DIRECTOR;
+
   return (
     <section id="leadership" className="relative py-24 lg:py-32 bg-cetl-dark overflow-hidden">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-cetl-violet/[0.08] blur-[140px] pointer-events-none" />
 
       <Container className="relative">
         <SectionHeader
-          label="Leadership"
-          title="Managing Director"
-          subtitle="The academic and operational lead behind CETL Institute's Executional Learning as a Service model."
+          label={leadership.label}
+          title={leadership.title}
+          subtitle={leadership.subtitle}
           className="mb-16"
         />
 
@@ -33,43 +39,41 @@ export function LeadershipSection() {
               <div className="gradient-edge relative w-full aspect-[4/5] rounded-2xl overflow-hidden">
                 <Image
                   src="/alin-kalam.png"
-                  alt="Alin Kalam speaking on AI and human-centered innovation"
+                  alt={leadership.photoAlt}
                   fill
                   sizes="280px"
                   className="object-cover object-[58%_22%]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-cetl-darker via-transparent to-transparent opacity-70" />
                 <span className="absolute bottom-3 left-3 right-3 text-cetl-gold-light text-[10px] font-semibold tracking-widest uppercase">
-                  AI Keynote Speaker
+                  {leadership.photoTag}
                 </span>
               </div>
             </div>
 
             <div>
-              <h3 className="font-display text-2xl font-bold text-cetl-text">{MANAGING_DIRECTOR.name}</h3>
-              <p className="text-gradient-gold font-semibold text-sm tracking-wide uppercase mt-1">
-                {MANAGING_DIRECTOR.title}
-              </p>
-              <p className="text-cetl-text-muted text-sm leading-snug mt-2">{MANAGING_DIRECTOR.headline}</p>
-              <p className="text-cetl-text-muted/70 text-xs mt-2">{MANAGING_DIRECTOR.location}</p>
+              <h3 className="font-display text-2xl font-bold text-cetl-text">{md.name}</h3>
+              <p className="text-gradient-gold font-semibold text-sm tracking-wide uppercase mt-1">{md.title}</p>
+              <p className="text-cetl-text-muted text-sm leading-snug mt-2">{md.headline}</p>
+              <p className="text-cetl-text-muted/70 text-xs mt-2">{md.location}</p>
             </div>
 
             <MagneticButton
-              href={MANAGING_DIRECTOR.linkedin}
+              href={md.linkedin}
               external
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-cetl-gold/40 text-cetl-gold text-sm font-semibold tracking-wide hover:border-cetl-gold hover:bg-cetl-gold/10"
             >
               <LinkedInIcon />
-              LinkedIn Profile
+              {leadership.linkedin}
             </MagneticButton>
           </div>
 
           {/* Bio + credentials */}
           <div className="flex flex-col gap-8">
-            <p className="text-cetl-text-muted text-base leading-relaxed">{MANAGING_DIRECTOR.bio}</p>
+            <p className="text-cetl-text-muted text-base leading-relaxed">{md.bio}</p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {MANAGING_DIRECTOR.credentials.map((c) => (
+              {md.credentials.map((c) => (
                 <div
                   key={c.label}
                   className="flex flex-col gap-1 p-4 rounded-xl bg-cetl-dark border border-cetl-border"
@@ -82,10 +86,10 @@ export function LeadershipSection() {
 
             <div className="pt-6 border-t border-cetl-border">
               <p className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase mb-3">
-                Focus Areas
+                {leadership.focus}
               </p>
               <div className="flex flex-wrap gap-2">
-                {MANAGING_DIRECTOR.focus.map((f) => (
+                {md.focus.map((f) => (
                   <span
                     key={f}
                     className="px-3 py-1.5 rounded-full text-xs font-medium border border-cetl-border text-cetl-text-muted bg-cetl-dark"

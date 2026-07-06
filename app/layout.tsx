@@ -5,6 +5,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { CursorGlow } from "@/components/ui/CursorGlow";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
+import { LanguageProvider } from "@/lib/i18n";
 
 const displayFont = Bricolage_Grotesque({
   variable: "--font-display",
@@ -21,12 +22,13 @@ const bodyFont = Instrument_Sans({
 export const metadata: Metadata = {
   title: "CETL Institute — Central European Tech Leadership Institute",
   description:
-    "Bridging academic excellence and industrial execution. Executive education, strategic advisory, and independent technical assessment for C-Suite leaders navigating AI and digital transformation.",
+    "Akademische Exzellenz trifft industrielle Umsetzung. Executive Education, strategische Beratung und unabhängige technische Bewertung für Vorstand und Geschäftsführung bei AI- und digitaler Transformation.",
   openGraph: {
     title: "CETL Institute",
     description:
-      "Executional Learning as a Service — transforming organizational leaders from passive observers into active architects of AI-driven enterprise value.",
+      "Executional Learning as a Service — wir machen Führungskräfte vom passiven Beobachter zum aktiven Architekten AI-getriebenen Unternehmenswerts.",
     type: "website",
+    locale: "de_AT",
   },
 };
 
@@ -36,11 +38,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${displayFont.variable} ${bodyFont.variable} h-full`}>
+    <html lang="de-AT" className={`${displayFont.variable} ${bodyFont.variable} h-full`}>
       <body className="min-h-full flex flex-col antialiased bg-cetl-dark text-cetl-text">
-        <ScrollProgress />
-        <CursorGlow />
-        {children}
+        <LanguageProvider>
+          <ScrollProgress />
+          <CursorGlow />
+          {children}
+        </LanguageProvider>
         <Analytics />
         <SpeedInsights />
       </body>

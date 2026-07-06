@@ -1,6 +1,13 @@
+"use client";
+
 import { Container } from "@/components/ui/Container";
+import { useLanguage } from "@/lib/i18n";
 
 export function Footer() {
+  const { t } = useLanguage();
+  const footer = t.UI.footer;
+  const footerLinks = [...t.NAV_LINKS, { label: footer.contactLabel, href: "#contact" }];
+
   return (
     <footer className="relative border-t border-cetl-border bg-cetl-darker overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cetl-gold to-transparent opacity-40" />
@@ -17,46 +24,46 @@ export function Footer() {
                 <span className="text-cetl-text-muted text-xs tracking-widest uppercase">Institute</span>
               </div>
             </div>
-            <p className="text-cetl-text-muted text-sm leading-relaxed max-w-xs">
-              Central European Tech Leadership Institute. Bridging academic excellence and industrial execution.
-            </p>
+            <p className="text-cetl-text-muted text-sm leading-relaxed max-w-xs">{footer.tagline}</p>
           </div>
 
           {/* Links */}
           <div className="flex flex-col gap-3">
-            <span className="text-cetl-text text-xs font-semibold tracking-widest uppercase mb-1">Navigation</span>
-            {["About", "Services", "ELaaS", "Programs", "Partners", "Contact"].map((item) => (
+            <span className="text-cetl-text text-xs font-semibold tracking-widest uppercase mb-1">
+              {footer.navLabel}
+            </span>
+            {footerLinks.map((item) => (
               <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
+                key={item.href}
+                href={item.href}
                 className="text-cetl-text-muted hover:text-cetl-gold text-sm transition-colors duration-200"
               >
-                {item}
+                {item.label}
               </a>
             ))}
           </div>
 
           {/* Contact */}
           <div className="flex flex-col gap-3">
-            <span className="text-cetl-text text-xs font-semibold tracking-widest uppercase mb-1">Contact</span>
-            <p className="text-cetl-text-muted text-sm">Vienna, Austria</p>
-            <p className="text-cetl-text-muted text-sm">Central Europe</p>
+            <span className="text-cetl-text text-xs font-semibold tracking-widest uppercase mb-1">
+              {footer.contactLabel}
+            </span>
+            <p className="text-cetl-text-muted text-sm">{footer.location}</p>
+            <p className="text-cetl-text-muted text-sm">{footer.region}</p>
             <a
-              href="mailto:office@cetl-institute.eu"
+              href={`mailto:${t.SITE.email}`}
               className="text-cetl-gold hover:text-cetl-gold-light text-sm transition-colors duration-200"
             >
-              office@cetl-institute.eu
+              {t.SITE.email}
             </a>
           </div>
         </div>
 
         <div className="mt-10 pt-6 border-t border-cetl-border flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-cetl-text-muted text-xs">
-            © {new Date().getFullYear()} CETL Institute. All rights reserved.
+            © {new Date().getFullYear()} CETL Institute. {footer.copyright}
           </p>
-          <p className="text-cetl-text-muted text-xs">
-            All advisory activities are strictly limited to non-insurance sectors.
-          </p>
+          <p className="text-cetl-text-muted text-xs">{footer.complianceLine}</p>
         </div>
       </Container>
     </footer>

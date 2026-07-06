@@ -5,17 +5,12 @@ import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/Badge";
 import { Container } from "@/components/ui/Container";
 import { MagneticButton } from "@/components/ui/MagneticButton";
-
-const TICKER_ITEMS = [
-  "Executive Education",
-  "ELaaS",
-  "Strategic Advisory",
-  "Technical Assessment",
-  "Forward Deployed Engineers",
-  "TU Wien Academic Partnership",
-];
+import { useLanguage } from "@/lib/i18n";
 
 export function HeroSection() {
+  const { t } = useLanguage();
+  const hero = t.UI.hero;
+
   return (
     <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-cetl-dark">
       {/* Aurora blobs */}
@@ -41,13 +36,13 @@ export function HeroSection() {
       {/* Floating chips */}
       <div className="absolute inset-0 pointer-events-none hidden xl:block" aria-hidden="true">
         <div className="absolute top-[14%] left-[1%] animate-float">
-          <Badge variant="blue" className="shadow-[0_0_30px_-8px_rgba(79,140,255,0.5)]">Vienna · Austria</Badge>
+          <Badge variant="blue" className="shadow-[0_0_30px_-8px_rgba(79,140,255,0.5)]">{hero.badgeVienna}</Badge>
         </div>
         <div className="absolute top-[14%] right-[1%] animate-float" style={{ animationDelay: "-2.5s" }}>
-          <Badge variant="muted" className="shadow-[0_0_30px_-8px_rgba(139,107,255,0.4)]">TU Wien Partner</Badge>
+          <Badge variant="muted" className="shadow-[0_0_30px_-8px_rgba(139,107,255,0.4)]">{hero.badgeTUWien}</Badge>
         </div>
         <div className="absolute bottom-[6%] right-[2%] animate-float" style={{ animationDelay: "-4.5s" }}>
-          <Badge variant="gold" className="shadow-[0_0_30px_-8px_rgba(212,175,90,0.5)]">Forward Deployed Engineers</Badge>
+          <Badge variant="gold" className="shadow-[0_0_30px_-8px_rgba(212,175,90,0.5)]">{hero.badgeFDE}</Badge>
         </div>
       </div>
 
@@ -69,7 +64,7 @@ export function HeroSection() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-cetl-darker via-transparent to-transparent opacity-60" />
             <span className="absolute bottom-2 left-2 right-2 text-cetl-gold-light text-[9px] font-semibold tracking-widest uppercase">
-              Managing Director
+              {hero.photoCaption}
             </span>
           </div>
         </div>
@@ -87,7 +82,7 @@ export function HeroSection() {
           transition={{ duration: 0.6 }}
           className="flex justify-center mb-8"
         >
-          <Badge variant="gold">CETL · Vienna</Badge>
+          <Badge variant="gold">{hero.badgeLocation}</Badge>
         </motion.div>
 
         <motion.h1
@@ -96,11 +91,11 @@ export function HeroSection() {
           transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           className="font-display text-6xl md:text-8xl lg:text-9xl xl:text-[8.5rem] font-bold leading-[0.9] tracking-tighter mb-8 text-cetl-text"
         >
-          Bridging the Gap:
+          {hero.headlineLine1}
           <br />
-          <span className="text-gradient-gold italic">Academic Excellence</span>
+          <span className="text-gradient-gold italic">{hero.headlineGradient}</span>
           <br />
-          Meets Industry Execution
+          {hero.headlineLine3}
         </motion.h1>
 
         <motion.p
@@ -109,8 +104,7 @@ export function HeroSection() {
           transition={{ duration: 0.8, delay: 0.25 }}
           className="text-cetl-text-muted text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-12"
         >
-          We translate complex AI and data strategies into executable roadmaps that empower
-          C-Suite leaders to actively steer digital transformation, not just observe it.
+          {hero.paragraph}
         </motion.p>
 
         <motion.div
@@ -123,14 +117,14 @@ export function HeroSection() {
             href="#elaas"
             className="w-full sm:w-auto relative px-8 py-4 rounded-full bg-cetl-gold text-cetl-darker font-semibold tracking-wide text-center overflow-hidden group block shadow-[0_0_40px_-10px_rgba(212,175,90,0.7)]"
           >
-            <span className="relative z-10">Discover ELaaS</span>
+            <span className="relative z-10">{hero.ctaPrimary}</span>
             <span className="absolute inset-0 bg-gradient-to-r from-cetl-gold-light to-cetl-violet opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </MagneticButton>
           <MagneticButton
             href="#contact"
             className="w-full sm:w-auto px-8 py-4 rounded-full border border-cetl-gold/40 text-cetl-gold font-semibold tracking-wide hover:border-cetl-gold hover:bg-cetl-gold/10 text-center block"
           >
-            Schedule a Briefing
+            {hero.ctaSecondary}
           </MagneticButton>
         </motion.div>
 
@@ -141,11 +135,7 @@ export function HeroSection() {
           transition={{ duration: 0.8, delay: 0.55 }}
           className="mt-20 grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-3xl mx-auto border-t border-cetl-border pt-12"
         >
-          {[
-            { value: "3", label: "Core Pillars" },
-            { value: "C-Suite", label: "Target Audience" },
-            { value: "Non-Insurance", label: "Sector Focus" },
-          ].map((stat) => (
+          {hero.stats.map((stat) => (
             <div key={stat.label} className="flex flex-col items-center gap-1">
               <span className="font-display text-2xl md:text-3xl font-bold text-gradient-gold">
                 {stat.value}
@@ -159,7 +149,7 @@ export function HeroSection() {
       {/* Ticker */}
       <div className="relative z-10 mt-16 border-t border-cetl-border/60 py-5 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
         <div className="marquee-track gap-12 text-cetl-text-muted/70 text-sm tracking-[0.25em] uppercase font-medium">
-          {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
+          {[...hero.ticker, ...hero.ticker].map((item, i) => (
             <span key={i} className="flex items-center gap-12 shrink-0">
               {item}
               <span className="text-cetl-gold/60">✦</span>

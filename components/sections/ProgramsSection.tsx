@@ -1,8 +1,10 @@
+"use client";
+
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Badge } from "@/components/ui/Badge";
 import { Container } from "@/components/ui/Container";
 import { TiltCard } from "@/components/ui/TiltCard";
-import { PROGRAMS, TAG_COLORS } from "@/lib/content";
+import { useLanguage } from "@/lib/i18n";
 
 const SVG_PROPS = {
   viewBox: "0 0 16 16",
@@ -34,25 +36,27 @@ function PersonIcon() {
 }
 
 export function ProgramsSection() {
+  const { t } = useLanguage();
+
   return (
     <section id="programs" className="py-24 lg:py-32 bg-cetl-dark">
       <Container>
         <SectionHeader
-          label="Programs"
-          title="Formats Built for Execution"
-          subtitle="Every program is designed to close the gap between knowledge and action: from board briefings to embedded engineering engagements."
+          label={t.UI.programs.label}
+          title={t.UI.programs.title}
+          subtitle={t.UI.programs.subtitle}
           className="mb-16"
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {PROGRAMS.map((program) => (
+          {t.PROGRAMS.map((program) => (
             <TiltCard
               key={program.title}
               className="gradient-edge relative flex flex-col bg-cetl-surface rounded-2xl border border-cetl-border p-7 overflow-hidden"
             >
               <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-cetl-gold via-cetl-gold-light to-cetl-violet opacity-70" />
               <div className="mb-5">
-                <Badge variant={TAG_COLORS[program.tag] ?? "muted"} className="mb-4">
+                <Badge variant={t.TAG_COLORS[program.tag] ?? "muted"} className="mb-4">
                   {program.tag}
                 </Badge>
                 <h3 className="font-display text-cetl-text font-bold text-lg leading-snug">{program.title}</h3>
@@ -82,7 +86,7 @@ export function ProgramsSection() {
             className="group relative inline-flex items-center gap-2 px-8 py-4 rounded-full bg-cetl-gold text-cetl-darker font-semibold tracking-wide overflow-hidden transition-transform duration-300 hover:scale-105"
           >
             <span className="relative z-10 flex items-center gap-2">
-              Discuss a Custom Program
+              {t.UI.programs.cta}
               <svg
                 className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300"
                 viewBox="0 0 16 16"

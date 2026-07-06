@@ -4,9 +4,11 @@ import { useState } from "react";
 import { Users } from "lucide-react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Container } from "@/components/ui/Container";
-import { CONTACT_ITEMS, CONTACT_INTEREST_OPTIONS, SITE } from "@/lib/content";
+import { useLanguage } from "@/lib/i18n";
 
 export function ContactSection() {
+  const { t } = useLanguage();
+  const contact = t.UI.contact;
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({
     name: "",
@@ -24,11 +26,11 @@ export function ContactSection() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`CETL Inquiry: ${form.interest || "General"}`);
+    const subject = encodeURIComponent(`${contact.mailSubjectPrefix}: ${form.interest || contact.mailGeneral}`);
     const body = encodeURIComponent(
-      `Name: ${form.name}\nCompany: ${form.company}\nEmail: ${form.email}\nInterest: ${form.interest}\n\n${form.message}`
+      `${contact.mailFieldName}: ${form.name}\n${contact.mailFieldCompany}: ${form.company}\n${contact.mailFieldEmail}: ${form.email}\n${contact.mailFieldInterest}: ${form.interest}\n\n${form.message}`
     );
-    window.location.href = `mailto:${SITE.email}?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:${t.SITE.email}?subject=${subject}&body=${body}`;
     setSubmitted(true);
   };
 
@@ -39,14 +41,14 @@ export function ContactSection() {
           {/* Left: Info */}
           <div className="flex flex-col gap-8">
             <SectionHeader
-              label="Contact"
-              title="Start the Conversation"
-              subtitle="Whether you're exploring ELaaS, need a strategic advisory engagement, or want to schedule an AI literacy briefing: we'd like to hear from you."
+              label={contact.label}
+              title={contact.title}
+              subtitle={contact.subtitle}
               align="left"
             />
 
             <div className="flex flex-col gap-6 pt-4 border-t border-cetl-border">
-              {CONTACT_ITEMS.map((item) => (
+              {t.CONTACT_ITEMS.map((item) => (
                 <div key={item.label}>
                   <p className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase mb-1">
                     {item.label}
@@ -73,21 +75,17 @@ export function ContactSection() {
               />
               <div>
                 <p className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase mb-1">
-                  Target Audience
+                  {contact.targetAudienceLabel}
                 </p>
-                <p className="text-cetl-text-muted text-sm leading-relaxed">
-                  C-Suite executives, board members, and senior leadership teams in non-insurance sectors across Central Europe.
-                </p>
+                <p className="text-cetl-text-muted text-sm leading-relaxed">{contact.targetAudienceText}</p>
               </div>
             </div>
 
             <div className="bg-cetl-surface border border-cetl-border rounded-xl p-6">
               <p className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase mb-3">
-                Compliance Note
+                {contact.complianceLabel}
               </p>
-              <p className="text-cetl-text-muted text-sm leading-relaxed">
-                {SITE.complianceNote}
-              </p>
+              <p className="text-cetl-text-muted text-sm leading-relaxed">{t.SITE.complianceNote}</p>
             </div>
           </div>
 
@@ -110,10 +108,8 @@ export function ContactSection() {
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
                 </div>
-                <h3 className="font-display text-cetl-text font-bold text-xl">Message Sent</h3>
-                <p className="text-cetl-text-muted text-sm max-w-xs">
-                  Your email client should have opened. We&apos;ll respond within 48 hours.
-                </p>
+                <h3 className="font-display text-cetl-text font-bold text-xl">{contact.successTitle}</h3>
+                <p className="text-cetl-text-muted text-sm max-w-xs">{contact.successText}</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="relative flex flex-col gap-5">
@@ -123,7 +119,7 @@ export function ContactSection() {
                       htmlFor="contact-name"
                       className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase"
                     >
-                      Full Name *
+                      {contact.nameLabel}
                     </label>
                     <input
                       id="contact-name"
@@ -133,7 +129,7 @@ export function ContactSection() {
                       value={form.name}
                       onChange={handleChange}
                       className="bg-cetl-dark border border-cetl-border rounded-lg text-cetl-text text-sm px-4 py-3 focus:outline-none focus:border-cetl-gold/60 focus:ring-2 focus:ring-cetl-gold/10 transition-all placeholder:text-cetl-text-muted/40"
-                      placeholder="Dr. Jane Smith"
+                      placeholder={contact.namePlaceholder}
                     />
                   </div>
                   <div className="flex flex-col gap-2">
@@ -141,7 +137,7 @@ export function ContactSection() {
                       htmlFor="contact-company"
                       className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase"
                     >
-                      Organization *
+                      {contact.companyLabel}
                     </label>
                     <input
                       id="contact-company"
@@ -151,7 +147,7 @@ export function ContactSection() {
                       value={form.company}
                       onChange={handleChange}
                       className="bg-cetl-dark border border-cetl-border rounded-lg text-cetl-text text-sm px-4 py-3 focus:outline-none focus:border-cetl-gold/60 focus:ring-2 focus:ring-cetl-gold/10 transition-all placeholder:text-cetl-text-muted/40"
-                      placeholder="Acme Corporation"
+                      placeholder={contact.companyPlaceholder}
                     />
                   </div>
                 </div>
@@ -161,7 +157,7 @@ export function ContactSection() {
                     htmlFor="contact-email"
                     className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase"
                   >
-                    Email *
+                    {contact.emailLabel}
                   </label>
                   <input
                     id="contact-email"
@@ -171,7 +167,7 @@ export function ContactSection() {
                     value={form.email}
                     onChange={handleChange}
                     className="bg-cetl-dark border border-cetl-border rounded-lg text-cetl-text text-sm px-4 py-3 focus:outline-none focus:border-cetl-gold/60 focus:ring-2 focus:ring-cetl-gold/10 transition-all placeholder:text-cetl-text-muted/40"
-                    placeholder="jane@company.com"
+                    placeholder={contact.emailPlaceholder}
                   />
                 </div>
 
@@ -180,7 +176,7 @@ export function ContactSection() {
                     htmlFor="contact-interest"
                     className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase"
                   >
-                    Area of Interest
+                    {contact.interestLabel}
                   </label>
                   <select
                     id="contact-interest"
@@ -189,8 +185,8 @@ export function ContactSection() {
                     onChange={handleChange}
                     className="bg-cetl-dark border border-cetl-border text-cetl-text text-sm px-4 py-3 focus:outline-none focus:border-cetl-gold/60 transition-colors"
                   >
-                    <option value="">Select a program area</option>
-                    {CONTACT_INTEREST_OPTIONS.map((opt) => (
+                    <option value="">{contact.interestPlaceholder}</option>
+                    {t.CONTACT_INTEREST_OPTIONS.map((opt) => (
                       <option key={opt}>{opt}</option>
                     ))}
                   </select>
@@ -201,7 +197,7 @@ export function ContactSection() {
                     htmlFor="contact-message"
                     className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase"
                   >
-                    Message
+                    {contact.messageLabel}
                   </label>
                   <textarea
                     id="contact-message"
@@ -210,7 +206,7 @@ export function ContactSection() {
                     value={form.message}
                     onChange={handleChange}
                     className="bg-cetl-dark border border-cetl-border rounded-lg text-cetl-text text-sm px-4 py-3 focus:outline-none focus:border-cetl-gold/60 focus:ring-2 focus:ring-cetl-gold/10 transition-all resize-none placeholder:text-cetl-text-muted/40"
-                    placeholder="Tell us about your organization's current challenges and goals..."
+                    placeholder={contact.messagePlaceholder}
                   />
                 </div>
 
@@ -218,7 +214,7 @@ export function ContactSection() {
                   type="submit"
                   className="group relative w-full py-4 rounded-full bg-cetl-gold text-cetl-darker font-semibold tracking-wide overflow-hidden transition-transform duration-300 hover:scale-[1.02] mt-2"
                 >
-                  <span className="relative z-10">Send Message</span>
+                  <span className="relative z-10">{contact.submit}</span>
                   <span className="absolute inset-0 bg-gradient-to-r from-cetl-gold-light to-cetl-violet opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </button>
               </form>

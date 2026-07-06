@@ -1,8 +1,11 @@
+"use client";
+
 import { Brain, TrendingUp, Award } from "lucide-react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Container } from "@/components/ui/Container";
 import { TiltCard } from "@/components/ui/TiltCard";
-import { PILLARS, type LucideIconName } from "@/lib/content";
+import { useLanguage } from "@/lib/i18n";
+import type { LucideIconName } from "@/lib/content-types";
 
 const ICON_MAP: Record<LucideIconName, React.ElementType> = {
   Brain,
@@ -30,18 +33,20 @@ function CheckIcon() {
 }
 
 export function ThreePillars() {
+  const { t } = useLanguage();
+
   return (
     <section id="services" className="py-24 lg:py-32 bg-cetl-dark">
       <Container>
         <SectionHeader
-          label="Our Value Proposition"
-          title="Three Pillars of Transformation"
-          subtitle="A comprehensive framework that moves organizations from AI awareness to AI execution, embedding sovereign capability directly into your leadership and technical talent."
+          label={t.UI.pillars.label}
+          title={t.UI.pillars.title}
+          subtitle={t.UI.pillars.subtitle}
           className="mb-16"
         />
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {PILLARS.map((pillar) => {
+          {t.PILLARS.map((pillar) => {
             const Icon = ICON_MAP[pillar.icon];
             return (
               <TiltCard

@@ -3,7 +3,8 @@
 import { motion } from "framer-motion";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Container } from "@/components/ui/Container";
-import { RESEARCH_STATS, EXECUTION_GAP, QUOTES, type ResearchStat } from "@/lib/content";
+import { useLanguage } from "@/lib/i18n";
+import type { ResearchStat } from "@/lib/content-types";
 
 function RingChart({ value }: { value: number }) {
   const r = 42;
@@ -122,6 +123,9 @@ function StatVisual({ stat }: { stat: ResearchStat }) {
 }
 
 export function ResearchSection() {
+  const { t, lang } = useLanguage();
+  const research = t.UI.research;
+
   return (
     <section id="research" className="relative py-24 lg:py-32 bg-cetl-surface overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cetl-gold to-transparent opacity-40" />
@@ -129,15 +133,15 @@ export function ResearchSection() {
 
       <Container className="relative">
         <SectionHeader
-          label="Research & Evidence"
-          title="The Execution Gap Isn't Anecdotal"
-          subtitle="Independent research from McKinsey, Gartner, BCG, MIT Sloan Management Review, and Stanford HAI consistently points to the same conclusion: the constraint on AI value is rarely the technology."
+          label={research.label}
+          title={research.title}
+          subtitle={research.subtitle}
           className="mb-16"
         />
 
         {/* Stat visualizations */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-          {RESEARCH_STATS.map((stat) => (
+          {t.RESEARCH_STATS.map((stat) => (
             <div
               key={stat.id}
               className="gradient-edge flex flex-col items-center text-center gap-4 bg-cetl-dark rounded-2xl border border-cetl-border p-6"
@@ -156,11 +160,11 @@ export function ResearchSection() {
         {/* Execution Gap horizontal bars */}
         <div className="gradient-edge bg-cetl-dark rounded-2xl border border-cetl-border p-8 lg:p-10 mb-16">
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2 mb-8">
-            <h3 className="font-display text-xl font-bold text-cetl-text">{EXECUTION_GAP.label}</h3>
-            <p className="text-cetl-text-muted text-xs max-w-sm">{EXECUTION_GAP.detail}</p>
+            <h3 className="font-display text-xl font-bold text-cetl-text">{t.EXECUTION_GAP.label}</h3>
+            <p className="text-cetl-text-muted text-xs max-w-sm">{t.EXECUTION_GAP.detail}</p>
           </div>
           <div className="flex flex-col gap-5">
-            {EXECUTION_GAP.rows.map((row, i) => (
+            {t.EXECUTION_GAP.rows.map((row, i) => (
               <div key={row.label} className="flex flex-col gap-2">
                 <div className="flex items-center justify-between text-sm">
                   <span className="text-cetl-text-muted">{row.label}</span>
@@ -182,7 +186,7 @@ export function ResearchSection() {
 
         {/* Quotes */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {QUOTES.map((q) => (
+          {t.QUOTES.map((q) => (
             <div
               key={q.author}
               className="relative flex flex-col gap-4 bg-cetl-dark rounded-2xl border border-cetl-border p-7"
@@ -194,6 +198,9 @@ export function ResearchSection() {
                 &ldquo;
               </span>
               <p className="text-cetl-text text-sm leading-relaxed -mt-6">{q.quote}</p>
+              {lang === "de" && (
+                <p className="text-cetl-text-muted text-xs italic leading-relaxed">{q.translation}</p>
+              )}
               <div className="pt-4 mt-auto border-t border-cetl-border">
                 <p className="text-cetl-text font-semibold text-sm">{q.author}</p>
                 <p className="text-cetl-text-muted text-xs">{q.role}</p>

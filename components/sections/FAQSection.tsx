@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Container } from "@/components/ui/Container";
-import { FAQ_ITEMS } from "@/lib/content";
+import { useLanguage } from "@/lib/i18n";
 
 function PlusIcon({ open }: { open: boolean }) {
   return (
@@ -22,19 +22,16 @@ function PlusIcon({ open }: { open: boolean }) {
 }
 
 export function FAQSection() {
+  const { t } = useLanguage();
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
     <section className="py-24 lg:py-32 bg-cetl-dark">
       <Container className="max-w-4xl">
-        <SectionHeader
-          label="FAQ"
-          title="Questions Leadership Teams Ask First"
-          className="mb-12"
-        />
+        <SectionHeader label={t.UI.faq.label} title={t.UI.faq.title} className="mb-12" />
 
         <div className="flex flex-col gap-3">
-          {FAQ_ITEMS.map((item, i) => {
+          {t.FAQ_ITEMS.map((item, i) => {
             const open = openIndex === i;
             return (
               <div

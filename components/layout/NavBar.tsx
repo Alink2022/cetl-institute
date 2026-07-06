@@ -2,9 +2,11 @@
 
 import { useState, useEffect, useRef } from "react";
 import { Container } from "@/components/ui/Container";
-import { NAV_LINKS } from "@/lib/content";
+import { LanguageSwitch } from "@/components/ui/LanguageSwitch";
+import { useLanguage } from "@/lib/i18n";
 
 export function NavBar() {
+  const { t } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -55,8 +57,8 @@ export function NavBar() {
           </a>
 
           {/* Desktop links */}
-          <div className="hidden md:flex items-center gap-1">
-            {NAV_LINKS.map((link) => (
+          <div className="hidden lg:flex items-center gap-1">
+            {t.NAV_LINKS.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
@@ -69,12 +71,13 @@ export function NavBar() {
           </div>
 
           {/* CTA */}
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden md:flex items-center gap-3">
+            <LanguageSwitch />
             <a
               href="#contact"
               className="relative px-5 py-2.5 rounded-full bg-cetl-gold text-cetl-darker text-sm font-semibold tracking-wide overflow-hidden group transition-transform duration-300 hover:scale-105"
             >
-              <span className="relative z-10">Get in Touch</span>
+              <span className="relative z-10">{t.UI.nav.ctaContact}</span>
               <span className="absolute inset-0 bg-gradient-to-r from-cetl-gold-light to-cetl-violet opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </a>
           </div>
@@ -83,7 +86,7 @@ export function NavBar() {
           <button
             className="md:hidden text-cetl-text-muted hover:text-cetl-text p-2"
             onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Toggle menu"
+            aria-label={t.UI.nav.toggleMenu}
             aria-expanded={mobileOpen}
             aria-controls="mobile-menu"
           >
@@ -114,7 +117,7 @@ export function NavBar() {
         }`}
       >
         <div className="flex flex-col h-full pt-28 px-8">
-          {NAV_LINKS.map((link, i) => (
+          {t.NAV_LINKS.map((link, i) => (
             <a
               key={link.href}
               href={link.href}
@@ -129,12 +132,13 @@ export function NavBar() {
               {link.label}
             </a>
           ))}
+          <LanguageSwitch className="mt-8 self-start" />
           <a
             href="#contact"
             onClick={() => setMobileOpen(false)}
-            className="mt-8 px-6 py-4 rounded-full bg-cetl-gold text-cetl-darker font-semibold tracking-wide text-center"
+            className="mt-4 px-6 py-4 rounded-full bg-cetl-gold text-cetl-darker font-semibold tracking-wide text-center"
           >
-            Get in Touch
+            {t.UI.nav.ctaContact}
           </a>
         </div>
       </div>

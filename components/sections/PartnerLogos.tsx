@@ -1,7 +1,10 @@
-import { Container } from "@/components/ui/Container";
-import { PARTNERS } from "@/lib/content";
+"use client";
 
-function PartnerCard({ partner }: { partner: (typeof PARTNERS)[number] }) {
+import { Container } from "@/components/ui/Container";
+import { useLanguage } from "@/lib/i18n";
+import type { Partner } from "@/lib/content-types";
+
+function PartnerCard({ partner }: { partner: Partner }) {
   return (
     <div className="flex flex-col items-center gap-1.5 shrink-0 group">
       <div className="px-7 py-3.5 rounded-xl border border-cetl-border bg-cetl-dark/60 grayscale group-hover:grayscale-0 group-hover:border-cetl-gold/30 group-hover:-translate-y-0.5 transition-all duration-300">
@@ -15,19 +18,22 @@ function PartnerCard({ partner }: { partner: (typeof PARTNERS)[number] }) {
 }
 
 export function PartnerLogos() {
+  const { t } = useLanguage();
+  const partners = t.UI.partners;
+
   return (
     <section id="partners" className="relative py-20 bg-cetl-surface overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cetl-gold to-transparent opacity-40" />
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cetl-violet to-transparent opacity-40" />
       <Container>
         <p className="text-center text-cetl-text-muted text-xs font-semibold tracking-widest uppercase mb-12">
-          Trusted by Leading Institutions &amp; Organizations
+          {partners.trusted}
         </p>
       </Container>
 
       <div className="[mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
         <div className="marquee-track gap-10">
-          {[...PARTNERS, ...PARTNERS].map((partner, i) => (
+          {[...t.PARTNERS, ...t.PARTNERS].map((partner, i) => (
             <PartnerCard key={`${partner.name}-${i}`} partner={partner} />
           ))}
         </div>
@@ -36,10 +42,8 @@ export function PartnerLogos() {
       <Container>
         <div className="mt-14 max-w-2xl mx-auto text-center">
           <p className="text-cetl-text-muted text-sm leading-relaxed">
-            Flagship organizer of the{" "}
-            <span className="text-cetl-text font-medium">Europe Tech Hackathon</span>,
-            bringing together public institutions, global enterprises, and academic leaders
-            to accelerate technology-driven transformation across Central Europe.
+            {partners.blurbBefore}{" "}
+            <span className="text-cetl-text font-medium">{partners.blurbHackathon}</span> {partners.blurbAfter}
           </p>
         </div>
       </Container>

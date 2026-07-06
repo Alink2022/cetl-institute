@@ -1,10 +1,15 @@
+"use client";
+
 import { Globe } from "lucide-react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Badge } from "@/components/ui/Badge";
 import { Container } from "@/components/ui/Container";
-import { ELAAS_FEATURES } from "@/lib/content";
+import { useLanguage } from "@/lib/i18n";
 
 export function ELaaSSection() {
+  const { t } = useLanguage();
+  const elaas = t.UI.elaas;
+
   return (
     <section id="elaas" className="relative py-24 lg:py-32 bg-cetl-surface">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cetl-gold to-transparent opacity-40" />
@@ -13,25 +18,16 @@ export function ELaaSSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* Left: Header + description */}
           <div className="flex flex-col gap-8 lg:sticky lg:top-24">
-            <SectionHeader
-              label="ELaaS"
-              title="Executional Learning as a Service"
-              subtitle="The Premier AI & Data Capability Accelerator, engineered to dismantle the execution gap between AI hype and operational reality."
-              align="left"
-            />
+            <SectionHeader label={elaas.label} title={elaas.title} subtitle={elaas.subtitle} align="left" />
 
             <div className="flex flex-col gap-4 pt-4 border-t border-cetl-border">
-              <p className="text-cetl-text-muted text-sm leading-relaxed">
-                The market is moving from AI hype to execution. Organizations need capability
-                transfer and implementation ownership, not more slideware. ELaaS transforms
-                organizational leaders from passive observers of technological disruption into
-                active architects of AI-driven enterprise value.
-              </p>
+              <p className="text-cetl-text-muted text-sm leading-relaxed">{elaas.paragraph}</p>
               <div className="flex flex-wrap gap-2 mt-2">
-                <Badge variant="muted">Data Strategy</Badge>
-                <Badge variant="muted">AI Operating Models</Badge>
-                <Badge variant="muted">Value Creation</Badge>
-                <Badge variant="muted">Use Case Prioritization</Badge>
+                {elaas.badges.map((badge) => (
+                  <Badge key={badge} variant="muted">
+                    {badge}
+                  </Badge>
+                ))}
               </div>
             </div>
 
@@ -40,20 +36,20 @@ export function ELaaSSection() {
               <div className="relative flex items-center gap-2 mb-3">
                 <Globe className="w-4 h-4 text-cetl-gold" strokeWidth={1.5} aria-hidden="true" />
                 <p className="text-cetl-gold text-xs font-semibold tracking-widest uppercase">
-                  Strategic Partnership — EMEA
+                  {elaas.partnershipLabel}
                 </p>
               </div>
               <p className="relative text-cetl-text text-sm leading-relaxed">
-                Flagship organizer of the{" "}
-                <strong className="text-cetl-text font-semibold">Europe Tech Hackathon</strong> in
-                partnership with the City of Vienna, European Union, ÖBB, and Siemens.
+                {elaas.partnershipBefore}{" "}
+                <strong className="text-cetl-text font-semibold">{elaas.partnershipHackathon}</strong>{" "}
+                {elaas.partnershipAfter}
               </p>
             </div>
           </div>
 
           {/* Right: Features */}
           <div className="flex flex-col gap-6">
-            {ELAAS_FEATURES.map((feature, i) => (
+            {t.ELAAS_FEATURES.map((feature, i) => (
               <div
                 key={feature.title}
                 className="gradient-edge flex gap-6 p-6 bg-cetl-dark rounded-2xl border border-cetl-border hover:-translate-y-1 transition-all duration-300"
