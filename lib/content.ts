@@ -18,8 +18,26 @@ export const NAV_LINKS = [
   { label: "Services", href: "#services" },
   { label: "ELaaS", href: "#elaas" },
   { label: "Programs", href: "#programs" },
+  { label: "Leadership", href: "#leadership" },
   { label: "Partners", href: "#partners" },
 ] as const;
+
+export const MANAGING_DIRECTOR = {
+  name: "Alin Kalam",
+  initials: "AK",
+  title: "Managing Director",
+  headline: "Head of AI Coordination & Market Intelligence, UNIQA Insurance Group",
+  location: "Vienna, Austria",
+  linkedin: "https://www.linkedin.com/in/alinkalam/",
+  bio: "20+ years bridging AI strategy, data, and enterprise execution — from leading AI governance and market intelligence at UNIQA International to BI leadership at Lufthansa Group and Big Data at BAWAG P.S.K. Trained in engineering, business, and astrophysics across TU Wien, CEU, and the University of Vienna.",
+  credentials: [
+    { label: "UNIQA Insurance Group", sub: "Head of AI Coordination & Market Intelligence" },
+    { label: "Lufthansa Group", sub: "Strategic BI & Analytics Lead" },
+    { label: "BAWAG P.S.K.", sub: "Big Data Officer" },
+    { label: "TU Wien", sub: "MSc, Engineering Management" },
+  ],
+  focus: ["AI Strategy & Governance", "Decision Intelligence", "Market Intelligence", "Data Strategy"],
+} as const;
 
 export interface Pillar {
   number: string;

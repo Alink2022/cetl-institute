@@ -9,6 +9,7 @@ import { ProgramsSection } from "@/components/sections/ProgramsSection";
 import { PartnerLogos } from "@/components/sections/PartnerLogos";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { WordMarquee } from "@/components/sections/WordMarquee";
+import { LeadershipSection } from "@/components/sections/LeadershipSection";
 
 export default function Home() {
   return (
@@ -23,6 +24,8 @@ export default function Home() {
         <GoldDivider />
         <ELaaSSection />
         <WordMarquee />
+        <LeadershipSection />
+        <GoldDivider />
         <ProgramsSection />
         <GoldDivider />
         <PartnerLogos />

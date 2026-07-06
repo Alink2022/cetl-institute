@@ -8,9 +8,16 @@ interface MagneticButtonProps {
   className?: string;
   as?: ElementType;
   onClick?: () => void;
+  external?: boolean;
 }
 
-export function MagneticButton({ href, children, className = "", onClick }: MagneticButtonProps) {
+export function MagneticButton({
+  href,
+  children,
+  className = "",
+  onClick,
+  external = false,
+}: MagneticButtonProps) {
   const ref = useRef<HTMLAnchorElement>(null);
 
   const handleMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -30,6 +37,8 @@ export function MagneticButton({ href, children, className = "", onClick }: Magn
     <a
       ref={ref}
       href={href}
+      target={external ? "_blank" : undefined}
+      rel={external ? "noopener noreferrer" : undefined}
       onClick={onClick}
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
