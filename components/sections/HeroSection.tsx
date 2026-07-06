@@ -62,7 +62,7 @@ export function HeroSection() {
           transition={{ duration: 0.6 }}
           className="flex justify-center mb-8"
         >
-          <Badge variant="gold">Central European Tech Leadership Institute</Badge>
+          <Badge variant="gold">CETL · Vienna</Badge>
         </motion.div>
 
         <motion.h1
