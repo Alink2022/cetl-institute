@@ -11,7 +11,7 @@ export const de: ContentBundle = {
     academic: "TU Wien, Akademischer Direktor",
     tagline: "Wir verbinden akademische Exzellenz mit industrieller Umsetzung.",
     complianceNote:
-      "Sämtliche CETL-Aktivitäten sind ausschließlich auf Nicht-Versicherungsbranchen beschränkt — Versicherungs-Compliance, regulatorische Versicherungsthemen und versicherungsspezifische Mandate sind ausdrücklich ausgeschlossen.",
+      "Sämtliche CETL-Aktivitäten richten sich ausschließlich an Kunden außerhalb der Versicherungsbranche — Versicherungs-Compliance, regulatorische Versicherungsthemen und versicherungsspezifische Mandate sind ausdrücklich ausgeschlossen.",
   },
 
   NAV_LINKS: [
@@ -270,7 +270,7 @@ export const de: ContentBundle = {
     },
     {
       q: "Wie ist der Umgang mit Datenschutz und regulatorischen Anforderungen geregelt?",
-      a: "Alle Engagements erfolgen DSGVO-konform. CETL-Aktivitäten sind ausdrücklich auf Nicht-Versicherungsbranchen beschränkt — für Banken, Industrie und öffentliche Auftraggeber in Zentraleuropa stehen wir uneingeschränkt zur Verfügung.",
+      a: "Alle Engagements erfolgen DSGVO-konform. CETL-Aktivitäten schließen ausdrücklich den Versicherungssektor aus — für Banken, Industrie und öffentliche Auftraggeber in Zentraleuropa stehen wir uneingeschränkt zur Verfügung.",
     },
     {
       q: "Wie läuft Angebotslegung und Vertragsgestaltung ab?",
@@ -312,7 +312,7 @@ export const de: ContentBundle = {
       stats: [
         { value: "3", label: "Kernsäulen" },
         { value: "Vorstandsebene", label: "Zielgruppe" },
-        { value: "Nicht-Versicherung", label: "Branchenfokus" },
+        { value: "Banken & Industrie", label: "Branchenfokus" },
       ],
       ticker: [
         "Executive Education",
@@ -392,7 +392,7 @@ export const de: ContentBundle = {
       subtitle:
         "Ob ELaaS, strategische Beratung oder ein AI-Literacy-Briefing für Ihre Führungsebene: Wir freuen uns auf Ihre Anfrage.",
       targetAudienceLabel: "Zielgruppe",
-      targetAudienceText: "Vorstand, Aufsichtsrat und Führungsteams in Nicht-Versicherungsbranchen in ganz Zentraleuropa.",
+      targetAudienceText: "Vorstand, Aufsichtsrat und Führungsteams in Banken, Industrie und öffentlichen Institutionen in ganz Zentraleuropa — außerhalb der Versicherungsbranche.",
       complianceLabel: "Compliance-Hinweis",
       nameLabel: "Vollständiger Name *",
       namePlaceholder: "Dr. Maria Muster",
@@ -421,7 +421,7 @@ export const de: ContentBundle = {
       location: "Wien, Österreich",
       region: "Zentraleuropa",
       copyright: "Alle Rechte vorbehalten.",
-      complianceLine: "Sämtliche Beratungsleistungen sind ausschließlich auf Nicht-Versicherungsbranchen beschränkt.",
+      complianceLine: "Sämtliche Beratungsleistungen richten sich ausschließlich an Kunden außerhalb der Versicherungsbranche.",
     },
     wordMarquee: ["UMSETZUNG", "SOUVERÄNITÄT", "KOMPETENZ", "TRANSFORMATION", "VERANTWORTUNG"],
   },

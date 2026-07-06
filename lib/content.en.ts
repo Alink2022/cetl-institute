@@ -11,7 +11,7 @@ export const en: ContentBundle = {
     academic: "TU Wien, Academic Director",
     tagline: "Bridging academic excellence and industrial execution.",
     complianceNote:
-      "All CETL activities are strictly limited to non-insurance sectors — insurance compliance, regulatory insurance topics, and insurance-specific mandates are explicitly excluded.",
+      "All CETL activities are strictly limited to clients outside the insurance sector — insurance compliance, regulatory insurance topics, and insurance-specific mandates are explicitly excluded.",
   },
 
   NAV_LINKS: [
@@ -76,7 +76,7 @@ export const en: ContentBundle = {
       title: "Technical Assessment",
       subtitle: "Independent & Rigorous",
       description:
-        "Independent architecture and feasibility reviews for large-scale projects, data modeling, and legacy decommissioning strategies. Vendor-neutral, compliance-conscious, and strictly non-insurance.",
+        "Independent architecture and feasibility reviews for large-scale projects, data modeling, and legacy decommissioning strategies. Vendor-neutral, compliance-conscious, and outside the insurance sector.",
       items: [
         "Architecture & feasibility reviews",
         "Data modeling & strategy",
@@ -270,7 +270,7 @@ export const en: ContentBundle = {
     },
     {
       q: "How is data protection and regulatory compliance handled?",
-      a: "All engagements are GDPR-compliant. CETL activities are explicitly limited to non-insurance sectors — banks, industry, and public-sector clients across Central Europe are fully within scope.",
+      a: "All engagements are GDPR-compliant. CETL activities explicitly exclude the insurance sector — banks, industry, and public-sector clients across Central Europe are fully within scope.",
     },
     {
       q: "How does proposal and contracting work?",
@@ -312,7 +312,7 @@ export const en: ContentBundle = {
       stats: [
         { value: "3", label: "Core Pillars" },
         { value: "C-Suite", label: "Target Audience" },
-        { value: "Non-Insurance", label: "Sector Focus" },
+        { value: "Banking & Industry", label: "Sector Focus" },
       ],
       ticker: [
         "Executive Education",
@@ -391,7 +391,7 @@ export const en: ContentBundle = {
       subtitle:
         "Whether you're exploring ELaaS, need a strategic advisory engagement, or want to schedule an AI literacy briefing: we'd like to hear from you.",
       targetAudienceLabel: "Target Audience",
-      targetAudienceText: "C-Suite executives, board members, and senior leadership teams in non-insurance sectors across Central Europe.",
+      targetAudienceText: "C-Suite executives, board members, and senior leadership teams across banking, industry, and public institutions in Central Europe — outside the insurance sector.",
       complianceLabel: "Compliance Note",
       nameLabel: "Full Name *",
       namePlaceholder: "Dr. Jane Smith",
@@ -420,7 +420,7 @@ export const en: ContentBundle = {
       location: "Vienna, Austria",
       region: "Central Europe",
       copyright: "All rights reserved.",
-      complianceLine: "All advisory activities are strictly limited to non-insurance sectors.",
+      complianceLine: "All advisory activities are limited to clients outside the insurance sector.",
     },
     wordMarquee: ["EXECUTION", "SOVEREIGNTY", "CAPABILITY", "TRANSFORMATION", "OWNERSHIP"],
   },
