@@ -1,8 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import { Users } from "lucide-react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Container } from "@/components/ui/Container";
+import { CONTACT_ITEMS, CONTACT_INTEREST_OPTIONS, SITE } from "@/lib/content";
 
 export function ContactSection() {
   const [submitted, setSubmitted] = useState(false);
@@ -14,7 +16,9 @@ export function ContactSection() {
     message: "",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+  ) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
@@ -24,7 +28,7 @@ export function ContactSection() {
     const body = encodeURIComponent(
       `Name: ${form.name}\nCompany: ${form.company}\nEmail: ${form.email}\nInterest: ${form.interest}\n\n${form.message}`
     );
-    window.location.href = `mailto:office@cetl-institute.eu?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:${SITE.email}?subject=${subject}&body=${body}`;
     setSubmitted(true);
   };
 
@@ -42,23 +46,7 @@ export function ContactSection() {
             />
 
             <div className="flex flex-col gap-6 pt-4 border-t border-cetl-border">
-              {[
-                {
-                  label: "Email",
-                  value: "office@cetl-institute.eu",
-                  href: "mailto:office@cetl-institute.eu",
-                },
-                {
-                  label: "Location",
-                  value: "Vienna, Austria (Central Europe)",
-                  href: null,
-                },
-                {
-                  label: "Academic Partnership",
-                  value: "TU Wien, Academic Director",
-                  href: null,
-                },
-              ].map((item) => (
+              {CONTACT_ITEMS.map((item) => (
                 <div key={item.label}>
                   <p className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase mb-1">
                     {item.label}
@@ -77,36 +65,64 @@ export function ContactSection() {
               ))}
             </div>
 
-            <div className="bg-cetl-surface border border-cetl-border p-6">
+            <div className="flex items-start gap-3 bg-cetl-surface border border-cetl-border rounded-xl p-5">
+              <Users
+                className="w-4 h-4 text-cetl-gold mt-0.5 shrink-0"
+                strokeWidth={1.5}
+                aria-hidden="true"
+              />
+              <div>
+                <p className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase mb-1">
+                  Target Audience
+                </p>
+                <p className="text-cetl-text-muted text-sm leading-relaxed">
+                  C-Suite executives, board members, and senior leadership teams in non-insurance sectors across Central Europe.
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-cetl-surface border border-cetl-border rounded-xl p-6">
               <p className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase mb-3">
                 Compliance Note
               </p>
               <p className="text-cetl-text-muted text-sm leading-relaxed">
-                All CETL activities are strictly limited to non-insurance sectors, explicitly
-                excluding insurance compliance, regulatory topics, and insurance-specific engagements.
+                {SITE.complianceNote}
               </p>
             </div>
           </div>
 
           {/* Right: Form */}
-          <div className="bg-cetl-surface border border-cetl-border p-8">
+          <div className="gradient-edge relative glass-panel rounded-2xl p-8 overflow-hidden">
+            <div className="absolute -top-20 -right-20 w-56 h-56 rounded-full bg-cetl-violet/10 blur-3xl pointer-events-none" />
             {submitted ? (
-              <div className="flex flex-col items-center justify-center h-full gap-4 py-16 text-center">
-                <div className="w-12 h-12 bg-cetl-gold/10 border border-cetl-gold/30 flex items-center justify-center">
-                  <svg className="w-6 h-6 text-cetl-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <div className="relative flex flex-col items-center justify-center h-full gap-4 py-16 text-center">
+                <div className="w-12 h-12 rounded-full bg-cetl-gold/10 border border-cetl-gold/30 flex items-center justify-center">
+                  <svg
+                    className="w-6 h-6 text-cetl-gold"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
                 </div>
-                <h3 className="text-cetl-text font-bold text-xl">Message Sent</h3>
+                <h3 className="font-display text-cetl-text font-bold text-xl">Message Sent</h3>
                 <p className="text-cetl-text-muted text-sm max-w-xs">
                   Your email client should have opened. We&apos;ll respond within 48 hours.
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+              <form onSubmit={handleSubmit} className="relative flex flex-col gap-5">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div className="flex flex-col gap-2">
-                    <label htmlFor="contact-name" className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase">
+                    <label
+                      htmlFor="contact-name"
+                      className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase"
+                    >
                       Full Name *
                     </label>
                     <input
@@ -116,12 +132,15 @@ export function ContactSection() {
                       type="text"
                       value={form.name}
                       onChange={handleChange}
-                      className="bg-cetl-dark border border-cetl-border text-cetl-text text-sm px-4 py-3 focus:outline-none focus:border-cetl-gold/60 transition-colors placeholder:text-cetl-text-muted/40"
+                      className="bg-cetl-dark border border-cetl-border rounded-lg text-cetl-text text-sm px-4 py-3 focus:outline-none focus:border-cetl-gold/60 focus:ring-2 focus:ring-cetl-gold/10 transition-all placeholder:text-cetl-text-muted/40"
                       placeholder="Dr. Jane Smith"
                     />
                   </div>
                   <div className="flex flex-col gap-2">
-                    <label htmlFor="contact-company" className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase">
+                    <label
+                      htmlFor="contact-company"
+                      className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase"
+                    >
                       Organization *
                     </label>
                     <input
@@ -131,14 +150,17 @@ export function ContactSection() {
                       type="text"
                       value={form.company}
                       onChange={handleChange}
-                      className="bg-cetl-dark border border-cetl-border text-cetl-text text-sm px-4 py-3 focus:outline-none focus:border-cetl-gold/60 transition-colors placeholder:text-cetl-text-muted/40"
+                      className="bg-cetl-dark border border-cetl-border rounded-lg text-cetl-text text-sm px-4 py-3 focus:outline-none focus:border-cetl-gold/60 focus:ring-2 focus:ring-cetl-gold/10 transition-all placeholder:text-cetl-text-muted/40"
                       placeholder="Acme Corporation"
                     />
                   </div>
                 </div>
 
                 <div className="flex flex-col gap-2">
-                  <label htmlFor="contact-email" className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase">
+                  <label
+                    htmlFor="contact-email"
+                    className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase"
+                  >
                     Email *
                   </label>
                   <input
@@ -148,13 +170,16 @@ export function ContactSection() {
                     type="email"
                     value={form.email}
                     onChange={handleChange}
-                    className="bg-cetl-dark border border-cetl-border text-cetl-text text-sm px-4 py-3 focus:outline-none focus:border-cetl-gold/60 transition-colors placeholder:text-cetl-text-muted/40"
+                    className="bg-cetl-dark border border-cetl-border rounded-lg text-cetl-text text-sm px-4 py-3 focus:outline-none focus:border-cetl-gold/60 focus:ring-2 focus:ring-cetl-gold/10 transition-all placeholder:text-cetl-text-muted/40"
                     placeholder="jane@company.com"
                   />
                 </div>
 
                 <div className="flex flex-col gap-2">
-                  <label htmlFor="contact-interest" className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase">
+                  <label
+                    htmlFor="contact-interest"
+                    className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase"
+                  >
                     Area of Interest
                   </label>
                   <select
@@ -165,18 +190,17 @@ export function ContactSection() {
                     className="bg-cetl-dark border border-cetl-border text-cetl-text text-sm px-4 py-3 focus:outline-none focus:border-cetl-gold/60 transition-colors"
                   >
                     <option value="">Select a program area</option>
-                    <option>Executive Education / AI Literacy</option>
-                    <option>ELaaS: Executional Learning</option>
-                    <option>Strategic Advisory</option>
-                    <option>Technical Assessment</option>
-                    <option>Forward Deployed Engineer</option>
-                    <option>Europe Tech Hackathon</option>
-                    <option>General Inquiry</option>
+                    {CONTACT_INTEREST_OPTIONS.map((opt) => (
+                      <option key={opt}>{opt}</option>
+                    ))}
                   </select>
                 </div>
 
                 <div className="flex flex-col gap-2">
-                  <label htmlFor="contact-message" className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase">
+                  <label
+                    htmlFor="contact-message"
+                    className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase"
+                  >
                     Message
                   </label>
                   <textarea
@@ -185,16 +209,17 @@ export function ContactSection() {
                     rows={4}
                     value={form.message}
                     onChange={handleChange}
-                    className="bg-cetl-dark border border-cetl-border text-cetl-text text-sm px-4 py-3 focus:outline-none focus:border-cetl-gold/60 transition-colors resize-none placeholder:text-cetl-text-muted/40"
+                    className="bg-cetl-dark border border-cetl-border rounded-lg text-cetl-text text-sm px-4 py-3 focus:outline-none focus:border-cetl-gold/60 focus:ring-2 focus:ring-cetl-gold/10 transition-all resize-none placeholder:text-cetl-text-muted/40"
                     placeholder="Tell us about your organization's current challenges and goals..."
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full py-4 bg-cetl-gold text-cetl-darker font-semibold tracking-wide hover:bg-cetl-gold-light transition-colors duration-200 mt-2"
+                  className="group relative w-full py-4 rounded-full bg-cetl-gold text-cetl-darker font-semibold tracking-wide overflow-hidden transition-transform duration-300 hover:scale-[1.02] mt-2"
                 >
-                  Send Message
+                  <span className="relative z-10">Send Message</span>
+                  <span className="absolute inset-0 bg-gradient-to-r from-cetl-gold-light to-cetl-violet opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </button>
               </form>
             )}

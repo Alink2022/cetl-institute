@@ -2,17 +2,18 @@ import { Container } from "@/components/ui/Container";
 
 export function Footer() {
   return (
-    <footer className="border-t border-cetl-border bg-cetl-darker">
+    <footer className="relative border-t border-cetl-border bg-cetl-darker overflow-hidden">
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cetl-gold to-transparent opacity-40" />
       <Container className="py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {/* Brand */}
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-cetl-gold flex items-center justify-center font-bold text-cetl-darker text-sm">
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cetl-gold-light via-cetl-gold to-cetl-violet flex items-center justify-center font-display font-bold text-cetl-darker text-sm">
                 C
               </div>
               <div className="flex flex-col leading-none">
-                <span className="text-cetl-text font-bold text-sm tracking-wide">CETL</span>
+                <span className="text-cetl-text font-display font-bold text-sm tracking-wide">CETL</span>
                 <span className="text-cetl-text-muted text-xs tracking-widest uppercase">Institute</span>
               </div>
             </div>

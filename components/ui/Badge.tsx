@@ -13,7 +13,7 @@ export function Badge({ children, variant = "gold", className = "" }: BadgeProps
 
   return (
     <span
-      className={`inline-flex items-center px-3 py-1 text-xs font-semibold tracking-widest uppercase ${variants[variant]} ${className}`}
+      className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold tracking-widest uppercase backdrop-blur-sm ${variants[variant]} ${className}`}
     >
       {children}
     </span>

@@ -20,7 +20,7 @@ export function SectionHeader({
   return (
     <div className={`flex flex-col gap-4 ${alignment} ${className}`}>
       <Badge variant="gold">{label}</Badge>
-      <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-cetl-text leading-tight tracking-tight max-w-3xl">
+      <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-cetl-text leading-tight tracking-tight max-w-3xl">
         {title}
       </h2>
       {subtitle && (

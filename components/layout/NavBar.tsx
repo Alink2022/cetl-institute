@@ -2,14 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { Container } from "@/components/ui/Container";
-
-const NAV_LINKS = [
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "ELaaS", href: "#elaas" },
-  { label: "Programs", href: "#programs" },
-  { label: "Partners", href: "#partners" },
-];
+import { NAV_LINKS } from "@/lib/content";
 
 export function NavBar() {
   const [scrolled, setScrolled] = useState(false);
@@ -25,7 +18,7 @@ export function NavBar() {
         rafRef.current = null;
       });
     };
-    handler(); // set initial state on mount
+    handler();
     window.addEventListener("scroll", handler, { passive: true });
     return () => {
       window.removeEventListener("scroll", handler);
@@ -33,34 +26,44 @@ export function NavBar() {
     };
   }, []);
 
-  const navBg = scrolled
-    ? "bg-cetl-darker/95 backdrop-blur-md border-b border-cetl-border"
-    : "bg-transparent";
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileOpen]);
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${navBg}`}>
+    <nav className="fixed top-0 left-0 right-0 z-50 pt-3 md:pt-4">
       <Container>
-        <div className="flex items-center justify-between h-16 lg:h-20">
+        <div
+          className={`flex items-center justify-between h-14 md:h-16 px-4 md:px-5 rounded-full transition-all duration-500 ${
+            scrolled
+              ? "glass-panel shadow-[0_8px_40px_-12px_rgba(212,175,90,0.25)]"
+              : "bg-transparent border border-transparent"
+          }`}
+        >
           {/* Logo */}
-          <a href="#" className="flex items-center gap-3 group">
-            <div className="w-8 h-8 bg-cetl-gold flex items-center justify-center font-bold text-cetl-darker text-sm tracking-tight">
+          <a href="#" className="flex items-center gap-3 group shrink-0">
+            <div className="relative w-9 h-9 flex items-center justify-center font-display font-bold text-cetl-darker text-sm rounded-lg bg-gradient-to-br from-cetl-gold-light via-cetl-gold to-cetl-violet shadow-[0_0_20px_-4px_rgba(212,175,90,0.6)] group-hover:scale-105 transition-transform duration-300">
               C
             </div>
             <div className="flex flex-col leading-none">
-              <span className="text-cetl-text font-bold text-sm tracking-wide">CETL</span>
-              <span className="text-cetl-text-muted text-xs tracking-widest uppercase">Institute</span>
+              <span className="text-cetl-text font-display font-bold text-sm tracking-wide">CETL</span>
+              <span className="text-cetl-text-muted text-[10px] tracking-[0.2em] uppercase">Institute</span>
             </div>
           </a>
 
           {/* Desktop links */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-1">
             {NAV_LINKS.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="text-cetl-text-muted hover:text-cetl-text text-sm font-medium tracking-wide transition-colors duration-200"
+                className="relative px-4 py-2 text-cetl-text-muted hover:text-cetl-text text-sm font-medium tracking-wide transition-colors duration-200 group"
               >
                 {link.label}
+                <span className="absolute left-4 right-4 -bottom-0.5 h-px bg-gradient-to-r from-cetl-gold to-cetl-violet scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
               </a>
             ))}
           </div>
@@ -69,9 +72,10 @@ export function NavBar() {
           <div className="hidden md:flex items-center gap-4">
             <a
               href="#contact"
-              className="px-5 py-2.5 bg-cetl-gold text-cetl-darker text-sm font-semibold tracking-wide hover:bg-cetl-gold-light transition-colors duration-200"
+              className="relative px-5 py-2.5 rounded-full bg-cetl-gold text-cetl-darker text-sm font-semibold tracking-wide overflow-hidden group transition-transform duration-300 hover:scale-105"
             >
-              Get in Touch
+              <span className="relative z-10">Get in Touch</span>
+              <span className="absolute inset-0 bg-gradient-to-r from-cetl-gold-light to-cetl-violet opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </a>
           </div>
 
@@ -83,7 +87,7 @@ export function NavBar() {
             aria-expanded={mobileOpen}
             aria-controls="mobile-menu"
           >
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               {mobileOpen ? (
                 <path
                   fillRule="evenodd"
@@ -100,30 +104,40 @@ export function NavBar() {
             </svg>
           </button>
         </div>
-
-        {/* Mobile menu */}
-        {mobileOpen && (
-          <div id="mobile-menu" className="md:hidden border-t border-cetl-border py-4 flex flex-col gap-4">
-            {NAV_LINKS.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setMobileOpen(false)}
-                className="text-cetl-text-muted hover:text-cetl-text text-sm font-medium tracking-wide transition-colors px-2 py-3"
-              >
-                {link.label}
-              </a>
-            ))}
-            <a
-              href="#contact"
-              onClick={() => setMobileOpen(false)}
-              className="mt-2 px-5 py-2.5 bg-cetl-gold text-cetl-darker text-sm font-semibold tracking-wide hover:bg-cetl-gold-light transition-colors text-center"
-            >
-              Get in Touch
-            </a>
-          </div>
-        )}
       </Container>
+
+      {/* Mobile full-screen menu */}
+      <div
+        id="mobile-menu"
+        className={`md:hidden fixed inset-0 top-0 bg-cetl-darker/98 backdrop-blur-xl transition-all duration-500 ${
+          mobileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        }`}
+      >
+        <div className="flex flex-col h-full pt-28 px-8">
+          {NAV_LINKS.map((link, i) => (
+            <a
+              key={link.href}
+              href={link.href}
+              onClick={() => setMobileOpen(false)}
+              className="text-cetl-text text-3xl font-display font-semibold py-4 border-b border-cetl-border transition-all duration-500"
+              style={{
+                transitionDelay: mobileOpen ? `${i * 60}ms` : "0ms",
+                opacity: mobileOpen ? 1 : 0,
+                transform: mobileOpen ? "translateY(0)" : "translateY(16px)",
+              }}
+            >
+              {link.label}
+            </a>
+          ))}
+          <a
+            href="#contact"
+            onClick={() => setMobileOpen(false)}
+            className="mt-8 px-6 py-4 rounded-full bg-cetl-gold text-cetl-darker font-semibold tracking-wide text-center"
+          >
+            Get in Touch
+          </a>
+        </div>
+      </div>
     </nav>
   );
 }

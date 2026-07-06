@@ -1,22 +1,31 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-cetl-dark: #080b12;
-  --color-cetl-darker: #050709;
-  --color-cetl-surface: #0f1520;
-  --color-cetl-border: #1e2a3a;
-  --color-cetl-muted: #2a3a50;
-  --color-cetl-gold: #c9a84c;
-  --color-cetl-gold-light: #e8c96a;
-  --color-cetl-blue: #3b82f6;
+  --color-cetl-dark: #06070c;
+  --color-cetl-darker: #030407;
+  --color-cetl-surface: #0e1119;
+  --color-cetl-surface-2: #12161f;
+  --color-cetl-border: #22283a;
+  --color-cetl-muted: #2a3145;
+  --color-cetl-gold: #d4af5a;
+  --color-cetl-gold-light: #f2d488;
+  --color-cetl-blue: #4f8cff;
   --color-cetl-blue-dark: #1d4ed8;
-  --color-cetl-text: #e8eef8;
-  --color-cetl-text-muted: #7a8fa8;
+  --color-cetl-violet: #8b6bff;
+  --color-cetl-text: #f3f2ea;
+  --color-cetl-text-muted: #8992a8;
+  --color-cetl-error: #ff6a6a;
 
-  --font-sans: var(--font-space-grotesk);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
 
   --animate-fade-in: fade-in 0.6s ease both;
-  --animate-fade-in-up: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-fade-in-up: fade-in-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-aurora: aurora-drift 22s ease-in-out infinite;
+  --animate-aurora-slow: aurora-drift 34s ease-in-out infinite reverse;
+  --animate-marquee: marquee 32s linear infinite;
+  --animate-shimmer: shimmer 2.6s ease-in-out infinite;
+  --animate-float: float 7s ease-in-out infinite;
 }
 
 @keyframes fade-in {
@@ -25,15 +34,40 @@
 }
 
 @keyframes fade-in-up {
-  from { opacity: 0; transform: translateY(22px); }
+  from { opacity: 0; transform: translateY(28px); }
   to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes aurora-drift {
+  0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+  33% { transform: translate(4%, -6%) scale(1.12) rotate(8deg); }
+  66% { transform: translate(-5%, 4%) scale(0.94) rotate(-6deg); }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-14px) rotate(2deg); }
 }
 
 body {
   background: var(--color-cetl-dark);
   color: var(--color-cetl-text);
-  font-family: var(--font-sans), system-ui, sans-serif;
+  font-family: var(--font-body), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: var(--font-display), system-ui, sans-serif;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -44,11 +78,105 @@ body {
   }
 }
 
-html {
-  scroll-behavior: smooth;
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 ::selection {
-  background: #c9a84c33;
-  color: #c9a84c;
+  background: color-mix(in srgb, var(--color-cetl-gold) 30%, transparent);
+  color: var(--color-cetl-gold-light);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-cetl-darker);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-cetl-border);
+  border: 2px solid var(--color-cetl-darker);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-cetl-gold);
+}
+
+/* Gradient text: gold -> amber -> violet */
+.text-gradient-gold {
+  background: linear-gradient(100deg, var(--color-cetl-gold-light), var(--color-cetl-gold) 45%, var(--color-cetl-violet) 110%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Shimmering gradient text, e.g. for eyebrow labels */
+.text-shimmer {
+  background: linear-gradient(110deg, var(--color-cetl-text-muted) 30%, var(--color-cetl-gold-light) 50%, var(--color-cetl-text-muted) 70%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 3.5s linear infinite;
+}
+
+/* Grain texture overlay */
+.bg-grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 220px 220px;
+}
+
+/* Fine gold grid */
+.bg-grid-gold {
+  background-image:
+    linear-gradient(var(--color-cetl-gold) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-cetl-gold) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* Glass panel */
+.glass-panel {
+  background: color-mix(in srgb, var(--color-cetl-surface) 55%, transparent);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid color-mix(in srgb, var(--color-cetl-gold) 14%, var(--color-cetl-border));
+}
+
+/* Gradient-stroke card: solid bg + 1px animated-on-hover gradient edge via mask */
+.gradient-edge {
+  position: relative;
+  isolation: isolate;
+}
+.gradient-edge::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--color-cetl-gold) 0%, transparent 35%, transparent 65%, var(--color-cetl-blue) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+  pointer-events: none;
+}
+.gradient-edge:hover::before {
+  opacity: 1;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 34s linear infinite;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+.clip-diagonal {
+  clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
 }

@@ -1,29 +1,14 @@
+import { Globe } from "lucide-react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Badge } from "@/components/ui/Badge";
 import { Container } from "@/components/ui/Container";
-
-const FEATURES = [
-  {
-    title: "Sovereign Capability Transfer",
-    desc: "We embed independent technical capability directly into your leadership and technical talent; your organization retains full, vendor-neutral control.",
-  },
-  {
-    title: "Outcome-Driven Ecosystem",
-    desc: "Not training for the sake of training. Every program is engineered around measurable delivery outcomes with clear ROI frameworks.",
-  },
-  {
-    title: "Forward Deployed Engineers",
-    desc: "Integrated practitioner-advisors who work alongside your teams to bridge the gap between strategy and day-to-day execution.",
-  },
-  {
-    title: "Community + Program Synergy",
-    desc: "Developed through the strategic synergy of CETL Institute and community partners, with insight and networking converting into measurable delivery outcomes.",
-  },
-];
+import { ELAAS_FEATURES } from "@/lib/content";
 
 export function ELaaSSection() {
   return (
-    <section id="elaas" className="py-24 lg:py-32 bg-cetl-surface border-y border-cetl-border">
+    <section id="elaas" className="relative py-24 lg:py-32 bg-cetl-surface">
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cetl-gold to-transparent opacity-40" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cetl-violet to-transparent opacity-40" />
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* Left: Header + description */}
@@ -50,12 +35,17 @@ export function ELaaSSection() {
               </div>
             </div>
 
-            <div className="bg-cetl-dark border border-cetl-gold/20 p-6">
-              <p className="text-cetl-gold text-xs font-semibold tracking-widest uppercase mb-3">
-                Strategic Partnership
-              </p>
-              <p className="text-cetl-text text-sm leading-relaxed">
-                Flagship organizer of the <strong className="text-cetl-text font-semibold">Europe Tech Hackathon</strong> in
+            <div className="relative bg-cetl-dark border border-cetl-gold/20 rounded-2xl p-6 overflow-hidden">
+              <div className="absolute -top-16 -right-16 w-40 h-40 rounded-full bg-cetl-gold/10 blur-3xl pointer-events-none" />
+              <div className="relative flex items-center gap-2 mb-3">
+                <Globe className="w-4 h-4 text-cetl-gold" strokeWidth={1.5} aria-hidden="true" />
+                <p className="text-cetl-gold text-xs font-semibold tracking-widest uppercase">
+                  Strategic Partnership — EMEA
+                </p>
+              </div>
+              <p className="relative text-cetl-text text-sm leading-relaxed">
+                Flagship organizer of the{" "}
+                <strong className="text-cetl-text font-semibold">Europe Tech Hackathon</strong> in
                 partnership with the City of Vienna, European Union, ÖBB, and Siemens.
               </p>
             </div>
@@ -63,12 +53,12 @@ export function ELaaSSection() {
 
           {/* Right: Features */}
           <div className="flex flex-col gap-6">
-            {FEATURES.map((feature, i) => (
+            {ELAAS_FEATURES.map((feature, i) => (
               <div
                 key={feature.title}
-                className="flex gap-6 p-6 bg-cetl-dark border border-cetl-border hover:border-cetl-gold/30 hover:bg-cetl-dark/80 transition-all duration-300"
+                className="gradient-edge flex gap-6 p-6 bg-cetl-dark rounded-2xl border border-cetl-border hover:-translate-y-1 transition-all duration-300"
               >
-                <div className="w-8 h-8 bg-cetl-gold/10 border border-cetl-gold/30 flex items-center justify-center text-cetl-gold font-bold text-xs shrink-0">
+                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cetl-gold/20 to-cetl-violet/10 border border-cetl-gold/30 flex items-center justify-center text-cetl-gold font-display font-bold text-xs shrink-0">
                   {String(i + 1).padStart(2, "0")}
                 </div>
                 <div>
