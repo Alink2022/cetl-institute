@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { LanguageSwitch } from "@/components/ui/LanguageSwitch";
 import { useLanguage } from "@/lib/i18n";
@@ -46,10 +47,14 @@ export function NavBar() {
           }`}
         >
           {/* Logo */}
-          <a href="#" className="flex items-center gap-3 group shrink-0">
-            <div className="relative w-9 h-9 flex items-center justify-center font-display font-bold text-white text-sm rounded-none bg-gradient-to-br from-cetl-blue via-cetl-blue-dark to-cetl-violet shadow-[0_2px_12px_-4px_rgba(27,58,107,0.4)] group-hover:scale-105 transition-transform duration-300">
-              C
-            </div>
+          <a href="#" className="flex items-center gap-2 group shrink-0">
+            <Image
+              src="/cetl-logo.png"
+              alt="CETL Institute"
+              width={44}
+              height={44}
+              className="object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-300"
+            />
             <div className="flex flex-col leading-none">
               <span className="text-cetl-text font-display font-bold text-sm tracking-wide">CETL</span>
               <span className="text-cetl-text-muted text-[10px] tracking-[0.2em] uppercase">Institute</span>
@@ -116,7 +121,14 @@ export function NavBar() {
           mobileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
       >
-        <div className="flex flex-col h-full pt-28 px-8">
+        <div className="flex flex-col h-full pt-20 px-8">
+          <div className="flex items-center gap-3 mb-8">
+            <Image src="/cetl-logo.png" alt="CETL Institute" width={52} height={52} className="object-contain mix-blend-multiply" />
+            <div className="flex flex-col leading-none">
+              <span className="text-cetl-text font-display font-bold text-base tracking-wide">CETL</span>
+              <span className="text-cetl-text-muted text-xs tracking-widest uppercase">Institute</span>
+            </div>
+          </div>
           {t.NAV_LINKS.map((link, i) => (
             <a
               key={link.href}

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { useLanguage } from "@/lib/i18n";
 
@@ -16,9 +17,13 @@ export function Footer() {
           {/* Brand */}
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cetl-gold-light via-cetl-gold to-cetl-violet flex items-center justify-center font-display font-bold text-cetl-darker text-sm">
-                C
-              </div>
+              <Image
+                src="/cetl-logo.png"
+                alt="CETL Institute"
+                width={52}
+                height={52}
+                className="object-contain mix-blend-multiply"
+              />
               <div className="flex flex-col leading-none">
                 <span className="text-cetl-text font-display font-bold text-sm tracking-wide">CETL</span>
                 <span className="text-cetl-text-muted text-xs tracking-widest uppercase">Institute</span>

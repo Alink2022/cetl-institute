@@ -76,10 +76,27 @@ export function HeroSection() {
 
       {/* Content */}
       <Container className="relative z-10 pt-32 pb-16 text-center">
+        {/* Crest / Seal */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.85 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="flex justify-center mb-6"
+        >
+          <Image
+            src="/cetl-logo.png"
+            alt="CETL Institute Seal"
+            width={120}
+            height={120}
+            className="object-contain mix-blend-multiply drop-shadow-sm"
+            priority
+          />
+        </motion.div>
+
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.6, delay: 0.15 }}
           className="flex justify-center mb-8"
         >
           <Badge variant="gold">{hero.badgeLocation}</Badge>
