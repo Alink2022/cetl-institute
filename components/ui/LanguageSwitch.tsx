@@ -15,8 +15,8 @@ export function LanguageSwitch({ className = "" }: { className?: string }) {
           type="button"
           onClick={() => setLang(option)}
           aria-pressed={lang === option}
-          className={`px-2.5 py-1 rounded-full uppercase transition-colors duration-200 ${
-            lang === option ? "bg-cetl-gold text-cetl-darker" : "text-cetl-text-muted hover:text-cetl-text"
+          className={`px-2.5 py-1 rounded-sm uppercase transition-colors duration-200 ${
+            lang === option ? "bg-cetl-blue text-white" : "text-cetl-text-muted hover:text-cetl-text"
           }`}
         >
           {option}

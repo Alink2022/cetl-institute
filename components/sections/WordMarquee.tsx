@@ -15,9 +15,9 @@ export function WordMarquee() {
             key={i}
             className="font-display text-6xl md:text-8xl font-extrabold tracking-tight shrink-0 flex items-center gap-10"
             style={{
-              WebkitTextStroke: i % 2 === 0 ? "1.5px var(--color-cetl-gold)" : "1.5px var(--color-cetl-violet)",
+              WebkitTextStroke: i % 2 === 0 ? "1.5px var(--color-cetl-blue)" : "1.5px var(--color-cetl-gold)",
               color: "transparent",
-              opacity: 0.85,
+              opacity: 0.55,
             }}
           >
             {word}

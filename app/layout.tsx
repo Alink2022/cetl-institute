@@ -1,22 +1,23 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, Instrument_Sans } from "next/font/google";
+import { Playfair_Display, EB_Garamond } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { CursorGlow } from "@/components/ui/CursorGlow";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { LanguageProvider } from "@/lib/i18n";
 
-const displayFont = Bricolage_Grotesque({
+const displayFont = Playfair_Display({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+  style: ["normal", "italic"],
 });
 
-const bodyFont = Instrument_Sans({
+const bodyFont = EB_Garamond({
   variable: "--font-body",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800"],
+  style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {
@@ -42,7 +43,6 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col antialiased bg-cetl-dark text-cetl-text">
         <LanguageProvider>
           <ScrollProgress />
-          <CursorGlow />
           {children}
         </LanguageProvider>
         <Analytics />

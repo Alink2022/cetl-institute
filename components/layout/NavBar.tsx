@@ -47,7 +47,7 @@ export function NavBar() {
         >
           {/* Logo */}
           <a href="#" className="flex items-center gap-3 group shrink-0">
-            <div className="relative w-9 h-9 flex items-center justify-center font-display font-bold text-cetl-darker text-sm rounded-lg bg-gradient-to-br from-cetl-gold-light via-cetl-gold to-cetl-violet shadow-[0_0_20px_-4px_rgba(212,175,90,0.6)] group-hover:scale-105 transition-transform duration-300">
+            <div className="relative w-9 h-9 flex items-center justify-center font-display font-bold text-white text-sm rounded-none bg-gradient-to-br from-cetl-blue via-cetl-blue-dark to-cetl-violet shadow-[0_2px_12px_-4px_rgba(27,58,107,0.4)] group-hover:scale-105 transition-transform duration-300">
               C
             </div>
             <div className="flex flex-col leading-none">
@@ -75,10 +75,10 @@ export function NavBar() {
             <LanguageSwitch />
             <a
               href="#contact"
-              className="relative px-5 py-2.5 rounded-full bg-cetl-gold text-cetl-darker text-sm font-semibold tracking-wide overflow-hidden group transition-transform duration-300 hover:scale-105"
+              className="relative px-5 py-2.5 rounded-sm bg-cetl-blue text-white text-sm font-semibold tracking-wide overflow-hidden group transition-transform duration-300 hover:scale-105"
             >
               <span className="relative z-10">{t.UI.nav.ctaContact}</span>
-              <span className="absolute inset-0 bg-gradient-to-r from-cetl-gold-light to-cetl-violet opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <span className="absolute inset-0 bg-cetl-blue-dark opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </a>
           </div>
 
@@ -136,7 +136,7 @@ export function NavBar() {
           <a
             href="#contact"
             onClick={() => setMobileOpen(false)}
-            className="mt-4 px-6 py-4 rounded-full bg-cetl-gold text-cetl-darker font-semibold tracking-wide text-center"
+            className="mt-4 px-6 py-4 rounded-sm bg-cetl-blue text-white font-semibold tracking-wide text-center"
           >
             {t.UI.nav.ctaContact}
           </a>

@@ -212,10 +212,10 @@ export function ContactSection() {
 
                 <button
                   type="submit"
-                  className="group relative w-full py-4 rounded-full bg-cetl-gold text-cetl-darker font-semibold tracking-wide overflow-hidden transition-transform duration-300 hover:scale-[1.02] mt-2"
+                  className="group relative w-full py-4 rounded-sm bg-cetl-blue text-white font-semibold tracking-wide overflow-hidden transition-transform duration-300 hover:scale-[1.02] mt-2"
                 >
                   <span className="relative z-10">{contact.submit}</span>
-                  <span className="absolute inset-0 bg-gradient-to-r from-cetl-gold-light to-cetl-violet opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <span className="absolute inset-0 bg-cetl-blue-dark opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </button>
               </form>
             )}

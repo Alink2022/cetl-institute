@@ -1,20 +1,21 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-cetl-dark: #06070c;
-  --color-cetl-darker: #030407;
-  --color-cetl-surface: #0e1119;
-  --color-cetl-surface-2: #12161f;
-  --color-cetl-border: #22283a;
-  --color-cetl-muted: #2a3145;
-  --color-cetl-gold: #d4af5a;
-  --color-cetl-gold-light: #f2d488;
-  --color-cetl-blue: #4f8cff;
-  --color-cetl-blue-dark: #1d4ed8;
-  --color-cetl-violet: #8b6bff;
-  --color-cetl-text: #f3f2ea;
-  --color-cetl-text-muted: #8992a8;
-  --color-cetl-error: #ff6a6a;
+  /* Traditional academic palette — cream/ivory base, navy accent, muted gold */
+  --color-cetl-dark: #F7F4ED;
+  --color-cetl-darker: #EDE8DC;
+  --color-cetl-surface: #EEE9DB;
+  --color-cetl-surface-2: #E5DFCE;
+  --color-cetl-border: #C8C0A6;
+  --color-cetl-muted: #9E9480;
+  --color-cetl-gold: #7A5C14;
+  --color-cetl-gold-light: #9B7820;
+  --color-cetl-blue: #1B3A6B;
+  --color-cetl-blue-dark: #0F2448;
+  --color-cetl-violet: #6B2D8B;
+  --color-cetl-text: #1A1610;
+  --color-cetl-text-muted: #5C5448;
+  --color-cetl-error: #9B1C1C;
 
   --font-sans: var(--font-body);
   --font-display: var(--font-display);
@@ -62,12 +63,12 @@
 body {
   background: var(--color-cetl-dark);
   color: var(--color-cetl-text);
-  font-family: var(--font-body), system-ui, sans-serif;
+  font-family: var(--font-body), Georgia, serif;
   -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4, .font-display {
-  font-family: var(--font-display), system-ui, sans-serif;
+  font-family: var(--font-display), Georgia, serif;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -85,12 +86,12 @@ h1, h2, h3, h4, .font-display {
 }
 
 ::selection {
-  background: color-mix(in srgb, var(--color-cetl-gold) 30%, transparent);
-  color: var(--color-cetl-gold-light);
+  background: color-mix(in srgb, var(--color-cetl-gold) 20%, transparent);
+  color: var(--color-cetl-blue-dark);
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 ::-webkit-scrollbar-track {
   background: var(--color-cetl-darker);
@@ -104,17 +105,17 @@ h1, h2, h3, h4, .font-display {
   background: var(--color-cetl-gold);
 }
 
-/* Gradient text: gold -> amber -> violet */
+/* Gradient text: navy → academic gold — reads on light bg */
 .text-gradient-gold {
-  background: linear-gradient(100deg, var(--color-cetl-gold-light), var(--color-cetl-gold) 45%, var(--color-cetl-violet) 110%);
+  background: linear-gradient(100deg, var(--color-cetl-blue) 0%, var(--color-cetl-gold) 55%, var(--color-cetl-violet) 110%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
-/* Shimmering gradient text, e.g. for eyebrow labels */
+/* Shimmering gradient text */
 .text-shimmer {
-  background: linear-gradient(110deg, var(--color-cetl-text-muted) 30%, var(--color-cetl-gold-light) 50%, var(--color-cetl-text-muted) 70%);
+  background: linear-gradient(110deg, var(--color-cetl-text-muted) 30%, var(--color-cetl-gold) 50%, var(--color-cetl-text-muted) 70%);
   background-size: 200% 100%;
   -webkit-background-clip: text;
   background-clip: text;
@@ -122,29 +123,29 @@ h1, h2, h3, h4, .font-display {
   animation: shimmer 3.5s linear infinite;
 }
 
-/* Grain texture overlay */
+/* Subtle paper/parchment grain */
 .bg-grain {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
   background-size: 220px 220px;
 }
 
-/* Fine gold grid */
+/* Fine navy grid — very subtle on light */
 .bg-grid-gold {
   background-image:
-    linear-gradient(var(--color-cetl-gold) 1px, transparent 1px),
-    linear-gradient(90deg, var(--color-cetl-gold) 1px, transparent 1px);
+    linear-gradient(var(--color-cetl-blue) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-cetl-blue) 1px, transparent 1px);
   background-size: 64px 64px;
 }
 
-/* Glass panel */
+/* Academic glass panel — light frosted */
 .glass-panel {
-  background: color-mix(in srgb, var(--color-cetl-surface) 55%, transparent);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border: 1px solid color-mix(in srgb, var(--color-cetl-gold) 14%, var(--color-cetl-border));
+  background: color-mix(in srgb, var(--color-cetl-dark) 80%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid color-mix(in srgb, var(--color-cetl-gold) 20%, var(--color-cetl-border));
 }
 
-/* Gradient-stroke card: solid bg + 1px animated-on-hover gradient edge via mask */
+/* Gradient-stroke card */
 .gradient-edge {
   position: relative;
   isolation: isolate;
@@ -180,3 +181,20 @@ h1, h2, h3, h4, .font-display {
 .clip-diagonal {
   clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
 }
+
+/* Academic ruling lines — decorative horizontal dividers */
+.ruling-line {
+  position: relative;
+}
+.ruling-line::before,
+.ruling-line::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--color-cetl-border);
+  opacity: 0.6;
+}
+.ruling-line::before { top: 0; }
+.ruling-line::after  { bottom: 0; }
