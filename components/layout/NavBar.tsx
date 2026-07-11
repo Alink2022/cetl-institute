@@ -51,8 +51,8 @@ export function NavBar() {
             <Image
               src="/cetl-logo.png"
               alt="CETL Institute"
-              width={44}
-              height={44}
+              width={52}
+              height={52}
               className="object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-300"
             />
             <div className="flex flex-col leading-none">

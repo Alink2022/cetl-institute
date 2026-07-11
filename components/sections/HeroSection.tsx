@@ -2,10 +2,24 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Badge } from "@/components/ui/Badge";
 import { Container } from "@/components/ui/Container";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { useLanguage } from "@/lib/i18n";
+
+/* Thin ornamental SVG rule with centre fleuron */
+function OrnamentRule({ className = "" }: { className?: string }) {
+  return (
+    <div className={`flex items-center gap-3 ${className}`} aria-hidden="true">
+      <div className="flex-1 h-px bg-gradient-to-r from-transparent via-cetl-border to-cetl-border" />
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" className="shrink-0 opacity-60">
+        <path d="M11 1 L12.5 9 L20 11 L12.5 13 L11 21 L9.5 13 L2 11 L9.5 9 Z"
+          fill="none" stroke="var(--color-cetl-gold)" strokeWidth="1" />
+        <circle cx="11" cy="11" r="2" fill="var(--color-cetl-gold)" opacity="0.7" />
+      </svg>
+      <div className="flex-1 h-px bg-gradient-to-l from-transparent via-cetl-border to-cetl-border" />
+    </div>
+  );
+}
 
 export function HeroSection() {
   const { t } = useLanguage();
@@ -13,100 +27,64 @@ export function HeroSection() {
 
   return (
     <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-cetl-dark">
-      {/* Soft academic wash blobs — very subtle on light bg */}
+      {/* Very subtle parchment wash */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-[-20%] left-[2%] w-[720px] h-[720px] rounded-full bg-cetl-blue/[0.04] blur-[160px] animate-aurora" />
-        <div className="absolute bottom-[-25%] right-[-5%] w-[760px] h-[760px] rounded-full bg-cetl-gold/[0.06] blur-[160px] animate-aurora-slow" />
-        <div className="absolute top-[20%] right-[15%] w-[520px] h-[520px] rounded-full bg-cetl-violet/[0.04] blur-[140px] animate-aurora" style={{ animationDelay: "-8s" }} />
+        <div className="absolute top-0 left-[10%] w-[800px] h-[800px] rounded-full bg-cetl-gold/[0.03] blur-[200px]" />
+        <div className="absolute bottom-0 right-[5%] w-[600px] h-[600px] rounded-full bg-cetl-blue/[0.04] blur-[180px]" />
       </div>
 
-      {/* Giant watermark — navy outline on cream */}
-      <div
-        className="absolute inset-x-0 top-[6%] flex justify-center pointer-events-none select-none overflow-hidden"
-        aria-hidden="true"
-      >
-        <span
-          className="font-display text-[22vw] leading-none font-extrabold tracking-tighter whitespace-nowrap"
-          style={{ WebkitTextStroke: "1px var(--color-cetl-border)", color: "transparent", opacity: 0.6 }}
+      {/* Grain texture */}
+      <div className="absolute inset-0 bg-grain opacity-[0.035] pointer-events-none mix-blend-multiply" />
+
+      {/* Fine grid — barely visible */}
+      <div className="absolute inset-0 bg-grid-gold opacity-[0.018] [mask-image:radial-gradient(ellipse_70%_70%_at_50%_40%,black,transparent)]" />
+
+      <Container className="relative z-10 pt-28 pb-12 flex flex-col items-center text-center">
+
+        {/* ── CREST / SEAL ──────────────────────────────── */}
+        <motion.div
+          initial={{ opacity: 0, y: -16, scale: 0.9 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-6"
         >
-          CETL
-        </span>
-      </div>
-
-      {/* Floating chips */}
-      <div className="absolute inset-0 pointer-events-none hidden xl:block" aria-hidden="true">
-        <div className="absolute top-[14%] left-[1%] animate-float">
-          <Badge variant="blue" className="shadow-[0_2px_16px_-4px_rgba(27,58,107,0.18)]">{hero.badgeVienna}</Badge>
-        </div>
-        <div className="absolute top-[14%] right-[1%] animate-float" style={{ animationDelay: "-2.5s" }}>
-          <Badge variant="muted" className="shadow-[0_2px_16px_-4px_rgba(107,45,139,0.15)]">{hero.badgeTUWien}</Badge>
-        </div>
-        <div className="absolute bottom-[6%] right-[2%] animate-float" style={{ animationDelay: "-4.5s" }}>
-          <Badge variant="gold" className="shadow-[0_2px_16px_-4px_rgba(122,92,20,0.18)]">{hero.badgeFDE}</Badge>
-        </div>
-      </div>
-
-      {/* Floating speaker photo */}
-      <div
-        className="absolute bottom-[8%] left-[3%] w-36 xl:w-44 pointer-events-none hidden lg:block animate-float"
-        style={{ animationDelay: "-1.5s" }}
-        aria-hidden="true"
-      >
-        <div className="relative rotate-[-4deg]">
-          <div className="absolute -inset-2 rounded-2xl bg-gradient-to-br from-cetl-gold-light via-cetl-gold to-cetl-blue opacity-20 blur-lg" />
-          <div className="gradient-edge relative aspect-[4/5] rounded-2xl overflow-hidden border border-cetl-border shadow-[0_8px_40px_-12px_rgba(0,0,0,0.18)]">
+          <div className="relative inline-block">
+            {/* Halo glow behind crest */}
+            <div className="absolute inset-0 rounded-full bg-cetl-gold/[0.08] blur-2xl scale-125 pointer-events-none" />
             <Image
-              src="/alin-kalam.png"
-              alt=""
-              fill
-              sizes="176px"
-              className="object-cover object-[58%_22%]"
+              src="/cetl-logo.png"
+              alt="CETL Institute Seal"
+              width={220}
+              height={220}
+              className="relative object-contain mix-blend-multiply drop-shadow-[0_4px_24px_rgba(27,58,107,0.12)]"
+              priority
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-cetl-darker/80 via-transparent to-transparent opacity-60" />
-            <span className="absolute bottom-2 left-2 right-2 text-cetl-text text-[9px] font-semibold tracking-widest uppercase">
-              {hero.photoCaption}
-            </span>
           </div>
-        </div>
-      </div>
-
-      {/* Subtle grid + grain */}
-      <div className="absolute inset-0 bg-grid-gold opacity-[0.025] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_40%,black,transparent)]" />
-      <div className="absolute inset-0 bg-grain opacity-[0.04] pointer-events-none mix-blend-multiply" />
-
-      {/* Content */}
-      <Container className="relative z-10 pt-32 pb-16 text-center">
-        {/* Crest / Seal */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.85 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="flex justify-center mb-6"
-        >
-          <Image
-            src="/cetl-logo.png"
-            alt="CETL Institute Seal"
-            width={120}
-            height={120}
-            className="object-contain mix-blend-multiply drop-shadow-sm"
-            priority
-          />
         </motion.div>
 
+        {/* ── INSTITUTION NAME ───────────────────────────── */}
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.15 }}
-          className="flex justify-center mb-8"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="w-full max-w-2xl"
         >
-          <Badge variant="gold">{hero.badgeLocation}</Badge>
+          <OrnamentRule className="mb-4" />
+          <p className="text-cetl-text-muted text-[11px] tracking-[0.35em] uppercase font-semibold mb-1">
+            {hero.badgeLocation}
+          </p>
+          <h2 className="font-display text-cetl-text text-xs md:text-sm tracking-[0.28em] uppercase font-medium mb-4 opacity-70">
+            Central European Tech Leadership Institute
+          </h2>
+          <OrnamentRule />
         </motion.div>
 
+        {/* ── MAIN HEADLINE ──────────────────────────────── */}
         <motion.h1
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="font-display text-4xl md:text-6xl lg:text-7xl xl:text-[5rem] font-bold leading-[1.05] tracking-tight mb-8 text-cetl-text"
+          transition={{ duration: 0.9, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+          className="font-display mt-10 text-4xl md:text-6xl lg:text-[4.5rem] xl:text-[5.5rem] font-bold leading-[1.06] tracking-tight text-cetl-text max-w-4xl"
         >
           {hero.headlineLine1 && (
             <>
@@ -114,73 +92,92 @@ export function HeroSection() {
               <br />
             </>
           )}
-          <span className="text-gradient-gold italic">{hero.headlineGradient}</span>
+          <em className="not-italic" style={{
+            background: "linear-gradient(100deg, var(--color-cetl-blue) 0%, var(--color-cetl-gold) 55%, var(--color-cetl-violet) 110%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+          }}>
+            {hero.headlineGradient}
+          </em>
           <br />
           {hero.headlineLine3}
         </motion.h1>
 
+        {/* ── LEAD TEXT ──────────────────────────────────── */}
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.25 }}
-          className="text-cetl-text-muted text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-12"
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="mt-7 text-cetl-text-muted text-lg md:text-xl max-w-2xl leading-relaxed"
         >
           {hero.paragraph}
         </motion.p>
 
+        {/* ── CTAs ───────────────────────────────────────── */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          transition={{ duration: 0.8, delay: 0.65 }}
+          className="mt-10 flex flex-col sm:flex-row items-center gap-4"
         >
           <MagneticButton
             href="#elaas"
-            className="w-full sm:w-auto relative px-8 py-4 rounded-sm bg-cetl-blue text-white font-semibold tracking-wide text-center overflow-hidden group block shadow-[0_4px_24px_-8px_rgba(27,58,107,0.35)]"
+            className="w-full sm:w-auto relative px-9 py-4 bg-cetl-blue text-white font-semibold tracking-wide text-center overflow-hidden group block shadow-[0_4px_24px_-8px_rgba(27,58,107,0.4)]"
           >
             <span className="relative z-10">{hero.ctaPrimary}</span>
             <span className="absolute inset-0 bg-cetl-blue-dark opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </MagneticButton>
           <MagneticButton
             href="#contact"
-            className="w-full sm:w-auto px-8 py-4 rounded-sm border border-cetl-blue/50 text-cetl-blue font-semibold tracking-wide hover:border-cetl-blue hover:bg-cetl-blue/5 text-center block transition-all duration-300"
+            className="w-full sm:w-auto px-9 py-4 border border-cetl-blue/50 text-cetl-blue font-semibold tracking-wide hover:border-cetl-blue hover:bg-cetl-blue/[0.06] text-center block transition-all duration-300"
           >
             {hero.ctaSecondary}
           </MagneticButton>
         </motion.div>
 
-        {/* Stats bar */}
+        {/* ── CREDENTIAL STRIP ───────────────────────────── */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.55 }}
-          className="mt-20 grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-3xl mx-auto border-t border-cetl-border pt-12"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.85 }}
+          className="mt-16 w-full max-w-3xl"
         >
-          {hero.stats.map((stat) => (
-            <div key={stat.label} className="flex flex-col items-center gap-1">
-              <span className="font-display text-2xl md:text-3xl font-bold text-gradient-gold">
-                {stat.value}
-              </span>
-              <span className="text-cetl-text-muted text-xs tracking-[0.2em] uppercase">{stat.label}</span>
-            </div>
-          ))}
+          <div className="border-t border-b border-cetl-border py-6 grid grid-cols-1 sm:grid-cols-3 gap-6">
+            {hero.stats.map((stat, i) => (
+              <div key={stat.label} className="flex flex-col items-center gap-1.5">
+                {i > 0 && (
+                  <div className="hidden sm:block absolute w-px h-8 bg-cetl-border" style={{ left: `${i * 33.33}%` }} />
+                )}
+                <span
+                  className="font-display text-2xl md:text-3xl font-bold"
+                  style={{
+                    background: "linear-gradient(100deg, var(--color-cetl-blue), var(--color-cetl-gold))",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                  }}
+                >
+                  {stat.value}
+                </span>
+                <span className="text-cetl-text-muted text-[11px] tracking-[0.22em] uppercase">{stat.label}</span>
+              </div>
+            ))}
+          </div>
         </motion.div>
       </Container>
 
-      {/* Ticker */}
-      <div className="relative z-10 mt-16 border-t border-cetl-border py-5 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-        <div className="marquee-track gap-12 text-cetl-text-muted/80 text-sm tracking-[0.25em] uppercase font-medium">
+      {/* ── SCROLLING TICKER ───────────────────────────── */}
+      <div className="relative z-10 border-t border-cetl-border/60 py-4 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+        <div className="marquee-track gap-14 text-cetl-text-muted/60 text-xs tracking-[0.3em] uppercase font-semibold">
           {[...hero.ticker, ...hero.ticker].map((item, i) => (
-            <span key={i} className="flex items-center gap-12 shrink-0">
+            <span key={i} className="flex items-center gap-14 shrink-0">
               {item}
-              <span className="text-cetl-gold/70">✦</span>
+              <span className="text-cetl-gold/50 text-base">✦</span>
             </span>
           ))}
         </div>
       </div>
-
-      {/* Bottom fade to next section */}
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-cetl-dark to-transparent pointer-events-none" />
     </section>
   );
 }
