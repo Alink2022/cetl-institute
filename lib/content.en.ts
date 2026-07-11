@@ -1,4 +1,5 @@
 import type { ContentBundle } from "./content-types";
+import { ARTICLES } from "./insights-articles";
 
 export const en: ContentBundle = {
   SITE: {
@@ -438,6 +439,18 @@ export const en: ContentBundle = {
       title: "From research into practice.",
       subtitle: "Analyses and frameworks for decision-makers thinking beyond the next pilot.",
       cta: "All publications",
+      readCta: "Read analysis",
+      pageTitle: "Insights & Publications",
+      pageSubtitle:
+        "Research briefs, whitepapers and frameworks for decision-makers in banking, industry and the public sector — from research into practice.",
+      back: "All insights",
+      published: "Published",
+      byline: "CETL Institute — Research & Faculty",
+      ctaTitle: "Start the strategic conversation.",
+      ctaText:
+        "Whether architecture review, embedded engineering engagement or executive briefing for the leadership level: the first conversation is non-binding and serves to clarify scope.",
+      ctaButton: "Get in touch",
+      moreLabel: "More analyses",
     },
     instStats: { label: "CETL in numbers" },
     community: {
@@ -511,29 +524,8 @@ export const en: ContentBundle = {
     },
   ],
 
-  INSIGHTS: [
-    {
-      category: "Research Brief",
-      tag: "AI Governance",
-      title: "The PoC-to-Production Gap: Why 85% of AI Projects Never Scale",
-      teaser: "A structural analysis of the most common failure patterns in large-scale AI initiatives — and what governance maturity has to do with it.",
-      readTime: "8 min read",
-    },
-    {
-      category: "Architecture Whitepaper",
-      tag: "Technical Assessment",
-      title: "Vendor Lock-In in Enterprise AI: Architecture Patterns for Technological Sovereignty",
-      teaser: "Which platform decisions create lock-in structures today that will mean operational dependency in three years — and how to avoid them.",
-      readTime: "12 min read",
-    },
-    {
-      category: "Executive Education",
-      tag: "Leadership",
-      title: "The AI Judgment Gap: Why Strategy Fails Without Technological Judgment",
-      teaser: "Leadership teams that cannot decode vendor narratives make architecture decisions under information asymmetry. A framework for structured technological judgment.",
-      readTime: "6 min read",
-    },
-  ],
+  // Cards are derived from the full-text articles — one source, no duplicates.
+  INSIGHTS: ARTICLES.en.map(({ blocks: _blocks, date: _date, ...card }) => card),
 
   INST_STATS: [
     { value: "20+", label: "Years of industry experience", sub: "Leadership teams in banking, industry & public sector" },

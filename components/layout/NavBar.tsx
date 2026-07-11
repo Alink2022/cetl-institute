@@ -2,14 +2,20 @@
 
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { Container } from "@/components/ui/Container";
 import { LanguageSwitch } from "@/components/ui/LanguageSwitch";
 import { useLanguage } from "@/lib/i18n";
 
 export function NavBar() {
   const { t } = useLanguage();
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  // Auf Unterseiten müssen Anker-Links zurück zur Startseite führen.
+  const isHome = pathname === "/";
+  const toHref = (hash: string) => (isHome ? hash : `/${hash}`);
 
   const rafRef = useRef<number | null>(null);
 
@@ -47,7 +53,7 @@ export function NavBar() {
           }`}
         >
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2 group shrink-0">
+          <a href={isHome ? "#" : "/"} className="flex items-center gap-2 group shrink-0">
             <div className="rounded-full bg-white/[0.07] ring-1 ring-white/10 p-1 group-hover:scale-105 transition-transform duration-300">
               <Image
                 src="/cetl-logo.png"
@@ -68,7 +74,7 @@ export function NavBar() {
             {t.NAV_LINKS.map((link) => (
               <a
                 key={link.href}
-                href={link.href}
+                href={toHref(link.href)}
                 className="relative px-4 py-2 text-cetl-text-muted hover:text-cetl-text text-sm font-medium tracking-wide transition-colors duration-200 group"
               >
                 {link.label}
@@ -81,7 +87,7 @@ export function NavBar() {
           <div className="hidden md:flex items-center gap-3">
             <LanguageSwitch />
             <a
-              href="#contact"
+              href={toHref("#contact")}
               className="relative px-5 py-2.5 rounded-sm bg-cetl-blue text-white text-sm font-semibold tracking-wide overflow-hidden group transition-transform duration-300 hover:scale-105"
             >
               <span className="relative z-10">{t.UI.nav.ctaContact}</span>
@@ -136,7 +142,7 @@ export function NavBar() {
           {t.NAV_LINKS.map((link, i) => (
             <a
               key={link.href}
-              href={link.href}
+              href={toHref(link.href)}
               onClick={() => setMobileOpen(false)}
               className="text-cetl-text text-3xl font-display font-semibold py-4 border-b border-cetl-border transition-all duration-500"
               style={{
@@ -150,7 +156,7 @@ export function NavBar() {
           ))}
           <LanguageSwitch className="mt-8 self-start" />
           <a
-            href="#contact"
+            href={toHref("#contact")}
             onClick={() => setMobileOpen(false)}
             className="mt-4 px-6 py-4 rounded-sm bg-cetl-blue text-white font-semibold tracking-wide text-center"
           >

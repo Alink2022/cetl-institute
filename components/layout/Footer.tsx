@@ -1,13 +1,17 @@
 "use client";
 
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { Container } from "@/components/ui/Container";
 import { useLanguage } from "@/lib/i18n";
 
 export function Footer() {
   const { t } = useLanguage();
+  const pathname = usePathname();
   const footer = t.UI.footer;
   const footerLinks = [...t.NAV_LINKS, { label: footer.contactLabel, href: "#contact" }];
+  // Auf Unterseiten müssen Anker-Links zurück zur Startseite führen.
+  const toHref = (hash: string) => (pathname === "/" ? hash : `/${hash}`);
 
   return (
     <footer className="relative border-t border-cetl-border bg-cetl-darker overflow-hidden">
@@ -42,7 +46,7 @@ export function Footer() {
             {footerLinks.map((item) => (
               <a
                 key={item.href}
-                href={item.href}
+                href={toHref(item.href)}
                 className="text-cetl-text-muted hover:text-cetl-gold text-sm transition-colors duration-200"
               >
                 {item.label}

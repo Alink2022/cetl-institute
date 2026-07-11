@@ -1,4 +1,5 @@
 import type { ContentBundle } from "./content-types";
+import { ARTICLES } from "./insights-articles";
 
 export const de: ContentBundle = {
   SITE: {
@@ -438,6 +439,18 @@ export const de: ContentBundle = {
       title: "Aus der Forschung in die Praxis.",
       subtitle: "Analysen und Frameworks für Entscheider, die über den nächsten Piloten hinausdenken.",
       cta: "Alle Publikationen",
+      readCta: "Analyse lesen",
+      pageTitle: "Insights & Publikationen",
+      pageSubtitle:
+        "Research Briefs, Whitepaper und Frameworks für Entscheider in Banken, Industrie und öffentlichem Sektor — aus der Forschung in die Praxis.",
+      back: "Alle Insights",
+      published: "Publiziert",
+      byline: "CETL Institute — Research & Faculty",
+      ctaTitle: "Den strategischen Austausch beginnen.",
+      ctaText:
+        "Ob Architektur-Review, Embedded-Engineering-Engagement oder Executive-Briefing für die Führungsebene: Das erste Gespräch ist unverbindlich und dient der Klärung des Rahmens.",
+      ctaButton: "Kontakt aufnehmen",
+      moreLabel: "Weitere Analysen",
     },
     instStats: { label: "CETL in Zahlen" },
     community: {
@@ -511,29 +524,8 @@ export const de: ContentBundle = {
     },
   ],
 
-  INSIGHTS: [
-    {
-      category: "Research Brief",
-      tag: "AI Governance",
-      title: "Die PoC-to-Production-Lücke: Warum 85% der AI-Projekte nicht skalieren",
-      teaser: "Eine strukturelle Analyse der häufigsten Scheiternsmuster bei großflächigen KI-Initiativen — und was Governance-Reife damit zu tun hat.",
-      readTime: "8 Min. Lesezeit",
-    },
-    {
-      category: "Architecture Whitepaper",
-      tag: "Technische Bewertung",
-      title: "Vendor Lock-In in Enterprise AI: Architekturmuster für technologische Souveränität",
-      teaser: "Welche Plattform-Entscheidungen heute Lock-in-Strukturen erzeugen, die in drei Jahren operative Abhängigkeiten bedeuten — und wie man sie vermeidet.",
-      readTime: "12 Min. Lesezeit",
-    },
-    {
-      category: "Executive Education",
-      tag: "Leadership",
-      title: "Die AI-Urteilskompetenz-Lücke: Warum Strategie ohne technologisches Urteilsvermögen scheitert",
-      teaser: "Führungsteams, die Vendor-Narrative nicht dekodieren können, treffen Architekturentscheidungen unter Informationsasymmetrie. Ein Framework für strukturierte Urteilskompetenz.",
-      readTime: "6 Min. Lesezeit",
-    },
-  ],
+  // Karten werden aus den Volltext-Artikeln abgeleitet — eine Quelle, keine Duplikate.
+  INSIGHTS: ARTICLES.de.map(({ blocks: _blocks, date: _date, ...card }) => card),
 
   INST_STATS: [
     { value: "20+", label: "Jahre Industrieerfahrung", sub: "Führungsteams in Banken, Industrie & Public Sector" },

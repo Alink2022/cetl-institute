@@ -9,11 +9,25 @@ export interface Testimonial {
 }
 
 export interface Insight {
+  slug: string;
   category: string;
   tag: string;
   title: string;
   teaser: string;
   readTime: string;
+}
+
+export type ArticleBlock =
+  | { type: "p"; text: string }
+  | { type: "h2"; text: string }
+  | { type: "h3"; text: string }
+  | { type: "quote"; text: string }
+  | { type: "list"; items: string[] }
+  | { type: "olist"; items: string[] };
+
+export interface Article extends Insight {
+  date: string;
+  blocks: ArticleBlock[];
 }
 
 export interface InstStat {
@@ -244,7 +258,22 @@ export interface ContentBundle {
     };
     wordMarquee: string[];
     testimonials: { label: string; title: string; subtitle: string; anonymousNote: string };
-    insights: { label: string; title: string; subtitle: string; cta: string };
+    insights: {
+      label: string;
+      title: string;
+      subtitle: string;
+      cta: string;
+      readCta: string;
+      pageTitle: string;
+      pageSubtitle: string;
+      back: string;
+      published: string;
+      byline: string;
+      ctaTitle: string;
+      ctaText: string;
+      ctaButton: string;
+      moreLabel: string;
+    };
     instStats: { label: string };
     community: { label: string; title: string; subtitle: string; advisorCta: string };
     intersection: { label: string; title: string; subtitle: string };
