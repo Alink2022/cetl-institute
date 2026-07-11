@@ -11,6 +11,17 @@ export function CaseStudySection() {
 
   return (
     <section id="case-study" className="py-24 bg-cetl-dark relative overflow-hidden">
+      {/* Key visual: Wien-Skyline mit Daten-Grid, stark abgedunkelt als Hintergrund */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden>
+        <Image
+          src="/h.png"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover opacity-[0.16]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-cetl-dark via-cetl-dark/60 to-cetl-dark" />
+      </div>
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 right-0 w-[600px] h-[400px] rounded-full bg-cetl-blue/[0.06] blur-[140px]" />
       </div>

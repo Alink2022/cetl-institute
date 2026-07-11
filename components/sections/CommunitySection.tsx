@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { useLanguage } from "@/lib/i18n";
 
@@ -45,6 +46,18 @@ export function CommunitySection() {
               <p className="text-cetl-text-muted text-sm leading-relaxed">{f.desc}</p>
             </div>
           ))}
+        </div>
+
+        {/* Key visual: Executive-Empfang */}
+        <div className="relative h-56 md:h-80 rounded-2xl overflow-hidden ring-1 ring-cetl-border mb-14">
+          <Image
+            src="/g.png"
+            alt="Abendlicher Executive-Empfang in einem Wiener Palais mit warmem goldenem Licht und Blick auf die beleuchtete Stadt"
+            fill
+            sizes="(max-width: 1280px) 100vw, 1280px"
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-cetl-dark/60 to-transparent" />
         </div>
 
         {/* Quote */}

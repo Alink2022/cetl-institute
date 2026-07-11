@@ -36,8 +36,19 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-24 lg:py-32 bg-cetl-dark">
-      <Container>
+    <section id="contact" className="py-24 lg:py-32 bg-cetl-dark relative overflow-hidden">
+      {/* Key visual: Wien bei Nacht, stark abgedunkelt als Hintergrund */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden>
+        <Image
+          src="/f.png"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover opacity-[0.14]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-cetl-dark via-cetl-dark/70 to-cetl-dark" />
+      </div>
+      <Container className="relative">
         {/* Centered logo above section */}
         <div className="flex justify-center mb-10">
           <div className="rounded-full bg-white/[0.04] ring-1 ring-cetl-gold/20 p-3">

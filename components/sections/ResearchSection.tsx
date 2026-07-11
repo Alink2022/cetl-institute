@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Container } from "@/components/ui/Container";
@@ -138,6 +139,18 @@ export function ResearchSection() {
           subtitle={research.subtitle}
           className="mb-16"
         />
+
+        {/* Key visual: Forschung trifft Praxis */}
+        <div className="relative h-48 md:h-72 rounded-2xl overflow-hidden ring-1 ring-cetl-border mb-10">
+          <Image
+            src="/i.png"
+            alt="Wissenschaftliche Publikationen und Notizbuch unter Messinglampe neben einem Tablet mit goldenem Netzwerk-Graph"
+            fill
+            sizes="(max-width: 1280px) 100vw, 1280px"
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-cetl-surface/60 to-transparent" />
+        </div>
 
         {/* Stat visualizations */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">

@@ -25,6 +25,18 @@ export function ELaaSSection() {
           <div className="flex flex-col gap-8 lg:sticky lg:top-24">
             <SectionHeader label={elaas.label} title={elaas.title} subtitle={elaas.subtitle} align="left" />
 
+            {/* Key visual: Executive-Session */}
+            <div className="relative aspect-[16/9] rounded-2xl overflow-hidden ring-1 ring-cetl-border">
+              <Image
+                src="/k.png"
+                alt="Executive-Education-Session: Führungskräfte an einem Boardroom-Tisch vor Wandscreens mit goldenen Datenvisualisierungen"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-cetl-surface/50 to-transparent" />
+            </div>
+
             <div className="flex flex-col gap-4 pt-4 border-t border-cetl-border">
               <p className="text-cetl-text-muted text-sm leading-relaxed">{elaas.paragraph}</p>
               <div className="flex flex-wrap gap-2 mt-2">
