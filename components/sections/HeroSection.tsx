@@ -27,17 +27,16 @@ export function HeroSection() {
 
   return (
     <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-cetl-dark">
-      {/* Very subtle parchment wash */}
+      {/* Deep space atmosphere */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-[10%] w-[800px] h-[800px] rounded-full bg-cetl-gold/[0.03] blur-[200px]" />
-        <div className="absolute bottom-0 right-[5%] w-[600px] h-[600px] rounded-full bg-cetl-blue/[0.04] blur-[180px]" />
+        <div className="absolute top-[-10%] left-[15%] w-[900px] h-[900px] rounded-full bg-cetl-blue/[0.18] blur-[160px]" />
+        <div className="absolute bottom-[-5%] right-[5%] w-[700px] h-[700px] rounded-full bg-cetl-violet/[0.12] blur-[180px]" />
+        <div className="absolute top-[30%] left-[-5%] w-[500px] h-[500px] rounded-full bg-cetl-gold/[0.07] blur-[140px]" />
       </div>
 
       {/* Grain texture */}
       <div className="absolute inset-0 bg-grain opacity-[0.035] pointer-events-none mix-blend-multiply" />
 
-      {/* Fine grid — barely visible */}
-      <div className="absolute inset-0 bg-grid-gold opacity-[0.018] [mask-image:radial-gradient(ellipse_70%_70%_at_50%_40%,black,transparent)]" />
 
       <Container className="relative z-10 pt-28 pb-12 flex flex-col items-center text-center">
 
@@ -50,15 +49,18 @@ export function HeroSection() {
         >
           <div className="relative inline-block">
             {/* Halo glow behind crest */}
-            <div className="absolute inset-0 rounded-full bg-cetl-gold/[0.08] blur-2xl scale-125 pointer-events-none" />
-            <Image
-              src="/cetl-logo.png"
-              alt="CETL Institute Seal"
-              width={220}
-              height={220}
-              className="relative object-contain mix-blend-multiply drop-shadow-[0_4px_24px_rgba(27,58,107,0.12)]"
-              priority
-            />
+            <div className="absolute inset-0 rounded-full bg-cetl-gold/[0.15] blur-3xl scale-125 pointer-events-none" />
+            {/* Medallion container — clean seal on dark bg */}
+            <div className="relative rounded-full bg-white/[0.06] ring-1 ring-white/10 p-3 backdrop-blur-sm">
+              <Image
+                src="/cetl-logo.png"
+                alt="CETL Institute Seal"
+                width={200}
+                height={200}
+                className="object-contain drop-shadow-[0_2px_16px_rgba(212,168,67,0.25)]"
+                priority
+              />
+            </div>
           </div>
         </motion.div>
 
@@ -70,10 +72,10 @@ export function HeroSection() {
           className="w-full max-w-2xl"
         >
           <OrnamentRule className="mb-4" />
-          <p className="text-cetl-text-muted text-[11px] tracking-[0.35em] uppercase font-semibold mb-1">
+          <p className="text-cetl-gold text-[11px] tracking-[0.35em] uppercase font-semibold mb-1 opacity-80">
             {hero.badgeLocation}
           </p>
-          <h2 className="font-display text-cetl-text text-xs md:text-sm tracking-[0.28em] uppercase font-medium mb-4 opacity-70">
+          <h2 className="font-display text-cetl-text text-xs md:text-sm tracking-[0.28em] uppercase font-medium mb-4 opacity-50">
             Central European Tech Leadership Institute
           </h2>
           <OrnamentRule />
@@ -93,7 +95,7 @@ export function HeroSection() {
             </>
           )}
           <em className="not-italic" style={{
-            background: "linear-gradient(100deg, var(--color-cetl-blue) 0%, var(--color-cetl-gold) 55%, var(--color-cetl-violet) 110%)",
+            background: "linear-gradient(100deg, var(--color-cetl-gold) 0%, var(--color-cetl-text) 55%, var(--color-cetl-gold-light) 110%)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",
@@ -152,7 +154,7 @@ export function HeroSection() {
                 <span
                   className="font-display text-2xl md:text-3xl font-bold"
                   style={{
-                    background: "linear-gradient(100deg, var(--color-cetl-blue), var(--color-cetl-gold))",
+                    background: "linear-gradient(100deg, var(--color-cetl-gold), var(--color-cetl-gold-light))",
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
                     backgroundClip: "text",

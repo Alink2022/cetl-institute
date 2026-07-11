@@ -1,21 +1,21 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* Traditional academic palette — cream/ivory base, navy accent, muted gold */
-  --color-cetl-dark: #F7F4ED;
-  --color-cetl-darker: #EDE8DC;
-  --color-cetl-surface: #EEE9DB;
-  --color-cetl-surface-2: #E5DFCE;
-  --color-cetl-border: #C8C0A6;
-  --color-cetl-muted: #9E9480;
-  --color-cetl-gold: #7A5C14;
-  --color-cetl-gold-light: #9B7820;
-  --color-cetl-blue: #1B3A6B;
-  --color-cetl-blue-dark: #0F2448;
-  --color-cetl-violet: #6B2D8B;
-  --color-cetl-text: #1A1610;
-  --color-cetl-text-muted: #5C5448;
-  --color-cetl-error: #9B1C1C;
+  /* Midnight Navy — modern enterprise authority palette */
+  --color-cetl-dark: #060B1A;
+  --color-cetl-darker: #030711;
+  --color-cetl-surface: #0C1530;
+  --color-cetl-surface-2: #122040;
+  --color-cetl-border: #1E3154;
+  --color-cetl-muted: #3D5C84;
+  --color-cetl-gold: #D4A843;
+  --color-cetl-gold-light: #EBC96A;
+  --color-cetl-blue: #2E6FE8;
+  --color-cetl-blue-dark: #1A51C2;
+  --color-cetl-violet: #8B5CF6;
+  --color-cetl-text: #EEF2FF;
+  --color-cetl-text-muted: #7094B8;
+  --color-cetl-error: #EF4444;
 
   --font-sans: var(--font-body);
   --font-display: var(--font-display);
@@ -86,8 +86,8 @@ h1, h2, h3, h4, .font-display {
 }
 
 ::selection {
-  background: color-mix(in srgb, var(--color-cetl-gold) 20%, transparent);
-  color: var(--color-cetl-blue-dark);
+  background: color-mix(in srgb, var(--color-cetl-gold) 30%, transparent);
+  color: var(--color-cetl-text);
 }
 
 ::-webkit-scrollbar {
@@ -105,9 +105,9 @@ h1, h2, h3, h4, .font-display {
   background: var(--color-cetl-gold);
 }
 
-/* Gradient text: navy → academic gold — reads on light bg */
+/* Gradient text: gold → white → gold — reads on dark bg */
 .text-gradient-gold {
-  background: linear-gradient(100deg, var(--color-cetl-blue) 0%, var(--color-cetl-gold) 55%, var(--color-cetl-violet) 110%);
+  background: linear-gradient(100deg, var(--color-cetl-gold) 0%, var(--color-cetl-text) 50%, var(--color-cetl-gold-light) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -129,20 +129,20 @@ h1, h2, h3, h4, .font-display {
   background-size: 220px 220px;
 }
 
-/* Fine navy grid — very subtle on light */
+/* Fine gold grid — very subtle on dark */
 .bg-grid-gold {
   background-image:
-    linear-gradient(var(--color-cetl-blue) 1px, transparent 1px),
-    linear-gradient(90deg, var(--color-cetl-blue) 1px, transparent 1px);
+    linear-gradient(var(--color-cetl-gold) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-cetl-gold) 1px, transparent 1px);
   background-size: 64px 64px;
 }
 
-/* Academic glass panel — light frosted */
+/* Dark glass panel — frosted midnight navy */
 .glass-panel {
-  background: color-mix(in srgb, var(--color-cetl-dark) 80%, transparent);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid color-mix(in srgb, var(--color-cetl-gold) 20%, var(--color-cetl-border));
+  background: color-mix(in srgb, var(--color-cetl-surface) 85%, transparent);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid color-mix(in srgb, var(--color-cetl-gold) 18%, var(--color-cetl-border));
 }
 
 /* Gradient-stroke card */

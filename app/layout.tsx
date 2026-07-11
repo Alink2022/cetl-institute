@@ -4,6 +4,7 @@ import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
+import { StickyAdvisor } from "@/components/ui/StickyAdvisor";
 import { LanguageProvider } from "@/lib/i18n";
 
 const displayFont = Playfair_Display({
@@ -43,6 +44,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col antialiased bg-cetl-dark text-cetl-text">
         <LanguageProvider>
           <ScrollProgress />
+          <StickyAdvisor />
           {children}
         </LanguageProvider>
         <Analytics />

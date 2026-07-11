@@ -14,9 +14,27 @@ function LinkedInIcon() {
   );
 }
 
+function FacultyCard({ initials, role, desc }: { initials: string; role: string; desc: string }) {
+  return (
+    <div className="flex flex-col items-center text-center gap-4 p-6 rounded-2xl border border-cetl-border bg-cetl-surface/40 hover:border-cetl-gold/30 hover:bg-cetl-surface transition-all duration-300">
+      <div className="relative">
+        <div className="w-20 h-20 rounded-full border border-cetl-gold/40 bg-gradient-to-br from-cetl-surface to-cetl-dark flex items-center justify-center">
+          <span className="font-display text-xl font-bold text-cetl-gold/70 tracking-wider">{initials}</span>
+        </div>
+        <div className="absolute inset-0 rounded-full bg-cetl-gold/[0.04] blur-md" />
+      </div>
+      <div>
+        <p className="text-cetl-text font-semibold text-sm">{role}</p>
+        <p className="text-cetl-text-muted text-xs leading-relaxed mt-1">{desc}</p>
+      </div>
+    </div>
+  );
+}
+
 export function LeadershipSection() {
   const { t } = useLanguage();
   const leadership = t.UI.leadership;
+  const faculty = t.UI.faculty;
   const md = t.MANAGING_DIRECTOR;
 
   return (
@@ -97,6 +115,26 @@ export function LeadershipSection() {
                     {f}
                   </span>
                 ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Faculty positions grid */}
+        <div className="mt-16">
+          <p className="text-cetl-text-muted/60 text-xs font-semibold tracking-[0.25em] uppercase mb-6">{faculty.label}</p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+            {t.FACULTY_POSITIONS.map((pos) => (
+              <FacultyCard key={pos.initials} {...pos} />
+            ))}
+            {/* Featured experts card */}
+            <div className="flex flex-col items-center text-center gap-3 p-6 rounded-2xl border border-cetl-border/50 bg-cetl-surface/20 col-span-1">
+              <div className="w-20 h-20 rounded-full border border-cetl-gold/20 bg-cetl-dark flex items-center justify-center">
+                <span className="font-display text-2xl font-bold text-cetl-gold/50 italic">+</span>
+              </div>
+              <div>
+                <p className="text-cetl-gold text-sm font-semibold italic">{faculty.featuredTitle}</p>
+                <p className="text-cetl-text-muted text-xs leading-relaxed mt-1">{faculty.featuredDesc}</p>
               </div>
             </div>
           </div>

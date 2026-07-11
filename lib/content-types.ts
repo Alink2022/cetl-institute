@@ -1,6 +1,27 @@
 export type LucideIconName = "Brain" | "TrendingUp" | "Award" | "Globe" | "Users";
 export type TagColor = "gold" | "blue" | "muted";
 
+export interface Testimonial {
+  quote: string;
+  role: string;
+  sector: string;
+  orgSize: string;
+}
+
+export interface Insight {
+  category: string;
+  tag: string;
+  title: string;
+  teaser: string;
+  readTime: string;
+}
+
+export interface InstStat {
+  value: string;
+  label: string;
+  sub: string;
+}
+
 export interface Pillar {
   number: string;
   icon: LucideIconName;
@@ -26,6 +47,9 @@ export interface Program {
 export interface Partner {
   name: string;
   sub: string;
+  logo: string;
+  logoWidth?: number;
+  logoHeight?: number;
 }
 
 export interface ResearchStat {
@@ -44,7 +68,59 @@ export interface Quote {
   role: string;
 }
 
+export interface CommunityFeature {
+  title: string;
+  desc: string;
+}
+
+export interface FacultyPosition {
+  initials: string;
+  role: string;
+  desc: string;
+}
+
+export interface CaseMetric {
+  label: string;
+  value: string;
+  highlight?: boolean;
+}
+
+export interface CasePrinciple {
+  num: string;
+  title: string;
+  desc: string;
+}
+
+export interface IntersectionPartner {
+  name: string;
+  desc: string;
+}
+
+export interface IntersectionCategory {
+  label: string;
+  partners: IntersectionPartner[];
+}
+
 export interface ContentBundle {
+  TESTIMONIALS: Testimonial[];
+  INSIGHTS: Insight[];
+  INST_STATS: InstStat[];
+  COMMUNITY: {
+    pills: string[];
+    features: CommunityFeature[];
+    quote: string;
+    quoteAttribution: string;
+  };
+  FACULTY_POSITIONS: FacultyPosition[];
+  CASE_STUDY: {
+    clientTag: string;
+    client: string;
+    title: string;
+    desc: string;
+    metrics: CaseMetric[];
+    principles: CasePrinciple[];
+  };
+  INTERSECTION_CATEGORIES: IntersectionCategory[];
   SITE: {
     name: string;
     fullName: string;
@@ -117,7 +193,7 @@ export interface ContentBundle {
       partnershipHackathon: string;
       partnershipAfter: string;
     };
-    programs: { label: string; title: string; subtitle: string; cta: string };
+    programs: { label: string; title: string; subtitle: string; cta: string; filterAll: string; filterLabel: string; ctaAdvisor: string };
     partners: { trusted: string; blurbBefore: string; blurbHackathon: string; blurbAfter: string };
     leadership: {
       label: string;
@@ -167,5 +243,20 @@ export interface ContentBundle {
       complianceLine: string;
     };
     wordMarquee: string[];
+    testimonials: { label: string; title: string; subtitle: string; anonymousNote: string };
+    insights: { label: string; title: string; subtitle: string; cta: string };
+    instStats: { label: string };
+    community: { label: string; title: string; subtitle: string; advisorCta: string };
+    intersection: { label: string; title: string; subtitle: string };
+    caseStudy: { label: string; title: string; subtitle: string };
+    faculty: { label: string; positionOpen: string; featuredTitle: string; featuredDesc: string };
+    forOrgs: {
+      label: string;
+      title: string;
+      subtitle: string;
+      ctaPrimary: string;
+      ctaSecondary: string;
+      items: { title: string; desc: string }[];
+    };
   };
 }

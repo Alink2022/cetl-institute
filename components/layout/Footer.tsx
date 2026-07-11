@@ -17,13 +17,15 @@ export function Footer() {
           {/* Brand */}
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-3">
-              <Image
-                src="/cetl-logo.png"
-                alt="CETL Institute"
-                width={52}
-                height={52}
-                className="object-contain mix-blend-multiply"
-              />
+              <div className="rounded-full bg-white/[0.07] ring-1 ring-white/10 p-1.5">
+                <Image
+                  src="/cetl-logo.png"
+                  alt="CETL Institute"
+                  width={40}
+                  height={40}
+                  className="object-contain"
+                />
+              </div>
               <div className="flex flex-col leading-none">
                 <span className="text-cetl-text font-display font-bold text-sm tracking-wide">CETL</span>
                 <span className="text-cetl-text-muted text-xs tracking-widest uppercase">Institute</span>
