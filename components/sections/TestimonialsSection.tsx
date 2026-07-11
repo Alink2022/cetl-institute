@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useLanguage } from "@/lib/i18n";
 import { Container } from "@/components/ui/Container";
 
@@ -49,16 +50,19 @@ export function TestimonialsSection() {
               </blockquote>
 
               {/* Attribution */}
-              <div className="border-t border-cetl-border/60 pt-4 flex flex-col gap-1">
+              <div className="border-t border-cetl-border/60 pt-4 flex items-start justify-between gap-3">
+                <div className="flex flex-col gap-1 flex-1">
                 <span className="text-cetl-text text-sm font-semibold">{item.role}</span>
                 <div className="flex items-center gap-2 flex-wrap">
                   <span className="text-cetl-gold text-xs font-medium">{item.sector}</span>
                   <span className="text-cetl-border text-xs">·</span>
                   <span className="text-cetl-text-muted text-xs">{item.orgSize}</span>
                 </div>
-                <span className="text-cetl-text-muted/50 text-[10px] tracking-wide uppercase mt-1">
-                  {ui.anonymousNote}
-                </span>
+                  <span className="text-cetl-text-muted/50 text-[10px] tracking-wide uppercase mt-1">
+                    {ui.anonymousNote}
+                  </span>
+                </div>
+                <Image src="/cetl-logo.png" alt="CETL Institute" width={28} height={28} className="opacity-30 shrink-0 mt-1" unoptimized />
               </div>
             </div>
           ))}

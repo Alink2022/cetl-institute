@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { useLanguage } from "@/lib/i18n";
 
@@ -23,7 +24,10 @@ export function CaseStudySection() {
           {/* Left: dark client card */}
           <div className="bg-cetl-surface p-8 lg:p-10 flex flex-col gap-6">
             <div>
-              <p className="text-cetl-gold text-[10px] tracking-[0.25em] uppercase font-semibold mb-2">{cs.clientTag}</p>
+              <div className="flex items-center gap-3 mb-2">
+                <Image src="/cetl-logo.png" alt="CETL Institute" width={36} height={36} className="opacity-80 shrink-0" unoptimized />
+                <p className="text-cetl-gold text-[10px] tracking-[0.25em] uppercase font-semibold">{cs.clientTag}</p>
+              </div>
               <h3 className="font-display text-2xl font-bold text-cetl-text leading-snug">{cs.client}</h3>
             </div>
             <p className="text-cetl-text-muted text-sm leading-relaxed">{cs.desc}</p>

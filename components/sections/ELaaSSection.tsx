@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Globe } from "lucide-react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Badge } from "@/components/ui/Badge";
@@ -12,6 +13,10 @@ export function ELaaSSection() {
 
   return (
     <section id="elaas" className="relative py-24 lg:py-32 bg-cetl-surface">
+      {/* Ghost watermark */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
+        <Image src="/cetl-logo.png" alt="" width={420} height={420} className="opacity-[0.03] select-none" aria-hidden="true" unoptimized />
+      </div>
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cetl-gold to-transparent opacity-40" />
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cetl-violet to-transparent opacity-40" />
       <Container>

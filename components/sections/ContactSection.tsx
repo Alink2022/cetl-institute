@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { Users } from "lucide-react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Container } from "@/components/ui/Container";
@@ -37,6 +38,13 @@ export function ContactSection() {
   return (
     <section id="contact" className="py-24 lg:py-32 bg-cetl-dark">
       <Container>
+        {/* Centered logo above section */}
+        <div className="flex justify-center mb-10">
+          <div className="rounded-full bg-white/[0.04] ring-1 ring-cetl-gold/20 p-3">
+            <Image src="/cetl-logo.png" alt="CETL Institute" width={72} height={72} className="object-contain" />
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* Left: Info */}
           <div className="flex flex-col gap-8">
