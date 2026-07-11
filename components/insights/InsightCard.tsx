@@ -1,7 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import type { Insight } from "@/lib/content-types";
+import { ARTICLE_IMAGES } from "@/lib/insights-articles";
 
 interface InsightCardProps {
   item: Insight;
@@ -9,6 +11,7 @@ interface InsightCardProps {
 }
 
 export function InsightCard({ item, readCta }: InsightCardProps) {
+  const image = ARTICLE_IMAGES[item.slug];
   return (
     <Link
       href={`/insights/${item.slug}`}
@@ -16,6 +19,20 @@ export function InsightCard({ item, readCta }: InsightCardProps) {
     >
       {/* Tag bar */}
       <div className="h-1 bg-gradient-to-r from-cetl-gold/60 to-cetl-gold-light/30" />
+
+      {/* Key visual */}
+      {image && (
+        <div className="relative aspect-[16/9] overflow-hidden">
+          <Image
+            src={image.src}
+            alt={image.alt}
+            fill
+            sizes="(max-width: 768px) 100vw, 33vw"
+            className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-cetl-surface/60 to-transparent" />
+        </div>
+      )}
 
       <div className="p-7 flex flex-col gap-4 h-full">
         {/* Meta */}

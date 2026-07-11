@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { ARTICLE_SLUGS, getArticle } from "@/lib/insights-articles";
+import { ARTICLE_IMAGES, ARTICLE_SLUGS, getArticle } from "@/lib/insights-articles";
 import { ArticleView } from "@/components/insights/ArticleView";
 
 interface PageProps {
@@ -23,6 +23,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: article.teaser,
       type: "article",
       locale: "de_AT",
+      images: ARTICLE_IMAGES[slug] ? [{ url: ARTICLE_IMAGES[slug].src, alt: ARTICLE_IMAGES[slug].alt }] : undefined,
     },
   };
 }

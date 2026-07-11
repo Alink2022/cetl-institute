@@ -22,6 +22,7 @@ const bodyFont = EB_Garamond({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://cetl-institute.vercel.app"),
   title: "CETL Institute — Central European Tech Leadership Institute",
   description:
     "Akademische Exzellenz trifft industrielle Umsetzung. Executive Education, strategische Beratung und unabhängige technische Bewertung für Vorstand und Geschäftsführung bei AI- und digitaler Transformation.",

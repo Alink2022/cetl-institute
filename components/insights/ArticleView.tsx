@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { type ReactNode } from "react";
 import { useLanguage } from "@/lib/i18n";
-import { ARTICLES, getArticle } from "@/lib/insights-articles";
+import { ARTICLES, ARTICLE_IMAGES, getArticle } from "@/lib/insights-articles";
 import type { ArticleBlock } from "@/lib/content-types";
 import { NavBar } from "@/components/layout/NavBar";
 import { Footer } from "@/components/layout/Footer";
@@ -136,6 +137,23 @@ export function ArticleView({ slug }: { slug: string }) {
         <Container>
           <GoldDivider />
         </Container>
+
+        {/* Key visual */}
+        {ARTICLE_IMAGES[slug] && (
+          <Container>
+            <div className="relative max-w-4xl aspect-[16/9] mt-12 overflow-hidden rounded-sm ring-1 ring-cetl-border">
+              <Image
+                src={ARTICLE_IMAGES[slug].src}
+                alt={ARTICLE_IMAGES[slug].alt}
+                fill
+                priority
+                sizes="(max-width: 896px) 100vw, 896px"
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-cetl-dark/40 to-transparent" />
+            </div>
+          </Container>
+        )}
 
         {/* Body */}
         <article className="py-14 md:py-20">

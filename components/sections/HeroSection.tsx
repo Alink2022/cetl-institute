@@ -27,6 +27,19 @@ export function HeroSection() {
 
   return (
     <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-cetl-dark">
+      {/* Key visual — goldenes Netzwerk-Gitter, stark abgedunkelt hinter der Atmosphäre */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden>
+        <Image
+          src="/e.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover opacity-[0.22]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-cetl-dark/70 via-cetl-dark/40 to-cetl-dark" />
+      </div>
+
       {/* Deep space atmosphere */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-[-10%] left-[15%] w-[900px] h-[900px] rounded-full bg-cetl-blue/[0.18] blur-[160px]" />

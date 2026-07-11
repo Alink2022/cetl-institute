@@ -836,3 +836,28 @@ export const ARTICLES: Record<"de" | "en", Article[]> = { de, en };
 export function getArticle(lang: "de" | "en", slug: string): Article | undefined {
   return ARTICLES[lang].find((a) => a.slug === slug);
 }
+
+// Key-Visuals der Publikationen (KI-generiert, Brand-Farbwelt Dark/Gold).
+// a.png dient zugleich als Hero-Hintergrund der Startseite.
+export const ARTICLE_IMAGES: Record<string, { src: string; alt: string }> = {
+  "poc-to-production-gap": {
+    src: "/d.png",
+    alt: "Fragmentierte Wireframe-Struktur, die in eine präzise goldene Brückenkonstruktion übergeht — Metapher für den Weg vom Prototyp in die Produktion",
+  },
+  "vendor-lock-in-sovereignty": {
+    src: "/c.png",
+    alt: "Goldener Schachkönig zwischen gläsernen Bauern auf dunkler Fläche — Metapher für strategische Kontrolle und Unabhängigkeit",
+  },
+  "ai-judgment-gap": {
+    src: "/e.png",
+    alt: "Abstraktes goldenes Netzwerk-Gitter auf dunklem Grund — Visualisierung von KI-Infrastruktur",
+  },
+  "eu-ai-act-governance": {
+    src: "/b.png",
+    alt: "Goldener Pfad durch eine geordnete labyrinthartige Struktur — Metapher für Navigation durch Regulierung",
+  },
+  "embedded-engineering": {
+    src: "/a.png",
+    alt: "Führungskräfte im Gespräch vor einem dunklen Display mit goldenen Datenvisualisierungen in einem Wiener Büro",
+  },
+};
