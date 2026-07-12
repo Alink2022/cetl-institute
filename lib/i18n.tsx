@@ -27,6 +27,11 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     if (saved === "de" || saved === "en") setLangState(saved);
   }, []);
 
+  // <html lang> für Screenreader/SEO an die aktive Sprache koppeln.
+  useEffect(() => {
+    document.documentElement.lang = lang === "de" ? "de-AT" : "en";
+  }, [lang]);
+
   const setLang = (next: Lang) => {
     setLangState(next);
     window.localStorage.setItem(STORAGE_KEY, next);

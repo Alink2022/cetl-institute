@@ -22,6 +22,7 @@ export const en: ContentBundle = {
     { label: "ELaaS", href: "#elaas" },
     { label: "Programs", href: "#programs" },
     { label: "Leadership", href: "#leadership" },
+    { label: "Insights", href: "/insights" },
     { label: "Partners", href: "#partners" },
   ],
 
@@ -452,6 +453,10 @@ export const en: ContentBundle = {
       ctaButton: "Get in touch",
       moreLabel: "More analyses",
       authorLabel: "About the author",
+      share: "Share article",
+      shareCopied: "Link copied",
+      prevLabel: "Previous analysis",
+      nextLabel: "Next analysis",
     },
     instStats: { label: "CETL in numbers" },
     community: {

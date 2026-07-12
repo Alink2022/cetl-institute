@@ -10,8 +10,8 @@ export function Footer() {
   const pathname = usePathname();
   const footer = t.UI.footer;
   const footerLinks = [...t.NAV_LINKS, { label: footer.contactLabel, href: "#contact" }];
-  // Auf Unterseiten müssen Anker-Links zurück zur Startseite führen.
-  const toHref = (hash: string) => (pathname === "/" ? hash : `/${hash}`);
+  // Auf Unterseiten müssen Anker-Links zurück zur Startseite führen; echte Routen bleiben unverändert.
+  const toHref = (href: string) => (href.startsWith("#") && pathname !== "/" ? `/${href}` : href);
 
   return (
     <footer className="relative border-t border-cetl-border bg-cetl-darker overflow-hidden">

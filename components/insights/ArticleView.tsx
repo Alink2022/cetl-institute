@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { type ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import { useLanguage } from "@/lib/i18n";
 import { ARTICLES, ARTICLE_IMAGES, getArticle } from "@/lib/insights-articles";
 import type { ArticleBlock } from "@/lib/content-types";
@@ -11,6 +11,18 @@ import { Footer } from "@/components/layout/Footer";
 import { Container } from "@/components/ui/Container";
 import { GoldDivider } from "@/components/ui/GoldDivider";
 import { InsightCard } from "./InsightCard";
+
+// Anker-IDs für Deep-Links auf Zwischenüberschriften.
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/ä/g, "ae")
+    .replace(/ö/g, "oe")
+    .replace(/ü/g, "ue")
+    .replace(/ß/g, "ss")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
 
 // Inline-Markup: **text** → <strong>. Kein weiteres Markdown nötig.
 function renderInline(text: string): ReactNode[] {
@@ -30,7 +42,10 @@ function Block({ block, lang }: { block: ArticleBlock; lang: "de" | "en" }) {
   switch (block.type) {
     case "h2":
       return (
-        <h2 className="font-display text-2xl md:text-3xl font-bold text-cetl-text leading-tight mt-14 mb-5">
+        <h2
+          id={slugify(block.text)}
+          className="font-display text-2xl md:text-3xl font-bold text-cetl-text leading-tight mt-14 mb-5 scroll-mt-28"
+        >
           {block.text}
         </h2>
       );
@@ -84,10 +99,29 @@ function Block({ block, lang }: { block: ArticleBlock; lang: "de" | "en" }) {
 export function ArticleView({ slug }: { slug: string }) {
   const { lang, t } = useLanguage();
   const ui = t.UI.insights;
+  const [copied, setCopied] = useState(false);
   const article = getArticle(lang, slug) ?? getArticle("de", slug);
   if (!article) return null;
 
-  const others = ARTICLES[lang].filter((a) => a.slug !== slug).slice(0, 3);
+  // Thematisch verwandte Analysen zuerst (gleicher Tag), dann Rest in Originalreihenfolge.
+  const others = [...ARTICLES[lang].filter((a) => a.slug !== slug)]
+    .sort((a, b) => Number(b.tag === article.tag) - Number(a.tag === article.tag))
+    .slice(0, 3);
+
+  const idx = ARTICLES[lang].findIndex((a) => a.slug === slug);
+  const prev = idx > 0 ? ARTICLES[lang][idx - 1] : null;
+  const next = idx >= 0 && idx < ARTICLES[lang].length - 1 ? ARTICLES[lang][idx + 1] : null;
+
+  const articleUrl = `${t.SITE.url.replace(/\/$/, "")}/insights/${slug}`;
+  const copyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(articleUrl);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Clipboard nicht verfügbar (z. B. unsicherer Kontext) — Button bleibt folgenlos.
+    }
+  };
 
   return (
     <>
@@ -130,6 +164,29 @@ export function ArticleView({ slug }: { slug: string }) {
                 <span aria-hidden>·</span>
                 <span>{article.readTime}</span>
               </div>
+
+              {/* Share */}
+              <div className="flex items-center gap-3 mt-6">
+                <span className="text-cetl-text-muted text-[10px] tracking-[0.25em] uppercase font-semibold">
+                  {ui.share}
+                </span>
+                <a
+                  href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(articleUrl)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                  className="text-cetl-text-muted hover:text-cetl-gold border border-cetl-border hover:border-cetl-gold/40 rounded-sm px-3 py-1.5 text-xs font-medium transition-colors duration-200"
+                >
+                  LinkedIn
+                </a>
+                <button
+                  type="button"
+                  onClick={copyLink}
+                  className="text-cetl-text-muted hover:text-cetl-gold border border-cetl-border hover:border-cetl-gold/40 rounded-sm px-3 py-1.5 text-xs font-medium transition-colors duration-200 cursor-pointer"
+                >
+                  {copied ? ui.shareCopied : "Link"}
+                </button>
+              </div>
             </div>
           </Container>
         </header>
@@ -165,6 +222,44 @@ export function ArticleView({ slug }: { slug: string }) {
             </div>
           </Container>
         </article>
+
+        {/* Prev / Next */}
+        {(prev || next) && (
+          <nav className="pb-14" aria-label={`${ui.prevLabel} / ${ui.nextLabel}`}>
+            <Container>
+              <div className="max-w-3xl grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {prev ? (
+                  <Link
+                    href={`/insights/${prev.slug}`}
+                    className="group border border-cetl-border hover:border-cetl-gold/40 rounded-sm p-5 transition-colors duration-200"
+                  >
+                    <p className="text-cetl-text-muted text-[10px] tracking-[0.25em] uppercase font-semibold mb-2">
+                      ← {ui.prevLabel}
+                    </p>
+                    <p className="font-display text-cetl-text text-sm font-semibold leading-snug group-hover:text-cetl-gold-light transition-colors duration-200">
+                      {prev.title}
+                    </p>
+                  </Link>
+                ) : (
+                  <span aria-hidden />
+                )}
+                {next && (
+                  <Link
+                    href={`/insights/${next.slug}`}
+                    className="group border border-cetl-border hover:border-cetl-gold/40 rounded-sm p-5 text-right transition-colors duration-200"
+                  >
+                    <p className="text-cetl-text-muted text-[10px] tracking-[0.25em] uppercase font-semibold mb-2">
+                      {ui.nextLabel} →
+                    </p>
+                    <p className="font-display text-cetl-text text-sm font-semibold leading-snug group-hover:text-cetl-gold-light transition-colors duration-200">
+                      {next.title}
+                    </p>
+                  </Link>
+                )}
+              </div>
+            </Container>
+          </nav>
+        )}
 
         {/* Author */}
         <section className="pb-14">

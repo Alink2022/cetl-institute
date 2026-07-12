@@ -13,9 +13,9 @@ export function NavBar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  // Auf Unterseiten müssen Anker-Links zurück zur Startseite führen.
+  // Auf Unterseiten müssen Anker-Links zurück zur Startseite führen; echte Routen bleiben unverändert.
   const isHome = pathname === "/";
-  const toHref = (hash: string) => (isHome ? hash : `/${hash}`);
+  const toHref = (href: string) => (href.startsWith("#") && !isHome ? `/${href}` : href);
 
   const rafRef = useRef<number | null>(null);
 
