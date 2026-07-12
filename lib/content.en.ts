@@ -7,6 +7,8 @@ export const en: ContentBundle = {
     fullName: "Central European Tech Leadership Institute",
     url: "https://cetl-institute.vercel.app",
     email: "office@cetl-institute.eu",
+    // Form requests always go to the board (requirement Stefan, 2026-07-12).
+    formEmail: "vorstand@eqaf.eu",
     location: "Vienna, Austria",
     region: "Central Europe",
     academic: "TU Wien, Academic Director",

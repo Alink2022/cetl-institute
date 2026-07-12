@@ -31,7 +31,7 @@ export function ContactSection() {
     const body = encodeURIComponent(
       `${contact.mailFieldName}: ${form.name}\n${contact.mailFieldCompany}: ${form.company}\n${contact.mailFieldEmail}: ${form.email}\n${contact.mailFieldInterest}: ${form.interest}\n\n${form.message}`
     );
-    window.location.href = `mailto:${t.SITE.email}?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:${t.SITE.formEmail}?subject=${subject}&body=${body}`;
     setSubmitted(true);
   };
 

@@ -140,6 +140,7 @@ export interface ContentBundle {
     fullName: string;
     url: string;
     email: string;
+    formEmail: string;
     location: string;
     region: string;
     academic: string;
