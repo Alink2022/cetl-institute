@@ -445,12 +445,13 @@ export const en: ContentBundle = {
         "Research briefs, whitepapers and frameworks for decision-makers in banking, industry and the public sector — from research into practice.",
       back: "All insights",
       published: "Published",
-      byline: "CETL Institute — Research & Faculty",
+      byline: "Alin Kalam — Managing Director, CETL Institute",
       ctaTitle: "Start the strategic conversation.",
       ctaText:
         "Whether architecture review, embedded engineering engagement or executive briefing for the leadership level: the first conversation is non-binding and serves to clarify scope.",
       ctaButton: "Get in touch",
       moreLabel: "More analyses",
+      authorLabel: "About the author",
     },
     instStats: { label: "CETL in numbers" },
     community: {

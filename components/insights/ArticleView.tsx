@@ -166,6 +166,43 @@ export function ArticleView({ slug }: { slug: string }) {
           </Container>
         </article>
 
+        {/* Author */}
+        <section className="pb-14">
+          <Container>
+            <div className="max-w-3xl border border-cetl-border rounded-sm p-7 md:p-8 flex flex-col sm:flex-row gap-6 items-start bg-cetl-surface/40">
+              <div className="relative w-20 h-20 shrink-0 rounded-full overflow-hidden ring-1 ring-cetl-gold/40">
+                <Image
+                  src="/alin-kalam.png"
+                  alt={t.MANAGING_DIRECTOR.name}
+                  fill
+                  sizes="80px"
+                  className="object-cover"
+                />
+              </div>
+              <div>
+                <p className="text-cetl-gold text-[10px] tracking-[0.3em] uppercase font-semibold mb-2">
+                  {ui.authorLabel}
+                </p>
+                <p className="font-display text-cetl-text text-lg font-semibold leading-snug">
+                  {t.MANAGING_DIRECTOR.name}
+                </p>
+                <p className="text-cetl-text-muted text-xs mb-3">
+                  {t.MANAGING_DIRECTOR.title}, CETL Institute · {t.MANAGING_DIRECTOR.headline}
+                </p>
+                <p className="text-cetl-text-muted text-sm leading-relaxed mb-3">{t.MANAGING_DIRECTOR.bio}</p>
+                <a
+                  href={t.MANAGING_DIRECTOR.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-cetl-gold text-xs font-medium tracking-wide hover:underline underline-offset-4"
+                >
+                  LinkedIn →
+                </a>
+              </div>
+            </div>
+          </Container>
+        </section>
+
         {/* CTA */}
         <section className="pb-20">
           <Container>

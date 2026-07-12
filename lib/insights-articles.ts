@@ -28,7 +28,7 @@ const de: Article[] = [
       },
       {
         type: "p",
-        text: "Wir nennen dieses Phänomen den **PoC-Friedhof**: eine wachsende Sammlung technisch erfolgreicher Proof-of-Concepts, die nie den Sprung in skalierte Wertschöpfung schaffen. Wer heute durch die Innovationsabteilungen zentraleuropäischer Banken und Industrieunternehmen geht, findet ihn fast überall.",
+        text: "Ich nenne dieses Phänomen den **PoC-Friedhof**: eine wachsende Sammlung technisch erfolgreicher Proof-of-Concepts, die nie den Sprung in skalierte Wertschöpfung schaffen. In zwanzig Jahren an der Schnittstelle von Daten und Strategie — von Big Data bei der BAWAG P.S.K. über BI-Führung in der Lufthansa Group bis zur AI-Koordination in einem internationalen Konzern — habe ich diesen Friedhof in fast jeder Organisation gesehen, die ich von innen kenne.",
       },
       { type: "h2", text: "Das Scheitern beginnt nicht beim Modell" },
       {
@@ -37,7 +37,7 @@ const de: Article[] = [
       },
       {
         type: "p",
-        text: "Ein Proof-of-Concept lebt in einer geschützten Umgebung: kuratierte Daten, keine Legacy-Integration, keine regulatorische Prüfung, kein 24/7-Betrieb, keine Haftungsfrage. Der Enterprise-Betrieb kennt keine dieser Freiheiten. Der Übergang vom einen zum anderen ist kein Deployment-Schritt — er ist ein organisatorischer Strukturwandel. Vier Muster tauchen in unseren Architektur-Reviews immer wieder auf:",
+        text: "Ein Proof-of-Concept lebt in einer geschützten Umgebung: kuratierte Daten, keine Legacy-Integration, keine regulatorische Prüfung, kein 24/7-Betrieb, keine Haftungsfrage. Der Enterprise-Betrieb kennt keine dieser Freiheiten. Der Übergang vom einen zum anderen ist kein Deployment-Schritt — er ist ein organisatorischer Strukturwandel. Vier Muster tauchen in meinen Architektur-Reviews immer wieder auf:",
       },
       { type: "h3", text: "1. Datenreife wurde als gelöst angenommen" },
       {
@@ -73,6 +73,10 @@ const de: Article[] = [
         text: "Organisationen, die die zweite Frage ehrlich beantworten, bevor sie die erste stellen, skalieren. Die anderen bauen Friedhöfe. Für regulierte Branchen — Banken, kritische Infrastruktur, öffentlicher Sektor — verschärft sich diese Logik zusätzlich: Der EU AI Act macht Governance-Reife von der Empfehlung zur Pflicht. Wer heute Systeme ohne dokumentierte Risikoklassifizierung, Datenqualitätsnachweise und menschliche Aufsichtsstrukturen baut, produziert Altlasten mit Ansage.",
       },
       { type: "h2", text: "Was funktionierende Organisationen anders machen" },
+      {
+        type: "p",
+        text: "In Engagements mit Enterprise-Kunden sehe ich bei den Organisationen, die die Lücke tatsächlich schließen, ein wiederkehrendes Muster:",
+      },
       {
         type: "olist",
         items: [
@@ -110,7 +114,7 @@ const de: Article[] = [
       { type: "h2", text: "Die vier Lock-in-Ebenen" },
       {
         type: "p",
-        text: "Lock-in wird meist als Lizenzfrage diskutiert. Das greift zu kurz. In technischen Bewertungen unterscheiden wir vier Ebenen, die sich in ihrer Reversibilität dramatisch unterscheiden:",
+        text: "Lock-in wird meist als Lizenzfrage diskutiert. Das greift zu kurz. Ich habe Plattform-Entscheidungen von beiden Seiten des Tisches erlebt — als Datenverantwortlicher in Bank- und Aviation-Konzernen und heute als herstellerneutraler Bewerter. In technischen Bewertungen unterscheide ich vier Ebenen, die sich in ihrer Reversibilität dramatisch unterscheiden:",
       },
       { type: "h3", text: "Ebene 1: Infrastruktur-Lock-in" },
       {
@@ -144,7 +148,7 @@ const de: Article[] = [
       { type: "h2", text: "Architekturmuster für Reversibilität" },
       {
         type: "p",
-        text: "Souveränität heißt nicht, alles selbst zu bauen. Das wäre die teuerste Form des Scheiterns. Souveränität heißt: **bewusst entscheiden, wo Abhängigkeit akzeptabel ist — und Reversibilität dort erhalten, wo sie strategisch zählt.** Vier Muster haben sich in der Praxis bewährt:",
+        text: "Souveränität heißt nicht, alles selbst zu bauen. Das wäre die teuerste Form des Scheiterns. Souveränität heißt: **bewusst entscheiden, wo Abhängigkeit akzeptabel ist — und Reversibilität dort erhalten, wo sie strategisch zählt.** Vier Muster haben sich in meiner Praxis bewährt:",
       },
       { type: "h3", text: "1. Abstraktions-Disziplin an der Modellgrenze" },
       {
@@ -201,7 +205,7 @@ const de: Article[] = [
       },
       {
         type: "p",
-        text: "In den meisten Führungsgremien lautet die ehrliche Antwort: niemand. Nicht aus mangelnder Intelligenz — sondern weil technologisches Urteilsvermögen eine eigene Kompetenz ist, die weder betriebswirtschaftliche Exzellenz noch Branchenerfahrung automatisch mitliefern. Wir nennen diese Lücke die **AI-Urteilskompetenz-Lücke**, und sie ist der am meisten unterschätzte Risikofaktor in Enterprise-AI-Portfolios.",
+        text: "In den meisten Führungsgremien lautet die ehrliche Antwort: niemand. Ich habe diese Stille oft genug selbst erlebt — als Vortragender vor Führungsgremien ebenso wie als derjenige, der im Konzern die Entscheidungsvorlagen für genau solche Sitzungen vorbereitet hat. Sie entsteht nicht aus mangelnder Intelligenz, sondern weil technologisches Urteilsvermögen eine eigene Kompetenz ist, die weder betriebswirtschaftliche Exzellenz noch Branchenerfahrung automatisch mitliefern. Ich nenne diese Lücke die **AI-Urteilskompetenz-Lücke**, und sie ist der am meisten unterschätzte Risikofaktor in Enterprise-AI-Portfolios.",
       },
       { type: "h2", text: "Entscheiden unter Informationsasymmetrie" },
       {
@@ -273,7 +277,7 @@ const de: Article[] = [
       },
       {
         type: "p",
-        text: "Beim EU AI Act entscheidet sich gerade quer durch Zentraleuropa, welche Organisationen welchen Weg wählen. Unsere These aus der Arbeit mit Banken, Industrie und öffentlichem Sektor: **Der AI Act belohnt strukturell genau die Fähigkeiten, die ohnehin über Erfolg oder Scheitern von KI-Initiativen entscheiden.** Wer ihn als lästige Pflicht behandelt, zahlt doppelt — einmal für die Compliance und einmal für die verpasste Reife.",
+        text: "Beim EU AI Act entscheidet sich gerade quer durch Zentraleuropa, welche Organisationen welchen Weg wählen. Meine These — nach Jahren in Konzern-Verantwortung für AI-Koordination und Governance und aus der CETL-Arbeit mit Banken, Industrie und öffentlichem Sektor: **Der AI Act belohnt strukturell genau die Fähigkeiten, die ohnehin über Erfolg oder Scheitern von KI-Initiativen entscheiden.** Wer ihn als lästige Pflicht behandelt, zahlt doppelt — einmal für die Compliance und einmal für die verpasste Reife.",
       },
       { type: "h2", text: "Was der AI Act wirklich verlangt" },
       {
@@ -302,7 +306,7 @@ const de: Article[] = [
         type: "quote",
         text: "Früh begonnene Governance kostet Projektbudget. Spät begonnene Governance kostet Handlungsfähigkeit.",
       },
-      { type: "h2", text: "Drei strategische Fehler, die wir derzeit beobachten" },
+      { type: "h2", text: "Drei strategische Fehler, die ich derzeit beobachte" },
       { type: "h3", text: "Fehler 1: Der AI Act wird als reines Rechtsthema geführt" },
       {
         type: "p",
@@ -324,6 +328,10 @@ const de: Article[] = [
         text: "Für regulierte Branchen kommt eine zweite Ebene hinzu: Banken, kritische Infrastruktur und öffentliche Auftraggeber werden AI-Governance-Nachweise zunehmend in ihre Lieferketten und Vergabekriterien durchreichen. Wer heute prüffähige Strukturen aufbaut, ist morgen der Partner, der Ausschreibungen gewinnt, während Wettbewerber Fragebögen nicht beantworten können. Damit dreht sich die Logik: Governance-Reife ist nicht der Preis für die Teilnahme am Markt. Sie wird zum Differenzierungsmerkmal in ihm.",
       },
       { type: "h2", text: "Wo anfangen" },
+      {
+        type: "p",
+        text: "Der pragmatische Einstieg folgt in meiner Erfahrung drei Schritten:",
+      },
       {
         type: "olist",
         items: [
@@ -354,7 +362,7 @@ const de: Article[] = [
       },
       {
         type: "p",
-        text: "Die ehrliche Bilanz nach einem typischen KI-Transformationsprojekt: Die Slides bleiben. Die Roadmap bleibt. Vielleicht bleibt ein Pilot. Was nicht bleibt, ist die Fähigkeit, das Gebaute zu verstehen, weiterzuentwickeln und die nächste Initiative eigenständig zu stemmen. Diese Fähigkeit war nie im Haus — sie war gemietet, und sie ist mit dem letzten Abrechnungsmonat ausgezogen. Wir nennen das den **strukturellen Kompetenzverlust des klassischen Beratungsmodells**. Er ist kein Versagen einzelner Beratungen — er ist die logische Konsequenz eines Geschäftsmodells, dessen Umsatz mit der Dauer der Abhängigkeit wächst.",
+        text: "Die ehrliche Bilanz nach einem typischen KI-Transformationsprojekt: Die Slides bleiben. Die Roadmap bleibt. Vielleicht bleibt ein Pilot. Was nicht bleibt, ist die Fähigkeit, das Gebaute zu verstehen, weiterzuentwickeln und die nächste Initiative eigenständig zu stemmen. Diese Fähigkeit war nie im Haus — sie war gemietet, und sie ist mit dem letzten Abrechnungsmonat ausgezogen. Ich nenne das den **strukturellen Kompetenzverlust des klassischen Beratungsmodells** — und ich habe ihn in zwei Jahrzehnten Konzernpraxis oft genug von der Auftraggeberseite erlebt. Er ist kein Versagen einzelner Beratungen, sondern die logische Konsequenz eines Geschäftsmodells, dessen Umsatz mit der Dauer der Abhängigkeit wächst.",
       },
       { type: "h2", text: "Die Anreizstruktur ist das Problem" },
       {
@@ -402,7 +410,7 @@ const de: Article[] = [
       { type: "h2", text: "Executional Learning: Bildung und Umsetzung sind untrennbar" },
       {
         type: "p",
-        text: "Hinter dem Modell steht ein Grundprinzip, das wir **Executional Learning** nennen: Die Trennung zwischen Weiterbildung (Wissen ohne Umsetzung) und Beratung (Umsetzung ohne Wissenstransfer) ist das strukturelle Problem beider Branchen. Kompetenz, die bleibt, entsteht nur dort, wo Lernen und Liefern derselbe Vorgang sind. Die entscheidende Frage an jedes Angebot — ob Schulungskatalog oder Transformationsmandat — lautet:",
+        text: "Hinter dem Modell steht das Grundprinzip, auf dem das CETL Institute aufgebaut ist und das ich **Executional Learning** nenne: Die Trennung zwischen Weiterbildung (Wissen ohne Umsetzung) und Beratung (Umsetzung ohne Wissenstransfer) ist das strukturelle Problem beider Branchen. Kompetenz, die bleibt, entsteht nur dort, wo Lernen und Liefern derselbe Vorgang sind. Die entscheidende Frage an jedes Angebot — ob Schulungskatalog oder Transformationsmandat — lautet:",
       },
       {
         type: "quote",
@@ -438,7 +446,7 @@ const en: Article[] = [
       },
       {
         type: "p",
-        text: "We call this phenomenon the **PoC graveyard**: a growing collection of technically successful proofs-of-concept that never make the leap into scaled value creation. Walk through the innovation departments of Central European banks and industrial companies today and you will find it almost everywhere.",
+        text: "I call this phenomenon the **PoC graveyard**: a growing collection of technically successful proofs-of-concept that never make the leap into scaled value creation. In twenty years at the intersection of data and strategy — from big data at BAWAG P.S.K. through BI leadership in the Lufthansa Group to AI coordination in an international group — I have seen this graveyard in almost every organisation I know from the inside.",
       },
       { type: "h2", text: "Failure does not start with the model" },
       {
@@ -447,7 +455,7 @@ const en: Article[] = [
       },
       {
         type: "p",
-        text: "A proof-of-concept lives in a protected environment: curated data, no legacy integration, no regulatory scrutiny, no 24/7 operation, no liability question. Enterprise operation knows none of these freedoms. The transition from one to the other is not a deployment step — it is organisational structural change. Four patterns recur in our architecture reviews:",
+        text: "A proof-of-concept lives in a protected environment: curated data, no legacy integration, no regulatory scrutiny, no 24/7 operation, no liability question. Enterprise operation knows none of these freedoms. The transition from one to the other is not a deployment step — it is organisational structural change. Four patterns recur in my architecture reviews:",
       },
       { type: "h3", text: "1. Data maturity was assumed to be solved" },
       {
@@ -483,6 +491,10 @@ const en: Article[] = [
         text: "Organisations that answer the second question honestly before asking the first one scale. The others build graveyards. For regulated industries — banks, critical infrastructure, the public sector — this logic sharpens further: the EU AI Act turns governance maturity from recommendation into obligation. Building systems today without documented risk classification, data quality evidence and human oversight structures means producing legacy liabilities by design.",
       },
       { type: "h2", text: "What functioning organisations do differently" },
+      {
+        type: "p",
+        text: "In engagements with enterprise clients, I see a recurring pattern among the organisations that actually close the gap:",
+      },
       {
         type: "olist",
         items: [
@@ -520,7 +532,7 @@ const en: Article[] = [
       { type: "h2", text: "The four levels of lock-in" },
       {
         type: "p",
-        text: "Lock-in is usually discussed as a licensing question. That falls short. In technical assessments we distinguish four levels that differ dramatically in their reversibility:",
+        text: "Lock-in is usually discussed as a licensing question. That falls short. I have experienced platform decisions from both sides of the table — as a data executive in banking and aviation groups, and today as a vendor-neutral assessor. In technical assessments I distinguish four levels that differ dramatically in their reversibility:",
       },
       { type: "h3", text: "Level 1: Infrastructure lock-in" },
       {
@@ -554,7 +566,7 @@ const en: Article[] = [
       { type: "h2", text: "Architecture patterns for reversibility" },
       {
         type: "p",
-        text: "Sovereignty does not mean building everything yourself. That would be the most expensive form of failure. Sovereignty means: **deliberately deciding where dependency is acceptable — and preserving reversibility where it matters strategically.** Four patterns have proven themselves in practice:",
+        text: "Sovereignty does not mean building everything yourself. That would be the most expensive form of failure. Sovereignty means: **deliberately deciding where dependency is acceptable — and preserving reversibility where it matters strategically.** Four patterns have proven themselves in my practice:",
       },
       { type: "h3", text: "1. Abstraction discipline at the model boundary" },
       {
@@ -611,7 +623,7 @@ const en: Article[] = [
       },
       {
         type: "p",
-        text: "In most leadership bodies, the honest answer is: nobody. Not for lack of intelligence — but because technological judgment is a distinct capability that neither business excellence nor industry experience automatically provides. We call this gap the **AI judgment gap**, and it is the most underestimated risk factor in enterprise AI portfolios.",
+        text: "In most leadership bodies, the honest answer is: nobody. I have experienced that silence often enough myself — as a speaker in front of leadership bodies, and as the person who prepared the decision papers for exactly such meetings inside a corporate group. It does not arise from a lack of intelligence, but because technological judgment is a distinct capability that neither business excellence nor industry experience automatically provides. I call this gap the **AI judgment gap**, and it is the most underestimated risk factor in enterprise AI portfolios.",
       },
       { type: "h2", text: "Deciding under information asymmetry" },
       {
@@ -683,7 +695,7 @@ const en: Article[] = [
       },
       {
         type: "p",
-        text: "With the EU AI Act, organisations across Central Europe are choosing their path right now. Our thesis from working with banks, industry and the public sector: **the AI Act structurally rewards exactly the capabilities that decide the success or failure of AI initiatives anyway.** Those who treat it as a tiresome duty pay twice — once for compliance and once for the maturity they failed to build.",
+        text: "With the EU AI Act, organisations across Central Europe are choosing their path right now. My thesis — after years of corporate responsibility for AI coordination and governance, and from CETL's work with banks, industry and the public sector: **the AI Act structurally rewards exactly the capabilities that decide the success or failure of AI initiatives anyway.** Those who treat it as a tiresome duty pay twice — once for compliance and once for the maturity they failed to build.",
       },
       { type: "h2", text: "What the AI Act actually demands" },
       {
@@ -712,7 +724,7 @@ const en: Article[] = [
         type: "quote",
         text: "Governance started early costs project budget. Governance started late costs the ability to act.",
       },
-      { type: "h2", text: "Three strategic mistakes we currently observe" },
+      { type: "h2", text: "Three strategic mistakes I currently observe" },
       { type: "h3", text: "Mistake 1: The AI Act is run as a purely legal topic" },
       {
         type: "p",
@@ -734,6 +746,10 @@ const en: Article[] = [
         text: "For regulated industries there is a second layer: banks, critical infrastructure and public-sector buyers will increasingly pass AI governance evidence down their supply chains and procurement criteria. Whoever builds audit-ready structures today is tomorrow the partner who wins tenders while competitors cannot answer questionnaires. This reverses the logic: governance maturity is not the price of market participation. It becomes a differentiator within it.",
       },
       { type: "h2", text: "Where to start" },
+      {
+        type: "p",
+        text: "In my experience, the pragmatic entry point follows three steps:",
+      },
       {
         type: "olist",
         items: [
@@ -764,7 +780,7 @@ const en: Article[] = [
       },
       {
         type: "p",
-        text: "The honest balance after a typical AI transformation project: the slides remain. The roadmap remains. Perhaps a pilot remains. What does not remain is the ability to understand what was built, to evolve it, and to carry the next initiative independently. That ability was never in-house — it was rented, and it moved out with the last billing month. We call this the **structural capability loss of the classic consulting model**. It is not the failure of individual consultancies — it is the logical consequence of a business model whose revenue grows with the duration of dependency.",
+        text: "The honest balance after a typical AI transformation project: the slides remain. The roadmap remains. Perhaps a pilot remains. What does not remain is the ability to understand what was built, to evolve it, and to carry the next initiative independently. That ability was never in-house — it was rented, and it moved out with the last billing month. I call this the **structural capability loss of the classic consulting model** — and in two decades of corporate practice I have experienced it often enough from the client side. It is not the failure of individual consultancies, but the logical consequence of a business model whose revenue grows with the duration of dependency.",
       },
       { type: "h2", text: "The incentive structure is the problem" },
       {
@@ -812,7 +828,7 @@ const en: Article[] = [
       { type: "h2", text: "Executional Learning: education and execution are inseparable" },
       {
         type: "p",
-        text: "Behind the model stands a principle we call **Executional Learning**: the separation between training (knowledge without execution) and consulting (execution without knowledge transfer) is the structural problem of both industries. Capability that stays emerges only where learning and delivering are the same act. The decisive question for any offer — training catalogue or transformation mandate — is:",
+        text: "Behind the model stands the principle the CETL Institute is built on, which I call **Executional Learning**: the separation between training (knowledge without execution) and consulting (execution without knowledge transfer) is the structural problem of both industries. Capability that stays emerges only where learning and delivering are the same act. The decisive question for any offer — training catalogue or transformation mandate — is:",
       },
       {
         type: "quote",

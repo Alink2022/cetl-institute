@@ -445,12 +445,13 @@ export const de: ContentBundle = {
         "Research Briefs, Whitepaper und Frameworks für Entscheider in Banken, Industrie und öffentlichem Sektor — aus der Forschung in die Praxis.",
       back: "Alle Insights",
       published: "Publiziert",
-      byline: "CETL Institute — Research & Faculty",
+      byline: "Alin Kalam — Geschäftsführer, CETL Institute",
       ctaTitle: "Den strategischen Austausch beginnen.",
       ctaText:
         "Ob Architektur-Review, Embedded-Engineering-Engagement oder Executive-Briefing für die Führungsebene: Das erste Gespräch ist unverbindlich und dient der Klärung des Rahmens.",
       ctaButton: "Kontakt aufnehmen",
       moreLabel: "Weitere Analysen",
+      authorLabel: "Über den Autor",
     },
     instStats: { label: "CETL in Zahlen" },
     community: {

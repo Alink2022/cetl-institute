@@ -273,6 +273,7 @@ export interface ContentBundle {
       ctaText: string;
       ctaButton: string;
       moreLabel: string;
+      authorLabel: string;
     };
     instStats: { label: string };
     community: { label: string; title: string; subtitle: string; advisorCta: string };
