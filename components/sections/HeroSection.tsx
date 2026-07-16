@@ -151,35 +151,6 @@ export function HeroSection() {
           </MagneticButton>
         </motion.div>
 
-        {/* ── CREDENTIAL STRIP ───────────────────────────── */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.85 }}
-          className="mt-16 w-full max-w-3xl"
-        >
-          <div className="border-t border-b border-cetl-border py-6 grid grid-cols-1 sm:grid-cols-3 gap-6">
-            {hero.stats.map((stat, i) => (
-              <div key={stat.label} className="flex flex-col items-center gap-1.5">
-                {i > 0 && (
-                  <div className="hidden sm:block absolute w-px h-8 bg-cetl-border" style={{ left: `${i * 33.33}%` }} />
-                )}
-                <span
-                  className="font-display text-2xl md:text-3xl font-bold"
-                  style={{
-                    background: "linear-gradient(100deg, var(--color-cetl-gold), var(--color-cetl-gold-light))",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text",
-                  }}
-                >
-                  {stat.value}
-                </span>
-                <span className="text-cetl-text-muted text-[11px] tracking-[0.22em] uppercase">{stat.label}</span>
-              </div>
-            ))}
-          </div>
-        </motion.div>
       </Container>
 
       {/* ── SCROLLING TICKER ───────────────────────────── */}
