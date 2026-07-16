@@ -57,7 +57,6 @@ export const de: ContentBundle = {
         "Technologie-Risikobewertung für strategische Entscheider",
         "Strukturierte Use-Case-Priorisierung nach Datenreife und ROI",
         "AI Governance Frameworks für regulierte Branchen",
-        "Industrie-spezifische Technologie-Trend-Briefings",
       ],
     },
     {
@@ -66,10 +65,9 @@ export const de: ContentBundle = {
       title: "Embedded Engineering",
       subtitle: "Kompetenz, die bleibt",
       description:
-        "Forward Deployed Engineers sind keine externen Berater — sie sind temporär eingebettete Fachexperten, die methodisch neben den eigenen technischen Teams arbeiten. Das Ziel ist nicht die Projektlieferung, sondern der strukturierte Transfer von Enterprise-AI- und Daten-Kompetenz direkt in die eigene Organisation.",
+        "Forward Deployed Engineers sind keine externen Berater — sie sind temporär eingebettete Fachexperten, die methodisch neben den eigenen technischen Teams arbeiten. Das Ziel ist nicht die Projektlieferung, sondern der strukturierte Transfer von Enterprise-AI- und Daten-Kompetenz direkt in die eigene Organisation. Validierte Kompetenz verbleibt dabei in der Organisation — herstellerneutral und strukturell unabhängig von externen Anbietern.",
       items: [
         "Forward Deployed Engineers (3–6 Monate, projektintegriert)",
-        "Executive Bootcamps mit Umsetzungskomponente",
         "Interne KI-Fähigkeit als messbare Delivery-Metrik",
         "Governance-Framework-Entwicklung mit internen Teams",
       ],
@@ -85,27 +83,7 @@ export const de: ContentBundle = {
         "Vendor-neutrale Architektur- und Feasibility-Reviews",
         "Daten- und Governance-Reifegrad-Assessment",
         "Legacy-Decommissioning-Roadmaps mit Risikoprofil",
-        "Compliance-bewusste Technologie-Auditierung",
       ],
-    },
-  ],
-
-  ELAAS_FEATURES: [
-    {
-      title: "Sovereign Capability Transfer",
-      desc: "Validierte Kompetenz verbleibt in der Organisation — herstellerneutral, nicht plattformgebunden, strukturell unabhängig von externen Anbietern.",
-    },
-    {
-      title: "Outcome Engineering",
-      desc: "Jedes Programm wird an messbaren Organisations-Outcomes bemessen — nicht an Trainingstagen oder Teilnehmerzahlen.",
-    },
-    {
-      title: "Forward Deployed Engineers",
-      desc: "Integrierte Praxis-Experten arbeiten innerhalb laufender Initiativen — keine Lab-Umgebung, keine nachgelagerte Implementierungsphase.",
-    },
-    {
-      title: "Skalierbare Autonomie",
-      desc: "Die eigene Organisation wird zur primären Architektur-Kompetenz. CETL bleibt methodischer Sparringspartner — nicht strukturelle Abhängigkeit.",
     },
   ],
 
@@ -282,7 +260,7 @@ export const de: ContentBundle = {
     },
     {
       q: "Wie lange dauert ein typisches Engagement?",
-      a: "Die Formate reichen vom 2–3-stündigen Technologie-Trendbriefing bis zum 3–6-monatigen Forward-Deployed-Engineer-Programm. Executive-Bootcamps dauern 2–3 Tage, Architektur-Reviews und Feasibility-Assessments 4–6 Wochen.",
+      a: "Von wenigen Stunden bis zu mehreren Monaten — die genaue Dauer und das Format jedes Programms sind direkt bei den Programmkarten oben ausgewiesen.",
     },
   ],
 
@@ -583,10 +561,9 @@ export const de: ContentBundle = {
       { label: "Delivery Model", value: "ELaaS" },
     ],
     principles: [
-      { num: "I", title: "Einbetten statt ersetzen", desc: "Bestehende Lernplattformen bleiben digitale Basis — als Vor- und Nachbereitung integriert, ein interlocking Enabling-System." },
-      { num: "II", title: "Rollenspezifisches Enabling", desc: "Learning Journeys für KI-Leadership, KI-User, KI-Enthusiasten und interne KI-Developer — abgestimmt auf Verantwortung und Reifegrad." },
-      { num: "III", title: "Guided Projects mit Output", desc: "Jeder Lernpfad endet in konkreten Use Cases, Business Cases oder Implementierungsbeiträgen — vom Canvas bis zum finalen Pitch." },
-      { num: "IV", title: "Direkter Beitrag zur Strategie", desc: "Die Ergebnisse fließen direkt in die Use-Case-Pipeline, Priorisierungslogik und Transformationsinitiative des Kunden — messbarer Transfer." },
+      { num: "I", title: "Rollenspezifisches Enabling", desc: "Learning Journeys für KI-Leadership, KI-User, KI-Enthusiasten und interne KI-Developer — abgestimmt auf Verantwortung und Reifegrad." },
+      { num: "II", title: "Guided Projects mit Output", desc: "Jeder Lernpfad endet in konkreten Use Cases, Business Cases oder Implementierungsbeiträgen — vom Canvas bis zum finalen Pitch." },
+      { num: "III", title: "Direkter Beitrag zur Strategie", desc: "Die Ergebnisse fließen direkt in die Use-Case-Pipeline, Priorisierungslogik und Transformationsinitiative des Kunden — messbarer Transfer." },
     ],
   },
 

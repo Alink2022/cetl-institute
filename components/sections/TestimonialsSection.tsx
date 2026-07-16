@@ -19,8 +19,8 @@ export function TestimonialsSection() {
         {/* Header */}
         <div className="text-center mb-16">
           <p className="text-cetl-gold text-xs tracking-[0.3em] uppercase font-semibold mb-3">{ui.label}</p>
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-cetl-text mb-4">{ui.title}</h2>
-          <p className="text-cetl-text-muted text-sm max-w-xl mx-auto">{ui.subtitle}</p>
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-white/90 mb-4">{ui.title}</h2>
+          <p className="text-white/60 text-sm max-w-xl mx-auto">{ui.subtitle}</p>
         </div>
 
         {/* Cards */}

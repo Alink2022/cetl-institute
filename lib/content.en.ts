@@ -57,7 +57,6 @@ export const en: ContentBundle = {
         "Technology risk assessment for strategic decision-makers",
         "Structured use-case prioritization by data maturity and ROI",
         "AI governance frameworks for regulated industries",
-        "Industry-specific technology trend briefings",
       ],
     },
     {
@@ -66,10 +65,9 @@ export const en: ContentBundle = {
       title: "Embedded Engineering",
       subtitle: "Capability That Stays",
       description:
-        "Forward Deployed Engineers are not external consultants — they are temporarily embedded specialists who work methodically alongside your technical teams. The objective is not project delivery but structured transfer of enterprise AI and data competency directly into your organization.",
+        "Forward Deployed Engineers are not external consultants — they are temporarily embedded specialists who work methodically alongside your technical teams. The objective is not project delivery but structured transfer of enterprise AI and data competency directly into your organization. Validated competency remains in the organization throughout — vendor-neutral and structurally independent of external providers.",
       items: [
         "Forward Deployed Engineers (3–6 months, project-integrated)",
-        "Executive bootcamps with implementation component",
         "Internal AI capability as measurable delivery metric",
         "Governance framework development with internal teams",
       ],
@@ -85,27 +83,7 @@ export const en: ContentBundle = {
         "Vendor-neutral architecture and feasibility reviews",
         "Data and governance maturity assessment",
         "Legacy decommissioning roadmaps with risk profiles",
-        "Compliance-aware technology auditing",
       ],
-    },
-  ],
-
-  ELAAS_FEATURES: [
-    {
-      title: "Sovereign Capability Transfer",
-      desc: "Validated competency remains in the organization — vendor-neutral, not platform-bound, structurally independent of external providers.",
-    },
-    {
-      title: "Outcome Engineering",
-      desc: "Every program is measured against measurable organizational outcomes — not training days or participant counts.",
-    },
-    {
-      title: "Forward Deployed Engineers",
-      desc: "Integrated practice experts work within live initiatives — no lab environment, no downstream implementation phase.",
-    },
-    {
-      title: "Scalable Autonomy",
-      desc: "Your organization becomes the primary architecture competency. CETL remains a methodological sparring partner — not a structural dependency.",
     },
   ],
 
@@ -282,7 +260,7 @@ export const en: ContentBundle = {
     },
     {
       q: "How long does a typical engagement take?",
-      a: "Formats range from the 2–3-hour technology trend briefing to the 3–6-month Forward Deployed Engineer program. Executive bootcamps run 2–3 days, architecture reviews and feasibility assessments 4–6 weeks.",
+      a: "Anywhere from a few hours to several months — exact duration and format for each program are listed directly on the program cards above.",
     },
   ],
 
@@ -583,10 +561,9 @@ export const en: ContentBundle = {
       { label: "Delivery model", value: "ELaaS" },
     ],
     principles: [
-      { num: "I", title: "Embed instead of replace", desc: "Existing learning platforms remain the digital foundation, integrated as pre-work, refreshers and follow-ups — one interlocking enablement system." },
-      { num: "II", title: "Role-sharp enablement", desc: "Learning journeys for AI Leadership, AI Users, AI Enthusiasts and internal AI Developers — matched to responsibility and maturity." },
-      { num: "III", title: "Guided projects with output", desc: "Every learning path ends in concrete use cases, business cases or implementation contributions — from use-case canvas to final pitch." },
-      { num: "IV", title: "Direct contribution to strategy", desc: "Results feed straight into the client's use-case pipeline, prioritization logic and transformation initiative — measurable transfer." },
+      { num: "I", title: "Role-sharp enablement", desc: "Learning journeys for AI Leadership, AI Users, AI Enthusiasts and internal AI Developers — matched to responsibility and maturity." },
+      { num: "II", title: "Guided projects with output", desc: "Every learning path ends in concrete use cases, business cases or implementation contributions — from use-case canvas to final pitch." },
+      { num: "III", title: "Direct contribution to strategy", desc: "Results feed straight into the client's use-case pipeline, prioritization logic and transformation initiative — measurable transfer." },
     ],
   },
 

@@ -14,7 +14,7 @@ export function Footer() {
   const toHref = (href: string) => (href.startsWith("#") && pathname !== "/" ? `/${href}` : href);
 
   return (
-    <footer className="relative border-t border-cetl-border bg-cetl-darker overflow-hidden">
+    <footer className="relative border-t border-white/10 bg-cetl-darker overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cetl-gold to-transparent opacity-40" />
       <Container className="py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
@@ -31,23 +31,23 @@ export function Footer() {
                 />
               </div>
               <div className="flex flex-col leading-none">
-                <span className="text-cetl-text font-display font-bold text-sm tracking-wide">CETL</span>
-                <span className="text-cetl-text-muted text-xs tracking-widest uppercase">Institute</span>
+                <span className="text-white/90 font-display font-bold text-sm tracking-wide">CETL</span>
+                <span className="text-white/55 text-xs tracking-widest uppercase">Institute</span>
               </div>
             </div>
-            <p className="text-cetl-text-muted text-sm leading-relaxed max-w-xs">{footer.tagline}</p>
+            <p className="text-white/55 text-sm leading-relaxed max-w-xs">{footer.tagline}</p>
           </div>
 
           {/* Links */}
           <div className="flex flex-col gap-3">
-            <span className="text-cetl-text text-xs font-semibold tracking-widest uppercase mb-1">
+            <span className="text-white/90 text-xs font-semibold tracking-widest uppercase mb-1">
               {footer.navLabel}
             </span>
             {footerLinks.map((item) => (
               <a
                 key={item.href}
                 href={toHref(item.href)}
-                className="text-cetl-text-muted hover:text-cetl-gold text-sm transition-colors duration-200"
+                className="text-white/55 hover:text-cetl-gold text-sm transition-colors duration-200"
               >
                 {item.label}
               </a>
@@ -56,11 +56,11 @@ export function Footer() {
 
           {/* Contact */}
           <div className="flex flex-col gap-3">
-            <span className="text-cetl-text text-xs font-semibold tracking-widest uppercase mb-1">
+            <span className="text-white/90 text-xs font-semibold tracking-widest uppercase mb-1">
               {footer.contactLabel}
             </span>
-            <p className="text-cetl-text-muted text-sm">{footer.location}</p>
-            <p className="text-cetl-text-muted text-sm">{footer.region}</p>
+            <p className="text-white/55 text-sm">{footer.location}</p>
+            <p className="text-white/55 text-sm">{footer.region}</p>
             <a
               href={`mailto:${t.SITE.email}`}
               className="text-cetl-gold hover:text-cetl-gold-light text-sm transition-colors duration-200"
@@ -70,11 +70,11 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 pt-6 border-t border-cetl-border flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-cetl-text-muted text-xs">
+        <div className="mt-10 pt-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-white/45 text-xs">
             © {new Date().getFullYear()} CETL Institute. {footer.copyright}
           </p>
-          <p className="text-cetl-text-muted text-xs">{footer.complianceLine}</p>
+          <p className="text-white/45 text-xs">{footer.complianceLine}</p>
         </div>
       </Container>
     </footer>

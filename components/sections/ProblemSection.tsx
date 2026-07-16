@@ -42,7 +42,7 @@ export function ProblemSection() {
                 >
                   <div
                     className="w-7 h-7 flex items-center justify-center font-bold text-sm shrink-0 mt-0.5 rounded-lg bg-cetl-error/10 border border-cetl-error/30"
-                    style={{ color: "var(--color-cetl-error, #ff6a6a)" }}
+                    style={{ color: "var(--color-cetl-error, #DC2626)" }}
                     aria-hidden="true"
                   >
                     ✕

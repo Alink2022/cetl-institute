@@ -31,7 +31,7 @@ export function ScrollProgress() {
     <div className="fixed top-0 left-0 right-0 z-[60] h-[3px] bg-transparent">
       <div
         ref={ref}
-        className="h-full bg-gradient-to-r from-cetl-blue via-cetl-gold to-cetl-violet shadow-[0_0_8px_rgba(27,58,107,0.25)] transition-[width] duration-75"
+        className="h-full bg-gradient-to-r from-cetl-blue via-cetl-gold to-cetl-violet shadow-[0_0_8px_color-mix(in_srgb,var(--color-cetl-blue)_25%,transparent)] transition-[width] duration-75"
         style={{ width: "0%" }}
       />
     </div>

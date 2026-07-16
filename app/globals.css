@@ -1,21 +1,21 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* Midnight Navy — modern enterprise authority palette */
-  --color-cetl-dark: #060B1A;
-  --color-cetl-darker: #030711;
-  --color-cetl-surface: #0C1530;
-  --color-cetl-surface-2: #122040;
-  --color-cetl-border: #1E3154;
-  --color-cetl-muted: #3D5C84;
-  --color-cetl-gold: #D4A843;
-  --color-cetl-gold-light: #EBC96A;
+  /* Paper & Gold — inverted enterprise authority palette */
+  --color-cetl-dark: #FAFAF7;
+  --color-cetl-darker: #0B0F1A;
+  --color-cetl-surface: #F3F1EA;
+  --color-cetl-surface-2: #EAE6DA;
+  --color-cetl-border: #E4E1D6;
+  --color-cetl-muted: #8A8577;
+  --color-cetl-gold: #B8862F;
+  --color-cetl-gold-light: #D4A843;
   --color-cetl-blue: #2E6FE8;
   --color-cetl-blue-dark: #1A51C2;
-  --color-cetl-violet: #8B5CF6;
-  --color-cetl-text: #EEF2FF;
-  --color-cetl-text-muted: #7094B8;
-  --color-cetl-error: #EF4444;
+  --color-cetl-violet: #7C3AED;
+  --color-cetl-text: #12141C;
+  --color-cetl-text-muted: #5B6472;
+  --color-cetl-error: #DC2626;
 
   --font-sans: var(--font-body);
   --font-display: var(--font-display);

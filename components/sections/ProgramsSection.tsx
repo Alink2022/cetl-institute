@@ -1,11 +1,42 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import { Brain, TrendingUp, Award } from "lucide-react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Badge } from "@/components/ui/Badge";
 import { Container } from "@/components/ui/Container";
 import { TiltCard } from "@/components/ui/TiltCard";
 import { useLanguage } from "@/lib/i18n";
+import type { LucideIconName } from "@/lib/content-types";
+
+const ICON_MAP: Record<LucideIconName, React.ElementType> = {
+  Brain,
+  TrendingUp,
+  Award,
+  Globe: () => null,
+  Users: () => null,
+};
+
+// Pillar-Nummer, die den ELaaS-Anker (#elaas) aus dem NAV trägt — Embedded Engineering
+// ist der Ort, an dem das frühere ELaaS-Konzept jetzt lebt.
+const ELAAS_ANCHOR_PILLAR = "02";
+
+function CheckIcon() {
+  return (
+    <svg
+      className="w-4 h-4 text-cetl-gold shrink-0 mt-0.5"
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <polyline points="2 8 6 12 14 4" />
+    </svg>
+  );
+}
 
 const SVG_PROPS = {
   viewBox: "0 0 16 16",
@@ -53,12 +84,71 @@ export function ProgramsSection() {
   return (
     <section id="programs" className="py-24 lg:py-32 bg-cetl-dark">
       <Container>
+        {/* ── Section header ── */}
         <SectionHeader
-          label={t.UI.programs.label}
-          title={t.UI.programs.title}
-          subtitle={t.UI.programs.subtitle}
-          className="mb-10"
+          label={t.UI.pillars.label}
+          title={t.UI.pillars.title}
+          subtitle={t.UI.pillars.subtitle}
+          className="mb-16"
         />
+
+        {/* ── Category pillars (condensed) ── */}
+        <div id="services" className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
+          {t.PILLARS.map((pillar) => {
+            const Icon = ICON_MAP[pillar.icon];
+            return (
+              <TiltCard
+                key={pillar.number}
+                className="gradient-edge relative flex flex-col bg-cetl-surface rounded-2xl border border-cetl-border p-8"
+              >
+                {pillar.number === ELAAS_ANCHOR_PILLAR && (
+                  <span id="elaas" className="absolute -top-24" aria-hidden="true" />
+                )}
+                {/* Number accent */}
+                <span className="font-display text-7xl font-bold text-cetl-gold/[0.08] group-hover:text-cetl-gold/20 transition-colors absolute top-6 right-6 leading-none select-none">
+                  {pillar.number}
+                </span>
+
+                <div className="mb-6">
+                  <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-cetl-gold/20 to-cetl-violet/10 border border-cetl-gold/25 flex items-center justify-center mb-4 shadow-[0_0_24px_-8px_color-mix(in_srgb,var(--color-cetl-gold)_50%,transparent)]">
+                    <Icon className="w-5 h-5 text-cetl-gold" strokeWidth={1.5} aria-hidden="true" />
+                  </div>
+                  <p className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase mb-2">
+                    {pillar.subtitle}
+                  </p>
+                  <h3 className="font-display text-xl font-bold text-cetl-text">{pillar.title}</h3>
+                </div>
+
+                <p className="text-cetl-text-muted text-sm leading-relaxed mb-8">
+                  {pillar.description}
+                </p>
+
+                <ul className="mt-auto flex flex-col gap-3">
+                  {pillar.items.map((item) => (
+                    <li key={item} className="flex items-start gap-3 text-sm">
+                      <CheckIcon />
+                      <span className="text-cetl-text-muted">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </TiltCard>
+            );
+          })}
+        </div>
+
+        {/* ── Concrete programs (filterable grid, unchanged logic) ── */}
+        <div className="flex items-center gap-3 mb-2">
+          <div className="h-px w-8 bg-cetl-gold/40" />
+          <p className="text-cetl-gold text-[10px] font-semibold tracking-[0.3em] uppercase">
+            {t.UI.programs.label}
+          </p>
+        </div>
+        <h3 className="font-display text-2xl md:text-3xl font-bold text-cetl-text mb-2">
+          {t.UI.programs.title}
+        </h3>
+        <p className="text-cetl-text-muted text-sm leading-relaxed mb-10 max-w-xl">
+          {t.UI.programs.subtitle}
+        </p>
 
         {/* Filter bar — MIT/Stanford pattern */}
         <div className="flex flex-wrap items-center gap-2 mb-12 pb-6 border-b border-cetl-border/50">

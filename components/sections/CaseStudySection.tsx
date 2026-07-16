@@ -64,8 +64,8 @@ export function CaseStudySection() {
                 className="p-7 border-b border-r border-cetl-border/30 last:border-b-0 [&:nth-child(even)]:border-r-0 sm:[&:nth-child(n+3)]:border-b-0"
               >
                 <span className="font-display text-4xl font-bold text-cetl-gold/20 leading-none select-none">{p.num}</span>
-                <h4 className="text-cetl-text font-semibold text-sm mt-3 mb-2">{p.title}</h4>
-                <p className="text-cetl-text-muted text-sm leading-relaxed">{p.desc}</p>
+                <h4 className="text-white/90 font-semibold text-sm mt-3 mb-2">{p.title}</h4>
+                <p className="text-white/60 text-sm leading-relaxed">{p.desc}</p>
               </div>
             ))}
           </div>

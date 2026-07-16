@@ -70,7 +70,7 @@ export function HeroSection() {
                 alt="CETL Institute Seal"
                 width={200}
                 height={200}
-                className="object-contain drop-shadow-[0_2px_16px_rgba(212,168,67,0.25)]"
+                className="object-contain drop-shadow-[0_2px_16px_color-mix(in_srgb,var(--color-cetl-gold)_25%,transparent)]"
                 priority
               />
             </div>
@@ -138,7 +138,7 @@ export function HeroSection() {
         >
           <MagneticButton
             href="#elaas"
-            className="w-full sm:w-auto relative px-9 py-4 bg-cetl-blue text-white font-semibold tracking-wide text-center overflow-hidden group block shadow-[0_4px_24px_-8px_rgba(27,58,107,0.4)]"
+            className="w-full sm:w-auto relative px-9 py-4 bg-cetl-blue text-white font-semibold tracking-wide text-center overflow-hidden group block shadow-[0_4px_24px_-8px_color-mix(in_srgb,var(--color-cetl-blue)_40%,transparent)]"
           >
             <span className="relative z-10">{hero.ctaPrimary}</span>
             <span className="absolute inset-0 bg-cetl-blue-dark opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

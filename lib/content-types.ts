@@ -45,11 +45,6 @@ export interface Pillar {
   items: string[];
 }
 
-export interface Feature {
-  title: string;
-  desc: string;
-}
-
 export interface Program {
   tag: string;
   title: string;
@@ -160,7 +155,6 @@ export interface ContentBundle {
     focus: string[];
   };
   PILLARS: Pillar[];
-  ELAAS_FEATURES: Feature[];
   PROGRAMS: Program[];
   TAG_COLORS: Record<string, TagColor>;
   PARTNERS: Partner[];

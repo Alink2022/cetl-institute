@@ -48,7 +48,7 @@ export function NavBar() {
         <div
           className={`flex items-center justify-between h-14 md:h-16 px-4 md:px-5 rounded-full transition-all duration-500 ${
             scrolled
-              ? "glass-panel shadow-[0_8px_40px_-12px_rgba(212,175,90,0.25)]"
+              ? "glass-panel shadow-[0_8px_40px_-12px_color-mix(in_srgb,var(--color-cetl-gold)_25%,transparent)]"
               : "bg-transparent border border-transparent"
           }`}
         >
@@ -135,8 +135,8 @@ export function NavBar() {
               <Image src="/cetl-logo.png" alt="CETL Institute" width={40} height={40} className="object-contain" />
             </div>
             <div className="flex flex-col leading-none">
-              <span className="text-cetl-text font-display font-bold text-base tracking-wide">CETL</span>
-              <span className="text-cetl-text-muted text-xs tracking-widest uppercase">Institute</span>
+              <span className="text-white/90 font-display font-bold text-base tracking-wide">CETL</span>
+              <span className="text-white/55 text-xs tracking-widest uppercase">Institute</span>
             </div>
           </div>
           {t.NAV_LINKS.map((link, i) => (
@@ -144,7 +144,7 @@ export function NavBar() {
               key={link.href}
               href={toHref(link.href)}
               onClick={() => setMobileOpen(false)}
-              className="text-cetl-text text-3xl font-display font-semibold py-4 border-b border-cetl-border transition-all duration-500"
+              className="text-white/90 text-3xl font-display font-semibold py-4 border-b border-cetl-border transition-all duration-500"
               style={{
                 transitionDelay: mobileOpen ? `${i * 60}ms` : "0ms",
                 opacity: mobileOpen ? 1 : 0,

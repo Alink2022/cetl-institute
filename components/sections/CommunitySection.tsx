@@ -43,7 +43,7 @@ export function CommunitySection() {
               className="p-6 rounded-2xl border border-cetl-border bg-cetl-darker flex flex-col gap-3"
             >
               <h3 className="text-cetl-gold font-semibold text-sm">{f.title}</h3>
-              <p className="text-cetl-text-muted text-sm leading-relaxed">{f.desc}</p>
+              <p className="text-white/60 text-sm leading-relaxed">{f.desc}</p>
             </div>
           ))}
         </div>
