@@ -374,15 +374,15 @@ export const en: ContentBundle = {
       cta: "See the full methodology",
     },
     programs: {
-      label: "Programs",
-      title: "Formats for operational impact",
+      label: "Flagship Program",
+      title: "One program. Every role. Full operational impact.",
       subtitle:
-        "Every format is designed for a measurable capability outcome — from strategic briefing to multi-month embedded engagement.",
+        "From the Foundation Program to the AI Leadership journey: our end-to-end format brings knowledge-building, hands-on application, and real use cases together in one system — for every role in the organization.",
       cta: "Initiate framework conversation",
       filterAll: "All formats",
       filterLabel: "Filter by format",
       ctaAdvisor: "Talk with an advisor",
-      detailCta: "View program details",
+      detailCta: "Explore the program in detail",
     },
     partners: {
       trusted: "Trusted by leading institutions & organizations",

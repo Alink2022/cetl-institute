@@ -375,15 +375,15 @@ export const de: ContentBundle = {
       cta: "Methodik im Detail ansehen",
     },
     programs: {
-      label: "Programme",
-      title: "Formate für operative Wirkung",
+      label: "Flaggschiff-Programm",
+      title: "Ein Programm. Jede Rolle. Volle operative Wirkung.",
       subtitle:
-        "Jedes Format ist auf einen messbaren Kompetenz-Outcome ausgelegt — vom strategischen Briefing bis zum mehrmonatigen Embedded-Einsatz.",
+        "Vom Foundation Program bis zur KI-Leadership-Journey: unser durchgängiges Format bringt Wissensaufbau, praktische Anwendung und reale Use Cases in einem System zusammen — für jede Rolle im Unternehmen.",
       cta: "Framework-Gespräch initiieren",
       filterAll: "Alle Formate",
       filterLabel: "Format filtern",
       ctaAdvisor: "Mit einem Experten sprechen",
-      detailCta: "Programm im Detail",
+      detailCta: "Programm im Detail entdecken",
     },
     partners: {
       trusted: "Vertrauen führender Institutionen & Organisationen",
