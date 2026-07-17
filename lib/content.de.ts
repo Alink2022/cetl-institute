@@ -374,19 +374,6 @@ export const de: ContentBundle = {
         "Unser Ansatz folgt dem Prinzip des Executional Learning: Wissen wird nicht isoliert vermittelt, sondern unmittelbar mit realen Aufgaben und Herausforderungen Ihres Unternehmens verbunden.",
       cta: "Methodik im Detail ansehen",
     },
-    elaas: {
-      label: "Das Prinzip",
-      title: "Bildung und Umsetzung sind untrennbar.",
-      subtitle:
-        "Das strukturelle Problem der meisten Weiterbildungs- und Beratungsmodelle liegt in ihrer Trennung. CETL verfolgt ein anderes Grundprinzip.",
-      paragraph:
-        "Jedes Programm — vom Executive-Briefing bis zum mehrmonatigen Embedded-Engagement — ist auf einen messbaren Kompetenz-Transfer ausgelegt, der die eigene Organisation befähigt, KI-Wertschöpfung intern zu skalieren, ohne diesen Prozess dauerhaft extern zu delegieren. Am Ende eines Engagements verfügt die Organisation über validierte interne Experten, dokumentierte Governance-Strukturen und eine Use-Case-Pipeline, die eigenständig priorisiert und weiterentwickelt werden kann.",
-      badges: ["Sovereign Capability Transfer", "Outcome Engineering", "Enterprise Governance", "Legacy-Decommissioning"],
-      partnershipLabel: "Strategische Partnerschaft — EMEA",
-      partnershipBefore: "Veranstalter des",
-      partnershipHackathon: "Europe Tech Hackathon",
-      partnershipAfter: "in Partnerschaft mit der Stadt Wien, der Europäischen Union, der ÖBB und Siemens.",
-    },
     programs: {
       label: "Programme",
       title: "Formate für operative Wirkung",

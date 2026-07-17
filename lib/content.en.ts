@@ -373,19 +373,6 @@ export const en: ContentBundle = {
         "Our approach follows the principle of Executional Learning: knowledge is never taught in isolation — it is tied directly to your organization's real tasks and challenges.",
       cta: "See the full methodology",
     },
-    elaas: {
-      label: "The Principle",
-      title: "Education and execution are inseparable.",
-      subtitle:
-        "The structural problem with most training and consulting models is their separation. CETL operates on a different principle.",
-      paragraph:
-        "Every program — from executive briefing to multi-month embedded engagement — is designed for measurable capability transfer that enables your organization to scale AI value creation internally, without permanently delegating this process externally. At the conclusion of an engagement, the organization holds validated internal experts, documented governance structures, and a use-case pipeline it can independently prioritize and extend.",
-      badges: ["Sovereign Capability Transfer", "Outcome Engineering", "Enterprise Governance", "Legacy Decommissioning"],
-      partnershipLabel: "Strategic Partnership — EMEA",
-      partnershipBefore: "Organizer of the",
-      partnershipHackathon: "Europe Tech Hackathon",
-      partnershipAfter: "in partnership with the City of Vienna, the European Union, ÖBB, and Siemens.",
-    },
     programs: {
       label: "Programs",
       title: "Formats for operational impact",

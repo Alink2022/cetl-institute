@@ -201,17 +201,6 @@ export interface ContentBundle {
     };
     pillars: { label: string; title: string; subtitle: string };
     methodology: { label: string; title: string; subtitle: string; cta: string };
-    elaas: {
-      label: string;
-      title: string;
-      subtitle: string;
-      paragraph: string;
-      badges: string[];
-      partnershipLabel: string;
-      partnershipBefore: string;
-      partnershipHackathon: string;
-      partnershipAfter: string;
-    };
     programs: { label: string; title: string; subtitle: string; cta: string; filterAll: string; filterLabel: string; ctaAdvisor: string; detailCta: string };
     partners: { trusted: string; blurbBefore: string; blurbHackathon: string; blurbAfter: string };
     leadership: {
