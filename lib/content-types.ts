@@ -159,7 +159,7 @@ export interface ContentBundle {
     location: string;
     linkedin: string;
     bio: string;
-    credentials: { label: string; sub: string }[];
+    credentials: { label: string; sub: string; logo?: string }[];
     focus: string[];
   };
   PILLARS: Pillar[];

@@ -94,10 +94,17 @@ export function LeadershipSection() {
               {md.credentials.map((c) => (
                 <div
                   key={c.label}
-                  className="flex flex-col gap-1 p-4 rounded-xl bg-cetl-dark border border-cetl-border"
+                  className="flex items-center gap-3 p-4 rounded-xl bg-cetl-dark border border-cetl-border"
                 >
-                  <span className="text-cetl-text font-semibold text-sm">{c.label}</span>
-                  <span className="text-cetl-text-muted text-xs leading-snug">{c.sub}</span>
+                  {c.logo && (
+                    <div className="w-10 h-10 rounded-lg bg-white border border-cetl-border flex items-center justify-center p-1.5 shrink-0">
+                      <Image src={c.logo} alt={c.label} width={32} height={32} className="object-contain" unoptimized />
+                    </div>
+                  )}
+                  <div className="flex flex-col gap-1">
+                    <span className="text-cetl-text font-semibold text-sm">{c.label}</span>
+                    <span className="text-cetl-text-muted text-xs leading-snug">{c.sub}</span>
+                  </div>
                 </div>
               ))}
             </div>

@@ -54,7 +54,7 @@ export function NavBar() {
         >
           {/* Logo */}
           <a href={isHome ? "#" : "/"} className="flex items-center gap-2 group shrink-0">
-            <div className="rounded-full bg-white/[0.07] ring-1 ring-white/10 p-1 group-hover:scale-105 transition-transform duration-300">
+            <div className="rounded-full bg-cetl-gold/10 ring-1 ring-cetl-gold/20 p-1 group-hover:scale-105 transition-transform duration-300">
               <Image
                 src="/cetl-logo.png"
                 alt="CETL Institute"
@@ -125,18 +125,18 @@ export function NavBar() {
       {/* Mobile full-screen menu */}
       <div
         id="mobile-menu"
-        className={`md:hidden fixed inset-0 top-0 bg-cetl-darker/98 backdrop-blur-xl transition-all duration-500 ${
+        className={`md:hidden fixed inset-0 top-0 bg-cetl-dark/98 backdrop-blur-xl transition-all duration-500 ${
           mobileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
       >
         <div className="flex flex-col h-full pt-20 px-8">
           <div className="flex items-center gap-3 mb-8">
-            <div className="rounded-full bg-white/[0.07] ring-1 ring-white/10 p-1.5">
+            <div className="rounded-full bg-cetl-gold/10 ring-1 ring-cetl-gold/20 p-1.5">
               <Image src="/cetl-logo.png" alt="CETL Institute" width={40} height={40} className="object-contain" />
             </div>
             <div className="flex flex-col leading-none">
-              <span className="text-white/90 font-display font-bold text-base tracking-wide">CETL</span>
-              <span className="text-white/55 text-xs tracking-widest uppercase">Institute</span>
+              <span className="text-cetl-text font-display font-bold text-base tracking-wide">CETL</span>
+              <span className="text-cetl-text-muted text-xs tracking-widest uppercase">Institute</span>
             </div>
           </div>
           {t.NAV_LINKS.map((link, i) => (
@@ -144,7 +144,7 @@ export function NavBar() {
               key={link.href}
               href={toHref(link.href)}
               onClick={() => setMobileOpen(false)}
-              className="text-white/90 text-3xl font-display font-semibold py-4 border-b border-cetl-border transition-all duration-500"
+              className="text-cetl-text text-3xl font-display font-semibold py-4 border-b border-cetl-border transition-all duration-500"
               style={{
                 transitionDelay: mobileOpen ? `${i * 60}ms` : "0ms",
                 opacity: mobileOpen ? 1 : 0,

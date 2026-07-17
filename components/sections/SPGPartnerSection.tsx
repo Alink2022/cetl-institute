@@ -48,13 +48,13 @@ export function SPGPartnerSection() {
               <Badge variant="gold" className="mb-4">
                 {c.label}
               </Badge>
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-lg bg-cetl-gold/10 border border-cetl-gold/20 flex items-center justify-center shrink-0 p-1.5">
+              <div className="flex items-center gap-5 mb-5">
+                <div className="w-20 h-20 rounded-2xl bg-cetl-gold/10 border border-cetl-gold/20 flex items-center justify-center shrink-0 p-3">
                   <Image
                     src="/logos/spg.png"
                     alt="Specific-Group"
-                    width={40}
-                    height={40}
+                    width={80}
+                    height={80}
                     className="object-contain"
                   />
                 </div>

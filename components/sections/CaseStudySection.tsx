@@ -35,10 +35,14 @@ export function CaseStudySection() {
           {/* Left: dark client card */}
           <div className="bg-cetl-surface p-8 lg:p-10 flex flex-col gap-6">
             <div>
-              <div className="flex items-center gap-3 mb-2">
+              <div className="flex items-center gap-3 mb-4">
                 <Image src="/cetl-logo.png" alt="CETL Institute" width={36} height={36} className="opacity-80 shrink-0" unoptimized />
-                <p className="text-cetl-gold text-[10px] tracking-[0.25em] uppercase font-semibold">{cs.clientTag}</p>
+                <span className="text-cetl-border text-lg font-light">×</span>
+                <div className="w-9 h-9 rounded-lg bg-white border border-cetl-border flex items-center justify-center p-1 shrink-0">
+                  <Image src="/logos/raiffeisen.svg" alt="Raiffeisenlandesbank OÖ" width={28} height={28} className="object-contain" unoptimized />
+                </div>
               </div>
+              <p className="text-cetl-gold text-[10px] tracking-[0.25em] uppercase font-semibold mb-2">{cs.clientTag}</p>
               <h3 className="font-display text-2xl font-bold text-cetl-text leading-snug">{cs.client}</h3>
             </div>
             <p className="text-cetl-text-muted text-sm leading-relaxed">{cs.desc}</p>
@@ -57,15 +61,15 @@ export function CaseStudySection() {
           </div>
 
           {/* Right: 4 principles */}
-          <div className="bg-cetl-darker grid grid-cols-1 sm:grid-cols-2">
+          <div className="bg-cetl-surface-2 grid grid-cols-1 sm:grid-cols-2">
             {cs.principles.map((p) => (
               <div
                 key={p.num}
-                className="p-7 border-b border-r border-cetl-border/30 last:border-b-0 [&:nth-child(even)]:border-r-0 sm:[&:nth-child(n+3)]:border-b-0"
+                className="p-7 border-b border-r border-cetl-border/60 last:border-b-0 [&:nth-child(even)]:border-r-0 sm:[&:nth-child(n+3)]:border-b-0"
               >
                 <span className="font-display text-4xl font-bold text-cetl-gold/20 leading-none select-none">{p.num}</span>
-                <h4 className="text-white/90 font-semibold text-sm mt-3 mb-2">{p.title}</h4>
-                <p className="text-white/60 text-sm leading-relaxed">{p.desc}</p>
+                <h4 className="text-cetl-text font-semibold text-sm mt-3 mb-2">{p.title}</h4>
+                <p className="text-cetl-text-muted text-sm leading-relaxed">{p.desc}</p>
               </div>
             ))}
           </div>

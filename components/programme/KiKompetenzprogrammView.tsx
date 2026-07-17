@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import {
   Lightbulb,
   Cog,
@@ -510,6 +511,23 @@ export function KiKompetenzprogrammView() {
           </div>
         </Container>
       </section>
+
+      {/* ── Key visual: strategische Weitsicht ── */}
+      <Container>
+        <div className="relative h-64 md:h-96 rounded-2xl overflow-hidden ring-1 ring-cetl-border mb-24">
+          <Image
+            src="/chess-queen.jpg"
+            alt="Schachdame im warmen Licht — Sinnbild für strategische Weitsicht und Entscheidungskompetenz"
+            fill
+            sizes="(max-width: 1280px) 100vw, 1280px"
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-cetl-darker/70 via-transparent to-transparent" />
+          <p className="absolute bottom-5 left-6 right-6 text-white/85 font-display text-lg md:text-xl italic max-w-xl">
+            Strategische Weitsicht entsteht nicht durch Zuschauen — sondern durch Zug um Zug lernen, wie das Spiel funktioniert.
+          </p>
+        </div>
+      </Container>
 
       <GoldDivider />
 

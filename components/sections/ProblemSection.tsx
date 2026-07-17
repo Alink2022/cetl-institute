@@ -41,11 +41,22 @@ export function ProblemSection() {
                   className="flex gap-4 p-4 -mx-4 rounded-xl hover:bg-cetl-dark/60 transition-colors duration-300"
                 >
                   <div
-                    className="w-7 h-7 flex items-center justify-center font-bold text-sm shrink-0 mt-0.5 rounded-lg bg-cetl-error/10 border border-cetl-error/30"
-                    style={{ color: "var(--color-cetl-error, #DC2626)" }}
+                    className="w-7 h-7 flex items-center justify-center shrink-0 mt-0.5 rounded-lg bg-cetl-surface-2 border border-cetl-border"
                     aria-hidden="true"
                   >
-                    ✕
+                    <svg
+                      width="13"
+                      height="13"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      stroke="var(--color-cetl-gold)"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <circle cx="8" cy="8" r="5.5" />
+                      <path d="M4.5 4.5l7 7" />
+                    </svg>
                   </div>
                   <div>
                     <p className="text-cetl-text font-semibold text-sm mb-1">{item.title}</p>
