@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Badge } from "@/components/ui/Badge";
 import { TiltCard } from "@/components/ui/TiltCard";
@@ -48,8 +49,14 @@ export function SPGPartnerSection() {
                 {c.label}
               </Badge>
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-lg bg-cetl-gold/10 border border-cetl-gold/20 flex items-center justify-center shrink-0">
-                  <span className="text-cetl-gold font-display font-bold text-xs tracking-widest">SPG</span>
+                <div className="w-10 h-10 rounded-lg bg-cetl-gold/10 border border-cetl-gold/20 flex items-center justify-center shrink-0 p-1.5">
+                  <Image
+                    src="/logos/spg.png"
+                    alt="Specific-Group"
+                    width={40}
+                    height={40}
+                    className="object-contain"
+                  />
                 </div>
                 <h3 className="font-display text-2xl md:text-3xl font-bold text-cetl-text">{c.name}</h3>
               </div>
