@@ -250,7 +250,6 @@ export interface ContentBundle {
       copyright: string;
       complianceLine: string;
     };
-    wordMarquee: string[];
     testimonials: { label: string; title: string; subtitle: string; anonymousNote: string };
     insights: {
       label: string;

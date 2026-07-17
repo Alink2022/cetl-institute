@@ -446,7 +446,6 @@ export const de: ContentBundle = {
       copyright: "Alle Rechte vorbehalten.",
       complianceLine: "Sämtliche Leistungen richten sich ausschließlich an Organisationen außerhalb der Versicherungsbranche.",
     },
-    wordMarquee: ["SOUVERÄNITÄT", "ARCHITEKTUR", "GOVERNANCE", "OPERATIONALISIERUNG", "KOMPETENZ"],
     testimonials: {
       label: "Stimmen aus der Praxis",
       title: "Was Entscheider sagen, die den Unterschied erlebt haben.",

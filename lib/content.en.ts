@@ -445,7 +445,6 @@ export const en: ContentBundle = {
       copyright: "All rights reserved.",
       complianceLine: "All services are strictly limited to organizations outside the insurance sector.",
     },
-    wordMarquee: ["SOVEREIGNTY", "ARCHITECTURE", "GOVERNANCE", "OPERATIONALIZATION", "COMPETENCY"],
     testimonials: {
       label: "From Practice",
       title: "What decision-makers say after experiencing the difference.",

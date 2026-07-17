@@ -11,7 +11,6 @@ import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { SPGPartnerSection } from "@/components/sections/SPGPartnerSection";
 import { CommunitySection } from "@/components/sections/CommunitySection";
 import { ContactSection } from "@/components/sections/ContactSection";
-import { WordMarquee } from "@/components/sections/WordMarquee";
 import { TrustBar } from "@/components/sections/TrustBar";
 import { LogoWatermark } from "@/components/ui/LogoWatermark";
 import { LeadershipSection } from "@/components/sections/LeadershipSection";
@@ -27,7 +26,6 @@ export default function Home() {
         <HeroSection />
         <TrustBar />
         <InstStatsBar />
-        <WordMarquee />
         <ProblemSection />
         <GoldDivider />
         <ProgramsSection />
