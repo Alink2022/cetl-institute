@@ -186,11 +186,11 @@ export const en: ContentBundle = {
   },
 
   PARTNERS: [
-    { name: "TU Wien", sub: "Academic Partner", logo: "/logos/tuwien.svg", logoWidth: 52, logoHeight: 52 },
-    { name: "City of Vienna", sub: "Public Partner", logo: "/logos/wien.svg", logoWidth: 120, logoHeight: 55 },
-    { name: "European Union", sub: "Institutional Partner", logo: "/logos/eu.svg", logoWidth: 100, logoHeight: 40 },
-    { name: "ÖBB", sub: "Industry Partner", logo: "/logos/oebb.svg", logoWidth: 80, logoHeight: 32 },
-    { name: "Siemens", sub: "Industry Partner", logo: "/logos/siemens.svg", logoWidth: 110, logoHeight: 18 },
+    { name: "TU Wien", sub: "Academic Partner", logo: "/logos/tuwien.svg", logoWidth: 84, logoHeight: 84 },
+    { name: "City of Vienna", sub: "Public Partner", logo: "/logos/wien.svg", logoWidth: 190, logoHeight: 87 },
+    { name: "European Union", sub: "Institutional Partner", logo: "/logos/eu.svg", logoWidth: 160, logoHeight: 53 },
+    { name: "ÖBB", sub: "Industry Partner", logo: "/logos/oebb.svg", logoWidth: 130, logoHeight: 52 },
+    { name: "Siemens", sub: "Industry Partner", logo: "/logos/siemens.svg", logoWidth: 190, logoHeight: 45 },
   ],
 
   PROBLEM_ITEMS: [
