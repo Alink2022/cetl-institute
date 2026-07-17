@@ -164,7 +164,7 @@ const FOUNDATION_MODULES = [
     n: "02",
     icon: Brain,
     title: "Wie künstliche Intelligenz funktioniert",
-    text: "Technologische Grundlagen — verständlich, ohne unnötige technische Komplexität.",
+    text: "Technologische Grundlagen, verständlich und ohne unnötige technische Komplexität.",
     items: [
       "Grundlagen von Machine Learning und generativer KI",
       "Funktionsweise von Large Language Models",
@@ -454,7 +454,7 @@ export function KiKompetenzprogrammView() {
           <p className="text-cetl-text-muted text-lg leading-relaxed max-w-2xl mb-8">
             Unser KI-Kompetenzprogramm verbindet fundierten Wissensaufbau mit praktischer Anwendung.
             Mitarbeitende, Fachverantwortliche, technische Expert:innen und Führungskräfte entwickeln
-            genau jene Kompetenzen, die sie für ihre jeweilige Rolle benötigen — von Beginn an mit
+            genau jene Kompetenzen, die sie für ihre jeweilige Rolle benötigen, von Beginn an mit
             konkreten Anwendungsfällen aus ihrem Unternehmen.
           </p>
           <div className="flex flex-wrap justify-center gap-2 mb-10">
@@ -517,14 +517,14 @@ export function KiKompetenzprogrammView() {
         <div className="relative h-64 md:h-96 rounded-2xl overflow-hidden ring-1 ring-cetl-border mb-24">
           <Image
             src="/chess-queen.jpg"
-            alt="Schachdame im warmen Licht — Sinnbild für strategische Weitsicht und Entscheidungskompetenz"
+            alt="Schachdame im warmen Licht, Sinnbild für strategische Weitsicht und Entscheidungskompetenz"
             fill
             sizes="(max-width: 1280px) 100vw, 1280px"
             className="object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-cetl-darker/70 via-transparent to-transparent" />
           <p className="absolute bottom-5 left-6 right-6 text-white/85 font-display text-lg md:text-xl italic max-w-xl">
-            Strategische Weitsicht entsteht nicht durch Zuschauen — sondern durch Zug um Zug lernen, wie das Spiel funktioniert.
+            Strategische Weitsicht entsteht nicht durch Zuschauen, sondern durch Zug um Zug lernen, wie das Spiel funktioniert.
           </p>
         </div>
       </Container>
@@ -778,7 +778,7 @@ export function KiKompetenzprogrammView() {
             <p className="text-cetl-text-muted text-sm leading-relaxed">
               Für jedes Programm wird ein passender Pool aus Trainer:innen, Wissenschaftler:innen,
               Technologieexpert:innen und Praktiker:innen zusammengestellt. Die Auswahl orientiert sich
-              an den jeweiligen Modulen, Zielgruppen, Technologien und Anwendungsfällen — die
+              an den jeweiligen Modulen, Zielgruppen, Technologien und Anwendungsfällen. Die
               Teilnehmenden erhalten so nicht nur theoretisches Wissen, sondern unterschiedliche
               Perspektiven aus Forschung, Wirtschaft und konkreter Umsetzungspraxis.
             </p>

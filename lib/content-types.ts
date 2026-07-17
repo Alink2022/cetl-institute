@@ -212,7 +212,7 @@ export interface ContentBundle {
       photoTag: string;
       photoAlt: string;
     };
-    research: { label: string; title: string; subtitle: string };
+    research: { label: string; title: string; subtitle: string; cta: string };
     faq: { label: string; title: string };
     contact: {
       label: string;
@@ -275,7 +275,7 @@ export interface ContentBundle {
     instStats: { label: string };
     community: { label: string; title: string; subtitle: string; advisorCta: string };
     intersection: { label: string; title: string; subtitle: string };
-    caseStudy: { label: string; title: string; subtitle: string };
+    caseStudy: { label: string; title: string; subtitle: string; cta: string };
     faculty: { label: string; positionOpen: string; featuredTitle: string; featuredDesc: string };
     forOrgs: {
       label: string;

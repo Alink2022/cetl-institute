@@ -221,6 +221,21 @@ export function ResearchSection() {
             </div>
           ))}
         </div>
+
+        <div className="flex justify-center mt-14">
+          <a
+            href="#contact"
+            className="group relative inline-flex items-center gap-2 px-8 py-4 bg-cetl-gold text-cetl-darker font-semibold tracking-wide overflow-hidden transition-transform duration-300 hover:scale-105 rounded-sm"
+          >
+            <span className="relative z-10 flex items-center gap-2">
+              {research.cta}
+              <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M3 8h10M9 4l4 4-4 4" />
+              </svg>
+            </span>
+            <span className="absolute inset-0 bg-gradient-to-r from-cetl-gold-light to-cetl-gold opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          </a>
+        </div>
       </Container>
     </section>
   );

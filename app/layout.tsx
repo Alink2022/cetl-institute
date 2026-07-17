@@ -23,13 +23,13 @@ const bodyFont = EB_Garamond({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://cetl-institute.vercel.app"),
-  title: "CETL Institute — Central European Tech Leadership Institute",
+  title: "CETL Institute | Central European Tech Leadership Institute",
   description:
     "Akademische Exzellenz trifft industrielle Umsetzung. Executive Education, strategische Beratung und unabhängige technische Bewertung für Vorstand und Geschäftsführung bei AI- und digitaler Transformation.",
   openGraph: {
     title: "CETL Institute",
     description:
-      "Executional Learning as a Service — wir machen Führungskräfte vom passiven Beobachter zum aktiven Architekten AI-getriebenen Unternehmenswerts.",
+      "Executional Learning as a Service: wir machen Führungskräfte vom passiven Beobachter zum aktiven Architekten AI-getriebenen Unternehmenswerts.",
     type: "website",
     locale: "de_AT",
   },

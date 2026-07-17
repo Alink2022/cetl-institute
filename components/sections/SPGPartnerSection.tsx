@@ -11,7 +11,7 @@ const CONTENT = {
     label: "Strategischer Partner",
     name: "Specific-Group Holding",
     description:
-      "25 Jahre Enterprise-IT-Erfahrung — SPG überträgt CETL-Programme in reale Transformationsprojekte für Banken, Industrie und den öffentlichen Sektor.",
+      "25 Jahre Enterprise-IT-Erfahrung: SPG überträgt CETL-Programme in reale Transformationsprojekte für Banken, Industrie und den öffentlichen Sektor.",
     stats: [
       { value: "25+", label: "Jahre Erfahrung" },
       { value: "500+", label: "Expert:innen" },
@@ -24,7 +24,7 @@ const CONTENT = {
     label: "Strategic Partner",
     name: "Specific-Group Holding",
     description:
-      "25 years of enterprise IT experience — SPG translates CETL programs into real transformation projects for banking, industry, and the public sector.",
+      "25 years of enterprise IT experience: SPG translates CETL programs into real transformation projects for banking, industry, and the public sector.",
     stats: [
       { value: "25+", label: "Years of Experience" },
       { value: "500+", label: "Experts" },

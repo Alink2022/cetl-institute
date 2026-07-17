@@ -9,7 +9,7 @@ const DESCRIPTION =
   "Modulares KI-Kompetenzprogramm für Unternehmen: Mitarbeitende, KI-Champions, Entwickler:innen und Führungskräfte lernen, künstliche Intelligenz sicher, produktiv und praxisnah einzusetzen.";
 
 export const metadata: Metadata = {
-  title: `${TITLE} — CETL Institute`,
+  title: `${TITLE} | CETL Institute`,
   description: DESCRIPTION,
   alternates: { canonical: PAGE_URL },
   openGraph: {

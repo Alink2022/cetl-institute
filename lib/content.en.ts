@@ -14,7 +14,7 @@ export const en: ContentBundle = {
     academic: "TU Wien, Academic Director",
     tagline: "Technological sovereignty is not a state. It is a competency.",
     complianceNote:
-      "All CETL activities are strictly limited to organizations outside the insurance sector — insurance compliance, regulatory insurance topics, and insurance-specific mandates are explicitly excluded.",
+      "All CETL activities are strictly limited to organizations outside the insurance sector. Insurance compliance, regulatory insurance topics, and insurance-specific mandates are explicitly excluded.",
   },
 
   NAV_LINKS: [
@@ -35,7 +35,7 @@ export const en: ContentBundle = {
     headline: "Head of AI Coordination & Market Intelligence, UNIQA Insurance Group",
     location: "Vienna, Austria",
     linkedin: "https://www.linkedin.com/in/alinkalam/",
-    bio: "20+ years at the intersection of AI strategy, data, and enterprise execution — from AI governance and market intelligence at UNIQA International to BI leadership at Lufthansa Group and Big Data at BAWAG P.S.K. Trained in engineering, business, and astrophysics at TU Wien, CEU, and the University of Vienna.",
+    bio: "20+ years at the intersection of AI strategy, data, and enterprise execution: AI governance and market intelligence at UNIQA International, BI leadership at Lufthansa Group, and Big Data at BAWAG P.S.K. Trained in engineering, business, and astrophysics at TU Wien, CEU, and the University of Vienna.",
     credentials: [
       { label: "UNIQA Insurance Group", sub: "Head of AI Coordination & Market Intelligence", logo: "/logos/uniqa.svg" },
       { label: "Lufthansa Group", sub: "Strategic BI & Analytics Lead", logo: "/logos/lufthansa.svg" },
@@ -52,7 +52,7 @@ export const en: ContentBundle = {
       title: "Executive Education",
       subtitle: "Technological Judgment",
       description:
-        "Not training. Not awareness campaigns. Leadership teams develop the technological judgment to decode vendor narratives, independently assess architecture risks, and weight use-case portfolios by strategic priority — not demonstrability.",
+        "Not training. Not awareness campaigns. Leadership teams develop the technological judgment to decode vendor narratives, independently assess architecture risks, and weight use-case portfolios by strategic priority, not demonstrability.",
       items: [
         "Technology risk assessment for strategic decision-makers",
         "Structured use-case prioritization by data maturity and ROI",
@@ -65,7 +65,7 @@ export const en: ContentBundle = {
       title: "Embedded Engineering",
       subtitle: "Capability That Stays",
       description:
-        "Forward Deployed Engineers are not external consultants — they are temporarily embedded specialists who work methodically alongside your technical teams. The objective is not project delivery but structured transfer of enterprise AI and data competency directly into your organization. Validated competency remains in the organization throughout — vendor-neutral and structurally independent of external providers.",
+        "Forward Deployed Engineers are not external consultants. They are temporarily embedded specialists who work methodically alongside your technical teams. The objective is not project delivery but structured transfer of enterprise AI and data competency directly into your organization. Validated competency remains in the organization throughout, vendor-neutral and structurally independent of external providers.",
       items: [
         "Forward Deployed Engineers (3–6 months, project-integrated)",
         "Internal AI capability as measurable delivery metric",
@@ -93,7 +93,7 @@ export const en: ContentBundle = {
       icon: "Lightbulb",
       title: "Understand",
       description:
-        "Participants learn how data, AI, and modern automation actually work — and can realistically assess potential, limits, and risks.",
+        "Participants learn how data, AI, and modern automation actually work. That lets them realistically assess potential, limits, and risks.",
     },
     {
       n: "2",
@@ -107,7 +107,7 @@ export const en: ContentBundle = {
       icon: "Users",
       title: "Transfer",
       description:
-        "Practical examples from other business units and industries open new perspectives — successful patterns are transferred to your own organization.",
+        "Practical examples from other business units and industries open new perspectives. Successful patterns are transferred to your own organization.",
     },
     {
       n: "4",
@@ -125,7 +125,7 @@ export const en: ContentBundle = {
       format: "Half-day / Full-day",
       level: "Strategic Leadership",
       description:
-        "Intensive formats that develop the capacity to decode vendor narratives, independently assess architecture risks, and weight use-case portfolios by strategic priority — without requiring technical background.",
+        "Intensive formats that develop the capacity to decode vendor narratives, independently assess architecture risks, and weight use-case portfolios by strategic priority, without requiring technical background.",
     },
     {
       tag: "Strategic Consulting",
@@ -141,7 +141,7 @@ export const en: ContentBundle = {
       format: "3–6 month engagement",
       level: "Technical & Architecture Teams",
       description:
-        "CETL engineers work directly in your teams — project-integrated, not parallel. Result: validated internal experts, documented governance structures, and a use-case pipeline that can be independently extended.",
+        "CETL engineers work directly in your teams, project-integrated, not parallel. Result: validated internal experts, documented governance structures, and a use-case pipeline that can be independently extended.",
     },
     {
       tag: "Technical Assessment",
@@ -157,7 +157,7 @@ export const en: ContentBundle = {
       format: "2–3 hours",
       level: "Strategic Decision-Makers",
       description:
-        "Curated briefings on AI developments in your sector: regulatory environment, competitive architectures, and emerging use cases — without vendor agenda.",
+        "Curated briefings on AI developments in your sector: regulatory environment, competitive architectures, and emerging use cases, without vendor agenda.",
     },
     {
       tag: "ELaaS",
@@ -165,15 +165,15 @@ export const en: ContentBundle = {
       format: "1 day",
       level: "Cross-Functional Teams",
       description:
-        "Structured methodology for identifying and prioritizing AI use cases by data maturity, governance prerequisites, and ROI potential — result: an actionable innovation backlog with clear ownership.",
+        "Structured methodology for identifying and prioritizing AI use cases by data maturity, governance prerequisites, and ROI potential. Result: an actionable innovation backlog with clear ownership.",
     },
     {
       tag: "Enterprise Program",
       title: "AI Competency Program for Enterprises",
       format: "Modular · 3–12 months",
-      level: "All roles — staff to leadership",
+      level: "All roles: staff to leadership",
       description:
-        "Role-based enablement program combining knowledge-building, hands-on application, and real use cases. From the Foundation Program to the AI Leadership journey — every learning path ends in a concrete, company-specific result.",
+        "Role-based enablement program combining knowledge-building, hands-on application, and real use cases. From the Foundation Program to the AI Leadership journey: every learning path ends in a concrete, company-specific result.",
     },
   ],
 
@@ -196,7 +196,7 @@ export const en: ContentBundle = {
   PROBLEM_ITEMS: [
     {
       title: "PoC Graveyards Instead of Enterprise Operations",
-      desc: "The use case works in sandbox. Production data unresolved, governance undefined, ownership unassigned. Three quarters — zero scalable value creation.",
+      desc: "The use case works in sandbox. Production data unresolved, governance undefined, ownership unassigned. Three quarters, zero scalable value creation.",
     },
     {
       title: "Capability Loss Through Classical Consulting Models",
@@ -218,7 +218,7 @@ export const en: ContentBundle = {
       kind: "ring",
       value: "70%",
       label: "of large-scale transformation projects miss their stated objectives",
-      detail: "Most failures stem from execution and adoption — not technology selection.",
+      detail: "Most failures stem from execution and adoption, not technology selection.",
       source: "McKinsey & Company, Transformation Research",
     },
     {
@@ -249,7 +249,7 @@ export const en: ContentBundle = {
 
   EXECUTION_GAP: {
     label: "CETL Execution Readiness Index",
-    detail: "Proprietary benchmark from CETL client assessments — illustrative, not a scientific study.",
+    detail: "Proprietary benchmark from CETL client assessments (illustrative, not a scientific study).",
     rows: [
       { label: "AI awareness at leadership level", value: 82 },
       { label: "Documented AI strategy", value: 54 },
@@ -284,7 +284,7 @@ export const en: ContentBundle = {
   FAQ_ITEMS: [
     {
       q: "What distinguishes CETL from a classical management consultancy?",
-      a: "Classical consulting models deliver recommendations and project resources — both unavailable after contract end. CETL delivers capability structures: validated internal experts, documented frameworks, and governance architectures that operate independently of the CETL engagement.",
+      a: "Classical consulting models deliver recommendations and project resources. Both are unavailable after contract end. CETL delivers capability structures: validated internal experts, documented frameworks, and governance architectures that operate independently of the CETL engagement.",
     },
     {
       q: "What does vendor neutrality mean in concrete terms?",
@@ -292,11 +292,11 @@ export const en: ContentBundle = {
     },
     {
       q: "Which organization types is the portfolio designed for?",
-      a: "For organizations with enterprise architecture complexity and regulatory requirements — primarily in financial services, industry, and the public sector. The focus is on organizations treating AI initiatives as strategic infrastructure, not isolated innovation projects.",
+      a: "For organizations with enterprise architecture complexity and regulatory requirements, primarily in financial services, industry, and the public sector. The focus is on organizations treating AI initiatives as strategic infrastructure, not isolated innovation projects.",
     },
     {
       q: "How is an engagement structured?",
-      a: "Following an initial scoping conversation, a clearly defined scope of work is developed — with milestones, measurable outcomes, and a transparent fee model (day rate, fixed price, or framework agreement). The process is designed for internal procurement requirements of regulated organizations.",
+      a: "Following an initial scoping conversation, a clearly defined scope of work is developed: with milestones, measurable outcomes, and a transparent fee model (day rate, fixed price, or framework agreement). The process is designed for internal procurement requirements of regulated organizations.",
     },
     {
       q: "How long does a typical engagement take?",
@@ -329,7 +329,7 @@ export const en: ContentBundle = {
       headlineGradient: "Enough strategy papers.",
       headlineLine3: "Enterprise operations are waiting.",
       paragraph:
-        "CETL Institute combines academic rigor with industrial execution experience — from the leadership level to a role-based AI competency program for the entire organization. Understand. Apply. Execute.",
+        "CETL Institute combines academic rigor with industrial execution experience, from the leadership level to a role-based AI competency program for the entire organization. Understand. Apply. Execute.",
       ctaPrimary: "Request Executive Framework",
       ctaSecondary: "Initiate Strategic Exchange",
       stats: [
@@ -357,7 +357,7 @@ export const en: ContentBundle = {
       quoteMiddle: "",
       quoteHighlight2: "operationalization.",
       intro:
-        "Large-scale AI and data initiatives do not fail from lack of ambition. They fail from structural incompatibility between strategic intent and technical reality — between what a roadmap promises and what enterprise architecture, data maturity, and governance can actually sustain.",
+        "Large-scale AI and data initiatives do not fail from lack of ambition. They fail from structural incompatibility between strategic intent and technical reality: between what a roadmap promises and what enterprise architecture, data maturity, and governance can actually sustain.",
       answer: "The structural antidote: methodological capability-building over consulting dependency →",
     },
     pillars: {
@@ -370,14 +370,14 @@ export const en: ContentBundle = {
       label: "How our programs run",
       title: "Learn, apply, and execute",
       subtitle:
-        "Our approach follows the principle of Executional Learning: knowledge is never taught in isolation — it is tied directly to your organization's real tasks and challenges.",
+        "Our approach follows the principle of Executional Learning: knowledge is never taught in isolation. It is tied directly to your organization's real tasks and challenges.",
       cta: "See the full methodology",
     },
     programs: {
       label: "Flagship Program",
       title: "One program. Every role. Full operational impact.",
       subtitle:
-        "From the Foundation Program to the AI Leadership journey: our end-to-end format brings knowledge-building, hands-on application, and real use cases together in one system — for every role in the organization.",
+        "From the Foundation Program to the AI Leadership journey: our end-to-end format brings knowledge-building, hands-on application, and real use cases together in one system, for every role in the organization.",
       cta: "Initiate framework conversation",
       filterAll: "All formats",
       filterLabel: "Filter by format",
@@ -389,7 +389,7 @@ export const en: ContentBundle = {
       blurbBefore: "Organizer of the",
       blurbHackathon: "Europe Tech Hackathon",
       blurbAfter:
-        "— public institutions, global enterprises, and academic leaders jointly driving technology-led transformation in Central Europe.",
+        "public institutions, global enterprises, and academic leaders jointly driving technology-led transformation in Central Europe.",
     },
     leadership: {
       label: "Leadership",
@@ -406,6 +406,7 @@ export const en: ContentBundle = {
       title: "The execution gap is not an exception",
       subtitle:
         "Independent studies from McKinsey, Gartner, BCG, MIT Sloan Management Review, and Stanford HAI reach the same conclusion: the limiting factor for AI value creation is rarely the technology.",
+      cta: "Request the full study overview",
     },
     faq: { label: "Frequently Asked", title: "Questions decision-makers ask first" },
     contact: {
@@ -414,7 +415,7 @@ export const en: ContentBundle = {
       subtitle:
         "Whether architecture review, embedded engineering engagement, or executive briefing: the first conversation is non-binding and serves to clarify scope.",
       targetAudienceLabel: "Target audience",
-      targetAudienceText: "Organizations with enterprise architecture complexity in financial services, industry, and the public sector — outside the insurance sector — across Central Europe.",
+      targetAudienceText: "Organizations with enterprise architecture complexity in financial services, industry, and the public sector (outside the insurance sector) across Central Europe.",
       complianceLabel: "Compliance notice",
       nameLabel: "Full Name *",
       namePlaceholder: "Dr. Maria Sample",
@@ -437,7 +438,7 @@ export const en: ContentBundle = {
       mailFieldInterest: "Topic area",
     },
     footer: {
-      tagline: "Central European Tech Leadership Institute. Technological sovereignty is not a state — it is a competency.",
+      tagline: "Central European Tech Leadership Institute. Technological sovereignty is not a state. It is a competency.",
       navLabel: "Navigation",
       contactLabel: "Contact",
       location: "Vienna, Austria",
@@ -448,7 +449,7 @@ export const en: ContentBundle = {
     testimonials: {
       label: "From Practice",
       title: "What decision-makers say after experiencing the difference.",
-      subtitle: "Anonymized at organizational request — roles and sectors are authentic.",
+      subtitle: "Anonymized at organizational request. Roles and sectors are authentic.",
       anonymousNote: "Anonymized at the organization's request",
     },
     insights: {
@@ -459,10 +460,10 @@ export const en: ContentBundle = {
       readCta: "Read analysis",
       pageTitle: "Insights & Publications",
       pageSubtitle:
-        "Research briefs, whitepapers and frameworks for decision-makers in banking, industry and the public sector — from research into practice.",
+        "Research briefs, whitepapers and frameworks for decision-makers in banking, industry and the public sector, from research into practice.",
       back: "All insights",
       published: "Published",
-      byline: "Alin Kalam — Managing Director, CETL Institute",
+      byline: "Alin Kalam, Managing Director, CETL Institute",
       ctaTitle: "Start the strategic conversation.",
       ctaText:
         "Whether architecture review, embedded engineering engagement or executive briefing for the leadership level: the first conversation is non-binding and serves to clarify scope.",
@@ -484,24 +485,25 @@ export const en: ContentBundle = {
     intersection: {
       label: "Ecosystem & Partners",
       title: "Uniquely positioned at the intersection.",
-      subtitle: "CETL sits precisely at the center of Academia, Community and Industry — the intersection of enterprise demand, flagship community visibility and academic partnership depth.",
+      subtitle: "CETL sits precisely at the center of Academia, Community and Industry: the intersection of enterprise demand, flagship community visibility and academic partnership depth.",
     },
     caseStudy: {
       label: "In Practice",
       title: "Proof the model works.",
-      subtitle: "Executional Learning in action — with measurable transfer.",
+      subtitle: "Executional Learning in action, with measurable transfer.",
+      cta: "Discuss a similar result for your organization",
     },
     faculty: {
       label: "People",
       positionOpen: "Position Open",
       featuredTitle: "+ Featured experts",
-      featuredDesc: "From the Central European AI, research and community landscape — curated per module and use case.",
+      featuredDesc: "From the Central European AI, research and community landscape, curated per module and use case.",
     },
     forOrgs: {
       label: "For Organizations",
       title: "Transform technological ambition into operational reality.",
       subtitle:
-        "CETL works directly with organizations — not individuals. Every engagement is tailored to the organization's specific architecture situation, regulatory environment, and strategic objectives.",
+        "CETL works directly with organizations, not individuals. Every engagement is tailored to the organization's specific architecture situation, regulatory environment, and strategic objectives.",
       ctaPrimary: "Request custom engagement",
       ctaSecondary: "Start needs assessment",
       items: [
@@ -511,7 +513,7 @@ export const en: ContentBundle = {
         },
         {
           title: "Integrated execution",
-          desc: "CETL experts work inside your live initiatives — not alongside them. No lab, no presentation, no report without implementation accountability.",
+          desc: "CETL experts work inside your live initiatives, not alongside them. No lab, no presentation, no report without implementation accountability.",
         },
         {
           title: "Measurable outcomes",
@@ -527,13 +529,13 @@ export const en: ContentBundle = {
 
   TESTIMONIALS: [
     {
-      quote: "AI initiatives don't fail because of technology. They fail because of the organization. CETL helped us understand that — before we approved the next budget round.",
+      quote: "AI initiatives don't fail because of technology. They fail because of the organization. CETL helped us understand that, before we approved the next budget round.",
       role: "Head of Digital Transformation",
       sector: "Austrian major bank",
       orgSize: "2,500+ employees",
     },
     {
-      quote: "We had an AI strategy. What we didn't have was the internal capability to execute it. The Embedded Engineering program changed that in four months — structurally, not superficially.",
+      quote: "We had an AI strategy. What we didn't have was the internal capability to execute it. The Embedded Engineering program changed that in four months: structurally, not superficially.",
       role: "Chief Data Officer",
       sector: "Austrian industry",
       orgSize: "800+ employees",
@@ -561,15 +563,15 @@ export const en: ContentBundle = {
     features: [
       {
         title: "Flagship visibility",
-        desc: "The European (AI & Data) Tech Hackathon — organized with the City of Vienna, Vienna Business Agency, ÖBB and further partners — creates Europe-wide visibility, engagement and market relevance.",
+        desc: "The European (AI & Data) Tech Hackathon (organized with the City of Vienna, Vienna Business Agency, ÖBB and further partners) creates Europe-wide visibility, engagement and market relevance.",
       },
       {
         title: "Year-round formats",
-        desc: "Roundtables, Data & AI Executive Club, Safari, Dinner and Editions keep the community active and relevant — converting networking into structured partnership and delivery opportunities.",
+        desc: "Roundtables, Data & AI Executive Club, Safari, Dinner and Editions keep the community active and relevant, converting networking into structured partnership and delivery opportunities.",
       },
       {
         title: "Execution vehicle",
-        desc: "The Tech Execution Community feeds directly into CETL's agenda: guided delivery, operating-model thinking and implementation readiness — an executional ecosystem beyond classical consulting.",
+        desc: "The Tech Execution Community feeds directly into CETL's agenda: guided delivery, operating-model thinking and implementation readiness, an executional ecosystem beyond classical consulting.",
       },
     ],
     quote: "Insight + networking, converted into measurable delivery outcomes.",
@@ -588,7 +590,7 @@ export const en: ContentBundle = {
     clientTag: "CLIENT CASE",
     client: "RLB OÖ × CETL Institute",
     title: "Proof the model works.",
-    desc: "Customized Executional Learning programs already deliver for enterprise clients — e.g. the AI Competence Program co-designed with Raiffeisenlandesbank Oberösterreich: an integrated enablement system, not a training catalog.",
+    desc: "Customized Executional Learning programs already deliver for enterprise clients, e.g. the AI Competence Program co-designed with Raiffeisenlandesbank Oberösterreich: an integrated enablement system, not a training catalog.",
     metrics: [
       { label: "Foundation Program", value: "15 days" },
       { label: "Role tracks (AI Users, AI Champions)", value: "2 × 8 days" },
@@ -597,9 +599,9 @@ export const en: ContentBundle = {
       { label: "Delivery model", value: "ELaaS" },
     ],
     principles: [
-      { num: "I", title: "Role-sharp enablement", desc: "Learning journeys for AI Leadership, AI Users, AI Champions and internal AI Developers — matched to responsibility and maturity." },
-      { num: "II", title: "Guided projects with output", desc: "Every learning path ends in concrete use cases, business cases or implementation contributions — from use-case canvas to final pitch." },
-      { num: "III", title: "Direct contribution to strategy", desc: "Results feed straight into the client's use-case pipeline, prioritization logic and transformation initiative — measurable transfer." },
+      { num: "I", title: "Role-sharp enablement", desc: "Learning journeys for AI Leadership, AI Users, AI Champions and internal AI Developers, matched to responsibility and maturity." },
+      { num: "II", title: "Guided projects with output", desc: "Every learning path ends in concrete use cases, business cases or implementation contributions, from use-case canvas to final pitch." },
+      { num: "III", title: "Direct contribution to strategy", desc: "Results feed straight into the client's use-case pipeline, prioritization logic and transformation initiative: measurable transfer." },
     ],
   },
 
@@ -607,7 +609,7 @@ export const en: ContentBundle = {
     {
       label: "Academia",
       partners: [
-        { name: "TU Wien", desc: "Technische Universität Wien — academic depth & data literacy" },
+        { name: "TU Wien", desc: "Technische Universität Wien: academic depth & data literacy" },
         { name: "Lauder Business School", desc: "Applied management & leadership education" },
       ],
     },
@@ -615,7 +617,7 @@ export const en: ContentBundle = {
       label: "Community",
       partners: [
         { name: "Europe Tech Hackathon", desc: "Flagship European AI & Data community event" },
-        { name: "TEC — Tech Execution Community", desc: "Executive network & proven formats" },
+        { name: "TEC (Tech Execution Community)", desc: "Executive network & proven formats" },
       ],
     },
     {

@@ -14,7 +14,7 @@ export const de: ContentBundle = {
     academic: "TU Wien, Akademischer Direktor",
     tagline: "Technologische Souveränität ist kein Zustand. Sie ist eine Kompetenz.",
     complianceNote:
-      "Sämtliche CETL-Aktivitäten richten sich ausschließlich an Organisationen außerhalb der Versicherungsbranche — Versicherungs-Compliance, regulatorische Versicherungsthemen und versicherungsspezifische Mandate sind ausdrücklich ausgeschlossen.",
+      "Sämtliche CETL-Aktivitäten richten sich ausschließlich an Organisationen außerhalb der Versicherungsbranche. Versicherungs-Compliance, regulatorische Versicherungsthemen und versicherungsspezifische Mandate sind ausdrücklich ausgeschlossen.",
   },
 
   NAV_LINKS: [
@@ -35,7 +35,7 @@ export const de: ContentBundle = {
     headline: "Head of AI Coordination & Market Intelligence, UNIQA Insurance Group",
     location: "Wien, Österreich",
     linkedin: "https://www.linkedin.com/in/alinkalam/",
-    bio: "20+ Jahre Erfahrung an der Schnittstelle von AI-Strategie, Daten und operativer Umsetzung — von AI-Governance und Market Intelligence bei UNIQA International über BI-Führung bei der Lufthansa Group bis zu Big Data bei der BAWAG P.S.K. Ausbildung in Engineering, Wirtschaft und Astrophysik an der TU Wien, der CEU und der Universität Wien.",
+    bio: "20+ Jahre Erfahrung an der Schnittstelle von AI-Strategie, Daten und operativer Umsetzung: AI-Governance und Market Intelligence bei UNIQA International, BI-Führung bei der Lufthansa Group und Big Data bei der BAWAG P.S.K. Ausbildung in Engineering, Wirtschaft und Astrophysik an der TU Wien, der CEU und der Universität Wien.",
     credentials: [
       { label: "UNIQA Insurance Group", sub: "Head of AI Coordination & Market Intelligence", logo: "/logos/uniqa.svg" },
       { label: "Lufthansa Group", sub: "Strategic BI & Analytics Lead", logo: "/logos/lufthansa.svg" },
@@ -52,7 +52,7 @@ export const de: ContentBundle = {
       title: "Executive Education",
       subtitle: "Technologische Sprachfähigkeit",
       description:
-        "Keine Schulung. Keine Bewusstseins-Kampagne. Führungsteams entwickeln die technologische Urteilskompetenz, um Vendor-Narrative zu dekodieren, Architekturrisiken eigenständig zu bewerten und Use-Case-Portfolios nach strategischer Priorität — nicht nach Demonstrationsfähigkeit — zu gewichten.",
+        "Keine Schulung. Keine Bewusstseins-Kampagne. Führungsteams entwickeln die technologische Urteilskompetenz, um Vendor-Narrative zu dekodieren, Architekturrisiken eigenständig zu bewerten und Use-Case-Portfolios nach strategischer Priorität, nicht nach Demonstrationsfähigkeit, zu gewichten.",
       items: [
         "Technologie-Risikobewertung für strategische Entscheider",
         "Strukturierte Use-Case-Priorisierung nach Datenreife und ROI",
@@ -65,7 +65,7 @@ export const de: ContentBundle = {
       title: "Embedded Engineering",
       subtitle: "Kompetenz, die bleibt",
       description:
-        "Forward Deployed Engineers sind keine externen Berater — sie sind temporär eingebettete Fachexperten, die methodisch neben den eigenen technischen Teams arbeiten. Das Ziel ist nicht die Projektlieferung, sondern der strukturierte Transfer von Enterprise-AI- und Daten-Kompetenz direkt in die eigene Organisation. Validierte Kompetenz verbleibt dabei in der Organisation — herstellerneutral und strukturell unabhängig von externen Anbietern.",
+        "Forward Deployed Engineers sind keine externen Berater. Sie sind temporär eingebettete Fachexperten, die methodisch neben den eigenen technischen Teams arbeiten. Das Ziel ist nicht die Projektlieferung, sondern der strukturierte Transfer von Enterprise-AI- und Daten-Kompetenz direkt in die eigene Organisation. Validierte Kompetenz verbleibt dabei in der Organisation, herstellerneutral und strukturell unabhängig von externen Anbietern.",
       items: [
         "Forward Deployed Engineers (3–6 Monate, projektintegriert)",
         "Interne KI-Fähigkeit als messbare Delivery-Metrik",
@@ -93,7 +93,7 @@ export const de: ContentBundle = {
       icon: "Lightbulb",
       title: "Verstehen",
       description:
-        "Teilnehmende lernen, wie Daten, KI und moderne Automatisierung funktionieren — und können Potenziale, Grenzen und Risiken realistisch einordnen.",
+        "Teilnehmende lernen, wie Daten, KI und moderne Automatisierung funktionieren. So können sie Potenziale, Grenzen und Risiken realistisch einordnen.",
     },
     {
       n: "2",
@@ -107,7 +107,7 @@ export const de: ContentBundle = {
       icon: "Users",
       title: "Übertragen",
       description:
-        "Praxisbeispiele aus anderen Unternehmensbereichen und Branchen eröffnen neue Perspektiven — erfolgreiche Muster werden auf die eigene Organisation übertragen.",
+        "Praxisbeispiele aus anderen Unternehmensbereichen und Branchen eröffnen neue Perspektiven. Erfolgreiche Muster werden auf die eigene Organisation übertragen.",
     },
     {
       n: "4",
@@ -125,7 +125,7 @@ export const de: ContentBundle = {
       format: "Halbtags / Ganztags",
       level: "Strategische Führungsebene",
       description:
-        "Intensive Formate, die die Fähigkeit entwickeln, Vendor-Narrative zu dekodieren, Architekturrisiken eigenständig zu bewerten und Use-Case-Portfolios nach strategischer Priorität zu gewichten — ohne technisches Vorwissen vorauszusetzen.",
+        "Intensive Formate, die die Fähigkeit entwickeln, Vendor-Narrative zu dekodieren, Architekturrisiken eigenständig zu bewerten und Use-Case-Portfolios nach strategischer Priorität zu gewichten, ohne technisches Vorwissen vorauszusetzen.",
     },
     {
       tag: "Strategische Beratung",
@@ -141,7 +141,7 @@ export const de: ContentBundle = {
       format: "3–6 Monate Einsatz",
       level: "Fach- und Architekturteams",
       description:
-        "CETL-Engineers arbeiten direkt in Ihren Teams — projektintegriert, nicht parallel. Ergebnis: validierte interne Experten, dokumentierte Governance-Strukturen und eine Use-Case-Pipeline, die eigenständig weiterentwickelt werden kann.",
+        "CETL-Engineers arbeiten direkt in Ihren Teams, projektintegriert, nicht parallel. Ergebnis: validierte interne Experten, dokumentierte Governance-Strukturen und eine Use-Case-Pipeline, die eigenständig weiterentwickelt werden kann.",
     },
     {
       tag: "Technische Bewertung",
@@ -157,7 +157,7 @@ export const de: ContentBundle = {
       format: "2–3 Stunden",
       level: "Strategische Entscheider",
       description:
-        "Kuratierte Briefings zu AI-Entwicklungen der jeweiligen Branche: regulatorisches Umfeld, Wettbewerbsarchitekturen und aufkommende Use Cases — ohne Vendor-Agenda.",
+        "Kuratierte Briefings zu AI-Entwicklungen der jeweiligen Branche: regulatorisches Umfeld, Wettbewerbsarchitekturen und aufkommende Use Cases, ohne Vendor-Agenda.",
     },
     {
       tag: "ELaaS",
@@ -165,15 +165,15 @@ export const de: ContentBundle = {
       format: "1 Tag",
       level: "Bereichsübergreifende Teams",
       description:
-        "Strukturierte Methodik zur Identifikation und Priorisierung von KI-Use-Cases nach Datenreife, Governance-Voraussetzungen und ROI-Potenzial — Ergebnis: ein umsetzbares Innovations-Backlog mit klarer Verantwortungsstruktur.",
+        "Strukturierte Methodik zur Identifikation und Priorisierung von KI-Use-Cases nach Datenreife, Governance-Voraussetzungen und ROI-Potenzial. Ergebnis: ein umsetzbares Innovations-Backlog mit klarer Verantwortungsstruktur.",
     },
     {
       tag: "Unternehmensprogramm",
       title: "KI-Kompetenzprogramm für Unternehmen",
       format: "Modular · 3–12 Monate",
-      level: "Alle Rollen — Mitarbeitende bis Führung",
+      level: "Alle Rollen: Mitarbeitende bis Führung",
       description:
-        "Rollenbasiertes Befähigungsprogramm, das Wissensaufbau, praktische Anwendung und reale Use Cases verbindet. Vom Foundation Program bis zur KI-Leadership-Journey — jede Lernreise endet in einem konkreten, unternehmenseigenen Ergebnis.",
+        "Rollenbasiertes Befähigungsprogramm, das Wissensaufbau, praktische Anwendung und reale Use Cases verbindet. Vom Foundation Program bis zur KI-Leadership-Journey: jede Lernreise endet in einem konkreten, unternehmenseigenen Ergebnis.",
       href: "/programme/ki-kompetenzprogramm",
     },
   ],
@@ -197,7 +197,7 @@ export const de: ContentBundle = {
   PROBLEM_ITEMS: [
     {
       title: "PoC-Friedhöfe statt Enterprise-Betrieb",
-      desc: "Der Use Case funktioniert im Sandbox-Environment. Produktionsdaten ungeklärt, Governance nicht definiert, Verantwortung nicht zugewiesen. Drei Quartale — null skalierbare Wertschöpfung.",
+      desc: "Der Use Case funktioniert im Sandbox-Environment. Produktionsdaten ungeklärt, Governance nicht definiert, Verantwortung nicht zugewiesen. Drei Quartale, null skalierbare Wertschöpfung.",
     },
     {
       title: "Kompetenz-Verlust durch klassische Consulting-Modelle",
@@ -219,7 +219,7 @@ export const de: ContentBundle = {
       kind: "ring",
       value: "70%",
       label: "der groß angelegten Transformationsprojekte verfehlen ihre gesteckten Ziele",
-      detail: "Die meisten Misserfolge liegen an Umsetzung und Adoption — nicht an der Technologiewahl.",
+      detail: "Die meisten Misserfolge liegen an Umsetzung und Adoption, nicht an der Technologiewahl.",
       source: "McKinsey & Company, Transformationsforschung",
     },
     {
@@ -250,7 +250,7 @@ export const de: ContentBundle = {
 
   EXECUTION_GAP: {
     label: "CETL Execution Readiness Index",
-    detail: "Firmeneigener Benchmark aus CETL-Kundenassessments — illustrativ, keine wissenschaftliche Studie.",
+    detail: "Firmeneigener Benchmark aus CETL-Kundenassessments (illustrativ, keine wissenschaftliche Studie).",
     rows: [
       { label: "AI-Bewusstsein der Führungsebene", value: 82 },
       { label: "Dokumentierte AI-Strategie", value: 54 },
@@ -285,7 +285,7 @@ export const de: ContentBundle = {
   FAQ_ITEMS: [
     {
       q: "Was unterscheidet CETL von einer klassischen Unternehmensberatung?",
-      a: "Klassische Consulting-Modelle liefern Empfehlungen und Projektressourcen — beide sind nach Vertragsende nicht mehr verfügbar. CETL liefert Kompetenz-Strukturen: validierte interne Experten, dokumentierte Frameworks und Governance-Architekturen, die unabhängig vom CETL-Engagement operieren.",
+      a: "Klassische Consulting-Modelle liefern Empfehlungen und Projektressourcen. Beide sind nach Vertragsende nicht mehr verfügbar. CETL liefert Kompetenz-Strukturen: validierte interne Experten, dokumentierte Frameworks und Governance-Architekturen, die unabhängig vom CETL-Engagement operieren.",
     },
     {
       q: "Was bedeutet Herstellerneutralität konkret?",
@@ -293,11 +293,11 @@ export const de: ContentBundle = {
     },
     {
       q: "Für welche Organisationstypen ist das Portfolio ausgelegt?",
-      a: "Für Organisationen mit Enterprise-Architektur-Komplexität und regulatorischen Anforderungen — primär in der Finanzbranche, der Industrie und dem öffentlichen Sektor. Der Fokus liegt auf Organisationen, die KI-Initiativen nicht als isolierte Innovationsprojekte, sondern als strategische Infrastruktur behandeln.",
+      a: "Für Organisationen mit Enterprise-Architektur-Komplexität und regulatorischen Anforderungen, primär in der Finanzbranche, der Industrie und dem öffentlichen Sektor. Der Fokus liegt auf Organisationen, die KI-Initiativen nicht als isolierte Innovationsprojekte, sondern als strategische Infrastruktur behandeln.",
     },
     {
       q: "Wie strukturiert sich ein Engagement?",
-      a: "Nach einem initialen Rahmen-Gespräch wird ein klar definiertes Leistungsbild entwickelt — mit Meilensteinen, messbaren Outcomes und einem transparenten Vergütungsmodell (Tagessatz, Festpreis oder Rahmenvertrag). Der Prozess ist auf interne Procurement-Anforderungen regulierter Organisationen ausgelegt.",
+      a: "Nach einem initialen Rahmen-Gespräch wird ein klar definiertes Leistungsbild entwickelt: mit Meilensteinen, messbaren Outcomes und einem transparenten Vergütungsmodell (Tagessatz, Festpreis oder Rahmenvertrag). Der Prozess ist auf interne Procurement-Anforderungen regulierter Organisationen ausgelegt.",
     },
     {
       q: "Wie lange dauert ein typisches Engagement?",
@@ -330,7 +330,7 @@ export const de: ContentBundle = {
       headlineGradient: "Strategiepapiere gibt es genug.",
       headlineLine3: "Der Enterprise-Betrieb wartet.",
       paragraph:
-        "Das CETL Institute verbindet wissenschaftliche Rigorosität mit industrieller Umsetzungserfahrung — von der Führungsebene bis zum rollenbasierten KI-Kompetenzprogramm für die gesamte Organisation. Verstehen. Anwenden. Umsetzen.",
+        "Das CETL Institute verbindet wissenschaftliche Rigorosität mit industrieller Umsetzungserfahrung, von der Führungsebene bis zum rollenbasierten KI-Kompetenzprogramm für die gesamte Organisation. Verstehen. Anwenden. Umsetzen.",
       ctaPrimary: "Executive Framework anfordern",
       ctaSecondary: "Strategischen Austausch initiieren",
       stats: [
@@ -358,7 +358,7 @@ export const de: ContentBundle = {
       quoteMiddle: "",
       quoteHighlight2: "Operationalisierung.",
       intro:
-        "Großflächige KI- und Dateninitiativen scheitern nicht an mangelnder Ambition. Sie scheitern an der strukturellen Inkompatibilität zwischen Strategieebene und technischer Realität — zwischen dem, was eine Roadmap verspricht, und dem, was Enterprise-Architektur, Datenreife und Governance tatsächlich tragen.",
+        "Großflächige KI- und Dateninitiativen scheitern nicht an mangelnder Ambition. Sie scheitern an der strukturellen Inkompatibilität zwischen Strategieebene und technischer Realität: zwischen dem, was eine Roadmap verspricht, und dem, was Enterprise-Architektur, Datenreife und Governance tatsächlich tragen.",
       answer: "Das strukturelle Gegenmittel: methodischer Kompetenzaufbau statt Consulting-Abhängigkeit →",
     },
     pillars: {
@@ -378,7 +378,7 @@ export const de: ContentBundle = {
       label: "Flaggschiff-Programm",
       title: "Ein Programm. Jede Rolle. Volle operative Wirkung.",
       subtitle:
-        "Vom Foundation Program bis zur KI-Leadership-Journey: unser durchgängiges Format bringt Wissensaufbau, praktische Anwendung und reale Use Cases in einem System zusammen — für jede Rolle im Unternehmen.",
+        "Vom Foundation Program bis zur KI-Leadership-Journey: unser durchgängiges Format bringt Wissensaufbau, praktische Anwendung und reale Use Cases in einem System zusammen, für jede Rolle im Unternehmen.",
       cta: "Framework-Gespräch initiieren",
       filterAll: "Alle Formate",
       filterLabel: "Format filtern",
@@ -390,7 +390,7 @@ export const de: ContentBundle = {
       blurbBefore: "Veranstalter des",
       blurbHackathon: "Europe Tech Hackathon",
       blurbAfter:
-        "— öffentliche Institutionen, globale Unternehmen und akademische Führungskräfte gemeinsam für technologiegetriebene Transformation in Zentraleuropa.",
+        "öffentliche Institutionen, globale Unternehmen und akademische Führungskräfte gemeinsam für technologiegetriebene Transformation in Zentraleuropa.",
     },
     leadership: {
       label: "Geschäftsführung",
@@ -407,6 +407,7 @@ export const de: ContentBundle = {
       title: "Die Umsetzungslücke ist kein Einzelfall",
       subtitle:
         "Unabhängige Studien von McKinsey, Gartner, BCG, MIT Sloan Management Review und Stanford HAI kommen zum gleichen Schluss: Der begrenzende Faktor für AI-Wertschöpfung ist selten die Technologie.",
+      cta: "Vollständige Studienübersicht anfordern",
     },
     faq: { label: "Häufige Fragen", title: "Fragen, die Entscheider zuerst stellen" },
     contact: {
@@ -415,7 +416,7 @@ export const de: ContentBundle = {
       subtitle:
         "Ob Architektur-Review, Embedded-Engineering-Engagement oder Executive-Briefing für die Führungsebene: Das erste Gespräch ist unverbindlich und dient der Klärung des Rahmens.",
       targetAudienceLabel: "Zielgruppe",
-      targetAudienceText: "Organisationen mit Enterprise-Architektur-Komplexität in Finanzbranche, Industrie und öffentlichem Sektor — außerhalb der Versicherungsbranche — in ganz Zentraleuropa.",
+      targetAudienceText: "Organisationen mit Enterprise-Architektur-Komplexität in Finanzbranche, Industrie und öffentlichem Sektor (außerhalb der Versicherungsbranche) in ganz Zentraleuropa.",
       complianceLabel: "Compliance-Hinweis",
       nameLabel: "Vollständiger Name *",
       namePlaceholder: "Dr. Maria Muster",
@@ -438,7 +439,7 @@ export const de: ContentBundle = {
       mailFieldInterest: "Themenbereich",
     },
     footer: {
-      tagline: "Central European Tech Leadership Institute. Technologische Souveränität ist kein Zustand — sie ist eine Kompetenz.",
+      tagline: "Central European Tech Leadership Institute. Technologische Souveränität ist kein Zustand. Sie ist eine Kompetenz.",
       navLabel: "Navigation",
       contactLabel: "Kontakt",
       location: "Wien, Österreich",
@@ -449,7 +450,7 @@ export const de: ContentBundle = {
     testimonials: {
       label: "Stimmen aus der Praxis",
       title: "Was Entscheider sagen, die den Unterschied erlebt haben.",
-      subtitle: "Aus Vertraulichkeitsgründen ohne Klarnamen — Rollen und Sektoren sind authentisch.",
+      subtitle: "Aus Vertraulichkeitsgründen ohne Klarnamen. Rollen und Sektoren sind authentisch.",
       anonymousNote: "Anonymisiert auf Wunsch der Organisation",
     },
     insights: {
@@ -460,10 +461,10 @@ export const de: ContentBundle = {
       readCta: "Analyse lesen",
       pageTitle: "Insights & Publikationen",
       pageSubtitle:
-        "Research Briefs, Whitepaper und Frameworks für Entscheider in Banken, Industrie und öffentlichem Sektor — aus der Forschung in die Praxis.",
+        "Research Briefs, Whitepaper und Frameworks für Entscheider in Banken, Industrie und öffentlichem Sektor, aus der Forschung in die Praxis.",
       back: "Alle Insights",
       published: "Publiziert",
-      byline: "Alin Kalam — Geschäftsführer, CETL Institute",
+      byline: "Alin Kalam, Geschäftsführer, CETL Institute",
       ctaTitle: "Den strategischen Austausch beginnen.",
       ctaText:
         "Ob Architektur-Review, Embedded-Engineering-Engagement oder Executive-Briefing für die Führungsebene: Das erste Gespräch ist unverbindlich und dient der Klärung des Rahmens.",
@@ -485,24 +486,25 @@ export const de: ContentBundle = {
     intersection: {
       label: "Ecosystem & Partner",
       title: "Einzigartig positioniert an der Schnittstelle.",
-      subtitle: "CETL steht präzise im Zentrum von Academia, Community und Industrie — der Schnittpunkt aus Enterprise-Nachfrage, Flagship-Community-Sichtbarkeit und akademischer Partnerschaftstiefe.",
+      subtitle: "CETL steht präzise im Zentrum von Academia, Community und Industrie: der Schnittpunkt aus Enterprise-Nachfrage, Flagship-Community-Sichtbarkeit und akademischer Partnerschaftstiefe.",
     },
     caseStudy: {
       label: "In der Praxis",
       title: "Nachweis, dass das Modell funktioniert.",
-      subtitle: "Executional Learning in der Umsetzung — mit messbarem Transfer.",
+      subtitle: "Executional Learning in der Umsetzung, mit messbarem Transfer.",
+      cta: "Ähnliches Ergebnis für Ihr Unternehmen besprechen",
     },
     faculty: {
       label: "People",
       positionOpen: "Position Open",
       featuredTitle: "+ Featured experts",
-      featuredDesc: "Aus dem zentraleuropäischen KI-, Forschungs- und Community-Umfeld — kuratiert je Modul und Use Case.",
+      featuredDesc: "Aus dem zentraleuropäischen KI-, Forschungs- und Community-Umfeld, kuratiert je Modul und Use Case.",
     },
     forOrgs: {
       label: "Für Organisationen",
       title: "Transformieren Sie technologische Ambition in operative Realität.",
       subtitle:
-        "CETL arbeitet direkt mit Organisationen — nicht mit Einzelpersonen. Jedes Engagement ist auf die spezifische Architektur-Situation, regulatorische Umgebung und strategische Zielsetzung der Organisation zugeschnitten.",
+        "CETL arbeitet direkt mit Organisationen, nicht mit Einzelpersonen. Jedes Engagement ist auf die spezifische Architektur-Situation, regulatorische Umgebung und strategische Zielsetzung der Organisation zugeschnitten.",
       ctaPrimary: "Custom Engagement anfragen",
       ctaSecondary: "Bedarfsanalyse starten",
       items: [
@@ -512,7 +514,7 @@ export const de: ContentBundle = {
         },
         {
           title: "Integrierte Umsetzung",
-          desc: "CETL-Experten arbeiten innerhalb Ihrer laufenden Initiativen — nicht parallel dazu. Kein Lab, keine Präsentation, kein Bericht ohne Umsetzungsverantwortung.",
+          desc: "CETL-Experten arbeiten innerhalb Ihrer laufenden Initiativen, nicht parallel dazu. Kein Lab, keine Präsentation, kein Bericht ohne Umsetzungsverantwortung.",
         },
         {
           title: "Messbare Outcomes",
@@ -528,13 +530,13 @@ export const de: ContentBundle = {
 
   TESTIMONIALS: [
     {
-      quote: "KI-Initiativen scheitern nicht an der Technologie. Sie scheitern an der Organisation. CETL hat uns geholfen, genau das zu verstehen — bevor wir die nächste Runde Budget freigegeben haben.",
+      quote: "KI-Initiativen scheitern nicht an der Technologie. Sie scheitern an der Organisation. CETL hat uns geholfen, genau das zu verstehen, bevor wir die nächste Runde Budget freigegeben haben.",
       role: "Head of Digital Transformation",
       sector: "Österreichische Großbank",
       orgSize: "2.500+ Mitarbeiter",
     },
     {
-      quote: "Wir hatten eine AI-Strategie. Was wir nicht hatten, war die interne Fähigkeit, sie umzusetzen. Das Embedded-Engineering-Programm hat das in vier Monaten geändert — strukturell, nicht oberflächlich.",
+      quote: "Wir hatten eine AI-Strategie. Was wir nicht hatten, war die interne Fähigkeit, sie umzusetzen. Das Embedded-Engineering-Programm hat das in vier Monaten geändert: strukturell, nicht oberflächlich.",
       role: "Chief Data Officer",
       sector: "Österreichische Industrie",
       orgSize: "800+ Mitarbeiter",
@@ -562,15 +564,15 @@ export const de: ContentBundle = {
     features: [
       {
         title: "Flagship-Sichtbarkeit",
-        desc: "Der Europäische (AI & Data) Tech Hackathon — organisiert mit der Stadt Wien, der Vienna Business Agency, ÖBB und weiteren Partnern — schafft Europe-weite Sichtbarkeit, Engagement und Marktrelevanz.",
+        desc: "Der Europäische (AI & Data) Tech Hackathon (organisiert mit der Stadt Wien, der Vienna Business Agency, ÖBB und weiteren Partnern) schafft europaweite Sichtbarkeit, Engagement und Marktrelevanz.",
       },
       {
         title: "Ganzjährige Formate",
-        desc: "Roundtables, Data & AI Executive Club, Safari, Dinner und Editions halten die Community aktiv und relevant — und wandeln Networking in strukturierte Partnerschafts- und Delivery-Chancen um.",
+        desc: "Roundtables, Data & AI Executive Club, Safari, Dinner und Editions halten die Community aktiv und relevant und wandeln Networking in strukturierte Partnerschafts- und Delivery-Chancen um.",
       },
       {
         title: "Execution Vehicle",
-        desc: "Die Tech Execution Community speist direkt in CETLs Agenda: geführte Delivery, Operating-Model-Thinking und Implementierungsbereitschaft — ein exekutives Ökosystem jenseits klassischer Beratung.",
+        desc: "Die Tech Execution Community speist direkt in CETLs Agenda: geführte Delivery, Operating-Model-Thinking und Implementierungsbereitschaft, ein exekutives Ökosystem jenseits klassischer Beratung.",
       },
     ],
     quote: "Insight + Networking, in messbare Delivery-Outcomes umgewandelt.",
@@ -589,7 +591,7 @@ export const de: ContentBundle = {
     clientTag: "CLIENT CASE",
     client: "RLB OÖ × CETL Institute",
     title: "Nachweis, dass das Modell funktioniert.",
-    desc: "Customized Executional Learning-Programme liefern bereits für Enterprise-Kunden — exemplarisch das KI-Kompetenz-Programm gemeinsam mit der Raiffeisenlandesbank Oberösterreich: ein integriertes Enabling-System, kein Schulungskatalog.",
+    desc: "Customized Executional Learning-Programme liefern bereits für Enterprise-Kunden, exemplarisch das KI-Kompetenz-Programm gemeinsam mit der Raiffeisenlandesbank Oberösterreich: ein integriertes Enabling-System, kein Schulungskatalog.",
     metrics: [
       { label: "Foundation Programm", value: "15 Tage" },
       { label: "Role-Tracks (KI-Anwender:innen, KI-Champions)", value: "2 × 8 Tage" },
@@ -598,9 +600,9 @@ export const de: ContentBundle = {
       { label: "Delivery Model", value: "ELaaS" },
     ],
     principles: [
-      { num: "I", title: "Rollenspezifisches Enabling", desc: "Learning Journeys für KI-Leadership, KI-Anwender:innen, KI-Champions und interne KI-Entwickler:innen — abgestimmt auf Verantwortung und Reifegrad." },
-      { num: "II", title: "Guided Projects mit Output", desc: "Jeder Lernpfad endet in konkreten Use Cases, Business Cases oder Implementierungsbeiträgen — vom Canvas bis zum finalen Pitch." },
-      { num: "III", title: "Direkter Beitrag zur Strategie", desc: "Die Ergebnisse fließen direkt in die Use-Case-Pipeline, Priorisierungslogik und Transformationsinitiative des Kunden — messbarer Transfer." },
+      { num: "I", title: "Rollenspezifisches Enabling", desc: "Learning Journeys für KI-Leadership, KI-Anwender:innen, KI-Champions und interne KI-Entwickler:innen, abgestimmt auf Verantwortung und Reifegrad." },
+      { num: "II", title: "Guided Projects mit Output", desc: "Jeder Lernpfad endet in konkreten Use Cases, Business Cases oder Implementierungsbeiträgen, vom Canvas bis zum finalen Pitch." },
+      { num: "III", title: "Direkter Beitrag zur Strategie", desc: "Die Ergebnisse fließen direkt in die Use-Case-Pipeline, Priorisierungslogik und Transformationsinitiative des Kunden: messbarer Transfer." },
     ],
   },
 
@@ -608,7 +610,7 @@ export const de: ContentBundle = {
     {
       label: "Academia",
       partners: [
-        { name: "TU Wien", desc: "Technische Universität Wien — akademische Tiefe & Data Literacy" },
+        { name: "TU Wien", desc: "Technische Universität Wien: akademische Tiefe & Data Literacy" },
         { name: "Lauder Business School", desc: "Applied Management & Leadership Education" },
       ],
     },
@@ -616,7 +618,7 @@ export const de: ContentBundle = {
       label: "Community",
       partners: [
         { name: "Europe Tech Hackathon", desc: "Flagship European AI & Data Community Event" },
-        { name: "TEC — Tech Execution Community", desc: "Executive-Netzwerk & erprobte Formate" },
+        { name: "TEC (Tech Execution Community)", desc: "Executive-Netzwerk & erprobte Formate" },
       ],
     },
     {

@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const article = getArticle("de", slug);
   if (!article) return {};
   return {
-    title: `${article.title} — CETL Institute`,
+    title: `${article.title} | CETL Institute`,
     description: article.teaser,
     alternates: { canonical: `${SITE_URL}/insights/${slug}` },
     openGraph: {
