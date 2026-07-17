@@ -301,7 +301,7 @@ export const de: ContentBundle = {
     },
     {
       q: "Wie lange dauert ein typisches Engagement?",
-      a: "Von wenigen Stunden bis zu mehreren Monaten — die genaue Dauer und das Format jedes Programms sind direkt bei den Programmkarten oben ausgewiesen.",
+      a: "Von wenigen Stunden bis zu mehreren Monaten. Punktuelle Formate (Briefings, Workshops) dauern Stunden bis Tage; das rollenbasierte KI-Kompetenzprogramm läuft modular über 3–12 Monate. Die genaue Dauer jedes Formats ist direkt bei den Programmkarten oben ausgewiesen.",
     },
   ],
 
@@ -314,6 +314,7 @@ export const de: ContentBundle = {
   CONTACT_INTEREST_OPTIONS: [
     "Executive Education / Technologische Urteilskompetenz",
     "Embedded Engineering / Forward Deployed Engineers",
+    "KI-Kompetenzprogramm für Unternehmen",
     "Strategische Beratung",
     "Architektur-Review & Technische Bewertung",
     "Use-Case-Priorisierungs-Workshop",
@@ -329,7 +330,7 @@ export const de: ContentBundle = {
       headlineGradient: "Strategiepapiere gibt es genug.",
       headlineLine3: "Der Enterprise-Betrieb wartet.",
       paragraph:
-        "Das CETL Institute verbindet wissenschaftliche Rigorosität mit industrieller Umsetzungserfahrung. Für Organisationen, die Architektur-Entscheidungen treffen, die über die nächste Budgetrunde hinausreichen.",
+        "Das CETL Institute verbindet wissenschaftliche Rigorosität mit industrieller Umsetzungserfahrung — von der Führungsebene bis zum rollenbasierten KI-Kompetenzprogramm für die gesamte Organisation. Verstehen. Anwenden. Umsetzen.",
       ctaPrimary: "Executive Framework anfordern",
       ctaSecondary: "Strategischen Austausch initiieren",
       stats: [
@@ -341,6 +342,7 @@ export const de: ContentBundle = {
         "Executive Education",
         "Embedded Engineering",
         "Technische Bewertung",
+        "KI-Kompetenzprogramm für Unternehmen",
         "Forward Deployed Engineers",
         "Governance Frameworks",
         "Akademische Partnerschaft TU Wien",
@@ -604,13 +606,13 @@ export const de: ContentBundle = {
     desc: "Customized Executional Learning-Programme liefern bereits für Enterprise-Kunden — exemplarisch das KI-Kompetenz-Programm gemeinsam mit der Raiffeisenlandesbank Oberösterreich: ein integriertes Enabling-System, kein Schulungskatalog.",
     metrics: [
       { label: "Foundation Programm", value: "15 Tage" },
-      { label: "Role-Tracks (KI-User, KI-Enthusiast)", value: "2 × 8 Tage" },
+      { label: "Role-Tracks (KI-Anwender:innen, KI-Champions)", value: "2 × 8 Tage" },
       { label: "Gesamtprogramm-Umfang", value: "31 Tage", highlight: true },
       { label: "Guided Projects", value: "Eigener Use Case" },
       { label: "Delivery Model", value: "ELaaS" },
     ],
     principles: [
-      { num: "I", title: "Rollenspezifisches Enabling", desc: "Learning Journeys für KI-Leadership, KI-User, KI-Enthusiasten und interne KI-Developer — abgestimmt auf Verantwortung und Reifegrad." },
+      { num: "I", title: "Rollenspezifisches Enabling", desc: "Learning Journeys für KI-Leadership, KI-Anwender:innen, KI-Champions und interne KI-Entwickler:innen — abgestimmt auf Verantwortung und Reifegrad." },
       { num: "II", title: "Guided Projects mit Output", desc: "Jeder Lernpfad endet in konkreten Use Cases, Business Cases oder Implementierungsbeiträgen — vom Canvas bis zum finalen Pitch." },
       { num: "III", title: "Direkter Beitrag zur Strategie", desc: "Die Ergebnisse fließen direkt in die Use-Case-Pipeline, Priorisierungslogik und Transformationsinitiative des Kunden — messbarer Transfer." },
     ],

@@ -300,7 +300,7 @@ export const en: ContentBundle = {
     },
     {
       q: "How long does a typical engagement take?",
-      a: "Anywhere from a few hours to several months — exact duration and format for each program are listed directly on the program cards above.",
+      a: "Anywhere from a few hours to several months. Point formats (briefings, workshops) run hours to days; the role-based AI competency program runs modularly over 3–12 months. Exact duration for each format is listed directly on the program cards above.",
     },
   ],
 
@@ -313,6 +313,7 @@ export const en: ContentBundle = {
   CONTACT_INTEREST_OPTIONS: [
     "Executive Education / Technological Judgment",
     "Embedded Engineering / Forward Deployed Engineers",
+    "AI Competency Program for Enterprises",
     "Strategic Consulting",
     "Architecture Review & Technical Assessment",
     "Use-Case Prioritization Workshop",
@@ -328,7 +329,7 @@ export const en: ContentBundle = {
       headlineGradient: "Enough strategy papers.",
       headlineLine3: "Enterprise operations are waiting.",
       paragraph:
-        "CETL Institute combines academic rigor with industrial execution experience. For organizations making architecture decisions that outlast the next budget cycle.",
+        "CETL Institute combines academic rigor with industrial execution experience — from the leadership level to a role-based AI competency program for the entire organization. Understand. Apply. Execute.",
       ctaPrimary: "Request Executive Framework",
       ctaSecondary: "Initiate Strategic Exchange",
       stats: [
@@ -340,6 +341,7 @@ export const en: ContentBundle = {
         "Executive Education",
         "Embedded Engineering",
         "Technical Assessment",
+        "AI Competency Program for Enterprises",
         "Forward Deployed Engineers",
         "Governance Frameworks",
         "Academic Partnership TU Wien",
@@ -603,13 +605,13 @@ export const en: ContentBundle = {
     desc: "Customized Executional Learning programs already deliver for enterprise clients — e.g. the AI Competence Program co-designed with Raiffeisenlandesbank Oberösterreich: an integrated enablement system, not a training catalog.",
     metrics: [
       { label: "Foundation Program", value: "15 days" },
-      { label: "Role tracks (AI User, AI Enthusiast)", value: "2 × 8 days" },
+      { label: "Role tracks (AI Users, AI Champions)", value: "2 × 8 days" },
       { label: "Total program scope", value: "31 days", highlight: true },
       { label: "Guided projects", value: "Own use case" },
       { label: "Delivery model", value: "ELaaS" },
     ],
     principles: [
-      { num: "I", title: "Role-sharp enablement", desc: "Learning journeys for AI Leadership, AI Users, AI Enthusiasts and internal AI Developers — matched to responsibility and maturity." },
+      { num: "I", title: "Role-sharp enablement", desc: "Learning journeys for AI Leadership, AI Users, AI Champions and internal AI Developers — matched to responsibility and maturity." },
       { num: "II", title: "Guided projects with output", desc: "Every learning path ends in concrete use cases, business cases or implementation contributions — from use-case canvas to final pitch." },
       { num: "III", title: "Direct contribution to strategy", desc: "Results feed straight into the client's use-case pipeline, prioritization logic and transformation initiative — measurable transfer." },
     ],
