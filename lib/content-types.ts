@@ -51,6 +51,7 @@ export interface Program {
   format: string;
   level: string;
   description: string;
+  href?: string;
 }
 
 export interface Partner {
@@ -202,7 +203,7 @@ export interface ContentBundle {
       partnershipHackathon: string;
       partnershipAfter: string;
     };
-    programs: { label: string; title: string; subtitle: string; cta: string; filterAll: string; filterLabel: string; ctaAdvisor: string };
+    programs: { label: string; title: string; subtitle: string; cta: string; filterAll: string; filterLabel: string; ctaAdvisor: string; detailCta: string };
     partners: { trusted: string; blurbBefore: string; blurbHackathon: string; blurbAfter: string };
     leadership: {
       label: string;

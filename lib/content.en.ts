@@ -136,6 +136,14 @@ export const en: ContentBundle = {
       description:
         "Structured methodology for identifying and prioritizing AI use cases by data maturity, governance prerequisites, and ROI potential — result: an actionable innovation backlog with clear ownership.",
     },
+    {
+      tag: "Enterprise Program",
+      title: "AI Competency Program for Enterprises",
+      format: "Modular · 3–12 months",
+      level: "All roles — staff to leadership",
+      description:
+        "Role-based enablement program combining knowledge-building, hands-on application, and real use cases. From the Foundation Program to the AI Leadership journey — every learning path ends in a concrete, company-specific result.",
+    },
   ],
 
   TAG_COLORS: {
@@ -143,6 +151,7 @@ export const en: ContentBundle = {
     "Strategic Consulting": "blue",
     ELaaS: "gold",
     "Technical Assessment": "muted",
+    "Enterprise Program": "blue",
   },
 
   PARTNERS: [
@@ -346,6 +355,7 @@ export const en: ContentBundle = {
       filterAll: "All formats",
       filterLabel: "Filter by format",
       ctaAdvisor: "Talk with an advisor",
+      detailCta: "View program details",
     },
     partners: {
       trusted: "Trusted by leading institutions & organizations",

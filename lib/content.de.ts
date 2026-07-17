@@ -136,6 +136,15 @@ export const de: ContentBundle = {
       description:
         "Strukturierte Methodik zur Identifikation und Priorisierung von KI-Use-Cases nach Datenreife, Governance-Voraussetzungen und ROI-Potenzial — Ergebnis: ein umsetzbares Innovations-Backlog mit klarer Verantwortungsstruktur.",
     },
+    {
+      tag: "Unternehmensprogramm",
+      title: "KI-Kompetenzprogramm für Unternehmen",
+      format: "Modular · 3–12 Monate",
+      level: "Alle Rollen — Mitarbeitende bis Führung",
+      description:
+        "Rollenbasiertes Befähigungsprogramm, das Wissensaufbau, praktische Anwendung und reale Use Cases verbindet. Vom Foundation Program bis zur KI-Leadership-Journey — jede Lernreise endet in einem konkreten, unternehmenseigenen Ergebnis.",
+      href: "/programme/ki-kompetenzprogramm",
+    },
   ],
 
   TAG_COLORS: {
@@ -143,6 +152,7 @@ export const de: ContentBundle = {
     "Strategische Beratung": "blue",
     ELaaS: "gold",
     "Technische Bewertung": "muted",
+    Unternehmensprogramm: "blue",
   },
 
   PARTNERS: [
@@ -346,6 +356,7 @@ export const de: ContentBundle = {
       filterAll: "Alle Formate",
       filterLabel: "Format filtern",
       ctaAdvisor: "Mit einem Experten sprechen",
+      detailCta: "Programm im Detail",
     },
     partners: {
       trusted: "Vertrauen führender Institutionen & Organisationen",

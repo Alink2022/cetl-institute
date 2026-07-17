@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import Link from "next/link";
 import { Brain, TrendingUp, Award } from "lucide-react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Badge } from "@/components/ui/Badge";
@@ -175,33 +176,55 @@ export function ProgramsSection() {
 
         {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filtered.map((program) => (
-            <TiltCard
-              key={program.title}
-              className="gradient-edge relative flex flex-col bg-cetl-surface rounded-2xl border border-cetl-border p-7 overflow-hidden"
-            >
-              <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-cetl-gold via-cetl-gold-light to-cetl-violet opacity-70" />
-              <div className="mb-5">
-                <Badge variant={t.TAG_COLORS[program.tag] ?? "muted"} className="mb-4">
-                  {program.tag}
-                </Badge>
-                <h3 className="font-display text-cetl-text font-bold text-lg leading-snug">{program.title}</h3>
-              </div>
+          {filtered.map((program) => {
+            const CardInner = (
+              <>
+                <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-cetl-gold via-cetl-gold-light to-cetl-violet opacity-70" />
+                <div className="mb-5">
+                  <Badge variant={t.TAG_COLORS[program.tag] ?? "muted"} className="mb-4">
+                    {program.tag}
+                  </Badge>
+                  <h3 className="font-display text-cetl-text font-bold text-lg leading-snug">{program.title}</h3>
+                </div>
 
-              <p className="text-cetl-text-muted text-sm leading-relaxed mb-6 flex-1">{program.description}</p>
+                <p className="text-cetl-text-muted text-sm leading-relaxed mb-6 flex-1">{program.description}</p>
 
-              <div className="pt-4 border-t border-cetl-border flex gap-4 text-xs text-cetl-text-muted">
-                <span className="flex items-center gap-1.5">
-                  <CalendarIcon />
-                  {program.format}
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <PersonIcon />
-                  {program.level}
-                </span>
-              </div>
-            </TiltCard>
-          ))}
+                <div className="pt-4 border-t border-cetl-border flex gap-4 text-xs text-cetl-text-muted">
+                  <span className="flex items-center gap-1.5">
+                    <CalendarIcon />
+                    {program.format}
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <PersonIcon />
+                    {program.level}
+                  </span>
+                </div>
+                {program.href && (
+                  <span className="mt-4 flex items-center gap-1.5 text-xs font-semibold text-cetl-gold">
+                    {t.UI.programs.detailCta}
+                    <svg className="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M3 8h10M9 4l4 4-4 4" />
+                    </svg>
+                  </span>
+                )}
+              </>
+            );
+
+            const cardClass =
+              "gradient-edge relative flex flex-col bg-cetl-surface rounded-2xl border border-cetl-border p-7 overflow-hidden";
+
+            return (
+              <TiltCard key={program.title} className={cardClass}>
+                {program.href ? (
+                  <Link href={program.href} className="contents">
+                    {CardInner}
+                  </Link>
+                ) : (
+                  CardInner
+                )}
+              </TiltCard>
+            );
+          })}
         </div>
 
         {/* CTA row — Advisor pathway (MIT pattern) */}
