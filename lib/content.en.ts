@@ -87,6 +87,37 @@ export const en: ContentBundle = {
     },
   ],
 
+  METHODOLOGY_STEPS: [
+    {
+      n: "1",
+      icon: "Lightbulb",
+      title: "Understand",
+      description:
+        "Participants learn how data, AI, and modern automation actually work — and can realistically assess potential, limits, and risks.",
+    },
+    {
+      n: "2",
+      icon: "Cog",
+      title: "Apply",
+      description:
+        "Your organization's own tools, processes, and standards are integrated directly. AI is tested against typical day-to-day tasks.",
+    },
+    {
+      n: "3",
+      icon: "Users",
+      title: "Transfer",
+      description:
+        "Practical examples from other business units and industries open new perspectives — successful patterns are transferred to your own organization.",
+    },
+    {
+      n: "4",
+      icon: "Flag",
+      title: "Execute",
+      description:
+        "Every learning journey ends in a concrete application: structured use cases, prototypes, business cases, or implementation roadmaps.",
+    },
+  ],
+
   PROGRAMS: [
     {
       tag: "Executive Education",
@@ -332,6 +363,13 @@ export const en: ContentBundle = {
       title: "Three instruments. One goal: Operational AI sovereignty.",
       subtitle:
         "No one-size-fits-all format. No generic curriculum. The portfolio is designed for the specific maturity gaps of organizations with complex enterprise architecture and regulatory requirements.",
+    },
+    methodology: {
+      label: "How our programs run",
+      title: "Learn, apply, and execute",
+      subtitle:
+        "Our approach follows the principle of Executional Learning: knowledge is never taught in isolation — it is tied directly to your organization's real tasks and challenges.",
+      cta: "See the full methodology",
     },
     elaas: {
       label: "The Principle",

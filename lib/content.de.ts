@@ -87,6 +87,37 @@ export const de: ContentBundle = {
     },
   ],
 
+  METHODOLOGY_STEPS: [
+    {
+      n: "1",
+      icon: "Lightbulb",
+      title: "Verstehen",
+      description:
+        "Teilnehmende lernen, wie Daten, KI und moderne Automatisierung funktionieren — und können Potenziale, Grenzen und Risiken realistisch einordnen.",
+    },
+    {
+      n: "2",
+      icon: "Cog",
+      title: "Anwenden",
+      description:
+        "Unternehmenseigene Werkzeuge, Prozesse und Standards werden direkt integriert. KI wird anhand typischer Aufgaben aus dem Arbeitsalltag erprobt.",
+    },
+    {
+      n: "3",
+      icon: "Users",
+      title: "Übertragen",
+      description:
+        "Praxisbeispiele aus anderen Unternehmensbereichen und Branchen eröffnen neue Perspektiven — erfolgreiche Muster werden auf die eigene Organisation übertragen.",
+    },
+    {
+      n: "4",
+      icon: "Flag",
+      title: "Umsetzen",
+      description:
+        "Jede Lernreise endet in einem konkreten Anwendungsfall: strukturierte Use Cases, Prototypen, Business Cases oder Umsetzungsroadmaps.",
+    },
+  ],
+
   PROGRAMS: [
     {
       tag: "Executive Education",
@@ -333,6 +364,13 @@ export const de: ContentBundle = {
       title: "Drei Instrumente. Ein Ziel: Operative KI-Souveränität.",
       subtitle:
         "Kein Einheitsformat. Kein generisches Curriculum. Das Portfolio ist auf die spezifischen Reifegradlücken von Organisationen mit komplexer Enterprise-Architektur und regulatorischen Anforderungen ausgelegt.",
+    },
+    methodology: {
+      label: "So laufen unsere Programme ab",
+      title: "Lernen, anwenden und umsetzen",
+      subtitle:
+        "Unser Ansatz folgt dem Prinzip des Executional Learning: Wissen wird nicht isoliert vermittelt, sondern unmittelbar mit realen Aufgaben und Herausforderungen Ihres Unternehmens verbunden.",
+      cta: "Methodik im Detail ansehen",
     },
     elaas: {
       label: "Das Prinzip",

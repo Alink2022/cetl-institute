@@ -1,4 +1,4 @@
-export type LucideIconName = "Brain" | "TrendingUp" | "Award" | "Globe" | "Users";
+export type LucideIconName = "Brain" | "TrendingUp" | "Award" | "Globe" | "Users" | "Lightbulb" | "Cog" | "Flag";
 export type TagColor = "gold" | "blue" | "muted";
 
 export interface Testimonial {
@@ -52,6 +52,13 @@ export interface Program {
   level: string;
   description: string;
   href?: string;
+}
+
+export interface MethodologyStep {
+  n: string;
+  icon: LucideIconName;
+  title: string;
+  description: string;
 }
 
 export interface Partner {
@@ -156,6 +163,7 @@ export interface ContentBundle {
     focus: string[];
   };
   PILLARS: Pillar[];
+  METHODOLOGY_STEPS: MethodologyStep[];
   PROGRAMS: Program[];
   TAG_COLORS: Record<string, TagColor>;
   PARTNERS: Partner[];
@@ -192,6 +200,7 @@ export interface ContentBundle {
       answer: string;
     };
     pillars: { label: string; title: string; subtitle: string };
+    methodology: { label: string; title: string; subtitle: string; cta: string };
     elaas: {
       label: string;
       title: string;

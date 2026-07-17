@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
-import { Brain, TrendingUp, Award } from "lucide-react";
+import { Brain, TrendingUp, Award, Lightbulb, Cog, Users, Flag } from "lucide-react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Badge } from "@/components/ui/Badge";
 import { Container } from "@/components/ui/Container";
@@ -15,7 +15,10 @@ const ICON_MAP: Record<LucideIconName, React.ElementType> = {
   TrendingUp,
   Award,
   Globe: () => null,
-  Users: () => null,
+  Users,
+  Lightbulb,
+  Cog,
+  Flag,
 };
 
 // Pillar-Nummer, die den ELaaS-Anker (#elaas) aus dem NAV trägt — Embedded Engineering
@@ -135,6 +138,47 @@ export function ProgramsSection() {
               </TiltCard>
             );
           })}
+        </div>
+
+        {/* ── Methodology: how the programs run ── */}
+        <div className="mb-20 pb-20 border-b border-cetl-border/50">
+          <SectionHeader
+            label={t.UI.methodology.label}
+            title={t.UI.methodology.title}
+            subtitle={t.UI.methodology.subtitle}
+            className="mb-14"
+          />
+          <div className="relative flex flex-wrap justify-center gap-x-2 gap-y-10">
+            {t.METHODOLOGY_STEPS.map((step, i) => {
+              const Icon = ICON_MAP[step.icon];
+              return (
+                <div key={step.n} className="flex items-center">
+                  <div className="flex flex-col items-center gap-3 text-center max-w-[180px]">
+                    <span className="text-cetl-gold/60 text-xs font-semibold tracking-widest">{step.n}</span>
+                    <div className="w-16 h-16 rounded-full border border-cetl-border bg-cetl-dark flex items-center justify-center">
+                      <Icon className="w-6 h-6 text-cetl-gold" strokeWidth={1.5} aria-hidden="true" />
+                    </div>
+                    <span className="font-display text-sm font-bold text-cetl-text">{step.title}</span>
+                    <p className="text-cetl-text-muted text-xs leading-relaxed">{step.description}</p>
+                  </div>
+                  {i < t.METHODOLOGY_STEPS.length - 1 && (
+                    <div className="hidden md:block w-8 lg:w-12 h-px bg-gradient-to-r from-cetl-gold/40 via-cetl-border to-cetl-gold/40 mx-1 -translate-y-14" />
+                  )}
+                </div>
+              );
+            })}
+          </div>
+          <div className="flex justify-center mt-12">
+            <Link
+              href="/programme/ki-kompetenzprogramm"
+              className="text-cetl-gold text-sm font-semibold hover:text-cetl-gold-light transition-colors duration-200 flex items-center gap-1.5"
+            >
+              {t.UI.methodology.cta}
+              <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M3 8h10M9 4l4 4-4 4" />
+              </svg>
+            </Link>
+          </div>
         </div>
 
         {/* ── Concrete programs (filterable grid, unchanged logic) ── */}
