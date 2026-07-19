@@ -1,5 +1,5 @@
 import type { ContentBundle } from "./content-types";
-import { ARTICLES } from "./insights-articles";
+import { ARTICLE_META } from "./insights-index";
 
 export const en: ContentBundle = {
   SITE: {
@@ -428,8 +428,8 @@ export const en: ContentBundle = {
       messageLabel: "Context",
       messagePlaceholder: "Describe your current architecture situation, regulatory requirements, or the strategic context of your inquiry...",
       submit: "Submit inquiry",
-      successTitle: "Inquiry submitted",
-      successText: "Your email client should have opened. Response within 48 hours.",
+      successTitle: "Email client opened",
+      successText: "Please check your email app and send the prepared message. If nothing opened, please contact us directly using the details shown alongside.",
       mailSubjectPrefix: "CETL Inquiry",
       mailGeneral: "General",
       mailFieldName: "Name",
@@ -548,8 +548,8 @@ export const en: ContentBundle = {
     },
   ],
 
-  // Cards are derived from the full-text articles — one source, no duplicates.
-  INSIGHTS: ARTICLES.en.map(({ blocks: _blocks, date: _date, ...card }) => card),
+  // Card metadata comes client-safely from insights-index (no full texts in the bundle).
+  INSIGHTS: ARTICLE_META.en,
 
   INST_STATS: [
     { value: "20+", label: "Years of industry experience", sub: "Leadership teams in banking, industry & public sector" },

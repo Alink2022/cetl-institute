@@ -28,7 +28,7 @@ export function LogoWatermark() {
           }}
         >
           <Image
-            src="/cetl-logo.png"
+            src="/cetl-logo.webp"
             alt=""
             width={p.size}
             height={p.size}

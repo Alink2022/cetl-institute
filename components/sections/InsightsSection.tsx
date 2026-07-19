@@ -19,13 +19,13 @@ export function InsightsSection() {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
           <div>
-            <p className="text-cetl-gold text-xs tracking-[0.3em] uppercase font-semibold mb-3">{ui.label}</p>
+            <p className="text-cetl-gold-deep text-xs tracking-[0.3em] uppercase font-semibold mb-3">{ui.label}</p>
             <h2 className="font-display text-3xl md:text-4xl font-bold text-cetl-text mb-3">{ui.title}</h2>
             <p className="text-cetl-text-muted text-sm max-w-xl">{ui.subtitle}</p>
           </div>
           <Link
             href="/insights"
-            className="text-cetl-gold hover:text-cetl-gold-light text-sm font-medium tracking-wide underline-offset-4 hover:underline shrink-0"
+            className="text-cetl-gold-deep hover:text-cetl-text text-sm font-medium tracking-wide underline-offset-4 hover:underline shrink-0"
           >
             {ui.cta} →
           </Link>

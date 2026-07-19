@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { Insight } from "@/lib/content-types";
-import { ARTICLE_IMAGES } from "@/lib/insights-articles";
+import { ARTICLE_IMAGES } from "@/lib/insights-index";
 
 interface InsightCardProps {
   item: Insight;
@@ -37,14 +37,14 @@ export function InsightCard({ item, readCta }: InsightCardProps) {
       <div className="p-7 flex flex-col gap-4 h-full">
         {/* Meta */}
         <div className="flex items-center gap-2 flex-wrap">
-          <span className="text-[10px] tracking-[0.25em] uppercase font-semibold text-cetl-gold border border-cetl-gold/30 px-2 py-0.5 rounded-sm">
+          <span className="text-[10px] tracking-[0.25em] uppercase font-semibold text-cetl-gold-deep border border-cetl-gold/30 px-2 py-0.5 rounded-sm">
             {item.tag}
           </span>
           <span className="text-cetl-text-muted text-[11px]">{item.category}</span>
         </div>
 
         {/* Title */}
-        <h3 className="font-display text-cetl-text text-[17px] font-semibold leading-snug group-hover:text-cetl-gold-light transition-colors duration-300">
+        <h3 className="font-display text-cetl-text text-[17px] font-semibold leading-snug group-hover:text-cetl-gold-deep transition-colors duration-300">
           {item.title}
         </h3>
 
@@ -54,7 +54,7 @@ export function InsightCard({ item, readCta }: InsightCardProps) {
         {/* Footer */}
         <div className="flex items-center justify-between pt-3 border-t border-cetl-border/50">
           <span className="text-cetl-text-muted text-xs">{item.readTime}</span>
-          <span className="text-cetl-gold text-xs font-medium tracking-wide group-hover:underline underline-offset-4">
+          <span className="text-cetl-gold-deep text-xs font-medium tracking-wide group-hover:underline underline-offset-4">
             {readCta} →
           </span>
         </div>

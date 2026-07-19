@@ -4,8 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, type ReactNode } from "react";
 import { useLanguage } from "@/lib/i18n";
-import { ARTICLES, ARTICLE_IMAGES, getArticle } from "@/lib/insights-articles";
-import type { ArticleBlock } from "@/lib/content-types";
+import { ARTICLE_IMAGES, ARTICLE_META } from "@/lib/insights-index";
+import type { Article, ArticleBlock } from "@/lib/content-types";
 import { NavBar } from "@/components/layout/NavBar";
 import { Footer } from "@/components/layout/Footer";
 import { Container } from "@/components/ui/Container";
@@ -51,7 +51,7 @@ function Block({ block, lang }: { block: ArticleBlock; lang: "de" | "en" }) {
       );
     case "h3":
       return (
-        <h3 className="font-display text-lg md:text-xl font-semibold text-cetl-gold-light leading-snug mt-9 mb-3">
+        <h3 className="font-display text-lg md:text-xl font-semibold text-cetl-gold-deep leading-snug mt-9 mb-3">
           {block.text}
         </h3>
       );
@@ -70,7 +70,7 @@ function Block({ block, lang }: { block: ArticleBlock; lang: "de" | "en" }) {
         <ul className="my-6 flex flex-col gap-3">
           {block.items.map((item, i) => (
             <li key={i} className="flex gap-3 text-cetl-text-muted text-lg leading-relaxed">
-              <span className="text-cetl-gold mt-[2px] shrink-0" aria-hidden>
+              <span className="text-cetl-gold-deep mt-[2px] shrink-0" aria-hidden>
                 —
               </span>
               <span>{renderInline(item)}</span>
@@ -83,7 +83,7 @@ function Block({ block, lang }: { block: ArticleBlock; lang: "de" | "en" }) {
         <ol className="my-6 flex flex-col gap-3 [counter-reset:item]">
           {block.items.map((item, i) => (
             <li key={i} className="flex gap-3 text-cetl-text-muted text-lg leading-relaxed">
-              <span className="font-display text-cetl-gold font-semibold shrink-0 w-6 text-right">
+              <span className="font-display text-cetl-gold-deep font-semibold shrink-0 w-6 text-right">
                 {i + 1}.
               </span>
               <span>{renderInline(item)}</span>
@@ -96,21 +96,24 @@ function Block({ block, lang }: { block: ArticleBlock; lang: "de" | "en" }) {
   }
 }
 
-export function ArticleView({ slug }: { slug: string }) {
+export function ArticleView({ slug, article }: { slug: string; article: Record<"de" | "en", Article> }) {
   const { lang, t } = useLanguage();
   const ui = t.UI.insights;
   const [copied, setCopied] = useState(false);
-  const article = getArticle(lang, slug) ?? getArticle("de", slug);
-  if (!article) return null;
+  // Volltext des aktuellen Artikels kommt als Prop vom Server (beide Sprachen);
+  // die Sprachumschaltung erfolgt client-seitig ohne Neuladen.
+  const current = article[lang] ?? article.de;
 
+  // Navigation nutzt nur die leichtgewichtigen Karten-Metadaten (keine Volltexte).
+  const list = ARTICLE_META[lang];
   // Thematisch verwandte Analysen zuerst (gleicher Tag), dann Rest in Originalreihenfolge.
-  const others = [...ARTICLES[lang].filter((a) => a.slug !== slug)]
-    .sort((a, b) => Number(b.tag === article.tag) - Number(a.tag === article.tag))
+  const others = [...list.filter((a) => a.slug !== slug)]
+    .sort((a, b) => Number(b.tag === current.tag) - Number(a.tag === current.tag))
     .slice(0, 3);
 
-  const idx = ARTICLES[lang].findIndex((a) => a.slug === slug);
-  const prev = idx > 0 ? ARTICLES[lang][idx - 1] : null;
-  const next = idx >= 0 && idx < ARTICLES[lang].length - 1 ? ARTICLES[lang][idx + 1] : null;
+  const idx = list.findIndex((a) => a.slug === slug);
+  const prev = idx > 0 ? list[idx - 1] : null;
+  const next = idx >= 0 && idx < list.length - 1 ? list[idx + 1] : null;
 
   const articleUrl = `${t.SITE.url.replace(/\/$/, "")}/insights/${slug}`;
   const copyLink = async () => {
@@ -137,32 +140,32 @@ export function ArticleView({ slug }: { slug: string }) {
             <div className="max-w-3xl">
               <Link
                 href="/insights"
-                className="inline-flex items-center gap-2 text-cetl-text-muted hover:text-cetl-gold text-xs tracking-[0.2em] uppercase font-semibold transition-colors duration-200 mb-8"
+                className="inline-flex items-center gap-2 text-cetl-text-muted hover:text-cetl-gold-deep text-xs tracking-[0.2em] uppercase font-semibold transition-colors duration-200 mb-8"
               >
                 <span aria-hidden>←</span> {ui.back}
               </Link>
 
               <div className="flex items-center gap-3 flex-wrap mb-6">
-                <span className="text-[10px] tracking-[0.25em] uppercase font-semibold text-cetl-gold border border-cetl-gold/30 px-2 py-0.5 rounded-sm">
-                  {article.tag}
+                <span className="text-[10px] tracking-[0.25em] uppercase font-semibold text-cetl-gold-deep border border-cetl-gold/30 px-2 py-0.5 rounded-sm">
+                  {current.tag}
                 </span>
-                <span className="text-cetl-text-muted text-xs">{article.category}</span>
+                <span className="text-cetl-text-muted text-xs">{current.category}</span>
               </div>
 
               <h1 className="font-display text-3xl md:text-5xl font-bold text-cetl-text leading-tight tracking-tight mb-6">
-                {article.title}
+                {current.title}
               </h1>
 
-              <p className="text-cetl-text-muted text-lg md:text-xl leading-relaxed mb-8">{article.teaser}</p>
+              <p className="text-cetl-text-muted text-lg md:text-xl leading-relaxed mb-8">{current.teaser}</p>
 
               <div className="flex items-center gap-4 flex-wrap text-xs text-cetl-text-muted">
-                <span className="text-cetl-gold-light font-medium">{ui.byline}</span>
+                <span className="text-cetl-gold-deep font-medium">{ui.byline}</span>
                 <span aria-hidden>·</span>
                 <span>
-                  {ui.published} {article.date}
+                  {ui.published} {current.date}
                 </span>
                 <span aria-hidden>·</span>
-                <span>{article.readTime}</span>
+                <span>{current.readTime}</span>
               </div>
 
               {/* Share */}
@@ -175,14 +178,14 @@ export function ArticleView({ slug }: { slug: string }) {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="LinkedIn"
-                  className="text-cetl-text-muted hover:text-cetl-gold border border-cetl-border hover:border-cetl-gold/40 rounded-sm px-3 py-1.5 text-xs font-medium transition-colors duration-200"
+                  className="text-cetl-text-muted hover:text-cetl-gold-deep border border-cetl-border hover:border-cetl-gold/40 rounded-sm px-3 py-1.5 text-xs font-medium transition-colors duration-200"
                 >
                   LinkedIn
                 </a>
                 <button
                   type="button"
                   onClick={copyLink}
-                  className="text-cetl-text-muted hover:text-cetl-gold border border-cetl-border hover:border-cetl-gold/40 rounded-sm px-3 py-1.5 text-xs font-medium transition-colors duration-200 cursor-pointer"
+                  className="text-cetl-text-muted hover:text-cetl-gold-deep border border-cetl-border hover:border-cetl-gold/40 rounded-sm px-3 py-1.5 text-xs font-medium transition-colors duration-200 cursor-pointer"
                 >
                   {copied ? ui.shareCopied : "Link"}
                 </button>
@@ -215,8 +218,8 @@ export function ArticleView({ slug }: { slug: string }) {
         {/* Body */}
         <article className="py-14 md:py-20">
           <Container>
-            <div className="max-w-3xl [&>p:first-of-type]:first-letter:font-display [&>p:first-of-type]:first-letter:text-5xl [&>p:first-of-type]:first-letter:font-bold [&>p:first-of-type]:first-letter:text-cetl-gold [&>p:first-of-type]:first-letter:float-left [&>p:first-of-type]:first-letter:mr-3 [&>p:first-of-type]:first-letter:leading-[0.85]">
-              {article.blocks.map((block, i) => (
+            <div className="max-w-3xl [&>p:first-of-type]:first-letter:font-display [&>p:first-of-type]:first-letter:text-5xl [&>p:first-of-type]:first-letter:font-bold [&>p:first-of-type]:first-letter:text-cetl-gold-deep [&>p:first-of-type]:first-letter:float-left [&>p:first-of-type]:first-letter:mr-3 [&>p:first-of-type]:first-letter:leading-[0.85]">
+              {current.blocks.map((block, i) => (
                 <Block key={i} block={block} lang={lang} />
               ))}
             </div>
@@ -236,7 +239,7 @@ export function ArticleView({ slug }: { slug: string }) {
                     <p className="text-cetl-text-muted text-[10px] tracking-[0.25em] uppercase font-semibold mb-2">
                       ← {ui.prevLabel}
                     </p>
-                    <p className="font-display text-cetl-text text-sm font-semibold leading-snug group-hover:text-cetl-gold-light transition-colors duration-200">
+                    <p className="font-display text-cetl-text text-sm font-semibold leading-snug group-hover:text-cetl-gold-deep transition-colors duration-200">
                       {prev.title}
                     </p>
                   </Link>
@@ -251,7 +254,7 @@ export function ArticleView({ slug }: { slug: string }) {
                     <p className="text-cetl-text-muted text-[10px] tracking-[0.25em] uppercase font-semibold mb-2">
                       {ui.nextLabel} →
                     </p>
-                    <p className="font-display text-cetl-text text-sm font-semibold leading-snug group-hover:text-cetl-gold-light transition-colors duration-200">
+                    <p className="font-display text-cetl-text text-sm font-semibold leading-snug group-hover:text-cetl-gold-deep transition-colors duration-200">
                       {next.title}
                     </p>
                   </Link>
@@ -267,7 +270,7 @@ export function ArticleView({ slug }: { slug: string }) {
             <div className="max-w-3xl border border-cetl-border rounded-sm p-7 md:p-8 flex flex-col sm:flex-row gap-6 items-start bg-cetl-surface/40">
               <div className="relative w-20 h-20 shrink-0 rounded-full overflow-hidden ring-1 ring-cetl-gold/40">
                 <Image
-                  src="/alin-kalam.png"
+                  src="/alin-kalam.webp"
                   alt={t.MANAGING_DIRECTOR.name}
                   fill
                   sizes="80px"
@@ -275,7 +278,7 @@ export function ArticleView({ slug }: { slug: string }) {
                 />
               </div>
               <div>
-                <p className="text-cetl-gold text-[10px] tracking-[0.3em] uppercase font-semibold mb-2">
+                <p className="text-cetl-gold-deep text-[10px] tracking-[0.3em] uppercase font-semibold mb-2">
                   {ui.authorLabel}
                 </p>
                 <p className="font-display text-cetl-text text-lg font-semibold leading-snug">
@@ -289,7 +292,7 @@ export function ArticleView({ slug }: { slug: string }) {
                   href={t.MANAGING_DIRECTOR.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-cetl-gold text-xs font-medium tracking-wide hover:underline underline-offset-4"
+                  className="text-cetl-gold-deep text-xs font-medium tracking-wide hover:underline underline-offset-4"
                 >
                   LinkedIn →
                 </a>
@@ -318,7 +321,7 @@ export function ArticleView({ slug }: { slug: string }) {
         {/* More articles */}
         <section className="pb-24">
           <Container>
-            <p className="text-cetl-gold text-xs tracking-[0.3em] uppercase font-semibold mb-8">{ui.moreLabel}</p>
+            <p className="text-cetl-gold-deep text-xs tracking-[0.3em] uppercase font-semibold mb-8">{ui.moreLabel}</p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {others.map((item) => (
                 <InsightCard key={item.slug} item={item} readCta={ui.readCta} />

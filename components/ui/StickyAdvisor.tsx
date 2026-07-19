@@ -17,6 +17,11 @@ export function StickyAdvisor() {
     <a
       href="#contact"
       aria-label={t.UI.community.advisorCta}
+      // Solange der Button unsichtbar ist (opacity-0, vor 600px Scroll), darf er nicht
+      // per Tab fokussierbar sein — sonst landet die Tastatur-Fokusreihenfolge auf einem
+      // unsichtbaren Link, bevor Nav/Inhalt überhaupt erreicht werden.
+      tabIndex={visible ? 0 : -1}
+      aria-hidden={!visible}
       className={[
         "fixed bottom-6 right-6 z-50 flex items-center gap-2.5 px-5 py-3 rounded-full",
         "bg-cetl-blue text-white text-sm font-semibold tracking-wide shadow-[0_4px_24px_-4px_color-mix(in_srgb,var(--color-cetl-blue)_55%,transparent)]",

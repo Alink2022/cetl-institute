@@ -18,7 +18,7 @@ export function TestimonialsSection() {
       <Container className="relative z-10">
         {/* Header */}
         <div className="text-center mb-16">
-          <p className="text-cetl-gold text-xs tracking-[0.3em] uppercase font-semibold mb-3">{ui.label}</p>
+          <p className="text-cetl-gold-deep text-xs tracking-[0.3em] uppercase font-semibold mb-3">{ui.label}</p>
           <h2 className="font-display text-3xl md:text-4xl font-bold text-cetl-text mb-4">{ui.title}</h2>
           <p className="text-cetl-text-muted text-sm max-w-xl mx-auto">{ui.subtitle}</p>
         </div>
@@ -54,7 +54,7 @@ export function TestimonialsSection() {
                 <div className="flex flex-col gap-1 flex-1">
                 <span className="text-cetl-text text-sm font-semibold">{item.role}</span>
                 <div className="flex items-center gap-2 flex-wrap">
-                  <span className="text-cetl-gold text-xs font-medium">{item.sector}</span>
+                  <span className="text-cetl-gold-deep text-xs font-medium">{item.sector}</span>
                   <span className="text-cetl-border text-xs">·</span>
                   <span className="text-cetl-text-muted text-xs">{item.orgSize}</span>
                 </div>
@@ -62,7 +62,7 @@ export function TestimonialsSection() {
                     {ui.anonymousNote}
                   </span>
                 </div>
-                <Image src="/cetl-logo.png" alt="CETL Institute" width={28} height={28} className="opacity-30 shrink-0 mt-1" unoptimized />
+                <Image src="/cetl-logo.webp" alt="CETL Institute" width={28} height={28} className="opacity-30 shrink-0 mt-1" />
               </div>
             </div>
           ))}

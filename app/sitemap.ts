@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { de } from "@/lib/content.de";
-import { ARTICLE_SLUGS } from "@/lib/insights-articles";
+import { ARTICLE_SLUGS } from "@/lib/insights-index";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = de.SITE.url.replace(/\/$/, "");

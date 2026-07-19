@@ -6,7 +6,7 @@ interface BadgeProps {
 
 export function Badge({ children, variant = "gold", className = "" }: BadgeProps) {
   const variants = {
-    gold: "border border-cetl-gold/40 text-cetl-gold bg-cetl-gold/10",
+    gold: "border border-cetl-gold/40 text-cetl-gold-deep bg-cetl-gold/10",
     blue: "border border-cetl-blue/40 text-cetl-blue bg-cetl-blue/10",
     muted: "border border-cetl-border text-cetl-text-muted bg-cetl-surface",
   };

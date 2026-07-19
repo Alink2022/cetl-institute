@@ -13,7 +13,6 @@ const ICON_MAP: Record<LucideIconName, React.ElementType> = {
   Brain,
   TrendingUp,
   Award,
-  Globe: () => null,
   Users,
   Lightbulb,
   Cog,
@@ -27,7 +26,7 @@ const ELAAS_ANCHOR_PILLAR = "02";
 function CheckIcon() {
   return (
     <svg
-      className="w-4 h-4 text-cetl-gold shrink-0 mt-0.5"
+      className="w-4 h-4 text-cetl-gold-deep shrink-0 mt-0.5"
       viewBox="0 0 16 16"
       fill="none"
       stroke="currentColor"
@@ -111,7 +110,7 @@ export function ProgramsSection() {
 
                 <div className="mb-6">
                   <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-cetl-gold/20 to-cetl-violet/10 border border-cetl-gold/25 flex items-center justify-center mb-4 shadow-[0_0_24px_-8px_color-mix(in_srgb,var(--color-cetl-gold)_50%,transparent)]">
-                    <Icon className="w-5 h-5 text-cetl-gold" strokeWidth={1.5} aria-hidden="true" />
+                    <Icon className="w-5 h-5 text-cetl-gold-deep" strokeWidth={1.5} aria-hidden="true" />
                   </div>
                   <p className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase mb-2">
                     {pillar.subtitle}
@@ -150,9 +149,9 @@ export function ProgramsSection() {
               return (
                 <div key={step.n} className="flex items-center">
                   <div className="flex flex-col items-center gap-3 text-center max-w-[180px]">
-                    <span className="text-cetl-gold/60 text-xs font-semibold tracking-widest">{step.n}</span>
+                    <span className="text-cetl-gold-deep text-xs font-semibold tracking-widest">{step.n}</span>
                     <div className="w-16 h-16 rounded-full border border-cetl-border bg-cetl-dark flex items-center justify-center">
-                      <Icon className="w-6 h-6 text-cetl-gold" strokeWidth={1.5} aria-hidden="true" />
+                      <Icon className="w-6 h-6 text-cetl-gold-deep" strokeWidth={1.5} aria-hidden="true" />
                     </div>
                     <span className="font-display text-sm font-bold text-cetl-text">{step.title}</span>
                     <p className="text-cetl-text-muted text-xs leading-relaxed">{step.description}</p>
@@ -167,7 +166,7 @@ export function ProgramsSection() {
           <div className="flex justify-center mt-12">
             <Link
               href="/programme/ki-kompetenzprogramm"
-              className="text-cetl-gold text-sm font-semibold hover:text-cetl-gold-light transition-colors duration-200 flex items-center gap-1.5"
+              className="text-cetl-gold-deep text-sm font-semibold hover:text-cetl-text transition-colors duration-200 flex items-center gap-1.5"
             >
               {t.UI.methodology.cta}
               <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -180,7 +179,7 @@ export function ProgramsSection() {
         {/* ── Flagship program: featured, single, in depth ── */}
         <div className="flex items-center gap-3 mb-2">
           <div className="h-px w-8 bg-cetl-gold/40" />
-          <p className="text-cetl-gold text-[10px] font-semibold tracking-[0.3em] uppercase">
+          <p className="text-cetl-gold-deep text-[10px] font-semibold tracking-[0.3em] uppercase">
             {t.UI.programs.label}
           </p>
         </div>
@@ -220,7 +219,7 @@ export function ProgramsSection() {
               {ROLE_ROW.map((role) => (
                 <div key={role.label} className="flex flex-col items-center gap-2.5 text-center">
                   <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-cetl-gold/20 to-cetl-violet/10 border border-cetl-gold/25 flex items-center justify-center">
-                    <role.icon className="w-5 h-5 text-cetl-gold" strokeWidth={1.5} aria-hidden="true" />
+                    <role.icon className="w-5 h-5 text-cetl-gold-deep" strokeWidth={1.5} aria-hidden="true" />
                   </div>
                   <span className="text-cetl-text-muted text-xs font-medium leading-tight">{role.label}</span>
                 </div>
@@ -260,7 +259,7 @@ export function ProgramsSection() {
           </a>
           <a
             href="#contact"
-            className="text-cetl-text-muted text-sm hover:text-cetl-gold transition-colors duration-200 flex items-center gap-1.5"
+            className="text-cetl-text-muted text-sm hover:text-cetl-gold-deep transition-colors duration-200 flex items-center gap-1.5"
           >
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4" aria-hidden="true">
               <circle cx="8" cy="8" r="6" />

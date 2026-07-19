@@ -30,21 +30,21 @@ export function HeroSection() {
       {/* Key visual — goldenes Netzwerk-Gitter, stark abgedunkelt hinter der Atmosphäre */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden>
         <Image
-          src="/e.png"
+          src="/e.webp"
           alt=""
           fill
           priority
           sizes="100vw"
-          className="object-cover opacity-[0.22]"
+          className="object-cover opacity-[0.10]"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-cetl-dark/70 via-cetl-dark/40 to-cetl-dark" />
+        <div className="absolute inset-0 bg-gradient-to-b from-cetl-dark/85 via-cetl-dark/60 to-cetl-dark" />
       </div>
 
-      {/* Deep space atmosphere */}
+      {/* Light atmosphere — kept faint so the paper-white ground reads clean */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-[-10%] left-[15%] w-[900px] h-[900px] rounded-full bg-cetl-blue/[0.18] blur-[160px]" />
-        <div className="absolute bottom-[-5%] right-[5%] w-[700px] h-[700px] rounded-full bg-cetl-violet/[0.12] blur-[180px]" />
-        <div className="absolute top-[30%] left-[-5%] w-[500px] h-[500px] rounded-full bg-cetl-gold/[0.07] blur-[140px]" />
+        <div className="absolute top-[-10%] left-[15%] w-[900px] h-[900px] rounded-full bg-cetl-blue/[0.06] blur-[160px]" />
+        <div className="absolute bottom-[-5%] right-[5%] w-[700px] h-[700px] rounded-full bg-cetl-violet/[0.04] blur-[180px]" />
+        <div className="absolute top-[30%] left-[-5%] w-[500px] h-[500px] rounded-full bg-cetl-gold/[0.06] blur-[140px]" />
       </div>
 
       {/* Grain texture */}
@@ -66,7 +66,7 @@ export function HeroSection() {
             {/* Medallion container — clean seal on dark bg */}
             <div className="relative rounded-full bg-white/[0.06] ring-1 ring-white/10 p-3 backdrop-blur-sm">
               <Image
-                src="/cetl-logo.png"
+                src="/cetl-logo.webp"
                 alt="CETL Institute Seal"
                 width={200}
                 height={200}
@@ -85,12 +85,14 @@ export function HeroSection() {
           className="w-full max-w-2xl"
         >
           <OrnamentRule className="mb-4" />
-          <p className="text-cetl-gold text-[11px] tracking-[0.35em] uppercase font-semibold mb-1 opacity-80">
+          <p className="text-cetl-gold-deep text-[11px] tracking-[0.35em] uppercase font-semibold mb-1 opacity-80">
             {hero.badgeLocation}
           </p>
-          <h2 className="font-display text-cetl-text text-xs md:text-sm tracking-[0.28em] uppercase font-medium mb-4 opacity-50">
+          {/* Kein h2: dieser Zusatztext steht vor dem h1 im DOM — als Überschrift würde er
+              die Heading-Reihenfolge brechen (h2 vor h1). Visuell identisch als <p>. */}
+          <p className="font-display text-cetl-text text-xs md:text-sm tracking-[0.28em] uppercase font-medium mb-4 opacity-50">
             Central European Tech Leadership Institute
-          </h2>
+          </p>
           <OrnamentRule />
         </motion.div>
 

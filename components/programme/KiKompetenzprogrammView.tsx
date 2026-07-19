@@ -35,13 +35,14 @@ import { GoldDivider } from "@/components/ui/GoldDivider";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { NavBar } from "@/components/layout/NavBar";
 import { Footer } from "@/components/layout/Footer";
+import { PlusIcon } from "@/components/ui/PlusIcon";
 
 /* ── Shared bits ─────────────────────────────────────────────── */
 
 function CheckIcon() {
   return (
     <svg
-      className="w-4 h-4 text-cetl-gold shrink-0 mt-0.5"
+      className="w-4 h-4 text-cetl-gold-deep shrink-0 mt-0.5"
       viewBox="0 0 16 16"
       fill="none"
       stroke="currentColor"
@@ -55,28 +56,31 @@ function CheckIcon() {
   );
 }
 
-function PlusIcon({ open }: { open: boolean }) {
+/** Checkmark list item. `className` carries per-list spacing/size (gap-*, text-*). */
+function CheckItem({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
-    <svg
-      className={`w-4 h-4 shrink-0 text-cetl-gold transition-transform duration-300 ${open ? "rotate-45" : ""}`}
-      viewBox="0 0 16 16"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      aria-hidden="true"
-    >
-      <path d="M8 2v12M2 8h12" />
-    </svg>
+    <li className={`flex items-start ${className}`}>
+      <CheckIcon />
+      <span className="text-cetl-text-muted">{children}</span>
+    </li>
+  );
+}
+
+/** Rounded gold/violet gradient tile holding a module or role icon. */
+function IconTile({ icon: Icon }: { icon: React.ElementType }) {
+  return (
+    <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-cetl-gold/20 to-cetl-violet/10 border border-cetl-gold/25 flex items-center justify-center mb-4">
+      <Icon className="w-5 h-5 text-cetl-gold-deep" strokeWidth={1.5} aria-hidden="true" />
+    </div>
   );
 }
 
 function StepNode({ n, icon: Icon, title }: { n: number; icon: React.ElementType; title: string }) {
   return (
     <div className="flex flex-col items-center gap-3 text-center">
-      <span className="text-cetl-gold/60 text-xs font-semibold tracking-widest">{n}</span>
+      <span className="text-cetl-gold-deep text-xs font-semibold tracking-widest">{n}</span>
       <div className="w-20 h-20 rounded-full border border-cetl-border bg-cetl-surface flex items-center justify-center shadow-[0_0_0_1px_color-mix(in_srgb,var(--color-cetl-gold)_10%,transparent)]">
-        <Icon className="w-7 h-7 text-cetl-gold" strokeWidth={1.5} aria-hidden="true" />
+        <Icon className="w-7 h-7 text-cetl-gold-deep" strokeWidth={1.5} aria-hidden="true" />
       </div>
       <span className="font-display text-sm font-bold text-cetl-text">{title}</span>
     </div>
@@ -443,7 +447,7 @@ export function KiKompetenzprogrammView() {
           <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-cetl-text leading-[1.1] tracking-tight mb-6">
             KI-Kompetenzprogramm für Unternehmen
           </h1>
-          <p className="text-cetl-gold text-lg md:text-xl font-display italic mb-6">
+          <p className="text-cetl-gold-deep text-lg md:text-xl font-display italic mb-6">
             KI verstehen. Sicher anwenden. Wirksam umsetzen.
           </p>
           <p className="text-cetl-text-muted text-lg leading-relaxed max-w-2xl mb-4">
@@ -502,10 +506,9 @@ export function KiKompetenzprogrammView() {
             </p>
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
               {PROGRAM_OUTCOMES.map((item) => (
-                <li key={item} className="flex items-start gap-3 text-sm">
-                  <CheckIcon />
-                  <span className="text-cetl-text-muted">{item}</span>
-                </li>
+                <CheckItem key={item} className="gap-3 text-sm">
+                  {item}
+                </CheckItem>
               ))}
             </ul>
           </div>
@@ -577,19 +580,16 @@ export function KiKompetenzprogrammView() {
                 <span className="font-display text-6xl font-bold text-cetl-gold/[0.08] absolute top-5 right-6 leading-none select-none">
                   {mod.n}
                 </span>
-                <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-cetl-gold/20 to-cetl-violet/10 border border-cetl-gold/25 flex items-center justify-center mb-4">
-                  <mod.icon className="w-5 h-5 text-cetl-gold" strokeWidth={1.5} aria-hidden="true" />
-                </div>
+                <IconTile icon={mod.icon} />
                 <h3 className="font-display text-lg font-bold text-cetl-text mb-2 leading-snug">
                   {mod.title}
                 </h3>
                 <p className="text-cetl-text-muted text-sm leading-relaxed mb-5">{mod.text}</p>
                 <ul className="mt-auto flex flex-col gap-2.5">
                   {mod.items.map((item) => (
-                    <li key={item} className="flex items-start gap-2.5 text-xs">
-                      <CheckIcon />
-                      <span className="text-cetl-text-muted">{item}</span>
-                    </li>
+                    <CheckItem key={item} className="gap-2.5 text-xs">
+                      {item}
+                    </CheckItem>
                   ))}
                 </ul>
               </TiltCard>
@@ -613,7 +613,7 @@ export function KiKompetenzprogrammView() {
           {/* Org-chart style overview */}
           <div className="hidden md:flex flex-col items-center mb-16">
             <div className="w-14 h-14 rounded-full border border-cetl-gold/40 bg-cetl-dark flex items-center justify-center mb-6">
-              <Briefcase className="w-6 h-6 text-cetl-gold" strokeWidth={1.5} aria-hidden="true" />
+              <Briefcase className="w-6 h-6 text-cetl-gold-deep" strokeWidth={1.5} aria-hidden="true" />
             </div>
             <div className="w-px h-8 bg-cetl-border" />
             <div className="w-full h-px bg-cetl-border mb-8" style={{ maxWidth: "72%" }} />
@@ -621,7 +621,7 @@ export function KiKompetenzprogrammView() {
               {ROLE_JOURNEYS.map((journey) => (
                 <div key={journey.role} className="flex flex-col items-center gap-2 text-center">
                   <div className="w-11 h-11 rounded-full border border-cetl-border bg-cetl-dark flex items-center justify-center">
-                    <journey.icon className="w-5 h-5 text-cetl-gold" strokeWidth={1.5} aria-hidden="true" />
+                    <journey.icon className="w-5 h-5 text-cetl-gold-deep" strokeWidth={1.5} aria-hidden="true" />
                   </div>
                   <span className="text-cetl-text-muted text-xs font-medium leading-tight">
                     {journey.role}
@@ -637,21 +637,18 @@ export function KiKompetenzprogrammView() {
                 key={journey.role}
                 className="gradient-edge relative flex flex-col bg-cetl-dark rounded-2xl border border-cetl-border p-8"
               >
-                <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-cetl-gold/20 to-cetl-violet/10 border border-cetl-gold/25 flex items-center justify-center mb-4">
-                  <journey.icon className="w-5 h-5 text-cetl-gold" strokeWidth={1.5} aria-hidden="true" />
-                </div>
+                <IconTile icon={journey.icon} />
                 <h3 className="font-display text-xl font-bold text-cetl-text mb-1.5">{journey.role}</h3>
-                <p className="text-cetl-gold text-sm font-medium mb-3">{journey.subtitle}</p>
+                <p className="text-cetl-gold-deep text-sm font-medium mb-3">{journey.subtitle}</p>
                 <p className="text-cetl-text-muted text-sm leading-relaxed mb-5">{journey.audience}</p>
                 <p className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase mb-3">
                   Schwerpunkte
                 </p>
                 <ul className="flex flex-col gap-2 mb-6">
                   {journey.focus.map((item) => (
-                    <li key={item} className="flex items-start gap-2.5 text-sm">
-                      <CheckIcon />
-                      <span className="text-cetl-text-muted">{item}</span>
-                    </li>
+                    <CheckItem key={item} className="gap-2.5 text-sm">
+                      {item}
+                    </CheckItem>
                   ))}
                 </ul>
                 <div className="mt-auto pt-5 border-t border-cetl-border">
@@ -679,7 +676,7 @@ export function KiKompetenzprogrammView() {
           />
           <StepFlow steps={USE_CASE_STEPS} wrapClass="flex flex-wrap justify-center gap-x-1 gap-y-10" />
           <div className="mt-16 rounded-2xl border border-cetl-border bg-cetl-surface p-8 max-w-2xl mx-auto text-center">
-            <p className="text-cetl-gold text-xs font-semibold tracking-widest uppercase mb-3">
+            <p className="text-cetl-gold-deep text-xs font-semibold tracking-widest uppercase mb-3">
               Cross-Industry Learning
             </p>
             <p className="text-cetl-text-muted text-sm leading-relaxed">
@@ -708,10 +705,9 @@ export function KiKompetenzprogrammView() {
                 <h3 className="font-display text-base font-bold text-cetl-text mb-5">{group.title}</h3>
                 <ul className="flex flex-col gap-2.5">
                   {group.items.map((item) => (
-                    <li key={item} className="flex items-start gap-2.5 text-sm">
-                      <CheckIcon />
-                      <span className="text-cetl-text-muted">{item}</span>
-                    </li>
+                    <CheckItem key={item} className="gap-2.5 text-sm">
+                      {item}
+                    </CheckItem>
                   ))}
                 </ul>
               </div>
@@ -744,7 +740,7 @@ export function KiKompetenzprogrammView() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {BENEFITS.map((benefit) => (
               <div key={benefit.title} className="rounded-2xl border border-cetl-border bg-cetl-dark p-7">
-                <h3 className="font-display text-base font-bold text-cetl-gold mb-2">{benefit.title}</h3>
+                <h3 className="font-display text-base font-bold text-cetl-gold-deep mb-2">{benefit.title}</h3>
                 <p className="text-cetl-text-muted text-sm leading-relaxed">{benefit.text}</p>
               </div>
             ))}
@@ -772,7 +768,7 @@ export function KiKompetenzprogrammView() {
           </div>
 
           <div className="rounded-2xl border border-cetl-border bg-cetl-surface p-8">
-            <p className="text-cetl-gold text-xs font-semibold tracking-widest uppercase mb-3">
+            <p className="text-cetl-gold-deep text-xs font-semibold tracking-widest uppercase mb-3">
               Faculty und Expert:innen
             </p>
             <p className="text-cetl-text-muted text-sm leading-relaxed">

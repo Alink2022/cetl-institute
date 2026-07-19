@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { ARTICLE_IMAGES } from "@/lib/insights-articles";
+import { ARTICLE_IMAGES } from "@/lib/insights-index";
 import { useLanguage } from "@/lib/i18n";
 import { NavBar } from "@/components/layout/NavBar";
 import { Footer } from "@/components/layout/Footer";
@@ -25,7 +25,7 @@ export function InsightsIndexView() {
           </div>
           <Container className="relative z-10">
             <div className="max-w-3xl">
-              <p className="text-cetl-gold text-xs tracking-[0.3em] uppercase font-semibold mb-4">{ui.label}</p>
+              <p className="text-cetl-gold-deep text-xs tracking-[0.3em] uppercase font-semibold mb-4">{ui.label}</p>
               <h1 className="font-display text-4xl md:text-5xl font-bold text-cetl-text leading-tight tracking-tight mb-5">
                 {ui.pageTitle}
               </h1>
@@ -61,18 +61,18 @@ export function InsightsIndexView() {
                 )}
                 <div className="p-8 md:p-10 flex flex-col gap-4 justify-center">
                   <div className="flex items-center gap-2 flex-wrap">
-                    <span className="text-[10px] tracking-[0.25em] uppercase font-semibold text-cetl-gold border border-cetl-gold/30 px-2 py-0.5 rounded-sm">
+                    <span className="text-[10px] tracking-[0.25em] uppercase font-semibold text-cetl-gold-deep border border-cetl-gold/30 px-2 py-0.5 rounded-sm">
                       {t.INSIGHTS[0].tag}
                     </span>
                     <span className="text-cetl-text-muted text-[11px]">{t.INSIGHTS[0].category}</span>
                   </div>
-                  <h2 className="font-display text-cetl-text text-2xl md:text-3xl font-bold leading-snug group-hover:text-cetl-gold-light transition-colors duration-300">
+                  <h2 className="font-display text-cetl-text text-2xl md:text-3xl font-bold leading-snug group-hover:text-cetl-gold-deep transition-colors duration-300">
                     {t.INSIGHTS[0].title}
                   </h2>
                   <p className="text-cetl-text-muted text-base leading-relaxed">{t.INSIGHTS[0].teaser}</p>
                   <div className="flex items-center justify-between pt-3 border-t border-cetl-border/50">
                     <span className="text-cetl-text-muted text-xs">{t.INSIGHTS[0].readTime}</span>
-                    <span className="text-cetl-gold text-xs font-medium tracking-wide group-hover:underline underline-offset-4">
+                    <span className="text-cetl-gold-deep text-xs font-medium tracking-wide group-hover:underline underline-offset-4">
                       {ui.readCta} →
                     </span>
                   </div>

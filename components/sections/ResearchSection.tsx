@@ -143,7 +143,7 @@ export function ResearchSection() {
         {/* Key visual: Forschung trifft Praxis */}
         <div className="relative h-48 md:h-72 rounded-2xl overflow-hidden ring-1 ring-cetl-border mb-10">
           <Image
-            src="/i.png"
+            src="/i.webp"
             alt="Wissenschaftliche Publikationen und Notizbuch unter Messinglampe neben einem Tablet mit goldenem Netzwerk-Graph"
             fill
             sizes="(max-width: 1280px) 100vw, 1280px"

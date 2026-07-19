@@ -1,4 +1,4 @@
-export type LucideIconName = "Brain" | "TrendingUp" | "Award" | "Globe" | "Users" | "Lightbulb" | "Cog" | "Flag";
+export type LucideIconName = "Brain" | "TrendingUp" | "Award" | "Users" | "Lightbulb" | "Cog" | "Flag";
 export type TagColor = "gold" | "blue" | "muted";
 
 export interface Testimonial {

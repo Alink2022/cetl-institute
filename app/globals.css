@@ -1,16 +1,20 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* Paper & Gold — inverted enterprise authority palette */
-  --color-cetl-dark: #FAFAF7;
+  /* Paper & Gold — inverted enterprise authority palette.
+     Cleaner near-white surfaces; gold split into two roles:
+     --color-cetl-gold       fills, buttons, icons, decoration (5.9:1 vs dark text)
+     --color-cetl-gold-deep  running text/labels/links on light bg (≥4.6:1, WCAG 1.4.3) */
+  --color-cetl-dark: #FDFDFC;
   --color-cetl-darker: #0B0F1A;
-  --color-cetl-surface: #F3F1EA;
-  --color-cetl-surface-2: #EAE6DA;
-  --color-cetl-border: #E4E1D6;
+  --color-cetl-surface: #F7F6F2;
+  --color-cetl-surface-2: #F0EEE8;
+  --color-cetl-border: #E8E6DF;
   --color-cetl-muted: #8A8577;
   --color-cetl-gold: #B8862F;
+  --color-cetl-gold-deep: #8A671E;
   --color-cetl-gold-light: #D4A843;
-  --color-cetl-blue: #2E6FE8;
+  --color-cetl-blue: #2458D6;
   --color-cetl-blue-dark: #1A51C2;
   --color-cetl-violet: #7C3AED;
   --color-cetl-text: #12141C;
@@ -94,11 +98,11 @@ h1, h2, h3, h4, .font-display {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--color-cetl-darker);
+  background: var(--color-cetl-surface);
 }
 ::-webkit-scrollbar-thumb {
   background: var(--color-cetl-border);
-  border: 2px solid var(--color-cetl-darker);
+  border: 2px solid var(--color-cetl-surface);
   border-radius: 999px;
 }
 ::-webkit-scrollbar-thumb:hover {

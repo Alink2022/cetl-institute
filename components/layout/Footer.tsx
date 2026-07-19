@@ -23,7 +23,7 @@ export function Footer() {
             <div className="flex items-center gap-3">
               <div className="rounded-full bg-cetl-gold/10 ring-1 ring-cetl-gold/20 p-1.5">
                 <Image
-                  src="/cetl-logo.png"
+                  src="/cetl-logo.webp"
                   alt="CETL Institute"
                   width={40}
                   height={40}
@@ -47,7 +47,7 @@ export function Footer() {
               <a
                 key={item.href}
                 href={toHref(item.href)}
-                className="text-cetl-text-muted hover:text-cetl-gold text-sm transition-colors duration-200"
+                className="text-cetl-text-muted hover:text-cetl-gold-deep text-sm transition-colors duration-200"
               >
                 {item.label}
               </a>
@@ -63,7 +63,7 @@ export function Footer() {
             <p className="text-cetl-text-muted text-sm">{footer.region}</p>
             <a
               href={`mailto:${t.SITE.email}`}
-              className="text-cetl-gold hover:text-cetl-gold-light text-sm transition-colors duration-200"
+              className="text-cetl-gold-deep hover:text-cetl-gold-deep text-sm transition-colors duration-200"
             >
               {t.SITE.email}
             </a>

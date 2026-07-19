@@ -17,7 +17,7 @@ export function CommunitySection() {
       </div>
 
       <Container className="relative">
-        <p className="text-cetl-gold text-xs tracking-[0.3em] uppercase font-semibold mb-3">{ui.label}</p>
+        <p className="text-cetl-gold-deep text-xs tracking-[0.3em] uppercase font-semibold mb-3">{ui.label}</p>
         <h2 className="font-display text-3xl md:text-4xl font-bold text-cetl-text mb-4 max-w-2xl leading-[1.1]">
           {ui.title}
         </h2>
@@ -28,7 +28,7 @@ export function CommunitySection() {
           {c.pills.map((pill) => (
             <span
               key={pill}
-              className="px-4 py-1.5 rounded-full border border-cetl-border text-cetl-text-muted text-xs font-medium tracking-wide hover:border-cetl-gold/40 hover:text-cetl-gold transition-colors duration-200 cursor-default"
+              className="px-4 py-1.5 rounded-full border border-cetl-border text-cetl-text-muted text-xs font-medium tracking-wide hover:border-cetl-gold/40 hover:text-cetl-gold-deep transition-colors duration-200 cursor-default"
             >
               {pill}
             </span>
@@ -42,7 +42,7 @@ export function CommunitySection() {
               key={f.title}
               className="p-6 rounded-2xl border border-cetl-border bg-cetl-surface-2 flex flex-col gap-3"
             >
-              <h3 className="text-cetl-gold font-semibold text-sm">{f.title}</h3>
+              <h3 className="text-cetl-gold-deep font-semibold text-sm">{f.title}</h3>
               <p className="text-cetl-text-muted text-sm leading-relaxed">{f.desc}</p>
             </div>
           ))}
@@ -51,7 +51,7 @@ export function CommunitySection() {
         {/* Key visual: Executive-Empfang */}
         <div className="relative h-56 md:h-80 rounded-2xl overflow-hidden ring-1 ring-cetl-border mb-14">
           <Image
-            src="/g.png"
+            src="/g.webp"
             alt="Abendlicher Executive-Empfang in einem Wiener Palais mit warmem goldenem Licht und Blick auf die beleuchtete Stadt"
             fill
             sizes="(max-width: 1280px) 100vw, 1280px"
@@ -65,7 +65,7 @@ export function CommunitySection() {
           <p className="text-cetl-text text-xl md:text-2xl font-display font-medium italic text-center max-w-2xl mx-auto leading-relaxed">
             &ldquo;{c.quote}&rdquo;
           </p>
-          <p className="text-cetl-gold text-xs tracking-[0.25em] uppercase font-semibold text-center mt-4">
+          <p className="text-cetl-gold-deep text-xs tracking-[0.25em] uppercase font-semibold text-center mt-4">
             {c.quoteAttribution}
           </p>
         </div>

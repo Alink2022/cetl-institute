@@ -67,7 +67,7 @@ export function ProblemSection() {
             </div>
 
             <div className="pt-4 border-t border-cetl-border">
-              <p className="text-gradient-gold font-semibold text-sm tracking-wide uppercase">{problem.answer}</p>
+              <p className="text-cetl-gold-deep font-semibold text-sm tracking-wide uppercase">{problem.answer}</p>
             </div>
           </div>
         </div>

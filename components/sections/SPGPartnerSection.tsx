@@ -58,7 +58,9 @@ export function SPGPartnerSection() {
                     className="object-contain"
                   />
                 </div>
-                <h3 className="font-display text-2xl md:text-3xl font-bold text-cetl-text">{c.name}</h3>
+                {/* h2, nicht h3: die Sektion hat sonst keine Überschrift, ein h3 hier würde
+                    einen Heading-Level-Sprung erzeugen (letztes Level davor war h2). */}
+                <h2 className="font-display text-2xl md:text-3xl font-bold text-cetl-text">{c.name}</h2>
               </div>
               <p className="text-cetl-text-muted text-sm md:text-base leading-relaxed max-w-xl">
                 {c.description}
@@ -72,7 +74,7 @@ export function SPGPartnerSection() {
                     key={stat.label}
                     className="flex flex-col gap-0.5 px-4 py-3 rounded-xl border border-cetl-border bg-cetl-surface-2"
                   >
-                    <span className="font-display text-xl font-bold text-cetl-gold">{stat.value}</span>
+                    <span className="font-display text-xl font-bold text-cetl-gold-deep">{stat.value}</span>
                     <span className="text-cetl-text-muted text-[11px] uppercase tracking-wide">{stat.label}</span>
                   </div>
                 ))}
@@ -81,7 +83,7 @@ export function SPGPartnerSection() {
                 href={c.cta.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-cetl-gold/40 bg-cetl-gold/5 text-cetl-gold text-sm font-semibold hover:bg-cetl-gold/10 hover:border-cetl-gold/60 transition-all duration-200"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-cetl-gold/40 bg-cetl-gold/5 text-cetl-gold-deep text-sm font-semibold hover:bg-cetl-gold/10 hover:border-cetl-gold/60 transition-all duration-200"
               >
                 {c.cta.label}
                 <svg

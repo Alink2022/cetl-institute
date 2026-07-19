@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { ARTICLE_IMAGES, ARTICLE_SLUGS, getArticle } from "@/lib/insights-articles";
+import { ARTICLE_IMAGES, ARTICLE_SLUGS } from "@/lib/insights-index";
+import { getArticle } from "@/lib/insights-articles";
 import { ArticleView } from "@/components/insights/ArticleView";
 import { de } from "@/lib/content.de";
 
@@ -43,6 +44,8 @@ export default async function ArticlePage({ params }: PageProps) {
   const { slug } = await params;
   const article = getArticle("de", slug);
   if (!article) notFound();
+  // Beide Sprachfassungen an das Client-Island übergeben; die Umschaltung erfolgt dort.
+  const articleEn = getArticle("en", slug) ?? article;
 
   const url = `${SITE_URL}/insights/${slug}`;
   const jsonLd = {
@@ -66,7 +69,7 @@ export default async function ArticlePage({ params }: PageProps) {
           "@type": "Organization",
           name: "CETL Institute",
           url: SITE_URL,
-          logo: { "@type": "ImageObject", url: `${SITE_URL}/cetl-logo.png` },
+          logo: { "@type": "ImageObject", url: `${SITE_URL}/cetl-logo.webp` },
         },
         mainEntityOfPage: url,
       },
@@ -88,7 +91,7 @@ export default async function ArticlePage({ params }: PageProps) {
       <script type="application/ld+json" suppressHydrationWarning>
         {jsonLdText}
       </script>
-      <ArticleView slug={slug} />
+      <ArticleView slug={slug} article={{ de: article, en: articleEn }} />
     </>
   );
 }

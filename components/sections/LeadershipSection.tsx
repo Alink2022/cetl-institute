@@ -56,7 +56,7 @@ export function LeadershipSection() {
               <div className="absolute -inset-2 rounded-2xl bg-gradient-to-br from-cetl-gold-light via-cetl-gold to-cetl-violet opacity-50 blur-xl" />
               <div className="gradient-edge relative w-full aspect-[4/5] rounded-2xl overflow-hidden">
                 <Image
-                  src="/alin-kalam.png"
+                  src="/alin-kalam.webp"
                   alt={leadership.photoAlt}
                   fill
                   sizes="280px"
@@ -71,7 +71,7 @@ export function LeadershipSection() {
 
             <div>
               <h3 className="font-display text-2xl font-bold text-cetl-text">{md.name}</h3>
-              <p className="text-gradient-gold font-semibold text-sm tracking-wide uppercase mt-1">{md.title}</p>
+              <p className="text-cetl-gold-deep font-semibold text-sm tracking-wide uppercase mt-1">{md.title}</p>
               <p className="text-cetl-text-muted text-sm leading-snug mt-2">{md.headline}</p>
               <p className="text-cetl-text-muted/70 text-xs mt-2">{md.location}</p>
             </div>
@@ -79,7 +79,7 @@ export function LeadershipSection() {
             <MagneticButton
               href={md.linkedin}
               external
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-cetl-gold/40 text-cetl-gold text-sm font-semibold tracking-wide hover:border-cetl-gold hover:bg-cetl-gold/10"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-cetl-gold/40 text-cetl-gold-deep text-sm font-semibold tracking-wide hover:border-cetl-gold hover:bg-cetl-gold/10"
             >
               <LinkedInIcon />
               {leadership.linkedin}
@@ -140,7 +140,7 @@ export function LeadershipSection() {
                 <span className="font-display text-2xl font-bold text-cetl-gold/50 italic">+</span>
               </div>
               <div>
-                <p className="text-cetl-gold text-sm font-semibold italic">{faculty.featuredTitle}</p>
+                <p className="text-cetl-gold-deep text-sm font-semibold italic">{faculty.featuredTitle}</p>
                 <p className="text-cetl-text-muted text-xs leading-relaxed mt-1">{faculty.featuredDesc}</p>
               </div>
             </div>

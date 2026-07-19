@@ -14,11 +14,11 @@ export function CaseStudySection() {
       {/* Key visual: Wien-Skyline mit Daten-Grid, stark abgedunkelt als Hintergrund */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden>
         <Image
-          src="/h.png"
+          src="/h.webp"
           alt=""
           fill
           sizes="100vw"
-          className="object-cover opacity-[0.16]"
+          className="object-cover opacity-[0.08]"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-cetl-dark via-cetl-dark/60 to-cetl-dark" />
       </div>
@@ -27,7 +27,7 @@ export function CaseStudySection() {
       </div>
 
       <Container className="relative">
-        <p className="text-cetl-gold text-xs tracking-[0.3em] uppercase font-semibold mb-3">{ui.label}</p>
+        <p className="text-cetl-gold-deep text-xs tracking-[0.3em] uppercase font-semibold mb-3">{ui.label}</p>
         <h2 className="font-display text-3xl md:text-4xl font-bold text-cetl-text mb-2">{ui.title}</h2>
         <p className="text-cetl-text-muted text-sm leading-relaxed mb-12 max-w-xl">{ui.subtitle}</p>
 
@@ -36,13 +36,13 @@ export function CaseStudySection() {
           <div className="bg-cetl-surface p-8 lg:p-10 flex flex-col gap-6">
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <Image src="/cetl-logo.png" alt="CETL Institute" width={36} height={36} className="opacity-80 shrink-0" unoptimized />
+                <Image src="/cetl-logo.webp" alt="CETL Institute" width={36} height={36} className="opacity-80 shrink-0" />
                 <span className="text-cetl-border text-lg font-light">×</span>
                 <div className="w-9 h-9 rounded-lg bg-white border border-cetl-border flex items-center justify-center p-1 shrink-0">
                   <Image src="/logos/raiffeisen.svg" alt="Raiffeisenlandesbank OÖ" width={28} height={28} className="object-contain" unoptimized />
                 </div>
               </div>
-              <p className="text-cetl-gold text-[10px] tracking-[0.25em] uppercase font-semibold mb-2">{cs.clientTag}</p>
+              <p className="text-cetl-gold-deep text-[10px] tracking-[0.25em] uppercase font-semibold mb-2">{cs.clientTag}</p>
               <h3 className="font-display text-2xl font-bold text-cetl-text leading-snug">{cs.client}</h3>
             </div>
             <p className="text-cetl-text-muted text-sm leading-relaxed">{cs.desc}</p>
@@ -52,7 +52,7 @@ export function CaseStudySection() {
               {cs.metrics.map((m) => (
                 <div key={m.label} className="flex items-center justify-between py-3">
                   <span className="text-cetl-text-muted text-sm">{m.label}</span>
-                  <span className={`text-sm font-semibold ${m.highlight ? "text-cetl-gold" : "text-cetl-text"}`}>
+                  <span className={`text-sm font-semibold ${m.highlight ? "text-cetl-gold-deep" : "text-cetl-text"}`}>
                     {m.value}
                   </span>
                 </div>

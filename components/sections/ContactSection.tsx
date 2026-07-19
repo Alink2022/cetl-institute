@@ -40,11 +40,11 @@ export function ContactSection() {
       {/* Key visual: Wien bei Nacht, stark abgedunkelt als Hintergrund */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden>
         <Image
-          src="/f.png"
+          src="/f.webp"
           alt=""
           fill
           sizes="100vw"
-          className="object-cover opacity-[0.14]"
+          className="object-cover opacity-[0.08]"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-cetl-dark via-cetl-dark/70 to-cetl-dark" />
       </div>
@@ -52,7 +52,7 @@ export function ContactSection() {
         {/* Centered logo above section */}
         <div className="flex justify-center mb-10">
           <div className="rounded-full bg-white/[0.04] ring-1 ring-cetl-gold/20 p-3">
-            <Image src="/cetl-logo.png" alt="CETL Institute" width={72} height={72} className="object-contain" />
+            <Image src="/cetl-logo.webp" alt="CETL Institute" width={72} height={72} className="object-contain" />
           </div>
         </div>
 
@@ -75,7 +75,7 @@ export function ContactSection() {
                   {item.href ? (
                     <a
                       href={item.href}
-                      className="text-cetl-gold hover:text-cetl-gold-light transition-colors text-sm"
+                      className="text-cetl-gold-deep hover:text-cetl-text transition-colors text-sm"
                     >
                       {item.value}
                     </a>
@@ -88,7 +88,7 @@ export function ContactSection() {
 
             <div className="flex items-start gap-3 bg-cetl-surface border border-cetl-border rounded-xl p-5">
               <Users
-                className="w-4 h-4 text-cetl-gold mt-0.5 shrink-0"
+                className="w-4 h-4 text-cetl-gold-deep mt-0.5 shrink-0"
                 strokeWidth={1.5}
                 aria-hidden="true"
               />
@@ -115,7 +115,7 @@ export function ContactSection() {
               <div className="relative flex flex-col items-center justify-center h-full gap-4 py-16 text-center">
                 <div className="w-12 h-12 rounded-full bg-cetl-gold/10 border border-cetl-gold/30 flex items-center justify-center">
                   <svg
-                    className="w-6 h-6 text-cetl-gold"
+                    className="w-6 h-6 text-cetl-gold-deep"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
@@ -147,7 +147,7 @@ export function ContactSection() {
                       type="text"
                       value={form.name}
                       onChange={handleChange}
-                      className="bg-cetl-dark border border-cetl-border rounded-lg text-cetl-text text-sm px-4 py-3 focus:outline-none focus:border-cetl-gold/60 focus:ring-2 focus:ring-cetl-gold/10 transition-all placeholder:text-cetl-text-muted/40"
+                      className="bg-cetl-dark border border-cetl-border rounded-lg text-cetl-text text-sm px-4 py-3 focus:outline-none focus:border-cetl-gold focus:ring-2 focus:ring-cetl-gold/50 transition-all placeholder:text-cetl-text-muted/40"
                       placeholder={contact.namePlaceholder}
                     />
                   </div>
@@ -165,7 +165,7 @@ export function ContactSection() {
                       type="text"
                       value={form.company}
                       onChange={handleChange}
-                      className="bg-cetl-dark border border-cetl-border rounded-lg text-cetl-text text-sm px-4 py-3 focus:outline-none focus:border-cetl-gold/60 focus:ring-2 focus:ring-cetl-gold/10 transition-all placeholder:text-cetl-text-muted/40"
+                      className="bg-cetl-dark border border-cetl-border rounded-lg text-cetl-text text-sm px-4 py-3 focus:outline-none focus:border-cetl-gold focus:ring-2 focus:ring-cetl-gold/50 transition-all placeholder:text-cetl-text-muted/40"
                       placeholder={contact.companyPlaceholder}
                     />
                   </div>
@@ -185,7 +185,7 @@ export function ContactSection() {
                     type="email"
                     value={form.email}
                     onChange={handleChange}
-                    className="bg-cetl-dark border border-cetl-border rounded-lg text-cetl-text text-sm px-4 py-3 focus:outline-none focus:border-cetl-gold/60 focus:ring-2 focus:ring-cetl-gold/10 transition-all placeholder:text-cetl-text-muted/40"
+                    className="bg-cetl-dark border border-cetl-border rounded-lg text-cetl-text text-sm px-4 py-3 focus:outline-none focus:border-cetl-gold focus:ring-2 focus:ring-cetl-gold/50 transition-all placeholder:text-cetl-text-muted/40"
                     placeholder={contact.emailPlaceholder}
                   />
                 </div>
@@ -202,7 +202,7 @@ export function ContactSection() {
                     name="interest"
                     value={form.interest}
                     onChange={handleChange}
-                    className="bg-cetl-dark border border-cetl-border text-cetl-text text-sm px-4 py-3 focus:outline-none focus:border-cetl-gold/60 transition-colors"
+                    className="bg-cetl-dark border border-cetl-border text-cetl-text text-sm px-4 py-3 focus:outline-none focus:border-cetl-gold focus:ring-2 focus:ring-cetl-gold/50 transition-colors"
                   >
                     <option value="">{contact.interestPlaceholder}</option>
                     {t.CONTACT_INTEREST_OPTIONS.map((opt) => (
@@ -224,7 +224,7 @@ export function ContactSection() {
                     rows={4}
                     value={form.message}
                     onChange={handleChange}
-                    className="bg-cetl-dark border border-cetl-border rounded-lg text-cetl-text text-sm px-4 py-3 focus:outline-none focus:border-cetl-gold/60 focus:ring-2 focus:ring-cetl-gold/10 transition-all resize-none placeholder:text-cetl-text-muted/40"
+                    className="bg-cetl-dark border border-cetl-border rounded-lg text-cetl-text text-sm px-4 py-3 focus:outline-none focus:border-cetl-gold focus:ring-2 focus:ring-cetl-gold/50 transition-all resize-none placeholder:text-cetl-text-muted/40"
                     placeholder={contact.messagePlaceholder}
                   />
                 </div>

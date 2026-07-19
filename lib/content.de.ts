@@ -1,5 +1,5 @@
 import type { ContentBundle } from "./content-types";
-import { ARTICLES } from "./insights-articles";
+import { ARTICLE_META } from "./insights-index";
 
 export const de: ContentBundle = {
   SITE: {
@@ -429,8 +429,8 @@ export const de: ContentBundle = {
       messageLabel: "Kontext",
       messagePlaceholder: "Beschreiben Sie die aktuelle Architektur-Situation, regulatorische Anforderungen oder den strategischen Kontext Ihrer Anfrage...",
       submit: "Anfrage übermitteln",
-      successTitle: "Anfrage übermittelt",
-      successText: "Ihr E-Mail-Programm sollte sich geöffnet haben. Rückmeldung innerhalb von 48 Stunden.",
+      successTitle: "E-Mail-Programm geöffnet",
+      successText: "Bitte prüfen Sie Ihr E-Mail-Programm und senden Sie die vorbereitete Nachricht ab. Falls sich nichts geöffnet hat, kontaktieren Sie uns bitte direkt über die nebenstehenden Kontaktdaten.",
       mailSubjectPrefix: "CETL Anfrage",
       mailGeneral: "Allgemein",
       mailFieldName: "Name",
@@ -549,8 +549,8 @@ export const de: ContentBundle = {
     },
   ],
 
-  // Karten werden aus den Volltext-Artikeln abgeleitet — eine Quelle, keine Duplikate.
-  INSIGHTS: ARTICLES.de.map(({ blocks: _blocks, date: _date, ...card }) => card),
+  // Karten-Metadaten kommen client-sicher aus insights-index (keine Volltexte im Bundle).
+  INSIGHTS: ARTICLE_META.de,
 
   INST_STATS: [
     { value: "20+", label: "Jahre Industrieerfahrung", sub: "Führungsteams in Banken, Industrie & Public Sector" },

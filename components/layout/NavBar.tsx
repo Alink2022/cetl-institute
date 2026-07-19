@@ -18,6 +18,8 @@ export function NavBar() {
   const toHref = (href: string) => (href.startsWith("#") && !isHome ? `/${href}` : href);
 
   const rafRef = useRef<number | null>(null);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const mobileToggleRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const handler = () => {
@@ -42,6 +44,42 @@ export function NavBar() {
     };
   }, [mobileOpen]);
 
+  // Fokus-Management für das mobile Vollbild-Menü: Escape schließt es, Fokus bleibt
+  // innerhalb des Menüs gefangen (Tab/Shift+Tab wrappen), und beim Öffnen/Schließen
+  // wandert der Fokus sichtbar mit (kein Fokusverlust in verdeckten Hintergrund-Inhalt).
+  useEffect(() => {
+    if (!mobileOpen) return;
+
+    const menu = mobileMenuRef.current;
+    const firstLink = menu?.querySelector<HTMLElement>("a, button");
+    firstLink?.focus();
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setMobileOpen(false);
+        mobileToggleRef.current?.focus();
+        return;
+      }
+      if (e.key !== "Tab" || !menu) return;
+      const focusable = Array.from(
+        menu.querySelectorAll<HTMLElement>("a, button, input, select, textarea, [tabindex]:not([tabindex='-1'])")
+      ).filter((el) => !el.hasAttribute("disabled"));
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [mobileOpen]);
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 pt-3 md:pt-4">
       <Container>
@@ -56,7 +94,7 @@ export function NavBar() {
           <a href={isHome ? "#" : "/"} className="flex items-center gap-2 group shrink-0">
             <div className="rounded-full bg-cetl-gold/10 ring-1 ring-cetl-gold/20 p-1 group-hover:scale-105 transition-transform duration-300">
               <Image
-                src="/cetl-logo.png"
+                src="/cetl-logo.webp"
                 alt="CETL Institute"
                 width={40}
                 height={40}
@@ -97,7 +135,8 @@ export function NavBar() {
 
           {/* Mobile menu button */}
           <button
-            className="md:hidden text-cetl-text-muted hover:text-cetl-text p-2"
+            ref={mobileToggleRef}
+            className="md:hidden text-cetl-text-muted hover:text-cetl-text p-3"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label={t.UI.nav.toggleMenu}
             aria-expanded={mobileOpen}
@@ -125,6 +164,13 @@ export function NavBar() {
       {/* Mobile full-screen menu */}
       <div
         id="mobile-menu"
+        ref={mobileMenuRef}
+        role="dialog"
+        aria-modal="true"
+        aria-label={t.UI.nav.toggleMenu}
+        // `inert` hält das Menü (und alle Links darin) aus dem Tab-Fokus heraus, solange es
+        // unsichtbar ist — sonst könnten Tastaturnutzer:innen unsichtbare Links fokussieren.
+        inert={!mobileOpen}
         className={`md:hidden fixed inset-0 top-0 bg-cetl-dark/98 backdrop-blur-xl transition-all duration-500 ${
           mobileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
@@ -132,7 +178,7 @@ export function NavBar() {
         <div className="flex flex-col h-full pt-20 px-8">
           <div className="flex items-center gap-3 mb-8">
             <div className="rounded-full bg-cetl-gold/10 ring-1 ring-cetl-gold/20 p-1.5">
-              <Image src="/cetl-logo.png" alt="CETL Institute" width={40} height={40} className="object-contain" />
+              <Image src="/cetl-logo.webp" alt="CETL Institute" width={40} height={40} className="object-contain" />
             </div>
             <div className="flex flex-col leading-none">
               <span className="text-cetl-text font-display font-bold text-base tracking-wide">CETL</span>
