@@ -118,6 +118,78 @@ export interface IntersectionCategory {
   partners: IntersectionPartner[];
 }
 
+/** Komplette Textinhalte der Seite /programme/ki-kompetenzprogramm.
+ *  Icons bleiben in der View-Komponente und werden per Index zugeordnet —
+ *  die Reihenfolge der Arrays (cycle.steps, foundation.modules, journeys.roles,
+ *  useCases.steps, process.steps) muss daher zwischen DE und EN identisch sein. */
+export interface KiProgramContent {
+  hero: {
+    badge: string;
+    title: string;
+    tagline: string;
+    p1: string;
+    p2: string;
+    tags: string[];
+    cta: string;
+  };
+  intro: {
+    label: string;
+    title: string;
+    p1: string;
+    p2: string;
+    outcomesLabel: string;
+    outcomes: string[];
+  };
+  keyVisual: { alt: string; caption: string };
+  cycle: {
+    label: string;
+    title: string;
+    subtitle: string;
+    steps: string[];
+    details: { n: string; title: string; text: string }[];
+  };
+  foundation: {
+    label: string;
+    title: string;
+    subtitle: string;
+    modules: { n: string; title: string; text: string; items: string[] }[];
+  };
+  journeys: {
+    label: string;
+    title: string;
+    subtitle: string;
+    focusLabel: string;
+    projectLabel: string;
+    roles: { role: string; subtitle: string; audience: string; focus: string[]; project: string }[];
+  };
+  useCases: {
+    label: string;
+    title: string;
+    subtitle: string;
+    steps: string[];
+    crossIndustryLabel: string;
+    crossIndustryText: string;
+  };
+  customization: {
+    label: string;
+    title: string;
+    subtitle: string;
+    groups: { title: string; items: string[] }[];
+  };
+  process: { label: string; title: string; subtitle: string; steps: string[] };
+  benefits: { label: string; title: string; items: { title: string; text: string }[] };
+  formats: {
+    label: string;
+    title: string;
+    subtitle: string;
+    badges: string[];
+    facultyLabel: string;
+    facultyText: string;
+  };
+  faq: { label: string; title: string; items: { q: string; a: string }[] };
+  closing: { title: string; text: string; cta: string };
+}
+
 export interface ContentBundle {
   TESTIMONIALS: Testimonial[];
   INSIGHTS: Insight[];
@@ -201,8 +273,9 @@ export interface ContentBundle {
     };
     pillars: { label: string; title: string; subtitle: string };
     methodology: { label: string; title: string; subtitle: string; cta: string };
-    programs: { label: string; title: string; subtitle: string; cta: string; filterAll: string; filterLabel: string; ctaAdvisor: string; detailCta: string };
+    programs: { label: string; title: string; subtitle: string; cta: string; filterAll: string; filterLabel: string; ctaAdvisor: string; detailCta: string; rolesLabel: string; roles: string[] };
     partners: { trusted: string; blurbBefore: string; blurbHackathon: string; blurbAfter: string };
+    trustBar: { label: string };
     leadership: {
       label: string;
       title: string;
@@ -286,4 +359,5 @@ export interface ContentBundle {
       items: { title: string; desc: string }[];
     };
   };
+  KI_PROGRAM: KiProgramContent;
 }

@@ -11,7 +11,7 @@ export function TrustBar() {
       <div className="max-w-6xl mx-auto flex flex-col items-center gap-10">
         {/* Label */}
         <p className="text-cetl-text-muted text-[10px] font-semibold tracking-[0.3em] uppercase">
-          In Partnerschaft mit führenden Institutionen
+          {t.UI.trustBar.label}
         </p>
 
         {/* Logos */}

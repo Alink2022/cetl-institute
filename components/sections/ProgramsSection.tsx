@@ -69,12 +69,8 @@ function PersonIcon() {
   );
 }
 
-const ROLE_ROW = [
-  { icon: UserCheck, label: "KI-Anwender:innen" },
-  { icon: MessageCircle, label: "KI-Champions" },
-  { icon: Code2, label: "Interne KI-Entwickler:innen" },
-  { icon: Briefcase, label: "KI-Leadership" },
-];
+// Icon order matches t.UI.programs.roles array order
+const ROLE_ICONS = [UserCheck, MessageCircle, Code2, Briefcase];
 
 export function ProgramsSection() {
   const { t } = useLanguage();
@@ -213,17 +209,20 @@ export function ProgramsSection() {
             </div>
 
             <p className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase mb-5">
-              Rollenbasierte Learning Journeys
+              {t.UI.programs.rolesLabel}
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-5 mb-10">
-              {ROLE_ROW.map((role) => (
-                <div key={role.label} className="flex flex-col items-center gap-2.5 text-center">
+              {t.UI.programs.roles.map((label, i) => {
+                const Icon = ROLE_ICONS[i];
+                return (
+                <div key={label} className="flex flex-col items-center gap-2.5 text-center">
                   <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-cetl-gold/20 to-cetl-violet/10 border border-cetl-gold/25 flex items-center justify-center">
-                    <role.icon className="w-5 h-5 text-cetl-gold-deep" strokeWidth={1.5} aria-hidden="true" />
+                    <Icon className="w-5 h-5 text-cetl-gold-deep" strokeWidth={1.5} aria-hidden="true" />
                   </div>
-                  <span className="text-cetl-text-muted text-xs font-medium leading-tight">{role.label}</span>
+                  <span className="text-cetl-text-muted text-xs font-medium leading-tight">{label}</span>
                 </div>
-              ))}
+                );
+              })}
             </div>
 
             {flagship.href && (

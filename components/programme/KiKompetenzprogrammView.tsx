@@ -36,6 +36,7 @@ import { MagneticButton } from "@/components/ui/MagneticButton";
 import { NavBar } from "@/components/layout/NavBar";
 import { Footer } from "@/components/layout/Footer";
 import { PlusIcon } from "@/components/ui/PlusIcon";
+import { useLanguage } from "@/lib/i18n";
 
 /* ── Shared bits ─────────────────────────────────────────────── */
 
@@ -56,7 +57,6 @@ function CheckIcon() {
   );
 }
 
-/** Checkmark list item. `className` carries per-list spacing/size (gap-*, text-*). */
 function CheckItem({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
     <li className={`flex items-start ${className}`}>
@@ -66,7 +66,6 @@ function CheckItem({ children, className = "" }: { children: React.ReactNode; cl
   );
 }
 
-/** Rounded gold/violet gradient tile holding a module or role icon. */
 function IconTile({ icon: Icon }: { icon: React.ElementType }) {
   return (
     <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-cetl-gold/20 to-cetl-violet/10 border border-cetl-gold/25 flex items-center justify-center mb-4">
@@ -87,19 +86,20 @@ function StepNode({ n, icon: Icon, title }: { n: number; icon: React.ElementType
   );
 }
 
-/** Numbered node row with a thin connecting line — used for the 4/5/6/7-step diagrams. */
 function StepFlow({
   steps,
+  icons,
   wrapClass = "flex flex-wrap justify-center gap-x-2 gap-y-10",
 }: {
-  steps: { icon: React.ElementType; title: string }[];
+  steps: string[];
+  icons: React.ElementType[];
   wrapClass?: string;
 }) {
   return (
     <div className={`relative ${wrapClass}`}>
-      {steps.map((s, i) => (
-        <div key={s.title} className="flex items-center">
-          <StepNode n={i + 1} icon={s.icon} title={s.title} />
+      {steps.map((title, i) => (
+        <div key={title} className="flex items-center">
+          <StepNode n={i + 1} icon={icons[i]} title={title} />
           {i < steps.length - 1 && (
             <div className="hidden md:block w-10 lg:w-14 h-px bg-gradient-to-r from-cetl-gold/40 via-cetl-border to-cetl-gold/40 mx-1 -translate-y-6" />
           )}
@@ -109,325 +109,28 @@ function StepFlow({
   );
 }
 
-/* ── Content data ────────────────────────────────────────────── */
+/* ── Icon arrays — order must match content bundle arrays ─────── */
 
-const CYCLE_STEPS = [
-  { icon: Lightbulb, title: "Verstehen" },
-  { icon: Cog, title: "Anwenden" },
-  { icon: Users, title: "Übertragen" },
-  { icon: Flag, title: "Umsetzen" },
-];
+// cycle.steps: Understand / Apply / Transfer / Implement
+const CYCLE_ICONS = [Lightbulb, Cog, Users, Flag];
 
-const CYCLE_DETAILS = [
-  {
-    n: "1",
-    title: "Verstehen",
-    text: "Die Teilnehmenden lernen, wie Daten, künstliche Intelligenz und moderne Automatisierung funktionieren. Sie können Potenziale, Grenzen und Risiken realistisch einordnen.",
-  },
-  {
-    n: "2",
-    title: "Anwenden",
-    text: "Unternehmenseigene Werkzeuge, Prozesse und Standards werden direkt in das Programm integriert. Die Teilnehmenden erproben KI anhand typischer Aufgaben aus ihrem Arbeitsalltag.",
-  },
-  {
-    n: "3",
-    title: "Übertragen",
-    text: "Praxisbeispiele aus unterschiedlichen Unternehmensbereichen und Branchen eröffnen neue Perspektiven. Erfolgreiche Muster werden auf die eigene Organisation übertragen.",
-  },
-  {
-    n: "4",
-    title: "Umsetzen",
-    text: "Jede Lernreise ist mit einem konkreten Anwendungsfall verbunden. Aus ersten Ideen entstehen strukturierte Use Cases, Prototypen, Business Cases oder Umsetzungsroadmaps.",
-  },
-];
+// foundation.modules 01–06
+const FOUNDATION_ICONS = [Database, Brain, Laptop, LineChart, Scale, Target];
 
-const PROGRAM_OUTCOMES = [
-  "ein gemeinsames Verständnis von Daten, KI und Automatisierung",
-  "einen sicheren und verantwortungsvollen Umgang mit KI",
-  "produktive Anwendungen für den Arbeitsalltag",
-  "konkrete Use Cases mit nachvollziehbarem Nutzen",
-  "interne Multiplikator:innen und KI-Expert:innen",
-  "eine tragfähige Grundlage für die Skalierung von KI",
-];
+// journeys.roles: Users / Champions / Developers / Leadership
+const JOURNEY_ICONS = [UserCheck, MessageCircle, Code2, Briefcase];
 
-const FOUNDATION_MODULES = [
-  {
-    n: "01",
-    icon: Database,
-    title: "Daten verstehen und nutzen",
-    text: "Grundlegendes Verständnis für Datenstrukturen, Datenqualität und datenbasierte Entscheidungen.",
-    items: [
-      "Datentypen, Datenquellen und Datenarchitekturen",
-      "Datenqualität, Governance und Verantwortlichkeiten",
-      "Data Value Chain und analytisches Denken",
-      "Visualisierung und Storytelling mit Daten",
-      "Identifikation relevanter Daten für eigene Anwendungsfälle",
-    ],
-  },
-  {
-    n: "02",
-    icon: Brain,
-    title: "Wie künstliche Intelligenz funktioniert",
-    text: "Technologische Grundlagen, verständlich und ohne unnötige technische Komplexität.",
-    items: [
-      "Grundlagen von Machine Learning und generativer KI",
-      "Funktionsweise von Large Language Models",
-      "Chancen, Grenzen und typische Fehlerquellen",
-      "Halluzinationen, Bias und Verlässlichkeit",
-      "Einordnung unterschiedlicher KI-Technologien",
-    ],
-  },
-  {
-    n: "03",
-    icon: Laptop,
-    title: "KI im Arbeitsalltag",
-    text: "KI-Werkzeuge sicher und produktiv einsetzen.",
-    items: [
-      "Recherchieren, strukturieren und zusammenfassen",
-      "Texte, Präsentationen und Analysen erstellen",
-      "Effektives Prompting und Qualitätskontrolle",
-      "KI-gestützte Arbeitsabläufe entwickeln",
-      "Einsatz unternehmenseigener KI- und Copilot-Lösungen",
-    ],
-  },
-  {
-    n: "04",
-    icon: LineChart,
-    title: "Machine Learning und Data Science",
-    text: "Praxisnahes Verständnis für analytische und prognostische KI-Anwendungen.",
-    items: [
-      "Grundlegende Machine-Learning-Methoden",
-      "Predictive Analytics und generative KI",
-      "Data-Science-Workflows und Modelllogik",
-      "Machbarkeits- und Datenchecks",
-      "Anwendungsfälle für Prognosen, Klassifikation und Anomalieerkennung",
-    ],
-  },
-  {
-    n: "05",
-    icon: Scale,
-    title: "Prozesse, Governance und Verantwortung",
-    text: "KI muss nicht nur funktionieren, sondern auch sicher und verantwortungsvoll eingesetzt werden.",
-    items: [
-      "Prozessanalyse, Digitalisierung und Automatisierung",
-      "Datenschutz und Informationssicherheit",
-      "EU AI Act und regulatorische Anforderungen",
-      "Responsible AI und vertrauenswürdige KI",
-      "Rollen, Verantwortlichkeiten und Freigabeprozesse",
-    ],
-  },
-  {
-    n: "06",
-    icon: Target,
-    title: "Vom Use Case zum Business Case",
-    text: "Aus einer Idee wird ein bewertbarer und umsetzbarer Anwendungsfall.",
-    items: [
-      "KI-Potenziale systematisch identifizieren",
-      "Use Cases strukturieren und priorisieren",
-      "Nutzen, Aufwand und Risiken bewerten",
-      "KPIs und Erfolgskriterien definieren",
-      "Business Cases und Entscheidungsvorlagen entwickeln",
-      "Ergebnisse überzeugend präsentieren",
-    ],
-  },
-];
+// useCases.steps (7 steps)
+const USE_CASE_ICONS = [AlertTriangle, BarChart3, Lightbulb, FileCheck, ShieldCheck, Presentation, TrendingUp];
 
-const ROLE_JOURNEYS = [
-  {
-    icon: UserCheck,
-    role: "KI-Anwender:innen",
-    subtitle: "KI im Arbeitsalltag sicher und produktiv einsetzen",
-    audience:
-      "Mitarbeitende aus Fachbereichen, Administration, Vertrieb, Finance, HR, Operations und Support.",
-    focus: [
-      "KI-Produktivität im Arbeitsalltag",
-      "Prompting und Qualitätskontrolle",
-      "KI-gestützte Fachbereichsworkflows",
-      "Datenschutz und verantwortungsvolle Nutzung",
-      "persönliche Automatisierungen",
-      "gemeinsame Standards und Best Practices",
-    ],
-    project:
-      "Entwicklung eines eigenen KI-gestützten Workflows mit direktem Nutzen für den persönlichen Arbeitsbereich.",
-  },
-  {
-    icon: MessageCircle,
-    role: "KI-Champions und KI-Enthusiast:innen",
-    subtitle: "Potenziale erkennen und Umsetzung im Fachbereich vorantreiben",
-    audience:
-      "Multiplikator:innen, Innovationstreiber:innen und erste Ansprechpartner:innen für KI innerhalb eines Unternehmensbereichs.",
-    focus: [
-      "Use-Case-Design und Priorisierung",
-      "Prozessanalyse und KI-Readiness",
-      "Automatisierung und Prozessneugestaltung",
-      "Entwicklung einfacher Agenten und Assistenten",
-      "Change, Adoption und Stakeholder-Management",
-      "Business Cases und Pilotplanung",
-    ],
-    project:
-      "Aufbau eines priorisierten KI-Use-Case-Portfolios für einen Unternehmensbereich einschließlich Pilotvorschlag und Umsetzungspfad.",
-  },
-  {
-    icon: Code2,
-    role: "Interne KI-Entwickler:innen",
-    subtitle: "Technische Lösungen entwickeln und in den Betrieb überführen",
-    audience:
-      "Data Scientists, Data Engineers, Softwareentwickler:innen, IT-Architekt:innen und technische Spezialist:innen.",
-    focus: [
-      "Datenarchitekturen und Engineering",
-      "Datenmodellierung und Datenpipelines",
-      "Machine Learning und Advanced Analytics",
-      "Large Language Models und Retrieval-Augmented Generation",
-      "Vektordatenbanken und Embeddings",
-      "MLOps, LLMOps und Monitoring",
-      "Übergabe von Prototypen in den Betrieb",
-    ],
-    project: "Erarbeitung eines technischen Solution Blueprints für einen priorisierten KI-Anwendungsfall.",
-  },
-  {
-    icon: Briefcase,
-    role: "KI-Leadership",
-    subtitle: "KI strategisch steuern und Unternehmenswert realisieren",
-    audience: "Geschäftsführung, Bereichsleitungen, Führungskräfte und Sponsor:innen von KI-Initiativen.",
-    focus: [
-      "KI-Strategie und Zielbild",
-      "Markt- und Technologiedynamik",
-      "Governance, Risiko und Responsible AI",
-      "Business Cases, ROI und Wertrealisierung",
-      "Investitions- und Portfoliosteuerung",
-      "Operating Model und Verantwortlichkeiten",
-      "Change und Transformationsroadmap",
-    ],
-    project:
-      "Entwicklung eines priorisierten KI-Portfolios einschließlich Investitionsentscheidungen, Governance und Transformationsroadmap.",
-  },
-];
-
-const USE_CASE_STEPS = [
-  { icon: AlertTriangle, title: "Problem identifizieren" },
-  { icon: BarChart3, title: "Daten & Prozesse analysieren" },
-  { icon: Lightbulb, title: "Nutzenhypothese formulieren" },
-  { icon: FileCheck, title: "Machbarkeit prüfen" },
-  { icon: ShieldCheck, title: "Risiken bewerten" },
-  { icon: Presentation, title: "Business Case ausarbeiten" },
-  { icon: TrendingUp, title: "Ergebnisse präsentieren" },
-];
-
-const CUSTOMIZATION = [
-  {
-    title: "Tools und Plattformen",
-    items: [
-      "unternehmenseigene KI-Assistenten",
-      "Microsoft 365 Copilot",
-      "Copilot Studio und Power Platform",
-      "Azure, Databricks oder vergleichbare Datenplattformen",
-      "interne Wissensdatenbanken und Lernplattformen",
-    ],
-  },
-  {
-    title: "Fachbereiche und Anwendungsfelder",
-    items: [
-      "Vertrieb und Kundenservice",
-      "Finance und Controlling",
-      "Human Resources",
-      "Marketing und Kommunikation",
-      "Produktion und Logistik",
-      "Einkauf und Supply Chain",
-      "Recht, Compliance und Risikomanagement",
-      "IT, Datenmanagement und Innovation",
-    ],
-  },
-  {
-    title: "Strategische Zukunftsthemen",
-    items: [
-      "KI-Agenten und agentische Systeme",
-      "Prozessautomatisierung",
-      "Data und AI Security",
-      "Responsible AI",
-      "Advanced Analytics",
-      "digitale Geschäftsmodelle",
-      "zukünftige Technologieentwicklungen",
-    ],
-  },
-];
-
-const PROCESS_STEPS = [
-  { icon: Search, title: "Analyse & Zielbild" },
-  { icon: BookOpen, title: "Curriculum & Lernpfade" },
-  { icon: Rocket, title: "Pilotierung" },
-  { icon: MessageCircle, title: "Umsetzung & Begleitung" },
-  { icon: TrendingUp, title: "Skalierung" },
-];
-
-const BENEFITS = [
-  {
-    title: "Gemeinsame Orientierung",
-    text: "Mitarbeitende und Führungskräfte entwickeln ein einheitliches Verständnis von Daten, KI, Chancen und Verantwortlichkeiten.",
-  },
-  {
-    title: "Produktive KI-Nutzung",
-    text: "KI-Werkzeuge werden nicht nur vorgestellt, sondern in konkrete Arbeitsabläufe integriert.",
-  },
-  {
-    title: "Priorisierte Use Cases",
-    text: "Ideen werden anhand von Nutzen, Machbarkeit, Risiko und Skalierbarkeit systematisch bewertet.",
-  },
-  {
-    title: "Interne Kompetenzen",
-    text: "Das Unternehmen baut Multiplikator:innen, KI-Champions, technische Expert:innen und entscheidungsfähige Führungsteams auf.",
-  },
-  {
-    title: "Verantwortungsvolle Umsetzung",
-    text: "Governance, Datenschutz, Sicherheit und regulatorische Anforderungen werden von Beginn an berücksichtigt.",
-  },
-  {
-    title: "Messbarer Transfer",
-    text: "Das Programm erzeugt konkrete Ergebnisse wie Workflows, Use-Case-Portfolios, Business Cases, Prototypen und Roadmaps.",
-  },
-];
-
-const FORMATS = [
-  "kompaktes Foundation Program",
-  "mehrstufige Learning Journey",
-  "rollenspezifische Intensivprogramme",
-  "Executive Workshops",
-  "Train-the-Trainer-Programme",
-  "Use-Case-Sprints",
-  "technische Bootcamps",
-  "begleitete Pilotprojekte",
-  "unternehmensweite KI-Akademie",
-];
-
-const FAQ_ITEMS = [
-  {
-    q: "Für welche Unternehmen eignet sich das Programm?",
-    a: "Das Programm eignet sich für Unternehmen und Organisationen, die KI strukturiert einführen, bestehende Initiativen skalieren oder ihre Mitarbeitenden gezielt für den Einsatz von KI befähigen möchten.",
-  },
-  {
-    q: "Müssen bereits KI-Werkzeuge vorhanden sein?",
-    a: "Nein. Das Programm kann sowohl die Einführung neuer Werkzeuge begleiten als auch bestehende Systeme und Lernangebote integrieren.",
-  },
-  {
-    q: "Benötigen die Teilnehmenden technische Vorkenntnisse?",
-    a: "Für das Foundation Program und den Lernpfad für KI-Anwender:innen sind keine technischen Vorkenntnisse erforderlich. Technische Inhalte werden in einem eigenen Lernpfad vertieft.",
-  },
-  {
-    q: "Können unternehmenseigene Anwendungsfälle eingebracht werden?",
-    a: "Ja. Reale Aufgaben und Use Cases aus dem Unternehmen bilden einen zentralen Bestandteil des Programms.",
-  },
-  {
-    q: "Wird das Programm an interne Richtlinien angepasst?",
-    a: "Ja. Governance, Datenschutz, Sicherheitsanforderungen, bestehende Freigabeprozesse und interne Standards werden in das Curriculum integriert.",
-  },
-  {
-    q: "Wie wird der Lernerfolg sichtbar?",
-    a: "Der Erfolg wird nicht nur über Teilnahme und Wissenschecks beurteilt. Je nach Programm entstehen konkrete Arbeitsergebnisse wie KI-Workflows, Use-Case-Portfolios, Business Cases, Prototypen und Umsetzungsroadmaps.",
-  },
-];
+// process.steps: Analysis / Curriculum / Piloting / Implementation / Scaling
+const PROCESS_ICONS = [Search, BookOpen, Rocket, MessageCircle, TrendingUp];
 
 /* ── Page ────────────────────────────────────────────────────── */
 
 export function KiKompetenzprogrammView() {
+  const { t } = useLanguage();
+  const p = t.KI_PROGRAM;
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   return (
@@ -442,27 +145,22 @@ export function KiKompetenzprogrammView() {
         </div>
         <Container className="relative z-10 max-w-4xl text-center flex flex-col items-center">
           <Badge variant="blue" className="mb-6">
-            Unternehmensprogramm
+            {p.hero.badge}
           </Badge>
           <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-cetl-text leading-[1.1] tracking-tight mb-6">
-            KI-Kompetenzprogramm für Unternehmen
+            {p.hero.title}
           </h1>
           <p className="text-cetl-gold-deep text-lg md:text-xl font-display italic mb-6">
-            KI verstehen. Sicher anwenden. Wirksam umsetzen.
+            {p.hero.tagline}
           </p>
           <p className="text-cetl-text-muted text-lg leading-relaxed max-w-2xl mb-4">
-            Künstliche Intelligenz verändert Arbeitsprozesse, Entscheidungen und Geschäftsmodelle. Der
-            entscheidende Erfolgsfaktor ist jedoch nicht allein die Technologie, sondern die Fähigkeit
-            einer Organisation, sie sinnvoll, verantwortungsvoll und produktiv einzusetzen.
+            {p.hero.p1}
           </p>
           <p className="text-cetl-text-muted text-lg leading-relaxed max-w-2xl mb-8">
-            Unser KI-Kompetenzprogramm verbindet fundierten Wissensaufbau mit praktischer Anwendung.
-            Mitarbeitende, Fachverantwortliche, technische Expert:innen und Führungskräfte entwickeln
-            genau jene Kompetenzen, die sie für ihre jeweilige Rolle benötigen, von Beginn an mit
-            konkreten Anwendungsfällen aus ihrem Unternehmen.
+            {p.hero.p2}
           </p>
           <div className="flex flex-wrap justify-center gap-2 mb-10">
-            {["Praxisnah", "Rollenbasiert", "Unternehmensspezifisch", "Umsetzungsorientiert"].map((tag) => (
+            {p.hero.tags.map((tag) => (
               <Badge key={tag} variant="muted">
                 {tag}
               </Badge>
@@ -472,7 +170,7 @@ export function KiKompetenzprogrammView() {
             href="/#contact"
             className="relative px-9 py-4 bg-cetl-blue text-white font-semibold tracking-wide text-center overflow-hidden group block shadow-[0_4px_24px_-8px_color-mix(in_srgb,var(--color-cetl-blue)_40%,transparent)]"
           >
-            <span className="relative z-10">Unverbindliches Erstgespräch vereinbaren</span>
+            <span className="relative z-10">{p.hero.cta}</span>
             <span className="absolute inset-0 bg-cetl-blue-dark opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </MagneticButton>
         </Container>
@@ -484,28 +182,18 @@ export function KiKompetenzprogrammView() {
       <section className="py-24 lg:py-32">
         <Container className="max-w-4xl">
           <SectionHeader
-            label="Ausgangslage"
-            title="Von einzelnen Schulungen zum integrierten Befähigungsprogramm"
+            label={p.intro.label}
+            title={p.intro.title}
             className="mb-10"
           />
-          <p className="text-cetl-text-muted leading-relaxed mb-4">
-            Viele Unternehmen verfügen bereits über erste KI-Tools, interne Lernangebote oder
-            Pilotprojekte. Häufig fehlt jedoch ein gemeinsamer Rahmen, der Wissen, Anwendung, Governance
-            und konkrete Umsetzung miteinander verbindet.
-          </p>
-          <p className="text-cetl-text-muted leading-relaxed mb-10">
-            Das KI-Kompetenzprogramm führt bestehende Initiativen zu einem durchgängigen
-            Befähigungssystem zusammen. Es integriert digitale Selbstlernangebote, Live-Trainings,
-            rollenspezifische Vertiefungen und begleitete Praxisprojekte. So entsteht nicht nur Wissen
-            über künstliche Intelligenz, sondern konkrete Arbeitsabläufe, priorisierte Use Cases,
-            Business Cases, technische Lösungskonzepte und organisationale Kompetenzen.
-          </p>
+          <p className="text-cetl-text-muted leading-relaxed mb-4">{p.intro.p1}</p>
+          <p className="text-cetl-text-muted leading-relaxed mb-10">{p.intro.p2}</p>
           <div className="rounded-2xl border border-cetl-border bg-cetl-surface p-8">
             <p className="text-cetl-text font-semibold text-sm tracking-widest uppercase mb-5">
-              Das Programm schafft
+              {p.intro.outcomesLabel}
             </p>
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
-              {PROGRAM_OUTCOMES.map((item) => (
+              {p.intro.outcomes.map((item) => (
                 <CheckItem key={item} className="gap-3 text-sm">
                   {item}
                 </CheckItem>
@@ -515,19 +203,19 @@ export function KiKompetenzprogrammView() {
         </Container>
       </section>
 
-      {/* ── Key visual: strategische Weitsicht ── */}
+      {/* ── Key visual ── */}
       <Container>
         <div className="relative h-64 md:h-96 rounded-2xl overflow-hidden ring-1 ring-cetl-border mb-24">
           <Image
             src="/chess-queen.jpg"
-            alt="Schachdame im warmen Licht, Sinnbild für strategische Weitsicht und Entscheidungskompetenz"
+            alt={p.keyVisual.alt}
             fill
             sizes="(max-width: 1280px) 100vw, 1280px"
             className="object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-cetl-darker/70 via-transparent to-transparent" />
           <p className="absolute bottom-5 left-6 right-6 text-white/85 font-display text-lg md:text-xl italic max-w-xl">
-            Strategische Weitsicht entsteht nicht durch Zuschauen, sondern durch Zug um Zug lernen, wie das Spiel funktioniert.
+            {p.keyVisual.caption}
           </p>
         </div>
       </Container>
@@ -538,14 +226,14 @@ export function KiKompetenzprogrammView() {
       <section className="py-24 lg:py-32 bg-cetl-surface">
         <Container>
           <SectionHeader
-            label="Methodik"
-            title="Lernen, anwenden und umsetzen"
-            subtitle="Unser Ansatz folgt dem Prinzip des Executional Learning. Wissen wird nicht isoliert vermittelt, sondern unmittelbar mit realen Aufgaben und Herausforderungen des Unternehmens verbunden."
+            label={p.cycle.label}
+            title={p.cycle.title}
+            subtitle={p.cycle.subtitle}
             className="mb-16"
           />
-          <StepFlow steps={CYCLE_STEPS} />
+          <StepFlow steps={p.cycle.steps} icons={CYCLE_ICONS} />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-20">
-            {CYCLE_DETAILS.map((step) => (
+            {p.cycle.details.map((step) => (
               <div key={step.n} className="flex gap-4">
                 <span className="font-display text-3xl font-bold text-cetl-gold/30 leading-none shrink-0">
                   {step.n}
@@ -566,13 +254,13 @@ export function KiKompetenzprogrammView() {
       <section id="foundation" className="py-24 lg:py-32">
         <Container>
           <SectionHeader
-            label="Das Foundation Program"
-            title="Das gemeinsame Fundament für Daten- und KI-Kompetenz"
-            subtitle="Das Foundation Program schafft eine gemeinsame Sprache innerhalb des Unternehmens. Es vermittelt die zentralen Grundlagen und bereitet die Teilnehmenden auf rollenspezifische Vertiefungen vor. Bestehende Lernplattformen, interne Richtlinien und bereits eingesetzte KI-Werkzeuge können als Vorbereitung, Vertiefung und Follow-up eingebunden werden."
+            label={p.foundation.label}
+            title={p.foundation.title}
+            subtitle={p.foundation.subtitle}
             className="mb-16"
           />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {FOUNDATION_MODULES.map((mod) => (
+            {p.foundation.modules.map((mod, i) => (
               <TiltCard
                 key={mod.n}
                 className="gradient-edge relative flex flex-col bg-cetl-surface rounded-2xl border border-cetl-border p-7"
@@ -580,7 +268,7 @@ export function KiKompetenzprogrammView() {
                 <span className="font-display text-6xl font-bold text-cetl-gold/[0.08] absolute top-5 right-6 leading-none select-none">
                   {mod.n}
                 </span>
-                <IconTile icon={mod.icon} />
+                <IconTile icon={FOUNDATION_ICONS[i]} />
                 <h3 className="font-display text-lg font-bold text-cetl-text mb-2 leading-snug">
                   {mod.title}
                 </h3>
@@ -604,9 +292,9 @@ export function KiKompetenzprogrammView() {
       <section id="journeys" className="py-24 lg:py-32 bg-cetl-surface">
         <Container>
           <SectionHeader
-            label="Rollenbasierte Learning Journeys"
-            title="Die richtigen Kompetenzen für jede Rolle"
-            subtitle="Nicht alle Mitarbeitenden benötigen dieselben Kompetenzen. Deshalb wird das Programm entlang klar definierter Rollen aufgebaut."
+            label={p.journeys.label}
+            title={p.journeys.title}
+            subtitle={p.journeys.subtitle}
             className="mb-16"
           />
 
@@ -618,10 +306,10 @@ export function KiKompetenzprogrammView() {
             <div className="w-px h-8 bg-cetl-border" />
             <div className="w-full h-px bg-cetl-border mb-8" style={{ maxWidth: "72%" }} />
             <div className="grid grid-cols-4 gap-6 w-full max-w-4xl">
-              {ROLE_JOURNEYS.map((journey) => (
+              {p.journeys.roles.map((journey, i) => (
                 <div key={journey.role} className="flex flex-col items-center gap-2 text-center">
                   <div className="w-11 h-11 rounded-full border border-cetl-border bg-cetl-dark flex items-center justify-center">
-                    <journey.icon className="w-5 h-5 text-cetl-gold-deep" strokeWidth={1.5} aria-hidden="true" />
+                    {(() => { const Icon = JOURNEY_ICONS[i]; return <Icon className="w-5 h-5 text-cetl-gold-deep" strokeWidth={1.5} aria-hidden="true" />; })()}
                   </div>
                   <span className="text-cetl-text-muted text-xs font-medium leading-tight">
                     {journey.role}
@@ -632,17 +320,17 @@ export function KiKompetenzprogrammView() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {ROLE_JOURNEYS.map((journey) => (
+            {p.journeys.roles.map((journey, i) => (
               <TiltCard
                 key={journey.role}
                 className="gradient-edge relative flex flex-col bg-cetl-dark rounded-2xl border border-cetl-border p-8"
               >
-                <IconTile icon={journey.icon} />
+                <IconTile icon={JOURNEY_ICONS[i]} />
                 <h3 className="font-display text-xl font-bold text-cetl-text mb-1.5">{journey.role}</h3>
                 <p className="text-cetl-gold-deep text-sm font-medium mb-3">{journey.subtitle}</p>
                 <p className="text-cetl-text-muted text-sm leading-relaxed mb-5">{journey.audience}</p>
                 <p className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase mb-3">
-                  Schwerpunkte
+                  {p.journeys.focusLabel}
                 </p>
                 <ul className="flex flex-col gap-2 mb-6">
                   {journey.focus.map((item) => (
@@ -653,7 +341,7 @@ export function KiKompetenzprogrammView() {
                 </ul>
                 <div className="mt-auto pt-5 border-t border-cetl-border">
                   <p className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase mb-2">
-                    Praxisprojekt
+                    {p.journeys.projectLabel}
                   </p>
                   <p className="text-cetl-text-muted text-sm leading-relaxed">{journey.project}</p>
                 </div>
@@ -669,20 +357,18 @@ export function KiKompetenzprogrammView() {
       <section className="py-24 lg:py-32">
         <Container>
           <SectionHeader
-            label="Reale Use Cases als roter Faden"
-            title="Vom Use Case zur Umsetzung"
-            subtitle="Jede Teilnehmerin und jeder Teilnehmer arbeitet während des Programms an einem eigenen Anwendungsfall aus dem Unternehmen. Die Teilnehmenden erhalten dabei methodische Unterstützung durch Trainer:innen und Fachexpert:innen."
+            label={p.useCases.label}
+            title={p.useCases.title}
+            subtitle={p.useCases.subtitle}
             className="mb-16"
           />
-          <StepFlow steps={USE_CASE_STEPS} wrapClass="flex flex-wrap justify-center gap-x-1 gap-y-10" />
+          <StepFlow steps={p.useCases.steps} icons={USE_CASE_ICONS} wrapClass="flex flex-wrap justify-center gap-x-1 gap-y-10" />
           <div className="mt-16 rounded-2xl border border-cetl-border bg-cetl-surface p-8 max-w-2xl mx-auto text-center">
             <p className="text-cetl-gold-deep text-xs font-semibold tracking-widest uppercase mb-3">
-              Cross-Industry Learning
+              {p.useCases.crossIndustryLabel}
             </p>
             <p className="text-cetl-text-muted text-sm leading-relaxed">
-              Ergänzend zu den unternehmenseigenen Aufgaben werden ausgewählte Anwendungsfälle aus
-              anderen Branchen bearbeitet. Dadurch erkennen die Teilnehmenden übertragbare Muster, neue
-              Lösungsansätze und mögliche Synergien.
+              {p.useCases.crossIndustryText}
             </p>
           </div>
         </Container>
@@ -694,13 +380,13 @@ export function KiKompetenzprogrammView() {
       <section className="py-24 lg:py-32 bg-cetl-surface">
         <Container>
           <SectionHeader
-            label="Individuell auf Ihr Unternehmen abgestimmt"
-            title="Mögliche Anpassungsbereiche"
-            subtitle="Das Programm wird auf die strategischen Ziele, den technologischen Reifegrad und die bestehenden Systeme des Unternehmens zugeschnitten."
+            label={p.customization.label}
+            title={p.customization.title}
+            subtitle={p.customization.subtitle}
             className="mb-16"
           />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {CUSTOMIZATION.map((group) => (
+            {p.customization.groups.map((group) => (
               <div key={group.title} className="rounded-2xl border border-cetl-border bg-cetl-dark p-7">
                 <h3 className="font-display text-base font-bold text-cetl-text mb-5">{group.title}</h3>
                 <ul className="flex flex-col gap-2.5">
@@ -722,12 +408,12 @@ export function KiKompetenzprogrammView() {
       <section className="py-24 lg:py-32">
         <Container>
           <SectionHeader
-            label="Vom Impuls zur Wirkung"
-            title="So entsteht Ihr KI-Kompetenzprogramm"
-            subtitle="Von der Analyse bis zur Skalierung."
+            label={p.process.label}
+            title={p.process.title}
+            subtitle={p.process.subtitle}
             className="mb-16"
           />
-          <StepFlow steps={PROCESS_STEPS} />
+          <StepFlow steps={p.process.steps} icons={PROCESS_ICONS} />
         </Container>
       </section>
 
@@ -736,9 +422,9 @@ export function KiKompetenzprogrammView() {
       {/* ── Benefits ── */}
       <section className="py-24 lg:py-32 bg-cetl-surface">
         <Container>
-          <SectionHeader label="Der Nutzen" title="Was Ihr Unternehmen gewinnt" className="mb-16" />
+          <SectionHeader label={p.benefits.label} title={p.benefits.title} className="mb-16" />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {BENEFITS.map((benefit) => (
+            {p.benefits.items.map((benefit) => (
               <div key={benefit.title} className="rounded-2xl border border-cetl-border bg-cetl-dark p-7">
                 <h3 className="font-display text-base font-bold text-cetl-gold-deep mb-2">{benefit.title}</h3>
                 <p className="text-cetl-text-muted text-sm leading-relaxed">{benefit.text}</p>
@@ -754,30 +440,24 @@ export function KiKompetenzprogrammView() {
       <section className="py-24 lg:py-32">
         <Container className="max-w-4xl">
           <SectionHeader
-            label="Flexible Programmgestaltung"
-            title="Umfang, Dauer und Format nach Bedarf"
-            subtitle="Das KI-Kompetenzprogramm ist modular aufgebaut. Umfang, Dauer und Kombination der Lernpfade richten sich nach dem Reifegrad und den Zielen des Unternehmens. Die Durchführung ist in Präsenz, online oder in einem hybriden Format möglich."
+            label={p.formats.label}
+            title={p.formats.title}
+            subtitle={p.formats.subtitle}
             className="mb-10"
           />
           <div className="flex flex-wrap gap-2.5 mb-16">
-            {FORMATS.map((format) => (
-              <Badge key={format} variant="muted">
-                {format}
+            {p.formats.badges.map((badge) => (
+              <Badge key={badge} variant="muted">
+                {badge}
               </Badge>
             ))}
           </div>
 
           <div className="rounded-2xl border border-cetl-border bg-cetl-surface p-8">
             <p className="text-cetl-gold-deep text-xs font-semibold tracking-widest uppercase mb-3">
-              Faculty und Expert:innen
+              {p.formats.facultyLabel}
             </p>
-            <p className="text-cetl-text-muted text-sm leading-relaxed">
-              Für jedes Programm wird ein passender Pool aus Trainer:innen, Wissenschaftler:innen,
-              Technologieexpert:innen und Praktiker:innen zusammengestellt. Die Auswahl orientiert sich
-              an den jeweiligen Modulen, Zielgruppen, Technologien und Anwendungsfällen. Die
-              Teilnehmenden erhalten so nicht nur theoretisches Wissen, sondern unterschiedliche
-              Perspektiven aus Forschung, Wirtschaft und konkreter Umsetzungspraxis.
-            </p>
+            <p className="text-cetl-text-muted text-sm leading-relaxed">{p.formats.facultyText}</p>
           </div>
         </Container>
       </section>
@@ -787,9 +467,9 @@ export function KiKompetenzprogrammView() {
       {/* ── FAQ ── */}
       <section className="py-24 lg:py-32 bg-cetl-surface">
         <Container className="max-w-4xl">
-          <SectionHeader label="Häufige Fragen" title="Was Unternehmen wissen möchten" className="mb-12" />
+          <SectionHeader label={p.faq.label} title={p.faq.title} className="mb-12" />
           <div className="flex flex-col gap-3">
-            {FAQ_ITEMS.map((item, i) => {
+            {p.faq.items.map((item, i) => {
               const open = openFaq === i;
               return (
                 <div key={item.q} className="rounded-xl border border-cetl-border bg-cetl-dark overflow-hidden">
@@ -821,20 +501,15 @@ export function KiKompetenzprogrammView() {
       <section className="py-24 lg:py-32">
         <Container className="max-w-2xl text-center flex flex-col items-center">
           <h2 className="font-display text-3xl md:text-4xl font-bold text-cetl-text leading-tight mb-5">
-            KI-Kompetenz, die im Unternehmen wirksam wird
+            {p.closing.title}
           </h2>
-          <p className="text-cetl-text-muted leading-relaxed mb-10">
-            Ein erfolgreiches KI-Programm endet nicht mit dem letzten Trainingstag. Es schafft die
-            Voraussetzungen dafür, dass Menschen KI sicher einsetzen, Potenziale eigenständig erkennen
-            und gemeinsam in die Umsetzung bringen. Wir verbinden Lernen, Anwendung und Umsetzung zu
-            einem integrierten Befähigungssystem für Ihr Unternehmen.
-          </p>
+          <p className="text-cetl-text-muted leading-relaxed mb-10">{p.closing.text}</p>
           <MagneticButton
             href="/#contact"
             className="group relative inline-flex items-center gap-2 px-8 py-4 bg-cetl-gold text-cetl-darker font-semibold tracking-wide overflow-hidden transition-transform duration-300 hover:scale-105 rounded-sm"
           >
             <span className="relative z-10 flex items-center gap-2">
-              KI-Kompetenzprogramm besprechen
+              {p.closing.cta}
               <svg
                 className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300"
                 viewBox="0 0 16 16"
