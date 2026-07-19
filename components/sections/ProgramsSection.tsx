@@ -81,7 +81,7 @@ export function ProgramsSection() {
   const flagship = t.PROGRAMS.find((p) => p.href);
 
   return (
-    <section id="programs" className="py-24 lg:py-32 bg-cetl-dark">
+    <section id="programs" className="py-32 lg:py-44 bg-cetl-dark">
       <Container>
         {/* ── Section header ── */}
         <SectionHeader

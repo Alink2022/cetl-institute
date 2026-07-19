@@ -40,7 +40,7 @@ export function SPGPartnerSection() {
   const c = CONTENT[lang];
 
   return (
-    <section id="spg-partner" className="py-24 lg:py-32 bg-cetl-dark">
+    <section id="spg-partner" className="py-32 lg:py-44 bg-cetl-dark">
       <Container>
         <TiltCard className="gradient-edge relative bg-cetl-surface rounded-2xl border border-cetl-border p-8 md:p-12">
           <div className="flex flex-col md:flex-row md:items-center gap-10">

@@ -10,7 +10,7 @@ export function CaseStudySection() {
   const cs = t.CASE_STUDY;
 
   return (
-    <section id="case-study" className="py-24 bg-cetl-dark relative overflow-hidden">
+    <section id="case-study" className="py-32 bg-cetl-dark relative overflow-hidden">
       {/* Key visual: Wien-Skyline mit Daten-Grid, stark abgedunkelt als Hintergrund */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden>
         <Image

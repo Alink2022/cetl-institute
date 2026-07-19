@@ -35,7 +35,7 @@ export function HeroSection() {
           fill
           priority
           sizes="100vw"
-          className="object-cover opacity-[0.10]"
+          className="object-cover opacity-[0.05]"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-cetl-dark/85 via-cetl-dark/60 to-cetl-dark" />
       </div>
@@ -47,11 +47,7 @@ export function HeroSection() {
         <div className="absolute top-[30%] left-[-5%] w-[500px] h-[500px] rounded-full bg-cetl-gold/[0.06] blur-[140px]" />
       </div>
 
-      {/* Grain texture */}
-      <div className="absolute inset-0 bg-grain opacity-[0.035] pointer-events-none mix-blend-multiply" />
-
-
-      <Container className="relative z-10 pt-28 pb-12 flex flex-col items-center text-center">
+      <Container className="relative z-10 pt-32 pb-16 flex flex-col items-center text-center">
 
         {/* ── CREST / SEAL ──────────────────────────────── */}
         <motion.div
@@ -101,7 +97,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-          className="font-display mt-10 text-4xl md:text-6xl lg:text-[4.5rem] xl:text-[5.5rem] font-bold leading-[1.06] tracking-tight text-cetl-text max-w-4xl"
+          className="font-display mt-12 text-[2.6rem] md:text-6xl lg:text-[4.5rem] xl:text-[5.25rem] font-bold leading-[1.05] tracking-tight text-cetl-text max-w-6xl [text-wrap:balance]"
         >
           {hero.headlineLine1 && (
             <>
@@ -126,7 +122,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="mt-7 text-cetl-text-muted text-lg md:text-xl max-w-2xl leading-relaxed"
+          className="mt-9 text-cetl-text-muted text-xl md:text-2xl max-w-3xl leading-relaxed"
         >
           {hero.paragraph}
         </motion.p>
@@ -136,7 +132,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.65 }}
-          className="mt-10 flex flex-col sm:flex-row items-center gap-4"
+          className="mt-12 flex flex-col sm:flex-row items-center gap-4"
         >
           <MagneticButton
             href="#elaas"

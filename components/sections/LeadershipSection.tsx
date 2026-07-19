@@ -38,7 +38,7 @@ export function LeadershipSection() {
   const md = t.MANAGING_DIRECTOR;
 
   return (
-    <section id="leadership" className="relative py-24 lg:py-32 bg-cetl-dark overflow-hidden">
+    <section id="leadership" className="relative py-32 lg:py-44 bg-cetl-dark overflow-hidden">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-cetl-violet/[0.08] blur-[140px] pointer-events-none" />
 
       <Container className="relative">

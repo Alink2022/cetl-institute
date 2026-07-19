@@ -36,7 +36,7 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-24 lg:py-32 bg-cetl-dark relative overflow-hidden">
+    <section id="contact" className="py-32 lg:py-44 bg-cetl-dark relative overflow-hidden">
       {/* Key visual: Wien bei Nacht, stark abgedunkelt als Hintergrund */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden>
         <Image

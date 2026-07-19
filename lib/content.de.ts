@@ -327,12 +327,12 @@ export const de: ContentBundle = {
     hero: {
       badgeLocation: "CETL · Wien",
       headlineLine1: "",
-      headlineGradient: "Strategiepapiere gibt es genug.",
-      headlineLine3: "Der Enterprise-Betrieb wartet.",
+      headlineGradient: "Das KI-Kompetenzprogramm",
+      headlineLine3: "für Unternehmen.",
       paragraph:
-        "Das CETL Institute verbindet wissenschaftliche Rigorosität mit industrieller Umsetzungserfahrung, von der Führungsebene bis zum rollenbasierten KI-Kompetenzprogramm für die gesamte Organisation. Verstehen. Anwenden. Umsetzen.",
-      ctaPrimary: "Executive Framework anfordern",
-      ctaSecondary: "Strategischen Austausch initiieren",
+        "Wir machen Ihre Organisation KI-fähig — von der Führungsebene bis in jede Rolle. Wissenschaftlich fundiert. Praktisch umgesetzt.",
+      ctaPrimary: "Programm kennenlernen",
+      ctaSecondary: "Gespräch vereinbaren",
       stats: [
         { value: "3", label: "Instrumente" },
         { value: "Enterprise", label: "Architektur-Fokus" },
@@ -356,7 +356,7 @@ export const de: ContentBundle = {
       quoteBefore: "Nicht das fehlende Bewusstsein.",
       quoteHighlight1: "Die fehlende",
       quoteMiddle: "",
-      quoteHighlight2: "Operationalisierung.",
+      quoteHighlight2: "Operationalisierung",
       intro:
         "Großflächige KI- und Dateninitiativen scheitern nicht an mangelnder Ambition. Sie scheitern an der strukturellen Inkompatibilität zwischen Strategieebene und technischer Realität: zwischen dem, was eine Roadmap verspricht, und dem, was Enterprise-Architektur, Datenreife und Governance tatsächlich tragen.",
       answer: "Das strukturelle Gegenmittel: methodischer Kompetenzaufbau statt Consulting-Abhängigkeit →",

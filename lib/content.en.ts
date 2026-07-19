@@ -326,12 +326,12 @@ export const en: ContentBundle = {
     hero: {
       badgeLocation: "CETL · Vienna",
       headlineLine1: "",
-      headlineGradient: "Enough strategy papers.",
-      headlineLine3: "Enterprise operations are waiting.",
+      headlineGradient: "The AI Competency Program",
+      headlineLine3: "for Enterprises.",
       paragraph:
-        "CETL Institute combines academic rigor with industrial execution experience, from the leadership level to a role-based AI competency program for the entire organization. Understand. Apply. Execute.",
-      ctaPrimary: "Request Executive Framework",
-      ctaSecondary: "Initiate Strategic Exchange",
+        "We make your organization AI-capable — from the leadership level to every role. Scientifically grounded. Practically executed.",
+      ctaPrimary: "Explore the Program",
+      ctaSecondary: "Book a Conversation",
       stats: [
         { value: "3", label: "Instruments" },
         { value: "Enterprise", label: "Architecture Focus" },
@@ -355,7 +355,7 @@ export const en: ContentBundle = {
       quoteBefore: "Not missing awareness.",
       quoteHighlight1: "Missing",
       quoteMiddle: "",
-      quoteHighlight2: "operationalization.",
+      quoteHighlight2: "operationalization",
       intro:
         "Large-scale AI and data initiatives do not fail from lack of ambition. They fail from structural incompatibility between strategic intent and technical reality: between what a roadmap promises and what enterprise architecture, data maturity, and governance can actually sustain.",
       answer: "The structural antidote: methodological capability-building over consulting dependency →",

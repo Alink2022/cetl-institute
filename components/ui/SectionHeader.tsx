@@ -18,13 +18,13 @@ export function SectionHeader({
   const alignment = align === "center" ? "text-center items-center" : "text-left items-start";
 
   return (
-    <div className={`flex flex-col gap-4 ${alignment} ${className}`}>
+    <div className={`flex flex-col gap-5 ${alignment} ${className}`}>
       <Badge variant="gold">{label}</Badge>
-      <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-cetl-text leading-tight tracking-tight max-w-3xl">
+      <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-cetl-text leading-[1.08] tracking-tight max-w-4xl">
         {title}
       </h2>
       {subtitle && (
-        <p className="text-cetl-text-muted text-lg leading-relaxed max-w-2xl">
+        <p className="text-cetl-text-muted text-lg md:text-xl leading-relaxed max-w-2xl">
           {subtitle}
         </p>
       )}
