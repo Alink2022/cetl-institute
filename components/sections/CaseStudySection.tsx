@@ -42,7 +42,7 @@ export function CaseStudySection() {
                   <Image src="/logos/raiffeisen.svg" alt="Raiffeisenlandesbank OÖ" width={28} height={28} className="object-contain" unoptimized />
                 </div>
               </div>
-              <p className="text-cetl-gold-deep text-[10px] tracking-[0.25em] uppercase font-semibold mb-2">{cs.clientTag}</p>
+              <p className="text-cetl-gold-deep text-xs tracking-[0.25em] uppercase font-semibold mb-2">{cs.clientTag}</p>
               <h3 className="font-display text-2xl font-bold text-cetl-text leading-snug">{cs.client}</h3>
             </div>
             <p className="text-cetl-text-muted text-sm leading-relaxed">{cs.desc}</p>

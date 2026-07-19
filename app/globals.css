@@ -7,18 +7,18 @@
      --color-cetl-gold-deep  running text/labels/links on light bg (≥4.6:1, WCAG 1.4.3) */
   --color-cetl-dark: #FFFFFF;
   --color-cetl-darker: #0B0F1A;
-  --color-cetl-surface: #FAFAF7;
-  --color-cetl-surface-2: #F3F2ED;
-  --color-cetl-border: #EBE9E3;
-  --color-cetl-muted: #8A8577;
+  --color-cetl-surface: #FAFAFA;
+  --color-cetl-surface-2: #F4F4F5;
+  --color-cetl-border: #E4E4E7;
+  --color-cetl-muted: #71717A;
   --color-cetl-gold: #B8862F;
   --color-cetl-gold-deep: #8A671E;
   --color-cetl-gold-light: #D4A843;
   --color-cetl-blue: #2458D6;
   --color-cetl-blue-dark: #1A51C2;
   --color-cetl-violet: #7C3AED;
-  --color-cetl-text: #12141C;
-  --color-cetl-text-muted: #5B6472;
+  --color-cetl-text: #101014;
+  --color-cetl-text-muted: #494F5A;
   --color-cetl-error: #DC2626;
 
   --font-sans: var(--font-body);
@@ -66,7 +66,7 @@
 
 /* Größere Grundschrift: alle rem-basierten Tailwind-Größen skalieren mit (Vorgabe Stefan: Site soll größer/stärker wirken) */
 html {
-  font-size: 17px;
+  font-size: 18px;
 }
 
 body {

@@ -63,7 +63,7 @@ export function LeadershipSection() {
                   className="object-cover object-[58%_22%]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-cetl-darker via-transparent to-transparent opacity-70" />
-                <span className="absolute bottom-3 left-3 right-3 text-cetl-gold-light text-[10px] font-semibold tracking-widest uppercase">
+                <span className="absolute bottom-3 left-3 right-3 text-cetl-gold-light text-xs font-semibold tracking-widest uppercase">
                   {leadership.photoTag}
                 </span>
               </div>

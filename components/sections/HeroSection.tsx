@@ -81,7 +81,7 @@ export function HeroSection() {
           className="w-full max-w-2xl"
         >
           <OrnamentRule className="mb-4" />
-          <p className="text-cetl-gold-deep text-[11px] tracking-[0.35em] uppercase font-semibold mb-1 opacity-80">
+          <p className="text-cetl-gold-deep text-xs tracking-[0.35em] uppercase font-semibold mb-1 opacity-80">
             {hero.badgeLocation}
           </p>
           {/* Kein h2: dieser Zusatztext steht vor dem h1 im DOM — als Überschrift würde er

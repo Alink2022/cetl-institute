@@ -163,7 +163,7 @@ export function ResearchSection() {
               <span className="font-display text-3xl font-bold text-gradient-gold">{stat.value}</span>
               <p className="text-cetl-text text-sm font-medium leading-snug">{stat.label}</p>
               <p className="text-cetl-text-muted text-xs leading-relaxed">{stat.detail}</p>
-              <p className="text-cetl-text-muted/60 text-[10px] tracking-wide uppercase mt-auto pt-2 border-t border-cetl-border w-full">
+              <p className="text-cetl-text-muted/80 text-xs tracking-wide uppercase mt-auto pt-2 border-t border-cetl-border w-full">
                 {stat.source}
               </p>
             </div>

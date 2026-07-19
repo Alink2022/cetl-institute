@@ -109,22 +109,22 @@ export function ProgramsSection() {
                 </span>
 
                 <div className="mb-6">
-                  <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-cetl-gold/20 to-cetl-violet/10 border border-cetl-gold/25 flex items-center justify-center mb-4 shadow-[0_0_24px_-8px_color-mix(in_srgb,var(--color-cetl-gold)_50%,transparent)]">
-                    <Icon className="w-5 h-5 text-cetl-gold-deep" strokeWidth={1.5} aria-hidden="true" />
+                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-cetl-gold/20 to-cetl-violet/10 border border-cetl-gold/25 flex items-center justify-center mb-5 shadow-[0_0_24px_-8px_color-mix(in_srgb,var(--color-cetl-gold)_50%,transparent)]">
+                    <Icon className="w-7 h-7 text-cetl-gold-deep" strokeWidth={1.5} aria-hidden="true" />
                   </div>
                   <p className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase mb-2">
                     {pillar.subtitle}
                   </p>
-                  <h3 className="font-display text-xl font-bold text-cetl-text">{pillar.title}</h3>
+                  <h3 className="font-display text-2xl font-bold text-cetl-text">{pillar.title}</h3>
                 </div>
 
-                <p className="text-cetl-text-muted text-sm leading-relaxed mb-8">
+                <p className="text-cetl-text-muted text-base leading-relaxed mb-8">
                   {pillar.description}
                 </p>
 
                 <ul className="mt-auto flex flex-col gap-3">
                   {pillar.items.map((item) => (
-                    <li key={item} className="flex items-start gap-3 text-sm">
+                    <li key={item} className="flex items-start gap-3 text-base">
                       <CheckIcon />
                       <span className="text-cetl-text-muted">{item}</span>
                     </li>
@@ -148,13 +148,13 @@ export function ProgramsSection() {
               const Icon = ICON_MAP[step.icon];
               return (
                 <div key={step.n} className="flex items-center">
-                  <div className="flex flex-col items-center gap-3 text-center max-w-[180px]">
-                    <span className="text-cetl-gold-deep text-xs font-semibold tracking-widest">{step.n}</span>
-                    <div className="w-16 h-16 rounded-full border border-cetl-border bg-cetl-dark flex items-center justify-center">
-                      <Icon className="w-6 h-6 text-cetl-gold-deep" strokeWidth={1.5} aria-hidden="true" />
+                  <div className="flex flex-col items-center gap-3 text-center max-w-[220px]">
+                    <span className="text-cetl-gold-deep text-sm font-semibold tracking-widest">{step.n}</span>
+                    <div className="w-20 h-20 rounded-full border border-cetl-border bg-cetl-dark flex items-center justify-center">
+                      <Icon className="w-8 h-8 text-cetl-gold-deep" strokeWidth={1.5} aria-hidden="true" />
                     </div>
-                    <span className="font-display text-sm font-bold text-cetl-text">{step.title}</span>
-                    <p className="text-cetl-text-muted text-xs leading-relaxed">{step.description}</p>
+                    <span className="font-display text-lg font-bold text-cetl-text">{step.title}</span>
+                    <p className="text-cetl-text-muted text-sm leading-relaxed">{step.description}</p>
                   </div>
                   {i < t.METHODOLOGY_STEPS.length - 1 && (
                     <div className="hidden md:block w-8 lg:w-12 h-px bg-gradient-to-r from-cetl-gold/40 via-cetl-border to-cetl-gold/40 mx-1 -translate-y-14" />
@@ -179,14 +179,14 @@ export function ProgramsSection() {
         {/* ── Flagship program: featured, single, in depth ── */}
         <div className="flex items-center gap-3 mb-2">
           <div className="h-px w-8 bg-cetl-gold/40" />
-          <p className="text-cetl-gold-deep text-[10px] font-semibold tracking-[0.3em] uppercase">
+          <p className="text-cetl-gold-deep text-xs font-semibold tracking-[0.3em] uppercase">
             {t.UI.programs.label}
           </p>
         </div>
-        <h3 className="font-display text-2xl md:text-3xl font-bold text-cetl-text mb-2 max-w-2xl">
+        <h3 className="font-display text-3xl md:text-4xl font-bold text-cetl-text mb-3 max-w-2xl">
           {t.UI.programs.title}
         </h3>
-        <p className="text-cetl-text-muted text-sm leading-relaxed mb-10 max-w-xl">
+        <p className="text-cetl-text-muted text-base leading-relaxed mb-10 max-w-xl">
           {t.UI.programs.subtitle}
         </p>
 
@@ -196,12 +196,12 @@ export function ProgramsSection() {
             <Badge variant={t.TAG_COLORS[flagship.tag] ?? "gold"} className="mb-5 self-start">
               {flagship.tag}
             </Badge>
-            <h4 className="font-display text-2xl md:text-3xl font-bold text-cetl-text mb-4 max-w-2xl">
+            <h4 className="font-display text-3xl md:text-4xl font-bold text-cetl-text mb-4 max-w-2xl">
               {flagship.title}
             </h4>
-            <p className="text-cetl-text-muted leading-relaxed mb-8 max-w-2xl">{flagship.description}</p>
+            <p className="text-cetl-text-muted text-lg leading-relaxed mb-8 max-w-2xl">{flagship.description}</p>
 
-            <div className="flex flex-wrap gap-x-8 gap-y-4 mb-10 pb-8 border-b border-cetl-border text-sm text-cetl-text-muted">
+            <div className="flex flex-wrap gap-x-8 gap-y-4 mb-10 pb-8 border-b border-cetl-border text-base text-cetl-text-muted">
               <span className="flex items-center gap-1.5">
                 <CalendarIcon />
                 {flagship.format}
@@ -212,16 +212,16 @@ export function ProgramsSection() {
               </span>
             </div>
 
-            <p className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase mb-5">
+            <p className="text-cetl-text-muted text-sm font-semibold tracking-widest uppercase mb-7">
               Rollenbasierte Learning Journeys
             </p>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-5 mb-10">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
               {ROLE_ROW.map((role) => (
-                <div key={role.label} className="flex flex-col items-center gap-2.5 text-center">
-                  <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-cetl-gold/20 to-cetl-violet/10 border border-cetl-gold/25 flex items-center justify-center">
-                    <role.icon className="w-5 h-5 text-cetl-gold-deep" strokeWidth={1.5} aria-hidden="true" />
+                <div key={role.label} className="flex flex-col items-center gap-4 text-center">
+                  <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-cetl-gold/20 to-cetl-violet/10 border border-cetl-gold/25 flex items-center justify-center">
+                    <role.icon className="w-9 h-9 text-cetl-gold-deep" strokeWidth={1.5} aria-hidden="true" />
                   </div>
-                  <span className="text-cetl-text-muted text-xs font-medium leading-tight">{role.label}</span>
+                  <span className="text-cetl-text text-base font-semibold leading-snug">{role.label}</span>
                 </div>
               ))}
             </div>

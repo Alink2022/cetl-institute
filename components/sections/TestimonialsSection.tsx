@@ -58,7 +58,7 @@ export function TestimonialsSection() {
                   <span className="text-cetl-border text-xs">·</span>
                   <span className="text-cetl-text-muted text-xs">{item.orgSize}</span>
                 </div>
-                  <span className="text-cetl-text-muted/50 text-[10px] tracking-wide uppercase mt-1">
+                  <span className="text-cetl-text-muted/70 text-xs tracking-wide uppercase mt-1">
                     {ui.anonymousNote}
                   </span>
                 </div>

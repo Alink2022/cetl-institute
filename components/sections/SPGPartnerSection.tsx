@@ -75,7 +75,7 @@ export function SPGPartnerSection() {
                     className="flex flex-col gap-0.5 px-4 py-3 rounded-xl border border-cetl-border bg-cetl-surface-2"
                   >
                     <span className="font-display text-xl font-bold text-cetl-gold-deep">{stat.value}</span>
-                    <span className="text-cetl-text-muted text-[11px] uppercase tracking-wide">{stat.label}</span>
+                    <span className="text-cetl-text-muted text-xs uppercase tracking-wide">{stat.label}</span>
                   </div>
                 ))}
               </div>
