@@ -84,7 +84,7 @@ export function NavBar() {
     <nav className="fixed top-0 left-0 right-0 z-50 pt-3 md:pt-4">
       <Container>
         <div
-          className={`flex items-center justify-between h-14 md:h-16 px-4 md:px-5 rounded-full transition-all duration-500 ${
+          className={`flex items-center justify-between h-20 md:h-24 px-4 md:px-5 rounded-full transition-all duration-500 ${
             scrolled
               ? "glass-panel shadow-[0_8px_40px_-12px_color-mix(in_srgb,var(--color-cetl-gold)_25%,transparent)]"
               : "bg-transparent border border-transparent"
@@ -96,14 +96,14 @@ export function NavBar() {
               <Image
                 src="/cetl-logo.webp"
                 alt="CETL Institute"
-                width={40}
-                height={40}
-                className="object-contain"
+                width={80}
+                height={80}
+                className="object-contain w-14 h-14 md:w-20 md:h-20"
               />
             </div>
-            <div className="flex flex-col leading-none">
-              <span className="text-cetl-text font-display font-bold text-sm tracking-wide">CETL</span>
-              <span className="text-cetl-text-muted text-[10px] tracking-[0.2em] uppercase">Institute</span>
+            <div className="flex flex-col leading-tight">
+              <span className="text-cetl-text font-display font-bold text-lg md:text-xl tracking-wide">CETL</span>
+              <span className="text-cetl-text-muted text-xs tracking-[0.2em] uppercase">Institute</span>
             </div>
           </a>
 
@@ -178,7 +178,7 @@ export function NavBar() {
         <div className="flex flex-col h-full pt-20 px-8">
           <div className="flex items-center gap-3 mb-8">
             <div className="rounded-full bg-cetl-gold/10 ring-1 ring-cetl-gold/20 p-1.5">
-              <Image src="/cetl-logo.webp" alt="CETL Institute" width={40} height={40} className="object-contain" />
+              <Image src="/cetl-logo.webp" alt="CETL Institute" width={80} height={80} className="object-contain" />
             </div>
             <div className="flex flex-col leading-none">
               <span className="text-cetl-text font-display font-bold text-base tracking-wide">CETL</span>
