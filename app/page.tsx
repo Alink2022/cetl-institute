@@ -16,7 +16,6 @@ import { CommunitySection } from "@/components/sections/CommunitySection";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { TrustBar } from "@/components/sections/TrustBar";
 import { LogoWatermark } from "@/components/ui/LogoWatermark";
-import { LeadershipSection } from "@/components/sections/LeadershipSection";
 import { ResearchSection } from "@/components/sections/ResearchSection";
 import { FAQSection } from "@/components/sections/FAQSection";
 
@@ -45,8 +44,6 @@ export default function Home() {
         <InsightsSection />
         <GoldDivider />
         <TestimonialsSection />
-        <GoldDivider />
-        <LeadershipSection />
         <GoldDivider />
         <CommunitySection />
         <GoldDivider />
