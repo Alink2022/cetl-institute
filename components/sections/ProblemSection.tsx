@@ -24,9 +24,9 @@ export function ProblemSection() {
             <div className="absolute -left-4 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-cetl-gold to-transparent opacity-40" />
             <p className="font-display text-3xl md:text-4xl lg:text-[2.75rem] font-bold text-cetl-text leading-[1.15] pl-8">
               &ldquo;{problem.quoteBefore}{" "}
-              <span className="text-gradient-gold">{problem.quoteHighlight1}</span>
+              <span className="cetl-gold-text">{problem.quoteHighlight1}</span>
               {problem.quoteMiddle}{" "}
-              <span className="text-gradient-gold">{problem.quoteHighlight2}</span>.&rdquo;
+              <span className="cetl-gold-text">{problem.quoteHighlight2}</span>.&rdquo;
             </p>
           </div>
 

@@ -160,7 +160,7 @@ export function ResearchSection() {
               className="gradient-edge flex flex-col items-center text-center gap-4 bg-cetl-dark rounded-2xl border border-cetl-border p-6"
             >
               <StatVisual stat={stat} />
-              <span className="font-display text-3xl font-bold text-gradient-gold">{stat.value}</span>
+              <span className="font-display text-3xl font-bold cetl-gold-text">{stat.value}</span>
               <p className="text-white text-sm font-medium leading-snug">{stat.label}</p>
               <p className="text-white/60 text-xs leading-relaxed">{stat.detail}</p>
               <p className="text-white/40 text-xs tracking-wide uppercase mt-auto pt-2 border-t border-white/10 w-full">
