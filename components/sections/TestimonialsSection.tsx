@@ -45,20 +45,20 @@ export function TestimonialsSection() {
                 &ldquo;
               </div>
 
-              <blockquote className="text-cetl-text text-[15px] leading-[1.75] font-light flex-1 -mt-4">
+              <blockquote className="text-white/85 text-[15px] leading-[1.75] font-light flex-1 -mt-4">
                 {item.quote}
               </blockquote>
 
               {/* Attribution */}
-              <div className="border-t border-cetl-border/60 pt-4 flex items-start justify-between gap-3">
+              <div className="border-t border-white/10 pt-4 flex items-start justify-between gap-3">
                 <div className="flex flex-col gap-1 flex-1">
-                <span className="text-cetl-text text-sm font-semibold">{item.role}</span>
+                <span className="text-white text-sm font-semibold">{item.role}</span>
                 <div className="flex items-center gap-2 flex-wrap">
-                  <span className="text-cetl-gold-deep text-xs font-medium">{item.sector}</span>
-                  <span className="text-cetl-border text-xs">·</span>
-                  <span className="text-cetl-text-muted text-xs">{item.orgSize}</span>
+                  <span className="text-cetl-gold-400 text-xs font-medium">{item.sector}</span>
+                  <span className="text-white/30 text-xs">·</span>
+                  <span className="text-white/50 text-xs">{item.orgSize}</span>
                 </div>
-                  <span className="text-cetl-text-muted/70 text-xs tracking-wide uppercase mt-1">
+                  <span className="text-white/40 text-xs tracking-wide uppercase mt-1">
                     {ui.anonymousNote}
                   </span>
                 </div>

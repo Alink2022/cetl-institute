@@ -16,7 +16,7 @@ export function InstStatsBar() {
               className="bg-cetl-dark px-6 py-5 flex flex-col gap-1 group hover:bg-cetl-surface transition-colors duration-300"
             >
               <span
-                className="font-display text-2xl md:text-3xl font-bold"
+                className="font-display text-2xl md:text-3xl font-bold group-hover:text-cetl-text"
                 style={{
                   background: "linear-gradient(100deg, var(--color-cetl-gold), var(--color-cetl-gold-light))",
                   WebkitBackgroundClip: "text",
@@ -26,8 +26,8 @@ export function InstStatsBar() {
               >
                 {stat.value}
               </span>
-              <span className="text-cetl-text text-sm font-semibold tracking-wide">{stat.label}</span>
-              <span className="text-cetl-text-muted text-xs leading-relaxed">{stat.sub}</span>
+              <span className="text-white group-hover:text-cetl-text text-sm font-semibold tracking-wide transition-colors duration-300">{stat.label}</span>
+              <span className="text-white/60 group-hover:text-cetl-text-muted text-xs leading-relaxed transition-colors duration-300">{stat.sub}</span>
             </div>
           ))}
         </div>

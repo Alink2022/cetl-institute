@@ -38,7 +38,7 @@ export function ProblemSection() {
               {t.PROBLEM_ITEMS.map((item) => (
                 <div
                   key={item.title}
-                  className="flex gap-4 p-4 -mx-4 rounded-xl hover:bg-cetl-dark/60 transition-colors duration-300"
+                  className="flex gap-4 p-4 -mx-4 rounded-xl hover:bg-cetl-gold/5 transition-colors duration-300"
                 >
                   <div
                     className="w-7 h-7 flex items-center justify-center shrink-0 mt-0.5 rounded-lg bg-cetl-surface-2 border border-cetl-border"

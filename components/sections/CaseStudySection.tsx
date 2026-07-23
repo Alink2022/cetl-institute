@@ -28,8 +28,8 @@ export function CaseStudySection() {
 
       <Container className="relative">
         <p className="text-cetl-gold-deep text-xs tracking-[0.3em] uppercase font-semibold mb-3">{ui.label}</p>
-        <h2 className="font-display text-3xl md:text-4xl font-bold text-cetl-text mb-2">{ui.title}</h2>
-        <p className="text-cetl-text-muted text-sm leading-relaxed mb-12 max-w-xl">{ui.subtitle}</p>
+        <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-2">{ui.title}</h2>
+        <p className="text-white/60 text-sm leading-relaxed mb-12 max-w-xl">{ui.subtitle}</p>
 
         <div className="grid grid-cols-1 lg:grid-cols-[420px_1fr] gap-px bg-cetl-border/30 rounded-2xl overflow-hidden">
           {/* Left: dark client card */}

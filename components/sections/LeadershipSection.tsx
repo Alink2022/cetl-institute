@@ -24,8 +24,8 @@ function FacultyCard({ initials, role, desc }: { initials: string; role: string;
         <div className="absolute inset-0 rounded-full bg-cetl-gold/[0.04] blur-md" />
       </div>
       <div>
-        <p className="text-cetl-text font-semibold text-sm">{role}</p>
-        <p className="text-cetl-text-muted text-xs leading-relaxed mt-1">{desc}</p>
+        <p className="text-white font-semibold text-sm">{role}</p>
+        <p className="text-white/60 text-xs leading-relaxed mt-1">{desc}</p>
       </div>
     </div>
   );
@@ -47,6 +47,7 @@ export function LeadershipSection() {
           title={leadership.title}
           subtitle={leadership.subtitle}
           className="mb-16"
+          dark
         />
 
         <div className="gradient-edge grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-10 lg:gap-16 bg-cetl-surface rounded-2xl border border-cetl-border p-8 lg:p-12">
@@ -102,8 +103,8 @@ export function LeadershipSection() {
                     </div>
                   )}
                   <div className="flex flex-col gap-1">
-                    <span className="text-cetl-text font-semibold text-sm">{c.label}</span>
-                    <span className="text-cetl-text-muted text-xs leading-snug">{c.sub}</span>
+                    <span className="text-white font-semibold text-sm">{c.label}</span>
+                    <span className="text-white/60 text-xs leading-snug">{c.sub}</span>
                   </div>
                 </div>
               ))}
@@ -117,7 +118,7 @@ export function LeadershipSection() {
                 {md.focus.map((f) => (
                   <span
                     key={f}
-                    className="px-3 py-1.5 rounded-full text-xs font-medium border border-cetl-border text-cetl-text-muted bg-cetl-dark"
+                    className="px-3 py-1.5 rounded-full text-xs font-medium border border-cetl-navy-600 text-white/60 bg-cetl-navy-800"
                   >
                     {f}
                   </span>
@@ -129,7 +130,7 @@ export function LeadershipSection() {
 
         {/* Faculty positions grid */}
         <div className="mt-16">
-          <p className="text-cetl-text-muted/60 text-xs font-semibold tracking-[0.25em] uppercase mb-6">{faculty.label}</p>
+          <p className="text-white/50 text-xs font-semibold tracking-[0.25em] uppercase mb-6">{faculty.label}</p>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
             {t.FACULTY_POSITIONS.map((pos) => (
               <FacultyCard key={pos.initials} {...pos} />
@@ -141,7 +142,7 @@ export function LeadershipSection() {
               </div>
               <div>
                 <p className="text-cetl-gold-deep text-sm font-semibold italic">{faculty.featuredTitle}</p>
-                <p className="text-cetl-text-muted text-xs leading-relaxed mt-1">{faculty.featuredDesc}</p>
+                <p className="text-white/60 text-xs leading-relaxed mt-1">{faculty.featuredDesc}</p>
               </div>
             </div>
           </div>

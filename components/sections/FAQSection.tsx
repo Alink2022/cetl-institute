@@ -13,7 +13,7 @@ export function FAQSection() {
   return (
     <section className="py-32 lg:py-44 bg-cetl-dark">
       <Container className="max-w-4xl">
-        <SectionHeader label={t.UI.faq.label} title={t.UI.faq.title} className="mb-12" />
+        <SectionHeader label={t.UI.faq.label} title={t.UI.faq.title} className="mb-12" dark />
 
         <div className="flex flex-col gap-3">
           {t.FAQ_ITEMS.map((item, i) => {

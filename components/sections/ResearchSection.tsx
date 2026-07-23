@@ -161,9 +161,9 @@ export function ResearchSection() {
             >
               <StatVisual stat={stat} />
               <span className="font-display text-3xl font-bold text-gradient-gold">{stat.value}</span>
-              <p className="text-cetl-text text-sm font-medium leading-snug">{stat.label}</p>
-              <p className="text-cetl-text-muted text-xs leading-relaxed">{stat.detail}</p>
-              <p className="text-cetl-text-muted/80 text-xs tracking-wide uppercase mt-auto pt-2 border-t border-cetl-border w-full">
+              <p className="text-white text-sm font-medium leading-snug">{stat.label}</p>
+              <p className="text-white/60 text-xs leading-relaxed">{stat.detail}</p>
+              <p className="text-white/40 text-xs tracking-wide uppercase mt-auto pt-2 border-t border-white/10 w-full">
                 {stat.source}
               </p>
             </div>
@@ -173,15 +173,15 @@ export function ResearchSection() {
         {/* Execution Gap horizontal bars */}
         <div className="gradient-edge bg-cetl-dark rounded-2xl border border-cetl-border p-8 lg:p-10 mb-16">
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2 mb-8">
-            <h3 className="font-display text-xl font-bold text-cetl-text">{t.EXECUTION_GAP.label}</h3>
-            <p className="text-cetl-text-muted text-xs max-w-sm">{t.EXECUTION_GAP.detail}</p>
+            <h3 className="font-display text-xl font-bold text-white">{t.EXECUTION_GAP.label}</h3>
+            <p className="text-white/60 text-xs max-w-sm">{t.EXECUTION_GAP.detail}</p>
           </div>
           <div className="flex flex-col gap-5">
             {t.EXECUTION_GAP.rows.map((row, i) => (
               <div key={row.label} className="flex flex-col gap-2">
                 <div className="flex items-center justify-between text-sm">
-                  <span className="text-cetl-text-muted">{row.label}</span>
-                  <span className="text-cetl-text font-semibold">{row.value}%</span>
+                  <span className="text-white/60">{row.label}</span>
+                  <span className="text-white font-semibold">{row.value}%</span>
                 </div>
                 <div className="h-2.5 rounded-full bg-cetl-surface overflow-hidden">
                   <motion.div
@@ -210,13 +210,13 @@ export function ResearchSection() {
               >
                 &ldquo;
               </span>
-              <p className="text-cetl-text text-sm leading-relaxed -mt-6">{q.quote}</p>
+              <p className="text-white/80 text-sm leading-relaxed -mt-6">{q.quote}</p>
               {lang === "de" && (
-                <p className="text-cetl-text-muted text-xs italic leading-relaxed">{q.translation}</p>
+                <p className="text-white/50 text-xs italic leading-relaxed">{q.translation}</p>
               )}
-              <div className="pt-4 mt-auto border-t border-cetl-border">
-                <p className="text-cetl-text font-semibold text-sm">{q.author}</p>
-                <p className="text-cetl-text-muted text-xs">{q.role}</p>
+              <div className="pt-4 mt-auto border-t border-white/10">
+                <p className="text-white font-semibold text-sm">{q.author}</p>
+                <p className="text-white/50 text-xs">{q.role}</p>
               </div>
             </div>
           ))}
