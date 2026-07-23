@@ -31,7 +31,7 @@ function RingChart({ value }: { value: number }) {
       <defs>
         <linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="var(--color-cetl-gold-light)" />
-          <stop offset="100%" stopColor="var(--color-cetl-violet)" />
+          <stop offset="100%" stopColor="var(--color-cetl-gold-400)" />
         </linearGradient>
       </defs>
     </svg>
@@ -101,7 +101,7 @@ function TrendChart() {
       />
       <defs>
         <linearGradient id="trendGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="var(--color-cetl-blue)" />
+          <stop offset="0%" stopColor="var(--color-cetl-navy-700)" />
           <stop offset="100%" stopColor="var(--color-cetl-gold-light)" />
         </linearGradient>
       </defs>
@@ -130,7 +130,7 @@ export function ResearchSection() {
   return (
     <section id="research" className="relative py-32 lg:py-44 bg-cetl-surface overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cetl-gold to-transparent opacity-40" />
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cetl-violet to-transparent opacity-40" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cetl-gold-400 to-transparent opacity-40" />
 
       <Container className="relative">
         <SectionHeader
@@ -185,7 +185,7 @@ export function ResearchSection() {
                 </div>
                 <div className="h-2.5 rounded-full bg-cetl-surface overflow-hidden">
                   <motion.div
-                    className="h-full rounded-full bg-gradient-to-r from-cetl-gold via-cetl-gold-light to-cetl-violet"
+                    className="h-full rounded-full bg-gradient-to-r from-cetl-gold via-cetl-gold-light to-cetl-gold-400"
                     initial={{ width: "0%" }}
                     whileInView={{ width: `${row.value}%` }}
                     viewport={{ once: true }}

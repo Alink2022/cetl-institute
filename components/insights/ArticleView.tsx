@@ -134,7 +134,7 @@ export function ArticleView({ slug, article }: { slug: string; article: Record<"
         <header className="relative pt-36 md:pt-44 pb-14 overflow-hidden">
           <div className="absolute inset-0 pointer-events-none">
             <div className="absolute -top-20 left-[15%] w-[500px] h-[400px] rounded-full bg-cetl-gold/[0.05] blur-[140px]" />
-            <div className="absolute bottom-0 right-[10%] w-[400px] h-[300px] rounded-full bg-cetl-violet/[0.06] blur-[120px]" />
+            <div className="absolute bottom-0 right-[10%] w-[400px] h-[300px] rounded-full bg-cetl-gold-400/[0.06] blur-[120px]" />
           </div>
           <Container className="relative z-10">
             <div className="max-w-3xl">

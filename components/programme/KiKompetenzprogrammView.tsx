@@ -69,7 +69,7 @@ function CheckItem({ children, className = "" }: { children: React.ReactNode; cl
 /** Rounded gold/violet gradient tile holding a module or role icon. */
 function IconTile({ icon: Icon }: { icon: React.ElementType }) {
   return (
-    <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-cetl-gold/20 to-cetl-violet/10 border border-cetl-gold/25 flex items-center justify-center mb-4">
+    <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-cetl-gold/20 to-cetl-gold-400/10 border border-cetl-gold/25 flex items-center justify-center mb-4">
       <Icon className="w-5 h-5 text-cetl-gold-deep" strokeWidth={1.5} aria-hidden="true" />
     </div>
   );
@@ -437,8 +437,8 @@ export function KiKompetenzprogrammView() {
       {/* ── Hero ── */}
       <section className="relative pt-40 pb-20 lg:pt-48 lg:pb-28 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-[-10%] left-[10%] w-[700px] h-[700px] rounded-full bg-cetl-blue/[0.08] blur-[160px]" />
-          <div className="absolute bottom-[-10%] right-[5%] w-[600px] h-[600px] rounded-full bg-cetl-violet/[0.07] blur-[160px]" />
+          <div className="absolute top-[-10%] left-[10%] w-[700px] h-[700px] rounded-full bg-cetl-navy-700/[0.08] blur-[160px]" />
+          <div className="absolute bottom-[-10%] right-[5%] w-[600px] h-[600px] rounded-full bg-cetl-gold-400/[0.07] blur-[160px]" />
         </div>
         <Container className="relative z-10 max-w-4xl text-center flex flex-col items-center">
           <Badge variant="blue" className="mb-6">
@@ -470,10 +470,10 @@ export function KiKompetenzprogrammView() {
           </div>
           <MagneticButton
             href="/#contact"
-            className="relative px-9 py-4 bg-cetl-blue text-white font-semibold tracking-wide text-center overflow-hidden group block shadow-[0_4px_24px_-8px_color-mix(in_srgb,var(--color-cetl-blue)_40%,transparent)]"
+            className="relative px-9 py-4 bg-cetl-navy-700 text-white font-semibold tracking-wide text-center overflow-hidden group block shadow-[0_4px_24px_-8px_color-mix(in_srgb,var(--color-cetl-navy-700)_40%,transparent)]"
           >
             <span className="relative z-10">Unverbindliches Erstgespräch vereinbaren</span>
-            <span className="absolute inset-0 bg-cetl-blue-dark opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <span className="absolute inset-0 bg-cetl-navy-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </MagneticButton>
         </Container>
       </section>

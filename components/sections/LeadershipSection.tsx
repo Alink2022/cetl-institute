@@ -39,7 +39,7 @@ export function LeadershipSection() {
 
   return (
     <section id="leadership" className="relative py-32 lg:py-44 bg-cetl-dark overflow-hidden">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-cetl-violet/[0.08] blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-cetl-gold-400/[0.08] blur-[140px] pointer-events-none" />
 
       <Container className="relative">
         <SectionHeader
@@ -53,7 +53,7 @@ export function LeadershipSection() {
           {/* Photo + identity */}
           <div className="flex flex-col items-center lg:items-start gap-5 text-center lg:text-left">
             <div className="relative w-full max-w-[280px]">
-              <div className="absolute -inset-2 rounded-2xl bg-gradient-to-br from-cetl-gold-light via-cetl-gold to-cetl-violet opacity-50 blur-xl" />
+              <div className="absolute -inset-2 rounded-2xl bg-gradient-to-br from-cetl-gold-light via-cetl-gold to-cetl-gold-400 opacity-50 blur-xl" />
               <div className="gradient-edge relative w-full aspect-[4/5] rounded-2xl overflow-hidden">
                 <Image
                   src="/alin-kalam.webp"

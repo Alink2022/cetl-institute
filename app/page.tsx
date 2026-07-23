@@ -4,6 +4,9 @@ import { GoldDivider } from "@/components/ui/GoldDivider";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { InstStatsBar } from "@/components/sections/InstStatsBar";
 import { ProblemSection } from "@/components/sections/ProblemSection";
+import { ElaasSection } from "@/components/sections/ElaasSection";
+import { PortfolioSection } from "@/components/sections/PortfolioSection";
+import { PackagesSection } from "@/components/sections/PackagesSection";
 import { CaseStudySection } from "@/components/sections/CaseStudySection";
 import { ProgramsSection } from "@/components/sections/ProgramsSection";
 import { InsightsSection } from "@/components/sections/InsightsSection";
@@ -21,12 +24,18 @@ export default function Home() {
   return (
     <>
       <NavBar />
-      <main className="relative">
+      <main id="main-content" className="relative">
         <LogoWatermark />
         <HeroSection />
         <TrustBar />
         <InstStatsBar />
         <ProblemSection />
+        <GoldDivider />
+        <ElaasSection />
+        <GoldDivider />
+        <PortfolioSection />
+        <GoldDivider />
+        <PackagesSection />
         <GoldDivider />
         <ProgramsSection />
         <GoldDivider />

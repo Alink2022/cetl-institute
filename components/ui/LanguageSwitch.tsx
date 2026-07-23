@@ -16,7 +16,7 @@ export function LanguageSwitch({ className = "" }: { className?: string }) {
           onClick={() => setLang(option)}
           aria-pressed={lang === option}
           className={`px-2.5 py-1 rounded-sm uppercase transition-colors duration-200 ${
-            lang === option ? "bg-cetl-blue text-white" : "text-cetl-text-muted hover:text-cetl-text"
+            lang === option ? "bg-cetl-navy-700 text-white" : "text-cetl-text-muted hover:text-cetl-text"
           }`}
         >
           {option}

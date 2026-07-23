@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Brain, TrendingUp, Award, Lightbulb, Cog, Users, Flag, UserCheck, MessageCircle, Code2, Briefcase } from "lucide-react";
+import { Brain, TrendingUp, Award, Lightbulb, Cog, Users, Flag, UserCheck, MessageCircle, Code2, Briefcase, Target, ChevronRight, ArrowRight, Shield, BookOpen, Layers, Network, Zap, BarChart2, GraduationCap, Building2, Globe, Cpu } from "lucide-react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Badge } from "@/components/ui/Badge";
 import { Container } from "@/components/ui/Container";
@@ -10,13 +10,9 @@ import { useLanguage } from "@/lib/i18n";
 import type { LucideIconName } from "@/lib/content-types";
 
 const ICON_MAP: Record<LucideIconName, React.ElementType> = {
-  Brain,
-  TrendingUp,
-  Award,
-  Users,
-  Lightbulb,
-  Cog,
-  Flag,
+  Brain, TrendingUp, Award, Users, Lightbulb, Cog, Flag,
+  Target, ChevronRight, ArrowRight, Shield, BookOpen, Layers,
+  Network, Zap, BarChart2, GraduationCap, Building2, Globe, Cpu,
 };
 
 // Pillar-Nummer, die den ELaaS-Anker (#elaas) aus dem NAV trägt — Embedded Engineering
@@ -109,7 +105,7 @@ export function ProgramsSection() {
                 </span>
 
                 <div className="mb-6">
-                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-cetl-gold/20 to-cetl-violet/10 border border-cetl-gold/25 flex items-center justify-center mb-5 shadow-[0_0_24px_-8px_color-mix(in_srgb,var(--color-cetl-gold)_50%,transparent)]">
+                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-cetl-gold/20 to-cetl-gold-400/10 border border-cetl-gold/25 flex items-center justify-center mb-5 shadow-[0_0_24px_-8px_color-mix(in_srgb,var(--color-cetl-gold)_50%,transparent)]">
                     <Icon className="w-7 h-7 text-cetl-gold-deep" strokeWidth={1.5} aria-hidden="true" />
                   </div>
                   <p className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase mb-2">
@@ -192,7 +188,7 @@ export function ProgramsSection() {
 
         {flagship && (
           <TiltCard className="gradient-edge relative flex flex-col bg-cetl-surface rounded-2xl border border-cetl-border p-8 md:p-12 overflow-hidden">
-            <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-cetl-gold via-cetl-gold-light to-cetl-violet opacity-70" />
+            <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-cetl-gold via-cetl-gold-light to-cetl-gold-400 opacity-70" />
             <Badge variant={t.TAG_COLORS[flagship.tag] ?? "gold"} className="mb-5 self-start">
               {flagship.tag}
             </Badge>
@@ -218,7 +214,7 @@ export function ProgramsSection() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
               {ROLE_ROW.map((role) => (
                 <div key={role.label} className="flex flex-col items-center gap-4 text-center">
-                  <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-cetl-gold/20 to-cetl-violet/10 border border-cetl-gold/25 flex items-center justify-center">
+                  <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-cetl-gold/20 to-cetl-gold-400/10 border border-cetl-gold/25 flex items-center justify-center">
                     <role.icon className="w-9 h-9 text-cetl-gold-deep" strokeWidth={1.5} aria-hidden="true" />
                   </div>
                   <span className="text-cetl-text text-base font-semibold leading-snug">{role.label}</span>
@@ -247,7 +243,7 @@ export function ProgramsSection() {
         <div className="mt-14 flex flex-col sm:flex-row items-center justify-center gap-4">
           <a
             href="#contact"
-            className="group relative inline-flex items-center gap-2 px-8 py-4 bg-cetl-blue text-white font-semibold tracking-wide overflow-hidden transition-transform duration-300 hover:scale-105 rounded-sm"
+            className="group relative inline-flex items-center gap-2 px-8 py-4 bg-cetl-navy-700 text-white font-semibold tracking-wide overflow-hidden transition-transform duration-300 hover:scale-105 rounded-sm"
           >
             <span className="relative z-10 flex items-center gap-2">
               {t.UI.programs.cta}
@@ -255,7 +251,7 @@ export function ProgramsSection() {
                 <path d="M3 8h10M9 4l4 4-4 4" />
               </svg>
             </span>
-            <span className="absolute inset-0 bg-cetl-blue-dark opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <span className="absolute inset-0 bg-cetl-navy-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </a>
           <a
             href="#contact"

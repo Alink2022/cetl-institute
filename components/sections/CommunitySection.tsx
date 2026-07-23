@@ -12,7 +12,7 @@ export function CommunitySection() {
   return (
     <section id="community" className="py-32 bg-cetl-surface/20 relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[500px] rounded-full bg-cetl-violet/[0.06] blur-[140px]" />
+        <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[500px] rounded-full bg-cetl-gold-400/[0.06] blur-[140px]" />
         <div className="absolute bottom-0 left-[-5%] w-[400px] h-[400px] rounded-full bg-cetl-gold/[0.04] blur-[100px]" />
       </div>
 

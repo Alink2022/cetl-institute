@@ -24,8 +24,8 @@ export function StickyAdvisor() {
       aria-hidden={!visible}
       className={[
         "fixed bottom-6 right-6 z-50 flex items-center gap-2.5 px-5 py-3 rounded-full",
-        "bg-cetl-blue text-white text-sm font-semibold tracking-wide shadow-[0_4px_24px_-4px_color-mix(in_srgb,var(--color-cetl-blue)_55%,transparent)]",
-        "hover:bg-cetl-blue-dark hover:scale-105 active:scale-95",
+        "bg-cetl-navy-700 text-white text-sm font-semibold tracking-wide shadow-[0_4px_24px_-4px_color-mix(in_srgb,var(--color-cetl-navy-700)_55%,transparent)]",
+        "hover:bg-cetl-navy-800 hover:scale-105 active:scale-95",
         "transition-all duration-300",
         visible ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-4 pointer-events-none",
       ].join(" ")}

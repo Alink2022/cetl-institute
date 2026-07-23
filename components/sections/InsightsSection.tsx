@@ -12,7 +12,7 @@ export function InsightsSection() {
   return (
     <section className="py-32 bg-cetl-dark relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute bottom-0 right-[20%] w-[500px] h-[400px] rounded-full bg-cetl-violet/[0.06] blur-[140px]" />
+        <div className="absolute bottom-0 right-[20%] w-[500px] h-[400px] rounded-full bg-cetl-gold-400/[0.06] blur-[140px]" />
       </div>
 
       <Container className="relative z-10">

@@ -110,7 +110,7 @@ export function ContactSection() {
 
           {/* Right: Form */}
           <div className="gradient-edge relative glass-panel rounded-2xl p-8 overflow-hidden">
-            <div className="absolute -top-20 -right-20 w-56 h-56 rounded-full bg-cetl-violet/10 blur-3xl pointer-events-none" />
+            <div className="absolute -top-20 -right-20 w-56 h-56 rounded-full bg-cetl-gold-400/10 blur-3xl pointer-events-none" />
             {submitted ? (
               <div className="relative flex flex-col items-center justify-center h-full gap-4 py-16 text-center">
                 <div className="w-12 h-12 rounded-full bg-cetl-gold/10 border border-cetl-gold/30 flex items-center justify-center">
@@ -216,7 +216,7 @@ export function ContactSection() {
                     htmlFor="contact-message"
                     className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase"
                   >
-                    {contact.messageLabel}
+                    {contact.contextLabel}
                   </label>
                   <textarea
                     id="contact-message"
@@ -225,16 +225,16 @@ export function ContactSection() {
                     value={form.message}
                     onChange={handleChange}
                     className="bg-cetl-dark border border-cetl-border rounded-lg text-cetl-text text-sm px-4 py-3 focus:outline-none focus:border-cetl-gold focus:ring-2 focus:ring-cetl-gold/50 transition-all resize-none placeholder:text-cetl-text-muted/40"
-                    placeholder={contact.messagePlaceholder}
+                    placeholder={contact.contextPlaceholder}
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="group relative w-full py-4 rounded-sm bg-cetl-blue text-white font-semibold tracking-wide overflow-hidden transition-transform duration-300 hover:scale-[1.02] mt-2"
+                  className="group relative w-full py-4 rounded-sm bg-cetl-navy-700 text-white font-semibold tracking-wide overflow-hidden transition-transform duration-300 hover:scale-[1.02] mt-2"
                 >
                   <span className="relative z-10">{contact.submit}</span>
-                  <span className="absolute inset-0 bg-cetl-blue-dark opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <span className="absolute inset-0 bg-cetl-navy-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </button>
               </form>
             )}

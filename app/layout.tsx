@@ -1,38 +1,52 @@
 import type { Metadata } from "next";
-import { Playfair_Display, EB_Garamond } from "next/font/google";
+import { Barlow_Condensed, Manrope } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { ScrollProgress } from "@/components/ui/ScrollProgress";
-import { StickyAdvisor } from "@/components/ui/StickyAdvisor";
 import { LanguageProvider } from "@/lib/i18n";
 
-const displayFont = Playfair_Display({
-  variable: "--font-display",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
-  style: ["normal", "italic"],
-});
-
-const bodyFont = EB_Garamond({
-  variable: "--font-body",
+const barlowCondensed = Barlow_Condensed({
+  variable: "--font-barlow",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
   style: ["normal", "italic"],
+  display: "swap",
+});
+
+const manrope = Manrope({
+  variable: "--font-manrope",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://cetl-institute.vercel.app"),
-  title: "CETL Institute | Central European Tech Leadership Institute",
-  description:
-    "Akademische Exzellenz trifft industrielle Umsetzung. Executive Education, strategische Beratung und unabhängige technische Bewertung für Vorstand und Geschäftsführung bei AI- und digitaler Transformation.",
-  openGraph: {
-    title: "CETL Institute",
-    description:
-      "Executional Learning as a Service: wir machen Führungskräfte vom passiven Beobachter zum aktiven Architekten AI-getriebenen Unternehmenswerts.",
-    type: "website",
-    locale: "de_AT",
+  title: {
+    default: "CETL Institute | Executional Learning as a Service",
+    template: "%s | CETL Institute",
   },
+  description:
+    "CETL Institute combines academic excellence, industry practice and community-powered execution to build lasting Data, AI and technology capabilities in organizations.",
+  keywords: [
+    "Executional Learning as a Service", "ELaaS", "Data AI capability building",
+    "executive education Vienna", "organizational transformation", "embedded engineering",
+    "enterprise AI programme", "CETL Institute",
+  ],
+  openGraph: {
+    title: "CETL Institute | Executional Learning as a Service",
+    description:
+      "From capability building to execution and scalable impact. CETL bridges academic excellence, industry practice and community-powered execution.",
+    type: "website",
+    locale: "en_GB",
+    siteName: "CETL Institute",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "CETL Institute | Executional Learning as a Service",
+    description: "From capability building to execution and scalable impact.",
+  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({
@@ -41,11 +55,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="de-AT" className={`${displayFont.variable} ${bodyFont.variable} h-full`}>
-      <body className="min-h-full flex flex-col antialiased bg-cetl-dark text-cetl-text">
+    <html lang="en" className={`${barlowCondensed.variable} ${manrope.variable} h-full`}>
+      <body className="min-h-full flex flex-col antialiased">
+        <a href="#main-content" className="skip-link">
+          Skip to main content
+        </a>
         <LanguageProvider>
-          <ScrollProgress />
-          <StickyAdvisor />
           {children}
         </LanguageProvider>
         <Analytics />

@@ -5,7 +5,7 @@ export function GoldDivider() {
         className="h-px w-full"
         style={{
           background:
-            "linear-gradient(to right, transparent, var(--color-cetl-gold) 30%, var(--color-cetl-violet) 70%, transparent)",
+            "linear-gradient(to right, transparent, var(--color-cetl-gold) 30%, var(--color-cetl-gold-400) 70%, transparent)",
           opacity: 0.25,
         }}
       />

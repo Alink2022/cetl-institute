@@ -1,36 +1,50 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* Paper & Gold — inverted enterprise authority palette.
-     Cleaner near-white surfaces; gold split into two roles:
-     --color-cetl-gold       fills, buttons, icons, decoration (5.9:1 vs dark text)
-     --color-cetl-gold-deep  running text/labels/links on light bg (≥4.6:1, WCAG 1.4.3) */
-  --color-cetl-dark: #FFFFFF;
-  --color-cetl-darker: #0B0F1A;
-  --color-cetl-surface: #FAFAFA;
-  --color-cetl-surface-2: #F4F4F5;
-  --color-cetl-border: #E4E4E7;
-  --color-cetl-muted: #71717A;
-  --color-cetl-gold: #B8862F;
-  --color-cetl-gold-deep: #8A671E;
-  --color-cetl-gold-light: #D4A843;
-  --color-cetl-blue: #2458D6;
-  --color-cetl-blue-dark: #1A51C2;
-  --color-cetl-violet: #7C3AED;
-  --color-cetl-text: #101014;
-  --color-cetl-text-muted: #494F5A;
+  /* ── CETL Navy Scale ── */
+  --color-cetl-navy-950: #02101F;
+  --color-cetl-navy-900: #03142D;
+  --color-cetl-navy-800: #061B3A;
+  --color-cetl-navy-700: #0B2A54;
+  --color-cetl-navy-600: #123765;
+
+  /* ── CETL Gold Scale ── */
+  --color-cetl-gold-700: #9F6508;
+  --color-cetl-gold-600: #BF7F0D;
+  --color-cetl-gold-500: #D79A1E;
+  --color-cetl-gold-400: #E6B64A;
+  --color-cetl-gold-300: #F0CE78;
+  --color-cetl-gold-200: #F7E3AE;
+
+  /* ── Neutral Scale ── */
+  --color-cetl-ivory: #F7F5EF;
+  --color-cetl-warm-white: #FCFBF8;
+  --color-cetl-silver: #D9DEE7;
+  --color-cetl-text: #071833;
+  --color-cetl-muted: #5B6574;
   --color-cetl-error: #DC2626;
 
-  --font-sans: var(--font-body);
-  --font-display: var(--font-display);
+  /* ── Semantic aliases (Tailwind v4 compatibility) ── */
+  --color-cetl-border: #D8DDE5;
+  --color-cetl-surface: #FCFBF8;
+  --color-cetl-surface-2: #F7F5EF;
+  --color-cetl-gold: #D79A1E;
+  --color-cetl-gold-deep: #9F6508;
+  --color-cetl-gold-light: #F0CE78;
+  --color-cetl-dark: #03142D;
+  --color-cetl-darker: #02101F;
+  --color-cetl-text-muted: #5B6574;
 
-  --animate-fade-in: fade-in 0.6s ease both;
-  --animate-fade-in-up: fade-in-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
-  --animate-aurora: aurora-drift 22s ease-in-out infinite;
-  --animate-aurora-slow: aurora-drift 34s ease-in-out infinite reverse;
-  --animate-marquee: marquee 32s linear infinite;
-  --animate-shimmer: shimmer 2.6s ease-in-out infinite;
-  --animate-float: float 7s ease-in-out infinite;
+  /* ── Typography ── */
+  --font-display: var(--font-barlow);
+  --font-sans: var(--font-manrope);
+  --font-body: var(--font-manrope);
+
+  /* ── Animations ── */
+  --animate-fade-in: fade-in 0.5s ease both;
+  --animate-fade-in-up: fade-in-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-shimmer: shimmer 2.4s ease-in-out infinite;
+  --animate-marquee: marquee 36s linear infinite;
 }
 
 @keyframes fade-in {
@@ -39,14 +53,13 @@
 }
 
 @keyframes fade-in-up {
-  from { opacity: 0; transform: translateY(28px); }
+  from { opacity: 0; transform: translateY(24px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes aurora-drift {
-  0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); }
-  33% { transform: translate(4%, -6%) scale(1.12) rotate(8deg); }
-  66% { transform: translate(-5%, 4%) scale(0.94) rotate(-6deg); }
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }
 
 @keyframes marquee {
@@ -54,30 +67,21 @@
   to   { transform: translateX(-50%); }
 }
 
-@keyframes shimmer {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-14px) rotate(2deg); }
-}
-
-/* Größere Grundschrift: alle rem-basierten Tailwind-Größen skalieren mit (Vorgabe Stefan: Site soll größer/stärker wirken) */
+/* ── Base ── */
 html {
-  font-size: 18px;
+  font-size: 17px;
 }
 
 body {
-  background: var(--color-cetl-dark);
-  color: var(--color-cetl-text);
-  font-family: var(--font-body), Georgia, serif;
+  background: #FCFBF8;
+  color: #071833;
+  font-family: var(--font-manrope), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, .font-display {
-  font-family: var(--font-display), Georgia, serif;
+h1, h2, h3, h4, h5, .font-display {
+  font-family: var(--font-barlow), system-ui, sans-serif;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -89,121 +93,112 @@ h1, h2, h3, h4, .font-display {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  html {
-    scroll-behavior: smooth;
-  }
+  html { scroll-behavior: smooth; }
+}
+
+/* ── Focus & Selection ── */
+:focus-visible {
+  outline: 2px solid #E6B64A;
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
 ::selection {
-  background: color-mix(in srgb, var(--color-cetl-gold) 30%, transparent);
-  color: var(--color-cetl-text);
+  background: color-mix(in srgb, #E6B64A 26%, transparent);
+  color: #071833;
 }
 
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: var(--color-cetl-surface);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--color-cetl-border);
-  border: 2px solid var(--color-cetl-surface);
-  border-radius: 999px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-cetl-gold);
-}
-
-/* Gradient text: gold → white → gold — reads on dark bg */
-.text-gradient-gold {
-  background: linear-gradient(100deg, var(--color-cetl-gold) 0%, var(--color-cetl-text) 50%, var(--color-cetl-gold-light) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-/* Shimmering gradient text */
-.text-shimmer {
-  background: linear-gradient(110deg, var(--color-cetl-text-muted) 30%, var(--color-cetl-gold) 50%, var(--color-cetl-text-muted) 70%);
-  background-size: 200% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: shimmer 3.5s linear infinite;
-}
-
-/* Subtle paper/parchment grain */
-.bg-grain {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-  background-size: 220px 220px;
-}
-
-/* Fine gold grid — very subtle on dark */
-.bg-grid-gold {
-  background-image:
-    linear-gradient(var(--color-cetl-gold) 1px, transparent 1px),
-    linear-gradient(90deg, var(--color-cetl-gold) 1px, transparent 1px);
-  background-size: 64px 64px;
-}
-
-/* Dark glass panel — frosted midnight navy */
-.glass-panel {
-  background: color-mix(in srgb, var(--color-cetl-surface) 85%, transparent);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid color-mix(in srgb, var(--color-cetl-gold) 18%, var(--color-cetl-border));
-}
-
-/* Gradient-stroke card */
-.gradient-edge {
-  position: relative;
-  isolation: isolate;
-}
-.gradient-edge::before {
-  content: "";
+/* ── Skip link ── */
+.skip-link {
   position: absolute;
-  inset: 0;
-  padding: 1px;
-  border-radius: inherit;
-  background: linear-gradient(135deg, var(--color-cetl-gold) 0%, transparent 35%, transparent 65%, var(--color-cetl-blue) 100%);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  z-index: -1;
-  pointer-events: none;
+  top: -100%;
+  left: 1rem;
+  padding: 0.5rem 1.25rem;
+  background: #D79A1E;
+  color: #03142D;
+  font-weight: 700;
+  font-size: 0.875rem;
+  border-radius: 0 0 4px 4px;
+  z-index: 9999;
+  transition: top 0.1s;
+  text-decoration: none;
 }
-.gradient-edge:hover::before {
-  opacity: 1;
+.skip-link:focus { top: 0; }
+
+/* ── Anchor offset for sticky nav ── */
+[id] { scroll-margin-top: 96px; }
+
+/* ── Gold gradient text ── */
+.cetl-gold-text {
+  background: linear-gradient(110deg, #BF7F0D 0%, #E6B64A 40%, #F0CE78 55%, #C88710 80%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
+/* ── Gold shimmer text ── */
+.cetl-gold-shimmer {
+  background: linear-gradient(110deg, #9F6508 0%, #E0A72C 25%, #F2D27C 48%, #C88710 72%, #E8B84D 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 2.4s ease-in-out infinite;
+}
+
+/* ── Gold ribbon ── */
+.cetl-ribbon {
+  background: linear-gradient(110deg, #A96C08 0%, #E0A72C 25%, #F2D27C 48%, #C88710 72%, #E8B84D 100%);
+  background-size: 200% auto;
+  animation: shimmer 2.4s ease-in-out infinite;
+}
+
+/* ── Navy gradient bg ── */
+.cetl-navy-bg {
+  background: linear-gradient(135deg, #02101F 0%, #03142D 55%, #0B2A54 100%);
+}
+
+/* ── Gold divider line with dots ── */
+.cetl-gold-rule {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.cetl-gold-rule::before,
+.cetl-gold-rule::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #E6B64A 40%, #E6B64A 60%, transparent);
+  opacity: 0.5;
+}
+
+/* ── Card shadows ── */
+.cetl-card-shadow {
+  box-shadow: 0 12px 36px rgba(3, 20, 45, 0.10);
+}
+
+.cetl-card-shadow-dark {
+  box-shadow: 0 18px 48px rgba(3, 20, 45, 0.22);
+}
+
+/* ── Marquee track ── */
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: marquee 34s linear infinite;
+  animation: marquee 36s linear infinite;
 }
 .marquee-track:hover {
   animation-play-state: paused;
 }
 
-.clip-diagonal {
-  clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 7px; }
+::-webkit-scrollbar-track { background: #F7F5EF; }
+::-webkit-scrollbar-thumb {
+  background: #D9DEE7;
+  border-radius: 999px;
+  border: 1px solid #F7F5EF;
 }
-
-/* Academic ruling lines — decorative horizontal dividers */
-.ruling-line {
-  position: relative;
-}
-.ruling-line::before,
-.ruling-line::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: var(--color-cetl-border);
-  opacity: 0.6;
-}
-.ruling-line::before { top: 0; }
-.ruling-line::after  { bottom: 0; }
+::-webkit-scrollbar-thumb:hover { background: #D79A1E; }

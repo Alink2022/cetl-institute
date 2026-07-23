@@ -1,4 +1,4 @@
-export type LucideIconName = "Brain" | "TrendingUp" | "Award" | "Users" | "Lightbulb" | "Cog" | "Flag";
+export type LucideIconName = "Brain" | "TrendingUp" | "Award" | "Users" | "Lightbulb" | "Cog" | "Flag" | "Target" | "ChevronRight" | "ArrowRight" | "Shield" | "BookOpen" | "Layers" | "Network" | "Zap" | "BarChart2" | "GraduationCap" | "Building2" | "Globe" | "Cpu";
 export type TagColor = "gold" | "blue" | "muted";
 
 export interface Testimonial {
@@ -118,6 +118,62 @@ export interface IntersectionCategory {
   partners: IntersectionPartner[];
 }
 
+/* ── ELaaS-specific new types ── */
+
+export interface PortfolioProduct {
+  number: string;
+  title: string;
+  accentLine: string;
+  description: string;
+  capabilities: string[];
+  outcomeLabel: string;
+  cta: string;
+  ctaHref: string;
+}
+
+export interface Package {
+  number: string;
+  label?: string;
+  name: string;
+  subtitle: string;
+  description: string;
+  includes: string[];
+  price: string;
+  priceNote?: string;
+  cta: string;
+  ctaHref: string;
+  featured?: boolean;
+}
+
+export interface EcosystemNode {
+  number: string;
+  title: string;
+  description: string;
+}
+
+export interface NetworkLayer {
+  number: string;
+  title: string;
+  subtitle: string;
+  copy: string;
+  logoPlaceholders: string[];
+  outcome: string;
+}
+
+export interface RoleCard {
+  title: string;
+  audience: string;
+  purpose: string;
+}
+
+export interface EvidenceStat {
+  figure: string;
+  claim: string;
+  source: string;
+  interpretation: string;
+  isIllustrative?: boolean;
+}
+
 export interface ContentBundle {
   TESTIMONIALS: Testimonial[];
   INSIGHTS: Insight[];
@@ -174,83 +230,151 @@ export interface ContentBundle {
   FAQ_ITEMS: { q: string; a: string }[];
   CONTACT_ITEMS: { label: string; value: string; href: string | null }[];
   CONTACT_INTEREST_OPTIONS: string[];
+
+  /* ── New ELaaS content ── */
+  PORTFOLIO_PRODUCTS: PortfolioProduct[];
+  PACKAGES: Package[];
+  ECOSYSTEM_NODES: EcosystemNode[];
+  NETWORK_LAYERS: NetworkLayer[];
+  ROLE_CARDS: RoleCard[];
+  EVIDENCE_STATS: EvidenceStat[];
+
   UI: {
     nav: { ctaContact: string; toggleMenu: string };
     hero: {
-      badgeLocation: string;
+      eyebrow: string;
       headlineLine1: string;
-      headlineGradient: string;
-      headlineLine3: string;
-      paragraph: string;
+      headlineAccent: string;
+      subheadline: string;
+      body: string;
       ctaPrimary: string;
       ctaSecondary: string;
+      supportingLine: string;
+      microProof: string[];
+      badgeLocation: string;
+      headlineLine3: string;
+      paragraph: string;
       stats: { value: string; label: string }[];
       ticker: string[];
       badgeVienna: string;
       badgeTUWien: string;
       badgeFDE: string;
       photoCaption: string;
+      headlineGradient: string;
     };
     problem: {
+      eyebrow: string;
+      headline: string;
+      intro: string;
+      closingStatement: string;
+      cta: string;
       quoteBefore: string;
       quoteHighlight1: string;
       quoteMiddle: string;
       quoteHighlight2: string;
-      intro: string;
       answer: string;
     };
-    pillars: { label: string; title: string; subtitle: string };
-    methodology: { label: string; title: string; subtitle: string; cta: string };
-    programs: { label: string; title: string; subtitle: string; cta: string; filterAll: string; filterLabel: string; ctaAdvisor: string; detailCta: string };
-    partners: { trusted: string; blurbBefore: string; blurbHackathon: string; blurbAfter: string };
-    leadership: {
+    elaas: {
+      eyebrow: string;
+      headline: string;
+      body: string;
+      callout: string;
+      calloutItems: string[];
+      cta: string;
+    };
+    portfolio: {
+      eyebrow: string;
+      headline: string;
+      intro: string;
+    };
+    packages: {
+      eyebrow: string;
+      headline: string;
+      intro: string;
+      callout: string;
+    };
+    outcomes: {
+      label: string;
+      items: { title: string; copy: string }[];
+    };
+    differentiators: {
+      headline: string;
+      items: { title: string; copy: string }[];
+    };
+    methodology: {
       label: string;
       title: string;
       subtitle: string;
-      linkedin: string;
-      focus: string;
-      photoTag: string;
-      photoAlt: string;
+      cta: string;
+      closingLine: string;
     };
-    research: { label: string; title: string; subtitle: string; cta: string };
-    faq: { label: string; title: string };
-    contact: {
+    ecosystem: {
+      eyebrow: string;
+      headline: string;
+      bottomBand: string[];
+    };
+    enterprise: {
+      eyebrow: string;
+      headline: string;
+      body: string;
+      facts: string[];
+      outputs: string[];
+      ctaPrimary: string;
+      ctaSecondary: string;
+    };
+    embedded: {
+      eyebrow: string;
+      headline: string;
+      body: string;
+      modules: string[];
+      fde: string;
+      outcome: string;
+      cta: string;
+      assessmentEyebrow: string;
+      assessmentHeadline: string;
+      assessmentBody: string;
+      assessmentItems: string[];
+    };
+    community: {
+      eyebrow: string;
+      headline: string;
+      body: string;
+      formats: string[];
+      orgValue: string[];
+      featuredStatement: string;
+      ctaPrimary: string;
+      ctaSecondary: string;
       label: string;
       title: string;
       subtitle: string;
-      targetAudienceLabel: string;
-      targetAudienceText: string;
-      complianceLabel: string;
-      nameLabel: string;
-      namePlaceholder: string;
-      companyLabel: string;
-      companyPlaceholder: string;
-      emailLabel: string;
-      emailPlaceholder: string;
-      interestLabel: string;
-      interestPlaceholder: string;
-      messageLabel: string;
-      messagePlaceholder: string;
-      submit: string;
-      successTitle: string;
-      successText: string;
-      mailSubjectPrefix: string;
-      mailGeneral: string;
-      mailFieldName: string;
-      mailFieldCompany: string;
-      mailFieldEmail: string;
-      mailFieldInterest: string;
+      advisorCta: string;
+      pills: string[];
+      features: { title: string; desc: string }[];
+      quote: string;
+      quoteAttribution: string;
     };
-    footer: {
-      tagline: string;
-      navLabel: string;
-      contactLabel: string;
-      location: string;
-      region: string;
-      copyright: string;
-      complianceLine: string;
+    network: {
+      eyebrow: string;
+      headline: string;
     };
-    testimonials: { label: string; title: string; subtitle: string; anonymousNote: string };
+    caseStudy: {
+      eyebrow: string;
+      headline: string;
+      body: string;
+      cta: string;
+      label: string;
+      title: string;
+      subtitle: string;
+    };
+    evidence: {
+      eyebrow: string;
+      headline: string;
+      body: string;
+      eriTitle: string;
+      eriDesc: string;
+      eriNote: string;
+      cta: string;
+    };
     insights: {
       label: string;
       title: string;
@@ -272,10 +396,94 @@ export interface ContentBundle {
       prevLabel: string;
       nextLabel: string;
     };
+    testimonials: {
+      label: string;
+      title: string;
+      subtitle: string;
+      anonymousNote: string;
+    };
+    about: {
+      eyebrow: string;
+      headline: string;
+      body: string;
+      mission: string;
+      vision: string;
+      differentiator: string;
+      values: { title: string; copy: string }[];
+    };
+    leadership: {
+      eyebrow: string;
+      label: string;
+      title: string;
+      subtitle: string;
+      linkedin: string;
+      focus: string;
+      photoTag: string;
+      photoAlt: string;
+    };
+    partner: {
+      eyebrow: string;
+      headline: string;
+      body: string;
+      cta: string;
+    };
+    faq: { label: string; title: string };
+    contact: {
+      eyebrow: string;
+      label: string;
+      title: string;
+      subtitle: string;
+      body: string;
+      targetAudienceLabel: string;
+      targetAudienceText: string;
+      complianceLabel: string;
+      nameLabel: string;
+      namePlaceholder: string;
+      companyLabel: string;
+      companyPlaceholder: string;
+      emailLabel: string;
+      emailPlaceholder: string;
+      roleLabel: string;
+      rolePlaceholder: string;
+      interestLabel: string;
+      interestPlaceholder: string;
+      contextLabel: string;
+      contextPlaceholder: string;
+      submit: string;
+      successTitle: string;
+      successText: string;
+      mailSubjectPrefix: string;
+      mailGeneral: string;
+      mailFieldName: string;
+      mailFieldCompany: string;
+      mailFieldEmail: string;
+      mailFieldInterest: string;
+      privacyNote: string;
+    };
+    footer: {
+      tagline: string;
+      navLabel: string;
+      contactLabel: string;
+      location: string;
+      region: string;
+      copyright: string;
+      complianceLine: string;
+    };
+    pillars: { label: string; title: string; subtitle: string };
+    programs: {
+      label: string;
+      title: string;
+      subtitle: string;
+      cta: string;
+      filterAll: string;
+      filterLabel: string;
+      ctaAdvisor: string;
+      detailCta: string;
+    };
+    partners: { trusted: string; blurbBefore: string; blurbHackathon: string; blurbAfter: string };
+    research: { label: string; title: string; subtitle: string; cta: string };
     instStats: { label: string };
-    community: { label: string; title: string; subtitle: string; advisorCta: string };
     intersection: { label: string; title: string; subtitle: string };
-    caseStudy: { label: string; title: string; subtitle: string; cta: string };
     faculty: { label: string; positionOpen: string; featuredTitle: string; featuredDesc: string };
     forOrgs: {
       label: string;

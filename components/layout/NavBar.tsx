@@ -116,7 +116,7 @@ export function NavBar() {
                 className="relative px-4 py-2 text-cetl-text-muted hover:text-cetl-text text-sm font-medium tracking-wide transition-colors duration-200 group"
               >
                 {link.label}
-                <span className="absolute left-4 right-4 -bottom-0.5 h-px bg-gradient-to-r from-cetl-gold to-cetl-violet scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
+                <span className="absolute left-4 right-4 -bottom-0.5 h-px bg-gradient-to-r from-cetl-gold to-cetl-gold-400 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
               </a>
             ))}
           </div>
@@ -126,10 +126,10 @@ export function NavBar() {
             <LanguageSwitch />
             <a
               href={toHref("#contact")}
-              className="relative px-5 py-2.5 rounded-sm bg-cetl-blue text-white text-sm font-semibold tracking-wide overflow-hidden group transition-transform duration-300 hover:scale-105"
+              className="relative px-5 py-2.5 rounded-sm bg-cetl-navy-700 text-white text-sm font-semibold tracking-wide overflow-hidden group transition-transform duration-300 hover:scale-105"
             >
               <span className="relative z-10">{t.UI.nav.ctaContact}</span>
-              <span className="absolute inset-0 bg-cetl-blue-dark opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <span className="absolute inset-0 bg-cetl-navy-700-dark opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </a>
           </div>
 
@@ -171,7 +171,7 @@ export function NavBar() {
         // `inert` hält das Menü (und alle Links darin) aus dem Tab-Fokus heraus, solange es
         // unsichtbar ist — sonst könnten Tastaturnutzer:innen unsichtbare Links fokussieren.
         inert={!mobileOpen}
-        className={`md:hidden fixed inset-0 top-0 bg-cetl-dark/98 backdrop-blur-xl transition-all duration-500 ${
+        className={`md:hidden fixed inset-0 top-0 bg-cetl-navy-900/98 backdrop-blur-xl transition-all duration-500 ${
           mobileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
       >
@@ -204,7 +204,7 @@ export function NavBar() {
           <a
             href={toHref("#contact")}
             onClick={() => setMobileOpen(false)}
-            className="mt-4 px-6 py-4 rounded-sm bg-cetl-blue text-white font-semibold tracking-wide text-center"
+            className="mt-4 px-6 py-4 rounded-sm bg-cetl-navy-700 text-white font-semibold tracking-wide text-center"
           >
             {t.UI.nav.ctaContact}
           </a>
