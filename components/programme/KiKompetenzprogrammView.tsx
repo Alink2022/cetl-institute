@@ -57,11 +57,11 @@ function CheckIcon() {
 }
 
 /** Checkmark list item. `className` carries per-list spacing/size (gap-*, text-*). */
-function CheckItem({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+function CheckItem({ children, className = "", dark = false }: { children: React.ReactNode; className?: string; dark?: boolean }) {
   return (
     <li className={`flex items-start ${className}`}>
       <CheckIcon />
-      <span className="text-cetl-text-muted">{children}</span>
+      <span className={dark ? "text-white/70" : "text-cetl-text-muted"}>{children}</span>
     </li>
   );
 }
@@ -75,14 +75,14 @@ function IconTile({ icon: Icon }: { icon: React.ElementType }) {
   );
 }
 
-function StepNode({ n, icon: Icon, title }: { n: number; icon: React.ElementType; title: string }) {
+function StepNode({ n, icon: Icon, title, dark = false }: { n: number; icon: React.ElementType; title: string; dark?: boolean }) {
   return (
     <div className="flex flex-col items-center gap-3 text-center">
       <span className="text-cetl-gold-deep text-xs font-semibold tracking-widest">{n}</span>
       <div className="w-20 h-20 rounded-full border border-cetl-border bg-cetl-surface flex items-center justify-center shadow-[0_0_0_1px_color-mix(in_srgb,var(--color-cetl-gold)_10%,transparent)]">
         <Icon className="w-7 h-7 text-cetl-gold-deep" strokeWidth={1.5} aria-hidden="true" />
       </div>
-      <span className="font-display text-sm font-bold text-cetl-text">{title}</span>
+      <span className={`font-display text-sm font-bold ${dark ? "text-white" : "text-cetl-text"}`}>{title}</span>
     </div>
   );
 }
@@ -91,15 +91,17 @@ function StepNode({ n, icon: Icon, title }: { n: number; icon: React.ElementType
 function StepFlow({
   steps,
   wrapClass = "flex flex-wrap justify-center gap-x-2 gap-y-10",
+  dark = false,
 }: {
   steps: { icon: React.ElementType; title: string }[];
   wrapClass?: string;
+  dark?: boolean;
 }) {
   return (
     <div className={`relative ${wrapClass}`}>
       {steps.map((s, i) => (
         <div key={s.title} className="flex items-center">
-          <StepNode n={i + 1} icon={s.icon} title={s.title} />
+          <StepNode n={i + 1} icon={s.icon} title={s.title} dark={dark} />
           {i < steps.length - 1 && (
             <div className="hidden md:block w-10 lg:w-14 h-px bg-gradient-to-r from-cetl-gold/40 via-cetl-border to-cetl-gold/40 mx-1 -translate-y-6" />
           )}
@@ -444,18 +446,18 @@ export function KiKompetenzprogrammView() {
           <Badge variant="blue" className="mb-6">
             Unternehmensprogramm
           </Badge>
-          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-cetl-text leading-[1.1] tracking-tight mb-6">
+          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1] tracking-tight mb-6">
             KI-Kompetenzprogramm für Unternehmen
           </h1>
           <p className="text-cetl-gold-deep text-lg md:text-xl font-display italic mb-6">
             KI verstehen. Sicher anwenden. Wirksam umsetzen.
           </p>
-          <p className="text-cetl-text-muted text-lg leading-relaxed max-w-2xl mb-4">
+          <p className="text-white/70 text-lg leading-relaxed max-w-2xl mb-4">
             Künstliche Intelligenz verändert Arbeitsprozesse, Entscheidungen und Geschäftsmodelle. Der
             entscheidende Erfolgsfaktor ist jedoch nicht allein die Technologie, sondern die Fähigkeit
             einer Organisation, sie sinnvoll, verantwortungsvoll und produktiv einzusetzen.
           </p>
-          <p className="text-cetl-text-muted text-lg leading-relaxed max-w-2xl mb-8">
+          <p className="text-white/70 text-lg leading-relaxed max-w-2xl mb-8">
             Unser KI-Kompetenzprogramm verbindet fundierten Wissensaufbau mit praktischer Anwendung.
             Mitarbeitende, Fachverantwortliche, technische Expert:innen und Führungskräfte entwickeln
             genau jene Kompetenzen, die sie für ihre jeweilige Rolle benötigen, von Beginn an mit
@@ -487,13 +489,14 @@ export function KiKompetenzprogrammView() {
             label="Ausgangslage"
             title="Von einzelnen Schulungen zum integrierten Befähigungsprogramm"
             className="mb-10"
+            dark
           />
-          <p className="text-cetl-text-muted leading-relaxed mb-4">
+          <p className="text-white/70 leading-relaxed mb-4">
             Viele Unternehmen verfügen bereits über erste KI-Tools, interne Lernangebote oder
             Pilotprojekte. Häufig fehlt jedoch ein gemeinsamer Rahmen, der Wissen, Anwendung, Governance
             und konkrete Umsetzung miteinander verbindet.
           </p>
-          <p className="text-cetl-text-muted leading-relaxed mb-10">
+          <p className="text-white/70 leading-relaxed mb-10">
             Das KI-Kompetenzprogramm führt bestehende Initiativen zu einem durchgängigen
             Befähigungssystem zusammen. Es integriert digitale Selbstlernangebote, Live-Trainings,
             rollenspezifische Vertiefungen und begleitete Praxisprojekte. So entsteht nicht nur Wissen
@@ -570,6 +573,7 @@ export function KiKompetenzprogrammView() {
             title="Das gemeinsame Fundament für Daten- und KI-Kompetenz"
             subtitle="Das Foundation Program schafft eine gemeinsame Sprache innerhalb des Unternehmens. Es vermittelt die zentralen Grundlagen und bereitet die Teilnehmenden auf rollenspezifische Vertiefungen vor. Bestehende Lernplattformen, interne Richtlinien und bereits eingesetzte KI-Werkzeuge können als Vorbereitung, Vertiefung und Follow-up eingebunden werden."
             className="mb-16"
+            dark
           />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {FOUNDATION_MODULES.map((mod) => (
@@ -638,24 +642,24 @@ export function KiKompetenzprogrammView() {
                 className="gradient-edge relative flex flex-col bg-cetl-dark rounded-2xl border border-cetl-border p-8"
               >
                 <IconTile icon={journey.icon} />
-                <h3 className="font-display text-xl font-bold text-cetl-text mb-1.5">{journey.role}</h3>
+                <h3 className="font-display text-xl font-bold text-white mb-1.5">{journey.role}</h3>
                 <p className="text-cetl-gold-deep text-sm font-medium mb-3">{journey.subtitle}</p>
-                <p className="text-cetl-text-muted text-sm leading-relaxed mb-5">{journey.audience}</p>
-                <p className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase mb-3">
+                <p className="text-white/70 text-sm leading-relaxed mb-5">{journey.audience}</p>
+                <p className="text-white/50 text-xs font-semibold tracking-widest uppercase mb-3">
                   Schwerpunkte
                 </p>
                 <ul className="flex flex-col gap-2 mb-6">
                   {journey.focus.map((item) => (
-                    <CheckItem key={item} className="gap-2.5 text-sm">
+                    <CheckItem key={item} className="gap-2.5 text-sm" dark>
                       {item}
                     </CheckItem>
                   ))}
                 </ul>
-                <div className="mt-auto pt-5 border-t border-cetl-border">
-                  <p className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase mb-2">
+                <div className="mt-auto pt-5 border-t border-white/10">
+                  <p className="text-white/50 text-xs font-semibold tracking-widest uppercase mb-2">
                     Praxisprojekt
                   </p>
-                  <p className="text-cetl-text-muted text-sm leading-relaxed">{journey.project}</p>
+                  <p className="text-white/70 text-sm leading-relaxed">{journey.project}</p>
                 </div>
               </TiltCard>
             ))}
@@ -673,8 +677,9 @@ export function KiKompetenzprogrammView() {
             title="Vom Use Case zur Umsetzung"
             subtitle="Jede Teilnehmerin und jeder Teilnehmer arbeitet während des Programms an einem eigenen Anwendungsfall aus dem Unternehmen. Die Teilnehmenden erhalten dabei methodische Unterstützung durch Trainer:innen und Fachexpert:innen."
             className="mb-16"
+            dark
           />
-          <StepFlow steps={USE_CASE_STEPS} wrapClass="flex flex-wrap justify-center gap-x-1 gap-y-10" />
+          <StepFlow steps={USE_CASE_STEPS} wrapClass="flex flex-wrap justify-center gap-x-1 gap-y-10" dark />
           <div className="mt-16 rounded-2xl border border-cetl-border bg-cetl-surface p-8 max-w-2xl mx-auto text-center">
             <p className="text-cetl-gold-deep text-xs font-semibold tracking-widest uppercase mb-3">
               Cross-Industry Learning
@@ -702,10 +707,10 @@ export function KiKompetenzprogrammView() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {CUSTOMIZATION.map((group) => (
               <div key={group.title} className="rounded-2xl border border-cetl-border bg-cetl-dark p-7">
-                <h3 className="font-display text-base font-bold text-cetl-text mb-5">{group.title}</h3>
+                <h3 className="font-display text-base font-bold text-white mb-5">{group.title}</h3>
                 <ul className="flex flex-col gap-2.5">
                   {group.items.map((item) => (
-                    <CheckItem key={item} className="gap-2.5 text-sm">
+                    <CheckItem key={item} className="gap-2.5 text-sm" dark>
                       {item}
                     </CheckItem>
                   ))}
@@ -726,8 +731,9 @@ export function KiKompetenzprogrammView() {
             title="So entsteht Ihr KI-Kompetenzprogramm"
             subtitle="Von der Analyse bis zur Skalierung."
             className="mb-16"
+            dark
           />
-          <StepFlow steps={PROCESS_STEPS} />
+          <StepFlow steps={PROCESS_STEPS} dark />
         </Container>
       </section>
 
@@ -741,7 +747,7 @@ export function KiKompetenzprogrammView() {
             {BENEFITS.map((benefit) => (
               <div key={benefit.title} className="rounded-2xl border border-cetl-border bg-cetl-dark p-7">
                 <h3 className="font-display text-base font-bold text-cetl-gold-deep mb-2">{benefit.title}</h3>
-                <p className="text-cetl-text-muted text-sm leading-relaxed">{benefit.text}</p>
+                <p className="text-white/70 text-sm leading-relaxed">{benefit.text}</p>
               </div>
             ))}
           </div>
@@ -758,6 +764,7 @@ export function KiKompetenzprogrammView() {
             title="Umfang, Dauer und Format nach Bedarf"
             subtitle="Das KI-Kompetenzprogramm ist modular aufgebaut. Umfang, Dauer und Kombination der Lernpfade richten sich nach dem Reifegrad und den Zielen des Unternehmens. Die Durchführung ist in Präsenz, online oder in einem hybriden Format möglich."
             className="mb-10"
+            dark
           />
           <div className="flex flex-wrap gap-2.5 mb-16">
             {FORMATS.map((format) => (
@@ -799,7 +806,7 @@ export function KiKompetenzprogrammView() {
                     className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left"
                     aria-expanded={open}
                   >
-                    <span className="text-cetl-text font-semibold text-sm md:text-base">{item.q}</span>
+                    <span className="text-white font-semibold text-sm md:text-base">{item.q}</span>
                     <PlusIcon open={open} />
                   </button>
                   <div
@@ -807,7 +814,7 @@ export function KiKompetenzprogrammView() {
                     style={{ gridTemplateRows: open ? "1fr" : "0fr" }}
                   >
                     <div className="overflow-hidden">
-                      <p className="text-cetl-text-muted text-sm leading-relaxed px-6 pb-5">{item.a}</p>
+                      <p className="text-white/70 text-sm leading-relaxed px-6 pb-5">{item.a}</p>
                     </div>
                   </div>
                 </div>
@@ -820,10 +827,10 @@ export function KiKompetenzprogrammView() {
       {/* ── Closing CTA ── */}
       <section className="py-24 lg:py-32">
         <Container className="max-w-2xl text-center flex flex-col items-center">
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-cetl-text leading-tight mb-5">
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-white leading-tight mb-5">
             KI-Kompetenz, die im Unternehmen wirksam wird
           </h2>
-          <p className="text-cetl-text-muted leading-relaxed mb-10">
+          <p className="text-white/70 leading-relaxed mb-10">
             Ein erfolgreiches KI-Programm endet nicht mit dem letzten Trainingstag. Es schafft die
             Voraussetzungen dafür, dass Menschen KI sicher einsetzen, Potenziale eigenständig erkennen
             und gemeinsam in die Umsetzung bringen. Wir verbinden Lernen, Anwendung und Umsetzung zu

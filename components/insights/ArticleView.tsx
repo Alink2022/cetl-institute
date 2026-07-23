@@ -28,7 +28,7 @@ function slugify(text: string): string {
 function renderInline(text: string): ReactNode[] {
   return text.split(/\*\*(.+?)\*\*/g).map((part, i) =>
     i % 2 === 1 ? (
-      <strong key={i} className="text-cetl-text font-semibold">
+      <strong key={i} className="text-white font-semibold">
         {part}
       </strong>
     ) : (
@@ -44,7 +44,7 @@ function Block({ block, lang }: { block: ArticleBlock; lang: "de" | "en" }) {
       return (
         <h2
           id={slugify(block.text)}
-          className="font-display text-2xl md:text-3xl font-bold text-cetl-text leading-tight mt-14 mb-5 scroll-mt-28"
+          className="font-display text-2xl md:text-3xl font-bold text-white leading-tight mt-14 mb-5 scroll-mt-28"
         >
           {block.text}
         </h2>
@@ -58,7 +58,7 @@ function Block({ block, lang }: { block: ArticleBlock; lang: "de" | "en" }) {
     case "quote":
       return (
         <blockquote className="my-10 border-l-2 border-cetl-gold pl-6 md:pl-8 py-1">
-          <p className="font-display italic text-xl md:text-2xl text-cetl-text leading-relaxed">
+          <p className="font-display italic text-xl md:text-2xl text-white/85 leading-relaxed">
             {qOpen}
             {block.text}
             {qClose}
@@ -69,7 +69,7 @@ function Block({ block, lang }: { block: ArticleBlock; lang: "de" | "en" }) {
       return (
         <ul className="my-6 flex flex-col gap-3">
           {block.items.map((item, i) => (
-            <li key={i} className="flex gap-3 text-cetl-text-muted text-lg leading-relaxed">
+            <li key={i} className="flex gap-3 text-white/70 text-lg leading-relaxed">
               <span className="text-cetl-gold-deep mt-[2px] shrink-0" aria-hidden>
                 —
               </span>
@@ -82,7 +82,7 @@ function Block({ block, lang }: { block: ArticleBlock; lang: "de" | "en" }) {
       return (
         <ol className="my-6 flex flex-col gap-3 [counter-reset:item]">
           {block.items.map((item, i) => (
-            <li key={i} className="flex gap-3 text-cetl-text-muted text-lg leading-relaxed">
+            <li key={i} className="flex gap-3 text-white/70 text-lg leading-relaxed">
               <span className="font-display text-cetl-gold-deep font-semibold shrink-0 w-6 text-right">
                 {i + 1}.
               </span>
@@ -92,7 +92,7 @@ function Block({ block, lang }: { block: ArticleBlock; lang: "de" | "en" }) {
         </ol>
       );
     default:
-      return <p className="my-5 text-cetl-text-muted text-lg leading-relaxed">{renderInline(block.text)}</p>;
+      return <p className="my-5 text-white/70 text-lg leading-relaxed">{renderInline(block.text)}</p>;
   }
 }
 
@@ -140,7 +140,7 @@ export function ArticleView({ slug, article }: { slug: string; article: Record<"
             <div className="max-w-3xl">
               <Link
                 href="/insights"
-                className="inline-flex items-center gap-2 text-cetl-text-muted hover:text-cetl-gold-deep text-xs tracking-[0.2em] uppercase font-semibold transition-colors duration-200 mb-8"
+                className="inline-flex items-center gap-2 text-white/60 hover:text-cetl-gold-deep text-xs tracking-[0.2em] uppercase font-semibold transition-colors duration-200 mb-8"
               >
                 <span aria-hidden>←</span> {ui.back}
               </Link>
@@ -149,16 +149,16 @@ export function ArticleView({ slug, article }: { slug: string; article: Record<"
                 <span className="text-[10px] tracking-[0.25em] uppercase font-semibold text-cetl-gold-deep border border-cetl-gold/30 px-2 py-0.5 rounded-sm">
                   {current.tag}
                 </span>
-                <span className="text-cetl-text-muted text-xs">{current.category}</span>
+                <span className="text-white/60 text-xs">{current.category}</span>
               </div>
 
-              <h1 className="font-display text-3xl md:text-5xl font-bold text-cetl-text leading-tight tracking-tight mb-6">
+              <h1 className="font-display text-3xl md:text-5xl font-bold text-white leading-tight tracking-tight mb-6">
                 {current.title}
               </h1>
 
-              <p className="text-cetl-text-muted text-lg md:text-xl leading-relaxed mb-8">{current.teaser}</p>
+              <p className="text-white/70 text-lg md:text-xl leading-relaxed mb-8">{current.teaser}</p>
 
-              <div className="flex items-center gap-4 flex-wrap text-xs text-cetl-text-muted">
+              <div className="flex items-center gap-4 flex-wrap text-xs text-white/60">
                 <span className="text-cetl-gold-deep font-medium">{ui.byline}</span>
                 <span aria-hidden>·</span>
                 <span>
@@ -170,7 +170,7 @@ export function ArticleView({ slug, article }: { slug: string; article: Record<"
 
               {/* Share */}
               <div className="flex items-center gap-3 mt-6">
-                <span className="text-cetl-text-muted text-[10px] tracking-[0.25em] uppercase font-semibold">
+                <span className="text-white/50 text-[10px] tracking-[0.25em] uppercase font-semibold">
                   {ui.share}
                 </span>
                 <a
@@ -178,14 +178,14 @@ export function ArticleView({ slug, article }: { slug: string; article: Record<"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="LinkedIn"
-                  className="text-cetl-text-muted hover:text-cetl-gold-deep border border-cetl-border hover:border-cetl-gold/40 rounded-sm px-3 py-1.5 text-xs font-medium transition-colors duration-200"
+                  className="text-white/50 hover:text-cetl-gold-deep border border-white/20 hover:border-cetl-gold/40 rounded-sm px-3 py-1.5 text-xs font-medium transition-colors duration-200"
                 >
                   LinkedIn
                 </a>
                 <button
                   type="button"
                   onClick={copyLink}
-                  className="text-cetl-text-muted hover:text-cetl-gold-deep border border-cetl-border hover:border-cetl-gold/40 rounded-sm px-3 py-1.5 text-xs font-medium transition-colors duration-200 cursor-pointer"
+                  className="text-white/50 hover:text-cetl-gold-deep border border-white/20 hover:border-cetl-gold/40 rounded-sm px-3 py-1.5 text-xs font-medium transition-colors duration-200 cursor-pointer"
                 >
                   {copied ? ui.shareCopied : "Link"}
                 </button>
@@ -236,10 +236,10 @@ export function ArticleView({ slug, article }: { slug: string; article: Record<"
                     href={`/insights/${prev.slug}`}
                     className="group border border-cetl-border hover:border-cetl-gold/40 rounded-sm p-5 transition-colors duration-200"
                   >
-                    <p className="text-cetl-text-muted text-[10px] tracking-[0.25em] uppercase font-semibold mb-2">
+                    <p className="text-white/50 text-[10px] tracking-[0.25em] uppercase font-semibold mb-2">
                       ← {ui.prevLabel}
                     </p>
-                    <p className="font-display text-cetl-text text-sm font-semibold leading-snug group-hover:text-cetl-gold-deep transition-colors duration-200">
+                    <p className="font-display text-white text-sm font-semibold leading-snug group-hover:text-cetl-gold-deep transition-colors duration-200">
                       {prev.title}
                     </p>
                   </Link>
@@ -251,10 +251,10 @@ export function ArticleView({ slug, article }: { slug: string; article: Record<"
                     href={`/insights/${next.slug}`}
                     className="group border border-cetl-border hover:border-cetl-gold/40 rounded-sm p-5 text-right transition-colors duration-200"
                   >
-                    <p className="text-cetl-text-muted text-[10px] tracking-[0.25em] uppercase font-semibold mb-2">
+                    <p className="text-white/50 text-[10px] tracking-[0.25em] uppercase font-semibold mb-2">
                       {ui.nextLabel} →
                     </p>
-                    <p className="font-display text-cetl-text text-sm font-semibold leading-snug group-hover:text-cetl-gold-deep transition-colors duration-200">
+                    <p className="font-display text-white text-sm font-semibold leading-snug group-hover:text-cetl-gold-deep transition-colors duration-200">
                       {next.title}
                     </p>
                   </Link>
@@ -281,13 +281,13 @@ export function ArticleView({ slug, article }: { slug: string; article: Record<"
                 <p className="text-cetl-gold-deep text-[10px] tracking-[0.3em] uppercase font-semibold mb-2">
                   {ui.authorLabel}
                 </p>
-                <p className="font-display text-cetl-text text-lg font-semibold leading-snug">
+                <p className="font-display text-white text-lg font-semibold leading-snug">
                   {t.MANAGING_DIRECTOR.name}
                 </p>
-                <p className="text-cetl-text-muted text-xs mb-3">
+                <p className="text-white/60 text-xs mb-3">
                   {t.MANAGING_DIRECTOR.title}, CETL Institute · {t.MANAGING_DIRECTOR.headline}
                 </p>
-                <p className="text-cetl-text-muted text-sm leading-relaxed mb-3">{t.MANAGING_DIRECTOR.bio}</p>
+                <p className="text-white/60 text-sm leading-relaxed mb-3">{t.MANAGING_DIRECTOR.bio}</p>
                 <a
                   href={t.MANAGING_DIRECTOR.linkedin}
                   target="_blank"
@@ -306,8 +306,8 @@ export function ArticleView({ slug, article }: { slug: string; article: Record<"
           <Container>
             <div className="glass-panel rounded-sm p-8 md:p-12 max-w-3xl relative overflow-hidden">
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cetl-gold/60 to-cetl-gold-light/30" />
-              <h2 className="font-display text-2xl md:text-3xl font-bold text-cetl-text mb-4">{ui.ctaTitle}</h2>
-              <p className="text-cetl-text-muted text-base leading-relaxed mb-7 max-w-xl">{ui.ctaText}</p>
+              <h2 className="font-display text-2xl md:text-3xl font-bold text-white mb-4">{ui.ctaTitle}</h2>
+              <p className="text-white/60 text-base leading-relaxed mb-7 max-w-xl">{ui.ctaText}</p>
               <Link
                 href="/#contact"
                 className="inline-flex items-center gap-2 bg-cetl-gold hover:bg-cetl-gold-light text-cetl-darker font-semibold text-sm tracking-wide px-6 py-3 rounded-sm transition-colors duration-200"
