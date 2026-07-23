@@ -102,8 +102,8 @@ export function NavBar() {
               />
             </div>
             <div className="flex flex-col leading-tight">
-              <span className="text-cetl-text font-display font-bold text-lg md:text-xl tracking-wide">CETL</span>
-              <span className="text-cetl-text-muted text-xs tracking-[0.2em] uppercase">Institute</span>
+              <span className="text-white font-display font-bold text-lg md:text-xl tracking-wide">CETL</span>
+              <span className="text-white/70 text-xs tracking-[0.2em] uppercase">Institute</span>
             </div>
           </a>
 
@@ -113,7 +113,7 @@ export function NavBar() {
               <a
                 key={link.href}
                 href={toHref(link.href)}
-                className="relative px-4 py-2 text-cetl-text-muted hover:text-cetl-text text-sm font-medium tracking-wide transition-colors duration-200 group"
+                className="relative px-4 py-2 text-white/70 hover:text-white text-sm font-medium tracking-wide transition-colors duration-200 group"
               >
                 {link.label}
                 <span className="absolute left-4 right-4 -bottom-0.5 h-px bg-gradient-to-r from-cetl-gold to-cetl-gold-400 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
@@ -136,7 +136,7 @@ export function NavBar() {
           {/* Mobile menu button */}
           <button
             ref={mobileToggleRef}
-            className="md:hidden text-cetl-text-muted hover:text-cetl-text p-3"
+            className="md:hidden text-white/70 hover:text-white p-3"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label={t.UI.nav.toggleMenu}
             aria-expanded={mobileOpen}
@@ -181,8 +181,8 @@ export function NavBar() {
               <Image src="/cetl-logo.webp" alt="CETL Institute" width={80} height={80} className="object-contain" />
             </div>
             <div className="flex flex-col leading-none">
-              <span className="text-cetl-text font-display font-bold text-base tracking-wide">CETL</span>
-              <span className="text-cetl-text-muted text-xs tracking-widest uppercase">Institute</span>
+              <span className="text-white font-display font-bold text-base tracking-wide">CETL</span>
+              <span className="text-white/70 text-xs tracking-widest uppercase">Institute</span>
             </div>
           </div>
           {t.NAV_LINKS.map((link, i) => (
@@ -190,7 +190,7 @@ export function NavBar() {
               key={link.href}
               href={toHref(link.href)}
               onClick={() => setMobileOpen(false)}
-              className="text-cetl-text text-3xl font-display font-semibold py-4 border-b border-cetl-border transition-all duration-500"
+              className="text-white text-3xl font-display font-semibold py-4 border-b border-white/10 transition-all duration-500"
               style={{
                 transitionDelay: mobileOpen ? `${i * 60}ms` : "0ms",
                 opacity: mobileOpen ? 1 : 0,

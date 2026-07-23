@@ -85,6 +85,7 @@ export function ProgramsSection() {
           title={t.UI.pillars.title}
           subtitle={t.UI.pillars.subtitle}
           className="mb-16"
+          dark
         />
 
         {/* ── Category pillars (condensed) ── */}
