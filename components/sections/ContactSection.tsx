@@ -64,23 +64,24 @@ export function ContactSection() {
               title={contact.title}
               subtitle={contact.subtitle}
               align="left"
+              dark
             />
 
             <div className="flex flex-col gap-6 pt-4 border-t border-cetl-border">
               {t.CONTACT_ITEMS.map((item) => (
                 <div key={item.label}>
-                  <p className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase mb-1">
+                  <p className="text-white/50 text-xs font-semibold tracking-widest uppercase mb-1">
                     {item.label}
                   </p>
                   {item.href ? (
                     <a
                       href={item.href}
-                      className="text-cetl-gold-deep hover:text-cetl-text transition-colors text-sm"
+                      className="text-cetl-gold-deep hover:text-white transition-colors text-sm"
                     >
                       {item.value}
                     </a>
                   ) : (
-                    <p className="text-cetl-text text-sm">{item.value}</p>
+                    <p className="text-white/80 text-sm">{item.value}</p>
                   )}
                 </div>
               ))}
@@ -127,8 +128,8 @@ export function ContactSection() {
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
                 </div>
-                <h3 className="font-display text-cetl-text font-bold text-xl">{contact.successTitle}</h3>
-                <p className="text-cetl-text-muted text-sm max-w-xs">{contact.successText}</p>
+                <h3 className="font-display text-white font-bold text-xl">{contact.successTitle}</h3>
+                <p className="text-white/60 text-sm max-w-xs">{contact.successText}</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="relative flex flex-col gap-5">
@@ -136,7 +137,7 @@ export function ContactSection() {
                   <div className="flex flex-col gap-2">
                     <label
                       htmlFor="contact-name"
-                      className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase"
+                      className="text-white/60 text-xs font-semibold tracking-widest uppercase"
                     >
                       {contact.nameLabel}
                     </label>
@@ -147,14 +148,14 @@ export function ContactSection() {
                       type="text"
                       value={form.name}
                       onChange={handleChange}
-                      className="bg-cetl-dark border border-cetl-border rounded-lg text-cetl-text text-sm px-4 py-3 focus:outline-none focus:border-cetl-gold focus:ring-2 focus:ring-cetl-gold/50 transition-all placeholder:text-cetl-text-muted/40"
+                      className="bg-cetl-navy-950/80 border border-cetl-navy-600 rounded-lg text-white text-sm px-4 py-3 focus:outline-none focus:border-cetl-gold focus:ring-2 focus:ring-cetl-gold/50 transition-all placeholder:text-white/30"
                       placeholder={contact.namePlaceholder}
                     />
                   </div>
                   <div className="flex flex-col gap-2">
                     <label
                       htmlFor="contact-company"
-                      className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase"
+                      className="text-white/60 text-xs font-semibold tracking-widest uppercase"
                     >
                       {contact.companyLabel}
                     </label>
@@ -165,7 +166,7 @@ export function ContactSection() {
                       type="text"
                       value={form.company}
                       onChange={handleChange}
-                      className="bg-cetl-dark border border-cetl-border rounded-lg text-cetl-text text-sm px-4 py-3 focus:outline-none focus:border-cetl-gold focus:ring-2 focus:ring-cetl-gold/50 transition-all placeholder:text-cetl-text-muted/40"
+                      className="bg-cetl-navy-950/80 border border-cetl-navy-600 rounded-lg text-white text-sm px-4 py-3 focus:outline-none focus:border-cetl-gold focus:ring-2 focus:ring-cetl-gold/50 transition-all placeholder:text-white/30"
                       placeholder={contact.companyPlaceholder}
                     />
                   </div>
@@ -174,7 +175,7 @@ export function ContactSection() {
                 <div className="flex flex-col gap-2">
                   <label
                     htmlFor="contact-email"
-                    className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase"
+                    className="text-white/60 text-xs font-semibold tracking-widest uppercase"
                   >
                     {contact.emailLabel}
                   </label>
@@ -185,7 +186,7 @@ export function ContactSection() {
                     type="email"
                     value={form.email}
                     onChange={handleChange}
-                    className="bg-cetl-dark border border-cetl-border rounded-lg text-cetl-text text-sm px-4 py-3 focus:outline-none focus:border-cetl-gold focus:ring-2 focus:ring-cetl-gold/50 transition-all placeholder:text-cetl-text-muted/40"
+                    className="bg-cetl-navy-950/80 border border-cetl-navy-600 rounded-lg text-white text-sm px-4 py-3 focus:outline-none focus:border-cetl-gold focus:ring-2 focus:ring-cetl-gold/50 transition-all placeholder:text-white/30"
                     placeholder={contact.emailPlaceholder}
                   />
                 </div>
@@ -193,7 +194,7 @@ export function ContactSection() {
                 <div className="flex flex-col gap-2">
                   <label
                     htmlFor="contact-interest"
-                    className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase"
+                    className="text-white/60 text-xs font-semibold tracking-widest uppercase"
                   >
                     {contact.interestLabel}
                   </label>
@@ -202,7 +203,7 @@ export function ContactSection() {
                     name="interest"
                     value={form.interest}
                     onChange={handleChange}
-                    className="bg-cetl-dark border border-cetl-border text-cetl-text text-sm px-4 py-3 focus:outline-none focus:border-cetl-gold focus:ring-2 focus:ring-cetl-gold/50 transition-colors"
+                    className="bg-cetl-navy-950/80 border border-cetl-navy-600 text-white text-sm px-4 py-3 focus:outline-none focus:border-cetl-gold focus:ring-2 focus:ring-cetl-gold/50 transition-colors"
                   >
                     <option value="">{contact.interestPlaceholder}</option>
                     {t.CONTACT_INTEREST_OPTIONS.map((opt) => (
@@ -214,7 +215,7 @@ export function ContactSection() {
                 <div className="flex flex-col gap-2">
                   <label
                     htmlFor="contact-message"
-                    className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase"
+                    className="text-white/60 text-xs font-semibold tracking-widest uppercase"
                   >
                     {contact.contextLabel}
                   </label>
@@ -224,7 +225,7 @@ export function ContactSection() {
                     rows={4}
                     value={form.message}
                     onChange={handleChange}
-                    className="bg-cetl-dark border border-cetl-border rounded-lg text-cetl-text text-sm px-4 py-3 focus:outline-none focus:border-cetl-gold focus:ring-2 focus:ring-cetl-gold/50 transition-all resize-none placeholder:text-cetl-text-muted/40"
+                    className="bg-cetl-navy-950/80 border border-cetl-navy-600 rounded-lg text-white text-sm px-4 py-3 focus:outline-none focus:border-cetl-gold focus:ring-2 focus:ring-cetl-gold/50 transition-all resize-none placeholder:text-white/30"
                     placeholder={contact.contextPlaceholder}
                   />
                 </div>

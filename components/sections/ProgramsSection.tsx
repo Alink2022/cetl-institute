@@ -138,6 +138,7 @@ export function ProgramsSection() {
             title={t.UI.methodology.title}
             subtitle={t.UI.methodology.subtitle}
             className="mb-14"
+            dark
           />
           <div className="relative flex flex-wrap justify-center gap-x-2 gap-y-10">
             {t.METHODOLOGY_STEPS.map((step, i) => {
@@ -149,8 +150,8 @@ export function ProgramsSection() {
                     <div className="w-20 h-20 rounded-full border border-cetl-border bg-cetl-dark flex items-center justify-center">
                       <Icon className="w-8 h-8 text-cetl-gold-deep" strokeWidth={1.5} aria-hidden="true" />
                     </div>
-                    <span className="font-display text-lg font-bold text-cetl-text">{step.title}</span>
-                    <p className="text-cetl-text-muted text-sm leading-relaxed">{step.description}</p>
+                    <span className="font-display text-lg font-bold text-white">{step.title}</span>
+                    <p className="text-white/60 text-sm leading-relaxed">{step.description}</p>
                   </div>
                   {i < t.METHODOLOGY_STEPS.length - 1 && (
                     <div className="hidden md:block w-8 lg:w-12 h-px bg-gradient-to-r from-cetl-gold/40 via-cetl-border to-cetl-gold/40 mx-1 -translate-y-14" />
@@ -162,7 +163,7 @@ export function ProgramsSection() {
           <div className="flex justify-center mt-12">
             <Link
               href="/programme/ki-kompetenzprogramm"
-              className="text-cetl-gold-deep text-sm font-semibold hover:text-cetl-text transition-colors duration-200 flex items-center gap-1.5"
+              className="text-cetl-gold-400 text-sm font-semibold hover:text-white transition-colors duration-200 flex items-center gap-1.5"
             >
               {t.UI.methodology.cta}
               <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -179,10 +180,10 @@ export function ProgramsSection() {
             {t.UI.programs.label}
           </p>
         </div>
-        <h3 className="font-display text-3xl md:text-4xl font-bold text-cetl-text mb-3 max-w-2xl">
+        <h3 className="font-display text-3xl md:text-4xl font-bold text-white mb-3 max-w-2xl">
           {t.UI.programs.title}
         </h3>
-        <p className="text-cetl-text-muted text-base leading-relaxed mb-10 max-w-xl">
+        <p className="text-white/60 text-base leading-relaxed mb-10 max-w-xl">
           {t.UI.programs.subtitle}
         </p>
 
@@ -255,7 +256,7 @@ export function ProgramsSection() {
           </a>
           <a
             href="#contact"
-            className="text-cetl-text-muted text-sm hover:text-cetl-gold-deep transition-colors duration-200 flex items-center gap-1.5"
+            className="text-white/60 text-sm hover:text-cetl-gold-400 transition-colors duration-200 flex items-center gap-1.5"
           >
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4" aria-hidden="true">
               <circle cx="8" cy="8" r="6" />
