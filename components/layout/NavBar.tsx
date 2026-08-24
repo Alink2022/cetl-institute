@@ -125,7 +125,7 @@ export function NavBar() {
           <div className="hidden md:flex items-center gap-3">
             <LanguageSwitch />
             <a
-              href={toHref("#contact")}
+              href={`mailto:${t.SITE.formEmail}`}
               className="relative px-5 py-2.5 rounded-sm bg-cetl-navy-700 text-white text-sm font-semibold tracking-wide overflow-hidden group transition-transform duration-300 hover:scale-105"
             >
               <span className="relative z-10">{t.UI.nav.ctaContact}</span>
@@ -202,7 +202,7 @@ export function NavBar() {
           ))}
           <LanguageSwitch className="mt-8 self-start" />
           <a
-            href={toHref("#contact")}
+            href={`mailto:${t.SITE.formEmail}`}
             onClick={() => setMobileOpen(false)}
             className="mt-4 px-6 py-4 rounded-sm bg-cetl-navy-700 text-white font-semibold tracking-wide text-center"
           >

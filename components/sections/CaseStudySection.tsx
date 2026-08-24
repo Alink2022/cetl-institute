@@ -97,7 +97,7 @@ export function CaseStudySection() {
         {/* CTA */}
         <div className="flex justify-center mt-12">
           <a
-            href="#contact"
+            href={`mailto:${t.SITE.formEmail}`}
             className="group relative inline-flex items-center gap-2 px-8 py-4 bg-cetl-gold text-cetl-darker font-semibold tracking-wide overflow-hidden transition-transform duration-300 hover:scale-105 rounded-sm"
           >
             <span className="relative z-10 flex items-center gap-2">

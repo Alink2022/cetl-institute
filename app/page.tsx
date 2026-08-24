@@ -13,7 +13,6 @@ import { InsightsSection } from "@/components/sections/InsightsSection";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { SPGPartnerSection } from "@/components/sections/SPGPartnerSection";
 import { CommunitySection } from "@/components/sections/CommunitySection";
-import { ContactSection } from "@/components/sections/ContactSection";
 import { TrustBar } from "@/components/sections/TrustBar";
 import { LogoWatermark } from "@/components/ui/LogoWatermark";
 import { ResearchSection } from "@/components/sections/ResearchSection";
@@ -50,7 +49,6 @@ export default function Home() {
         <SPGPartnerSection />
         <GoldDivider />
         <FAQSection />
-        <ContactSection />
       </main>
       <Footer />
     </>

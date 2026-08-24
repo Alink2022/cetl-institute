@@ -9,7 +9,7 @@ export function Footer() {
   const { t } = useLanguage();
   const pathname = usePathname();
   const footer = t.UI.footer;
-  const footerLinks = [...t.NAV_LINKS, { label: footer.contactLabel, href: "#contact" }];
+  const footerLinks = t.NAV_LINKS;
   // Auf Unterseiten müssen Anker-Links zurück zur Startseite führen; echte Routen bleiben unverändert.
   const toHref = (href: string) => (href.startsWith("#") && pathname !== "/" ? `/${href}` : href);
 

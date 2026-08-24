@@ -79,7 +79,7 @@ export const en: ContentBundle = {
       ],
       outcomeLabel: "From targeted training to full learning journeys",
       cta: "Design a Customized Programme",
-      ctaHref: "#contact",
+      ctaHref: "mailto:vorstand@eqaf.eu",
     },
     {
       number: "3",
@@ -116,7 +116,7 @@ export const en: ContentBundle = {
       ],
       outcomeLabel: "From community knowledge to real projects",
       cta: "Bring a Challenge to CETL",
-      ctaHref: "#contact",
+      ctaHref: "mailto:vorstand@eqaf.eu",
     },
   ],
 
@@ -139,7 +139,7 @@ export const en: ContentBundle = {
       price: "€35,000",
       priceNote: "For up to 20 participants",
       cta: "Discuss the Foundation Package",
-      ctaHref: "#contact",
+      ctaHref: "mailto:vorstand@eqaf.eu",
     },
     {
       number: "2",
@@ -159,7 +159,7 @@ export const en: ContentBundle = {
       price: "€65,000",
       priceNote: "For up to 20 participants",
       cta: "Design a Customized Package",
-      ctaHref: "#contact",
+      ctaHref: "mailto:vorstand@eqaf.eu",
       featured: true,
     },
     {
@@ -180,7 +180,7 @@ export const en: ContentBundle = {
       ],
       price: "Tailored to scope and duration",
       cta: "Scope an Embedded Engagement",
-      ctaHref: "#contact",
+      ctaHref: "mailto:vorstand@eqaf.eu",
       featured: true,
     },
     {
@@ -201,7 +201,7 @@ export const en: ContentBundle = {
       price: "€5,000–€12,000",
       priceNote: "Depending on challenge scope",
       cta: "Bring Your Challenge",
-      ctaHref: "#contact",
+      ctaHref: "mailto:vorstand@eqaf.eu",
     },
   ],
 

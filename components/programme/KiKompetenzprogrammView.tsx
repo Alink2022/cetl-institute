@@ -471,7 +471,7 @@ export function KiKompetenzprogrammView() {
             ))}
           </div>
           <MagneticButton
-            href="/#contact"
+            href="mailto:vorstand@eqaf.eu"
             className="relative px-9 py-4 bg-cetl-navy-700 text-white font-semibold tracking-wide text-center overflow-hidden group block shadow-[0_4px_24px_-8px_color-mix(in_srgb,var(--color-cetl-navy-700)_40%,transparent)]"
           >
             <span className="relative z-10">Unverbindliches Erstgespräch vereinbaren</span>
@@ -837,7 +837,7 @@ export function KiKompetenzprogrammView() {
             einem integrierten Befähigungssystem für Ihr Unternehmen.
           </p>
           <MagneticButton
-            href="/#contact"
+            href="mailto:vorstand@eqaf.eu"
             className="group relative inline-flex items-center gap-2 px-8 py-4 bg-cetl-gold text-cetl-darker font-semibold tracking-wide overflow-hidden transition-transform duration-300 hover:scale-105 rounded-sm"
           >
             <span className="relative z-10 flex items-center gap-2">

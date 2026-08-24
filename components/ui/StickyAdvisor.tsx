@@ -15,7 +15,7 @@ export function StickyAdvisor() {
 
   return (
     <a
-      href="#contact"
+      href={`mailto:${t.SITE.formEmail}`}
       aria-label={t.UI.community.advisorCta}
       // Solange der Button unsichtbar ist (opacity-0, vor 600px Scroll), darf er nicht
       // per Tab fokussierbar sein — sonst landet die Tastatur-Fokusreihenfolge auf einem

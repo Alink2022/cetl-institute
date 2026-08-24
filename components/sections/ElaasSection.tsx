@@ -81,7 +81,7 @@ export function ElaasSection() {
             </div>
 
             <a
-              href="#contact"
+              href={`mailto:${t.SITE.formEmail}`}
               className="inline-flex items-center gap-2 text-cetl-navy-700 font-semibold text-sm hover:text-cetl-gold-700 transition-colors"
             >
               {ui.cta}

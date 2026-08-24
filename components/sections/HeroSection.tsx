@@ -225,7 +225,7 @@ export function HeroSection() {
             <span className="absolute inset-0 bg-cetl-gold-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </MagneticButton>
           <MagneticButton
-            href="#contact"
+            href={`mailto:${t.SITE.formEmail}`}
             className="w-full sm:w-auto px-9 py-4 border border-cetl-gold-400/40 text-cetl-gold-300 font-semibold tracking-wide hover:border-cetl-gold-400 hover:bg-cetl-gold-400/[0.06] text-center block transition-all duration-300"
           >
             {hero.ctaSecondary}

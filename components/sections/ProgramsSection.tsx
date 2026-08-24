@@ -244,7 +244,7 @@ export function ProgramsSection() {
         {/* CTA row — Advisor pathway (MIT pattern) */}
         <div className="mt-14 flex flex-col sm:flex-row items-center justify-center gap-4">
           <a
-            href="#contact"
+            href={`mailto:${t.SITE.formEmail}`}
             className="group relative inline-flex items-center gap-2 px-8 py-4 bg-cetl-navy-700 text-white font-semibold tracking-wide overflow-hidden transition-transform duration-300 hover:scale-105 rounded-sm"
           >
             <span className="relative z-10 flex items-center gap-2">
@@ -256,7 +256,7 @@ export function ProgramsSection() {
             <span className="absolute inset-0 bg-cetl-navy-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </a>
           <a
-            href="#contact"
+            href={`mailto:${t.SITE.formEmail}`}
             className="text-white/60 text-sm hover:text-cetl-gold-400 transition-colors duration-200 flex items-center gap-1.5"
           >
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4" aria-hidden="true">

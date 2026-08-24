@@ -95,7 +95,7 @@ export function InsightsIndexView() {
               <h2 className="font-display text-2xl md:text-3xl font-bold text-white mb-4">{ui.ctaTitle}</h2>
               <p className="text-white/60 text-base leading-relaxed mb-7 max-w-xl">{ui.ctaText}</p>
               <Link
-                href="/#contact"
+                href={`mailto:${t.SITE.formEmail}`}
                 className="inline-flex items-center gap-2 bg-cetl-gold hover:bg-cetl-gold-light text-cetl-darker font-semibold text-sm tracking-wide px-6 py-3 rounded-sm transition-colors duration-200"
               >
                 {ui.ctaButton} <span aria-hidden>→</span>
