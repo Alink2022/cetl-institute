@@ -343,10 +343,11 @@ export const en: ContentBundle = {
   },
 
   INST_STATS: [
-    { value: "ELaaS", label: "Core Delivery Model", sub: "Executional Learning as a Service" },
-    { value: "4", label: "Portfolio Areas", sub: "Integrated from learning to execution" },
-    { value: "4", label: "Package Levels", sub: "Foundation to Embedded Engineering" },
-    { value: "6", label: "Ecosystem Dimensions", sub: "Community to academic coordination" },
+    { value: "20+", label: "Years of Industry Experience", sub: "Cross-business industry experience" },
+    { value: "ELaaS", label: "Executional Learning as a Service", sub: "Connecting renowned academic partnerships, industries & community for execution-driven upskilling" },
+    { value: "TEC", label: "Flagship Community Format", sub: "\"Central Europe Tech Hackathon\" with the City of Vienna and numerous partners" },
+    { value: "50+", label: "Trainers & Lecturers", sub: "Cross-industry pool of trainers and lecturers" },
+    { value: "12+", label: "Academic Projects", sub: "Completed academic projects" },
   ],
 
   TESTIMONIALS: [
@@ -435,7 +436,12 @@ export const en: ContentBundle = {
       headlineLine1: "Executional Learning",
       headlineAccent: "as a Service",
       subheadline: "From capability building to execution and scalable impact.",
-      body: "CETL Institute is the unique bridge between academic excellence, industry practice, and community. Classical trainings, upskilling programs, or consulting-led workshops don't transform organizations holistically, strategically, or with lasting intent. Instead of standardized course blocks, we accompany companies and their talent across industries with our proprietary \"Executional Learning as a Service\" — built around real execution, tailored to roles, processes, and strategic as well as operational objectives. This is how we turn learning into completed outcomes, whether in the AI or data domain, and outcomes into lasting capability — equipping organizations for the next wave of transformation: accelerating AI transformation pressure, advancing automation across entire industries, and the relentless demand for process and efficiency gains.",
+      body: "CETL Institute is the unique bridge between academic excellence, industry practice, and community.",
+      bodyParagraphs: [
+        "CETL Institute is the unique bridge between academic excellence, industry practice, and community!",
+        "Through our proprietary ELaaS (Executional Learning as a Service), we accompany organizations and their talent across industries along real execution — tailored to roles, processes, and strategic as well as operational objectives.",
+        "Instead of classical course blocks (standard trainings, upskilling programs, or consulting-led workshops), we help organizations navigate the current wave of transformation with ELaaS: accelerating AI transformation pressure, advancing automation across entire industries, and the relentless demand for process and efficiency gains.",
+      ],
       ctaPrimary: "Explore the ELaaS Model",
       ctaSecondary: "Discuss Your Capability Agenda",
       supportingLine: "Academic excellence × Industry practice × Community-powered execution",

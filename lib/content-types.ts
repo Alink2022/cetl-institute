@@ -253,6 +253,7 @@ export interface ContentBundle {
       headlineAccent: string;
       subheadline: string;
       body: string;
+      bodyParagraphs?: string[];
       ctaPrimary: string;
       ctaSecondary: string;
       supportingLine: string;

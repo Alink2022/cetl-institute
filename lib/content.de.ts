@@ -365,7 +365,12 @@ export const de: ContentBundle = {
       headlineLine1: "Executional Learning",
       headlineAccent: "as a Service",
       subheadline: "Vom Kompetenzaufbau zur Umsetzung und skalierbaren Wirkung.",
-      body: "CETL Institute bildet die einzigartige Brücke zwischen akademischer Exzellenz, Industrie- bzw. Branchenpraxis und Community. Klassische Trainings, Weiterbildungsprogramme oder durch Consulting-Anbieter initiierte Schulungen transformieren Unternehmen nicht ganzheitlich, strategisch und zielgerichtet. Statt entlang standardisierter Kursblöcke begleiten wir Unternehmen und ihre Talente branchenübergreifend mit dem eigens entwickelten \"Executional Learning as a Service\" entlang echter Umsetzung — maßgeschneidert auf Rollen, Prozesse sowie strategische und operative Ziele. So verwandeln wir Lernen in abgeschlossene Ergebnisse, etwa im KI- und Datenumfeld, und Ergebnisse in nachhaltige Fähigkeit — und rüsten Unternehmen damit für die nächste Transformationswelle: rasant zunehmenden KI-Transformationsdruck, fortschreitende Automatisierung ganzer Industriezweige und den unaufhaltsamen Ruf nach Prozess- und Effizienzsteigerung.",
+      body: "CETL Institute bildet die einzigartige Brücke zwischen akademischer Exzellenz, Industrie- bzw. Branchenpraxis und Community.",
+      bodyParagraphs: [
+        "CETL Institute bildet die einzigartige Brücke zwischen akademischer Exzellenz, Industrie- bzw. Branchenpraxis und Community!",
+        "Durch unser eigens entwickeltes ELaaS (Executional Learning as a Service) begleiten wir Unternehmen und ihre Talente branchenübergreifend entlang echter Umsetzung — maßgeschneidert auf Rollen, Prozesse sowie strategische und operative Ziele.",
+        "Statt entlang klassischer Kursblöcke (Standard-Trainings, Weiterbildungsprogramme oder durch Consulting-Anbieter initiierte Schulungen) helfen wir Unternehmen mit ELaaS maßgeschneidert durch die aktuelle Transformationswelle: rasant zunehmender KI-Transformationsdruck, fortschreitende Automatisierung ganzer Industriezweige und der unaufhaltsame Ruf nach Prozess- und Effizienzsteigerung.",
+      ],
       supportingLine: "Akademische Exzellenz × Branchenpraxis × Community-Umsetzung",
       microProof: ["Maßgeschneidert auf Organisationsprioritäten", "Rollenbasierte Kompetenzreisen", "Echte Use Cases und Umsetzungspfade", "Wissenstransfer, der bleibt"],
       badgeLocation: "CETL · Wien",
@@ -728,10 +733,11 @@ export const de: ContentBundle = {
   INSIGHTS: ARTICLE_META.de,
 
   INST_STATS: [
-    { value: "20+", label: "Jahre Industrieerfahrung", sub: "Führungsteams in Banken, Industrie & Public Sector" },
-    { value: "3", label: "Kompetenz-Instrumente", sub: "Executive Education · Embedded Engineering · Technical Assessment" },
-    { value: "TU Wien", label: "Akademische Partnerschaft", sub: "Wissenschaftliche Rigorosität. Industrielle Umsetzungserfahrung." },
-    { value: "EU", label: "Institutioneller Rahmen", sub: "Europe Tech Hackathon · Stadt Wien · ÖBB · Siemens" },
+    { value: "20+", label: "Jahre Industrieerfahrung", sub: "Cross-business Industrieerfahrung" },
+    { value: "ELaaS", label: "Executional Learning as a Service", sub: "Verbindung namhafter akademischer Partnerschaften, Industriezweige & Community für die umsetzungsorientierte Weiterbildung" },
+    { value: "TEC", label: "Flagship Community Format", sub: "\"Central Europe Tech Hackathon\" mit der Stadt Wien und zahlreichen Partnern" },
+    { value: "50+", label: "Trainer & Lektor:innen", sub: "Industrieübergreifender Trainer- & Lektorenpool" },
+    { value: "12+", label: "Akademische Projekte", sub: "Umgesetzte akademische Projekte" },
   ],
 
   COMMUNITY: {

@@ -29,75 +29,14 @@ function CheckIcon() {
   );
 }
 
-/* SVG ELaaS Impact Engine — 4-node horizontal process diagram */
-function ElaasEngine() {
-  const nodes = [
-    { label: "Foundation", sub: "Standardized 8-day\nData & AI core" },
-    { label: "Activation", sub: "Role-based\nlearning journeys" },
-    { label: "Execution", sub: "Use cases,\nembedded support" },
-    { label: "Impact", sub: "Scalable internal\ncapability" },
-  ];
-  return (
-    <svg
-      viewBox="0 0 520 140"
-      width="520"
-      height="140"
-      aria-label="ELaaS Impact Engine: Foundation → Activation → Execution → Impact"
-      className="w-full max-w-[520px]"
-    >
-      {/* Connector lines */}
-      {[0, 1, 2].map((i) => (
-        <line
-          key={i}
-          x1={100 + i * 120 + 36}
-          y1={50}
-          x2={100 + (i + 1) * 120 - 36}
-          y2={50}
-          stroke="var(--color-cetl-gold-400)"
-          strokeWidth="1"
-          strokeDasharray="4 3"
-          opacity="0.4"
-        />
-      ))}
-      {nodes.map((node, i) => (
-        <g key={i} transform={`translate(${100 + i * 120}, 20)`}>
-          {/* Node circle */}
-          <circle cx="0" cy="30" r="28" fill="var(--color-cetl-navy-700)" stroke="var(--color-cetl-gold-400)" strokeWidth="1" opacity="0.85" />
-          {/* Number */}
-          <text x="0" y="26" textAnchor="middle" fill="var(--color-cetl-gold-400)" fontSize="10" fontFamily="var(--font-barlow)" fontWeight="600" opacity="0.7">
-            0{i + 1}
-          </text>
-          {/* Label */}
-          <text x="0" y="38" textAnchor="middle" fill="white" fontSize="9" fontFamily="var(--font-barlow)" fontWeight="700" letterSpacing="0.05em">
-            {node.label.toUpperCase()}
-          </text>
-          {/* Sub-label */}
-          {node.sub.split("\n").map((line, j) => (
-            <text key={j} x="0" y={72 + j * 13} textAnchor="middle" fill="var(--color-cetl-gold-300)" fontSize="8" fontFamily="var(--font-manrope)" opacity="0.7">
-              {line}
-            </text>
-          ))}
-        </g>
-      ))}
-      {/* Arrow heads on connectors */}
-      {[0, 1, 2].map((i) => (
-        <polygon
-          key={i}
-          points={`${100 + (i + 1) * 120 - 38},46 ${100 + (i + 1) * 120 - 30},50 ${100 + (i + 1) * 120 - 38},54`}
-          fill="var(--color-cetl-gold-400)"
-          opacity="0.4"
-        />
-      ))}
-    </svg>
-  );
-}
-
 export function HeroSection() {
   const { t } = useLanguage();
   const hero = t.UI.hero;
 
   /* Detect language: new EN content uses hero.body, old DE uses hero.paragraph */
-  const leadText = hero.body || hero.paragraph;
+  const leadParagraphs = hero.bodyParagraphs && hero.bodyParagraphs.length > 0
+    ? hero.bodyParagraphs
+    : [hero.body || hero.paragraph];
   const headlineMain = hero.headlineLine1 && hero.headlineAccent
     ? { line1: hero.headlineLine1, accent: hero.headlineAccent }
     : null;
@@ -199,15 +138,19 @@ export function HeroSection() {
         )}
 
         {/* Lead / body */}
-        {leadText && (
-          <motion.p
+        {leadParagraphs.length > 0 && leadParagraphs[0] && (
+          <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="mt-6 text-white/60 text-lg md:text-xl max-w-3xl leading-relaxed"
+            className="mt-6 flex flex-col gap-4 max-w-3xl"
           >
-            {leadText}
-          </motion.p>
+            {leadParagraphs.map((para, i) => (
+              <p key={i} className="text-white/60 text-lg md:text-xl leading-relaxed">
+                {para}
+              </p>
+            ))}
+          </motion.div>
         )}
 
         {/* CTAs */}
@@ -263,16 +206,6 @@ export function HeroSection() {
             {hero.supportingLine}
           </motion.p>
         )}
-
-        {/* ELaaS Impact Engine diagram */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 1.0 }}
-          className="mt-14 w-full flex justify-center"
-        >
-          <ElaasEngine />
-        </motion.div>
 
       </Container>
 

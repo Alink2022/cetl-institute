@@ -7,16 +7,16 @@ export function InstStatsBar() {
   const { t } = useLanguage();
 
   return (
-    <div className="border-y border-cetl-border/60 bg-cetl-surface/40">
+    <div className="bg-cetl-dark py-14">
       <Container>
-        <div className="py-5 grid grid-cols-2 md:grid-cols-4 gap-px bg-cetl-border/30">
+        <div className="flex flex-wrap justify-center gap-6">
           {t.INST_STATS.map((stat, i) => (
             <div
               key={i}
-              className="bg-cetl-dark px-6 py-5 flex flex-col gap-1 group hover:bg-cetl-surface transition-colors duration-300"
+              className="group flex flex-col items-center text-center gap-2 rounded-full w-44 h-44 shrink-0 px-5 py-5 bg-cetl-surface/60 border border-cetl-border/60 hover:border-cetl-gold-400/50 hover:bg-cetl-surface transition-all duration-300"
             >
               <span
-                className="font-display text-2xl md:text-3xl font-bold group-hover:text-cetl-text"
+                className="font-display text-xl md:text-2xl font-bold"
                 style={{
                   background: "linear-gradient(100deg, var(--color-cetl-gold), var(--color-cetl-gold-light))",
                   WebkitBackgroundClip: "text",
@@ -26,8 +26,12 @@ export function InstStatsBar() {
               >
                 {stat.value}
               </span>
-              <span className="text-white group-hover:text-cetl-text text-sm font-semibold tracking-wide transition-colors duration-300">{stat.label}</span>
-              <span className="text-white/60 group-hover:text-cetl-text-muted text-xs leading-relaxed transition-colors duration-300">{stat.sub}</span>
+              <span className="text-white group-hover:text-cetl-text text-[11px] font-semibold tracking-wide leading-snug transition-colors duration-300">
+                {stat.label}
+              </span>
+              <span className="text-white/50 group-hover:text-cetl-text-muted text-[10px] leading-snug line-clamp-3 transition-colors duration-300">
+                {stat.sub}
+              </span>
             </div>
           ))}
         </div>
