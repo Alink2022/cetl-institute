@@ -31,7 +31,7 @@ export function SectionHeader({
       </h2>
       {subtitle && (
         <p
-          className={`text-lg md:text-xl leading-relaxed max-w-2xl ${
+          className={`text-lg md:text-xl leading-relaxed max-w-4xl ${
             dark ? "text-white/70" : "text-cetl-text-muted"
           }`}
         >

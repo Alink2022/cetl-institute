@@ -11,6 +11,7 @@ import { CaseStudySection } from "@/components/sections/CaseStudySection";
 import { ProgramsSection } from "@/components/sections/ProgramsSection";
 import { InsightsSection } from "@/components/sections/InsightsSection";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
+import { TeamSection } from "@/components/sections/TeamSection";
 import { TrustBar } from "@/components/sections/TrustBar";
 import { LogoWatermark } from "@/components/ui/LogoWatermark";
 import { FAQSection } from "@/components/sections/FAQSection";
@@ -40,6 +41,7 @@ export default function Home() {
         <GoldDivider />
         <FAQSection />
         <ContactSection />
+        <TeamSection />
         <TrustBar />
       </main>
       <Footer />

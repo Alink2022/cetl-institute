@@ -144,7 +144,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="mt-6 flex flex-col gap-4 max-w-3xl"
+            className="mt-6 flex flex-col gap-4 max-w-5xl"
           >
             {leadParagraphs.map((para, i) => (
               <p key={i} className="text-white/60 text-lg md:text-xl leading-relaxed">

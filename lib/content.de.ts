@@ -242,7 +242,7 @@ export const de: ContentBundle = {
             { icon: "Target", text: "Strategische Use-Case-Ausrichtung" },
             { icon: "BookOpen", text: "Akademische & Experten-Delivery" },
           ],
-          footer: [{ icon: "ShieldCheck", text: "Fundament für Aktivierung" }],
+          footer: [{ icon: "ShieldCheck", text: "Startpunkt Ihrer KI-Souveränität" }],
         },
         {
           number: "2",
@@ -259,8 +259,8 @@ export const de: ContentBundle = {
             { icon: "BarChart2", text: "Projektbefähigung & Mentoring" },
           ],
           footer: [
-            { icon: "Layers", text: "Foundation" },
-            { icon: "Share2", text: "Spezialisierung" },
+            { icon: "Layers", text: "Basis-Layer" },
+            { icon: "Share2", text: "Spezialisierungspfad" },
           ],
         },
         {
@@ -276,7 +276,7 @@ export const de: ContentBundle = {
             { icon: "Share2", text: "Prototyping & Aktivierung" },
             { icon: "Users", text: "Wissenstransfer intern" },
           ],
-          footer: [{ icon: "Target", text: "Umsetzung nah an der Arbeit" }],
+          footer: [{ icon: "Target", text: "Wirkung direkt im Tagesgeschäft" }],
         },
         {
           number: "4",
@@ -291,7 +291,7 @@ export const de: ContentBundle = {
             { icon: "Lightbulb", text: "15+ Uni-Netzwerk DACH" },
             { icon: "Rocket", text: "Challenge-Framing & Momentum" },
           ],
-          footer: [{ icon: "UsersRound", text: "Gemeinsam zu echtem Schwung" }],
+          footer: [{ icon: "UsersRound", text: "Kollektive Innovationskraft entfesselt" }],
         },
       ],
     },
@@ -310,7 +310,7 @@ export const de: ContentBundle = {
             { icon: "ClipboardCheck", text: "Strukturiertes Kompetenzurteil" },
             { icon: "ShieldCheck", text: "Zweite strategische Säule" },
           ],
-          footer: [{ icon: "Landmark", text: "Assessment-Säule" }],
+          footer: [{ icon: "Landmark", text: "Ihre zweite strategische Säule" }],
         },
         {
           number: "2",
@@ -326,7 +326,7 @@ export const de: ContentBundle = {
             { icon: "Map", text: "Advance-/Develop-Entscheidungen" },
             { icon: "Users", text: "Transformation & Nachfolge" },
           ],
-          footer: [{ icon: "BarChart2", text: "Board-taugliche Einsicht" }],
+          footer: [{ icon: "BarChart2", text: "Entscheidungsreif für den Vorstand" }],
         },
         {
           number: "3",
@@ -341,7 +341,7 @@ export const de: ContentBundle = {
             { icon: "Map", text: "Evidenzbasiertes Mapping" },
             { icon: "Users", text: "Multi-Assessor-Perspektive" },
           ],
-          footer: [{ icon: "Clock", text: "Strukturierte Delivery-Engine" }],
+          footer: [{ icon: "Clock", text: "Ihr Fahrplan zur Kompetenz-Roadmap" }],
         },
         {
           number: "4",
@@ -356,7 +356,7 @@ export const de: ContentBundle = {
             { icon: "TrendingUp", text: "Kompetenz in Aktion beobachtet" },
             { icon: "Euro", text: "Audit-Insight + Momentum" },
           ],
-          footer: [{ icon: "Euro", text: "Audit-zu-Enablement-Modell" }],
+          footer: [{ icon: "Euro", text: "Vom Audit direkt zur Befähigung" }],
         },
       ],
     },
@@ -382,6 +382,12 @@ export const de: ContentBundle = {
     { id: "workforce-training", kind: "ring", value: "59%", label: "der globalen Arbeitskräfte werden bis 2030 Schulungsbedarf haben", source: "World Economic Forum — Future of Jobs Report 2025" },
     { id: "staff-obstacle", kind: "ring", value: "79%", label: "der EU-Firmen nennen fehlende qualifizierte Mitarbeitende als Investitionshindernis", source: "European Investment Bank — EIB Investment Survey 2025" },
     { id: "genai-growth", kind: "trend", value: "9×", label: "Wachstum bei Stellenausschreibungen mit GenAI-Anforderungen, 2021–2024", source: "World Bank — Digital Progress and Trends Report 2025" },
+  ],
+
+  TEAM_MEMBERS: [
+    { name: "Alin Kalam", role: "Managing Director & Academic Coordinator", initials: "AK", photo: "/alin-kalam.webp" },
+    { name: "Karl Ivo Sokolov", role: "Co-Founder & Industry Expert", initials: "KS" },
+    { name: "Stefan Bauer", role: "Community & Academic Expert", initials: "SB" },
   ],
 
   PROBLEM_ITEMS: [
@@ -648,6 +654,11 @@ export const de: ContentBundle = {
       mailFieldCompany: "Unternehmen",
       mailFieldEmail: "E-Mail",
       mailFieldInterest: "Themenbereich",
+    },
+    team: {
+      eyebrow: "Das CETL Team",
+      headline: "Die Köpfe hinter CETL Institute",
+      intro: "Akademische Exzellenz, Industrieerfahrung und Community-Aufbau — vereint in einem Team, das Executional Learning tatsächlich lebt.",
     },
     trustBar: {
       label: "In Partnerschaft mit führenden Institutionen",

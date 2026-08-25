@@ -217,7 +217,7 @@ export const en: ContentBundle = {
             { icon: "Target", text: "Strategic use-case framing" },
             { icon: "BookOpen", text: "Academic & expert delivery" },
           ],
-          footer: [{ icon: "ShieldCheck", text: "Foundation for activation" }],
+          footer: [{ icon: "ShieldCheck", text: "Where AI sovereignty begins" }],
         },
         {
           number: "2",
@@ -234,8 +234,8 @@ export const en: ContentBundle = {
             { icon: "BarChart2", text: "Project enablement & mentoring" },
           ],
           footer: [
-            { icon: "Layers", text: "Foundation" },
-            { icon: "Share2", text: "Specialization" },
+            { icon: "Layers", text: "Foundation Layer" },
+            { icon: "Share2", text: "Specialization Path" },
           ],
         },
         {
@@ -251,7 +251,7 @@ export const en: ContentBundle = {
             { icon: "Share2", text: "Prototyping & activation" },
             { icon: "Users", text: "Internal knowledge transfer" },
           ],
-          footer: [{ icon: "Target", text: "Execution close to the work" }],
+          footer: [{ icon: "Target", text: "Impact where work happens" }],
         },
         {
           number: "4",
@@ -266,7 +266,7 @@ export const en: ContentBundle = {
             { icon: "Lightbulb", text: "15+ university network, DACH" },
             { icon: "Rocket", text: "Challenge framing & momentum" },
           ],
-          footer: [{ icon: "UsersRound", text: "Collaboration for real momentum" }],
+          footer: [{ icon: "UsersRound", text: "Collective momentum, unlocked" }],
         },
       ],
     },
@@ -285,7 +285,7 @@ export const en: ContentBundle = {
             { icon: "ClipboardCheck", text: "Structured capability judgement" },
             { icon: "ShieldCheck", text: "Second strategic pillar" },
           ],
-          footer: [{ icon: "Landmark", text: "Assessment Pillar" }],
+          footer: [{ icon: "Landmark", text: "Your second strategic pillar" }],
         },
         {
           number: "2",
@@ -301,7 +301,7 @@ export const en: ContentBundle = {
             { icon: "Map", text: "Advance/develop decisions" },
             { icon: "Users", text: "Transformation & succession" },
           ],
-          footer: [{ icon: "BarChart2", text: "Board-Ready Insight" }],
+          footer: [{ icon: "BarChart2", text: "Board-ready, by design" }],
         },
         {
           number: "3",
@@ -316,7 +316,7 @@ export const en: ContentBundle = {
             { icon: "Map", text: "Evidence-based mapping" },
             { icon: "Users", text: "Multi-assessor perspective" },
           ],
-          footer: [{ icon: "Clock", text: "Structured Delivery Engine" }],
+          footer: [{ icon: "Clock", text: "Your roadmap to capability" }],
         },
         {
           number: "4",
@@ -331,7 +331,7 @@ export const en: ContentBundle = {
             { icon: "TrendingUp", text: "Capability observed in action" },
             { icon: "Euro", text: "Audit insight + momentum" },
           ],
-          footer: [{ icon: "Euro", text: "Audit-to-Enablement Model" }],
+          footer: [{ icon: "Euro", text: "From audit straight to enablement" }],
         },
       ],
     },
@@ -357,6 +357,12 @@ export const en: ContentBundle = {
     { id: "workforce-training", kind: "ring", value: "59%", label: "of the global workforce will require training by 2030", source: "World Economic Forum — Future of Jobs Report 2025" },
     { id: "staff-obstacle", kind: "ring", value: "79%", label: "of EU firms report the availability of skilled staff as an investment obstacle", source: "European Investment Bank — EIB Investment Survey 2025" },
     { id: "genai-growth", kind: "trend", value: "9×", label: "growth in job vacancies requiring GenAI skills, 2021–2024", source: "World Bank — Digital Progress and Trends Report 2025" },
+  ],
+
+  TEAM_MEMBERS: [
+    { name: "Alin Kalam", role: "Managing Director & Academic Coordinator", initials: "AK", photo: "/alin-kalam.webp" },
+    { name: "Karl Ivo Sokolov", role: "Co-Founder & Industry Expert", initials: "KS" },
+    { name: "Stefan Bauer", role: "Community & Academic Expert", initials: "SB" },
   ],
 
   ECOSYSTEM_NODES: [
@@ -895,6 +901,11 @@ export const en: ContentBundle = {
       privacyNote: "Your contact details are used only to respond to this inquiry. We do not share your data with third parties.",
     },
 
+    team: {
+      eyebrow: "The CETL Team",
+      headline: "The people behind CETL Institute",
+      intro: "Academic excellence, industry experience and community-building — united in a team that actually lives executional learning.",
+    },
     trustBar: {
       label: "In Partnership with Leading Institutions",
     },

@@ -83,6 +83,13 @@ export interface ResearchStat {
   source: string;
 }
 
+export interface TeamMember {
+  name: string;
+  role: string;
+  initials: string;
+  photo?: string;
+}
+
 export interface MarketStat {
   id: string;
   kind: "ring" | "trend";
@@ -278,6 +285,7 @@ export interface ContentBundle {
   PRODUCT_GROUPS: ProductGroup[];
   PROGRAM_FLOW_STEPS: ProgramFlowStep[];
   MARKET_STATS: MarketStat[];
+  TEAM_MEMBERS: TeamMember[];
   PROBLEM_ITEMS: { title: string; desc: string }[];
   RESEARCH_STATS: ResearchStat[];
   EXECUTION_GAP: { label: string; detail: string; rows: { label: string; value: number }[] };
@@ -556,6 +564,11 @@ export interface ContentBundle {
       mailFieldEmail: string;
       mailFieldInterest: string;
       privacyNote: string;
+    };
+    team: {
+      eyebrow: string;
+      headline: string;
+      intro: string;
     };
     trustBar: {
       label: string;
