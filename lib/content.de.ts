@@ -573,8 +573,9 @@ export const de: ContentBundle = {
       ],
     },
     ecosystem: {
-      eyebrow: "CETL Institute | Bildungs-Ökosystem",
-      headline: "Ein Executional-Learning-Ökosystem, das traditionelle Ansätze transformiert.",
+      eyebrow: "Das CETL-Ökosystem",
+      headline: "Das Ökosystem von Central European Tech Leadership Institute",
+      intro: "Unser einzigartiges CETL-Ökosystem verbindet sechs Bausteine zu einem koordinierten System aus Wissen, Anwendung und Umsetzung.",
       bottomBand: ["Community-getriebenes Lernen", "Umsetzungsorientierter Kompetenzaufbau", "Akademische Strenge trifft reale Umsetzung"],
     },
     enterprise: {
@@ -703,7 +704,14 @@ export const de: ContentBundle = {
 
   PORTFOLIO_PRODUCTS: [],
   PACKAGES: [],
-  ECOSYSTEM_NODES: [],
+  ECOSYSTEM_NODES: [
+    { number: "1", title: "Community & Collaboration", description: "Ein aktives Netzwerk aus Praktiker:innen, Partnern und Talenten, das Wissen und Chancen branchenübergreifend teilt." },
+    { number: "2", title: "Technology & Methodic Literacy", description: "Fundiertes technologisches und methodisches Verständnis als Basis jeder Kompetenzreise." },
+    { number: "3", title: "Case-based Education", description: "Lernen entlang echter Anwendungsfälle statt abstrakter Theorie." },
+    { number: "4", title: "Scientific Coordination", description: "Wissenschaftliche Rigorosität und akademische Partnerschaften sichern die inhaltliche Qualität." },
+    { number: "5", title: "Innovation & Idea Labs", description: "Geschützte Räume, in denen neue Ideen entstehen, getestet und weiterentwickelt werden." },
+    { number: "6", title: "Education as a Service Platform", description: "Skalierbare, modulare Bereitstellung von Bildung als kontinuierlicher Service statt Einzelmaßnahme." },
+  ],
   NETWORK_LAYERS: [],
   ROLE_CARDS: [],
   EVIDENCE_STATS: [],

@@ -522,8 +522,9 @@ export const en: ContentBundle = {
     },
 
     ecosystem: {
-      eyebrow: "CETL Institute | Education Ecosystem",
-      headline: "An Executional Learning ecosystem designed to transform traditional approaches.",
+      eyebrow: "The CETL Ecosystem",
+      headline: "The Ecosystem of Central European Tech Leadership Institute",
+      intro: "Our unique CETL ecosystem connects six building blocks into one coordinated system of knowledge, application and execution.",
       bottomBand: ["Community-driven learning", "Execution-oriented capability building", "Academic rigor meets real-world deployment"],
     },
 

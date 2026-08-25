@@ -14,14 +14,14 @@ export function InstStatsBar() {
       </div>
 
       <Container className="relative">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
           {t.INST_STATS.map((stat, i) => (
             <div
               key={i}
-              className="group flex flex-col gap-2 rounded-2xl border border-cetl-navy-600/60 bg-cetl-navy-800/60 hover:border-cetl-gold-400/40 p-6 transition-all duration-300"
+              className="group flex flex-col gap-1.5 rounded-lg border border-cetl-gold-400/25 bg-cetl-navy-800/60 hover:border-cetl-gold-400/60 p-4 transition-all duration-300"
             >
               <span
-                className="font-display text-2xl font-bold leading-tight"
+                className={`font-display font-bold leading-none ${stat.value.length > 6 ? "text-lg" : "text-3xl"}`}
                 style={{
                   background: "linear-gradient(100deg, var(--color-cetl-gold), var(--color-cetl-gold-light))",
                   WebkitBackgroundClip: "text",
@@ -31,10 +31,10 @@ export function InstStatsBar() {
               >
                 {boldElaas(stat.value)}
               </span>
-              <span className="text-white text-xs font-semibold tracking-wide leading-snug">
+              <span className="text-white text-[11px] font-semibold tracking-wide leading-snug">
                 {boldElaas(stat.label)}
               </span>
-              <span className="text-white/50 text-[11px] leading-relaxed">
+              <span className="text-white/45 text-[10px] leading-snug">
                 {boldElaas(stat.sub)}
               </span>
             </div>
