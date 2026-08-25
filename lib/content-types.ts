@@ -352,6 +352,29 @@ export interface ContentBundle {
       headline: string;
       intro: string;
     };
+    skillsQuadrant: {
+      eyebrow: string;
+      headline: string;
+      intro: string;
+      source: string;
+      axisX: string;
+      axisY: string;
+      quadrantEmerging: string;
+      quadrantCore: string;
+      quadrantOutOfFocus: string;
+      quadrantSteady: string;
+      focusLabel: string;
+      categories: {
+        cognitive: string;
+        engagement: string;
+        ethics: string;
+        management: string;
+        physical: string;
+        selfEfficacy: string;
+        technology: string;
+        workingWithOthers: string;
+      };
+    };
     portfolio: {
       eyebrow: string;
       headline: string;

@@ -649,8 +649,31 @@ export const en: ContentBundle = {
     },
     marketStats: {
       eyebrow: "The Market at a Glance",
-      headline: "The skills gap is real — and measurable.",
+      headline: "CETL closes the skills gap the market is showing.",
       intro: "Independent research from Eurostat, the OECD, the World Economic Forum, the European Investment Bank and the World Bank paints a clear picture: the limiting factor for AI value creation is rarely technology — it's missing capability.",
+    },
+    skillsQuadrant: {
+      eyebrow: "Skills of the Future",
+      headline: "We build exactly the capabilities that will matter in 2030.",
+      intro: "B2B skill demand is shifting fast. CETL programs are deliberately aligned with the capabilities organizations already rank as core for 2030 — not yesterday's skills.",
+      source: "Source: World Economic Forum",
+      axisX: "Share of employers considering as a core skill in 2025 (%)",
+      axisY: "Share of employers expecting increasing skills in use by 2030 (%)",
+      quadrantEmerging: "Emerging Skills",
+      quadrantCore: "Core Skills in 2030",
+      quadrantOutOfFocus: "Out of Focus Skills",
+      quadrantSteady: "Steady Skills",
+      focusLabel: "CETL Focus",
+      categories: {
+        cognitive: "Cognitive Skills",
+        engagement: "Engagement Skills",
+        ethics: "Ethics",
+        management: "Management Skills",
+        physical: "Physical Abilities",
+        selfEfficacy: "Self-Efficacy",
+        technology: "Technology Skills",
+        workingWithOthers: "Working with Others",
+      },
     },
 
     portfolio: {
