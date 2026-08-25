@@ -156,6 +156,16 @@ export interface EcosystemNode {
   description: string;
 }
 
+export type ProgramFlowIconName =
+  | "Search" | "Settings2" | "Rocket" | "Cog" | "Users" | "Globe" | "TrendingUp" | "UsersRound";
+
+export interface ProgramFlowStep {
+  n: string;
+  icon: ProgramFlowIconName;
+  title: string;
+  description: string;
+}
+
 export type ProductIconName =
   | "GraduationCap" | "Users" | "Target" | "BookOpen" | "ShieldCheck" | "CheckCircle2"
   | "User" | "Star" | "BarChart2" | "Layers" | "Share2" | "Settings2" | "Handshake"
@@ -258,6 +268,7 @@ export interface ContentBundle {
   PARTNERS: Partner[];
   PARTNER_GROUPS: PartnerGroup[];
   PRODUCT_GROUPS: ProductGroup[];
+  PROGRAM_FLOW_STEPS: ProgramFlowStep[];
   PROBLEM_ITEMS: { title: string; desc: string }[];
   RESEARCH_STATS: ResearchStat[];
   EXECUTION_GAP: { label: string; detail: string; rows: { label: string; value: number }[] };
@@ -322,6 +333,10 @@ export interface ContentBundle {
       eyebrow: string;
       headline: string;
       intro: string;
+    };
+    programFlow: {
+      headline: string;
+      goal: string;
     };
     portfolio: {
       eyebrow: string;

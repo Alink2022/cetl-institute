@@ -14,7 +14,7 @@ export function EcosystemSection() {
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cetl-gold-400 to-transparent opacity-40" />
 
       <Container className="relative">
-        <div className="max-w-3xl mb-14">
+        <div className="max-w-3xl mx-auto mb-14 text-center">
           <p className="text-cetl-gold-700 text-xs font-semibold tracking-[0.3em] uppercase mb-4">
             {ecosystem.eyebrow}
           </p>

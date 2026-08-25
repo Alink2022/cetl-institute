@@ -341,6 +341,17 @@ export const en: ContentBundle = {
     },
   ],
 
+  PROGRAM_FLOW_STEPS: [
+    { n: "1", icon: "Search", title: "Assessment", description: "Capturing baseline and maturity." },
+    { n: "2", icon: "Settings2", title: "Customization", description: "Tailoring the program to context." },
+    { n: "3", icon: "Rocket", title: "Program Delivery", description: "Structured execution." },
+    { n: "4", icon: "Cog", title: "Application", description: "Applying knowledge to real tasks." },
+    { n: "5", icon: "Users", title: "Executional Support", description: "Guided implementation." },
+    { n: "6", icon: "Globe", title: "External Impulses", description: "Perspectives from other industries." },
+    { n: "7", icon: "TrendingUp", title: "Advanced Tracks", description: "Deepening specialization." },
+    { n: "8", icon: "UsersRound", title: "Community Enablement", description: "Connected across the ecosystem." },
+  ],
+
   ECOSYSTEM_NODES: [
     { number: "1", title: "Community & Collaboration", description: "Peer exchange, expert access, interdisciplinary collaboration and community-powered learning." },
     { number: "2", title: "Technology & Methodic Literacy", description: "Practical understanding of Data, AI, automation, governance and technology-related decision-making." },
@@ -617,9 +628,13 @@ export const en: ContentBundle = {
     },
 
     productPortfolio: {
-      eyebrow: "The CETL Product Portfolio",
-      headline: "A system of learning, assessment and enablement.",
-      intro: "Our product portfolio connects structured executional learning with independent capability assessment and hands-on enablement — modular and combinable, from foundation to embedded execution.",
+      eyebrow: "CETL Products",
+      headline: "A unique framework of learning, assessment and enablement.",
+      intro: "The CETL portfolio is strategically and operationally designed for the specific maturity gaps of organizations with complex enterprise architecture and regulatory requirements. We connect structured executional learning with independent capability assessment and hands-on enablement — modular and combinable, from foundation to embedded execution, with cross-industry use cases, industry workshops, data & AI literacy blocks and tech modules.",
+    },
+    programFlow: {
+      headline: "How our programs run",
+      goal: "Data & AI Literate Organization",
     },
 
     portfolio: {

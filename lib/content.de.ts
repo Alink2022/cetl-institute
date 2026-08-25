@@ -366,6 +366,17 @@ export const de: ContentBundle = {
     },
   ],
 
+  PROGRAM_FLOW_STEPS: [
+    { n: "1", icon: "Search", title: "Assessment", description: "Ausgangslage und Reifegrad erfassen." },
+    { n: "2", icon: "Settings2", title: "Customization", description: "Programm auf Kontext zuschneiden." },
+    { n: "3", icon: "Rocket", title: "Program Delivery", description: "Strukturierte Durchführung." },
+    { n: "4", icon: "Cog", title: "Anwenden", description: "Wissen auf reale Aufgaben übertragen." },
+    { n: "5", icon: "Users", title: "Executional Begleitung", description: "Begleitung bei der Umsetzung." },
+    { n: "6", icon: "Globe", title: "Externe Impulse", description: "Perspektiven aus anderen Branchen." },
+    { n: "7", icon: "TrendingUp", title: "Advanced Tracks", description: "Vertiefende Spezialisierung." },
+    { n: "8", icon: "UsersRound", title: "Community Befähigung", description: "Vernetzung im Ökosystem." },
+  ],
+
   PROBLEM_ITEMS: [
     {
       title: "PoC-Friedhöfe statt Enterprise-Betrieb",
@@ -680,9 +691,13 @@ export const de: ContentBundle = {
       cta: "Das vollständige ELaaS-Modell erkunden",
     },
     productPortfolio: {
-      eyebrow: "Das CETL-Produktportfolio",
-      headline: "Ein System aus Lernen, Bewertung und Befähigung.",
-      intro: "Unser Produktportfolio verbindet strukturiertes Executional Learning mit unabhängiger Fähigkeitsbewertung und praxisnaher Befähigung — modular kombinierbar, von der Grundlage bis zur eingebetteten Umsetzung.",
+      eyebrow: "CETL Produkte",
+      headline: "Einzigartiges Rahmenwerk aus Lernen, Bewertung und Befähigung.",
+      intro: "CETL Portfolio ist strategisch & operativ auf die spezifischen Reifegradlücken von Organisationen mit komplexer Enterprise-Architektur und regulatorischen Anforderungen ausgelegt. Wir verbinden strukturiertes Executional Learning mit unabhängiger Fähigkeitsbewertung und praxisnaher Befähigung — modular kombinierbar, von der Grundlage bis zur eingebetteten Umsetzung mit branchenübergreifenden Use Cases, Industry-Workshops, Data-&-AI-Literacy-Blöcken und Tech-Modulen.",
+    },
+    programFlow: {
+      headline: "So laufen unsere Programme ab",
+      goal: "Data & AI Literate Organisation",
     },
     portfolio: {
       eyebrow: "CETL Institute | Produktportfolio",
