@@ -3,7 +3,6 @@ import { Footer } from "@/components/layout/Footer";
 import { GoldDivider } from "@/components/ui/GoldDivider";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { InstStatsBar } from "@/components/sections/InstStatsBar";
-import { ProblemSection } from "@/components/sections/ProblemSection";
 import { EcosystemSection } from "@/components/sections/EcosystemSection";
 import { ElaasSection } from "@/components/sections/ElaasSection";
 import { PortfolioSection } from "@/components/sections/PortfolioSection";
@@ -27,8 +26,6 @@ export default function Home() {
         <LogoWatermark />
         <HeroSection />
         <InstStatsBar />
-        <ProblemSection />
-        <GoldDivider />
         <EcosystemSection />
         <GoldDivider />
         <ElaasSection />
