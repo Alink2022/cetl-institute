@@ -1,6 +1,7 @@
 "use client";
 
 import { Container } from "@/components/ui/Container";
+import { boldElaas } from "@/components/ui/BoldElaas";
 import { useLanguage } from "@/lib/i18n";
 
 export function ElaasSection() {
@@ -19,7 +20,7 @@ export function ElaasSection() {
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-cetl-text leading-tight mb-6">
             {ui.headline}
           </h2>
-          <p className="text-cetl-muted text-lg leading-relaxed">{ui.body}</p>
+          <p className="text-cetl-muted text-lg leading-relaxed">{boldElaas(ui.body)}</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">

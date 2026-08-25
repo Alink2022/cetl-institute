@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { MagneticButton } from "@/components/ui/MagneticButton";
+import { boldElaas } from "@/components/ui/BoldElaas";
 import { useLanguage } from "@/lib/i18n";
 
 function OrnamentRule({ className = "" }: { className?: string }) {
@@ -147,7 +148,7 @@ export function HeroSection() {
           >
             {leadParagraphs.map((para, i) => (
               <p key={i} className="text-white/60 text-lg md:text-xl leading-relaxed">
-                {para}
+                {boldElaas(para)}
               </p>
             ))}
           </motion.div>

@@ -345,7 +345,7 @@ export const en: ContentBundle = {
   INST_STATS: [
     { value: "20+", label: "Years of Industry Experience", sub: "Cross-business industry experience" },
     { value: "ELaaS", label: "Executional Learning as a Service", sub: "Connecting renowned academic partnerships, industries & community for execution-driven upskilling" },
-    { value: "TEC", label: "Flagship Community Format", sub: "\"Central Europe Tech Hackathon\" with the City of Vienna and numerous partners" },
+    { value: "Own Community", label: "Flagship Community Format", sub: "\"Central Europe Tech Hackathon\" with the City of Vienna and numerous partners" },
     { value: "50+", label: "Trainers & Lecturers", sub: "Cross-industry pool of trainers and lecturers" },
     { value: "12+", label: "Academic Projects", sub: "Completed academic projects" },
   ],

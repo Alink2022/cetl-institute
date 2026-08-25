@@ -4,6 +4,7 @@ import { useState } from "react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Container } from "@/components/ui/Container";
 import { PlusIcon } from "@/components/ui/PlusIcon";
+import { boldElaas } from "@/components/ui/BoldElaas";
 import { useLanguage } from "@/lib/i18n";
 
 export function FAQSection() {
@@ -37,7 +38,7 @@ export function FAQSection() {
                   style={{ gridTemplateRows: open ? "1fr" : "0fr" }}
                 >
                   <div className="overflow-hidden">
-                    <p className="text-cetl-text-muted text-sm leading-relaxed px-6 pb-5">{item.a}</p>
+                    <p className="text-cetl-text-muted text-sm leading-relaxed px-6 pb-5">{boldElaas(item.a)}</p>
                   </div>
                 </div>
               </div>
