@@ -101,7 +101,7 @@ export function ProductPortfolioSection() {
   if (!t.PRODUCT_GROUPS || t.PRODUCT_GROUPS.length === 0) return null;
 
   return (
-    <section className="relative py-14 lg:py-44 cetl-navy-bg overflow-hidden">
+    <section id="products" className="relative py-14 lg:py-44 cetl-navy-bg overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[400px] rounded-full bg-cetl-gold-700/[0.05] blur-[130px]" />
       </div>

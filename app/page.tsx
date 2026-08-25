@@ -7,18 +7,14 @@ import { EcosystemSection } from "@/components/sections/EcosystemSection";
 import { ProductPortfolioSection } from "@/components/sections/ProductPortfolioSection";
 import { MarketStatsSection } from "@/components/sections/MarketStatsSection";
 import { SkillsQuadrantSection } from "@/components/sections/SkillsQuadrantSection";
-import { PortfolioSection } from "@/components/sections/PortfolioSection";
-import { PackagesSection } from "@/components/sections/PackagesSection";
 import { CaseStudySection } from "@/components/sections/CaseStudySection";
 import { ProgramsSection } from "@/components/sections/ProgramsSection";
 import { InsightsSection } from "@/components/sections/InsightsSection";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
-import { SPGPartnerSection } from "@/components/sections/SPGPartnerSection";
-import { CommunitySection } from "@/components/sections/CommunitySection";
 import { TrustBar } from "@/components/sections/TrustBar";
 import { LogoWatermark } from "@/components/ui/LogoWatermark";
-import { ResearchSection } from "@/components/sections/ResearchSection";
 import { FAQSection } from "@/components/sections/FAQSection";
+import { ContactSection } from "@/components/sections/ContactSection";
 
 export default function Home() {
   return (
@@ -35,24 +31,15 @@ export default function Home() {
         <MarketStatsSection />
         <SkillsQuadrantSection />
         <GoldDivider />
-        <PortfolioSection />
-        <GoldDivider />
-        <PackagesSection />
-        <GoldDivider />
         <ProgramsSection />
-        <GoldDivider />
-        <ResearchSection />
         <GoldDivider />
         <CaseStudySection />
         <InsightsSection />
         <GoldDivider />
         <TestimonialsSection />
         <GoldDivider />
-        <CommunitySection />
-        <GoldDivider />
-        <SPGPartnerSection />
-        <GoldDivider />
         <FAQSection />
+        <ContactSection />
         <TrustBar />
       </main>
       <Footer />

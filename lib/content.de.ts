@@ -6,9 +6,9 @@ export const de: ContentBundle = {
     name: "CETL Institute",
     fullName: "Central European Tech Leadership Institute",
     url: "https://cetl-institute.vercel.app",
-    email: "office@cetl-institute.eu",
+    email: "alinkalam@cetl.institute",
     // Formular-Anfragen gehen immer an den Vorstand (Vorgabe Stefan, 2026-07-12).
-    formEmail: "vorstand@eqaf.eu",
+    formEmail: "alinkalam@cetl.institute",
     location: "Wien, Österreich",
     region: "Zentraleuropa",
     academic: "TU Wien, Akademischer Direktor",
@@ -19,13 +19,9 @@ export const de: ContentBundle = {
 
   NAV_LINKS: [
     { label: "Über uns", href: "#about" },
-    { label: "Studien", href: "#research" },
-    { label: "Leistungen", href: "#services" },
-    { label: "ELaaS", href: "#elaas" },
+    { label: "Produkte", href: "#products" },
     { label: "Programme", href: "#programs" },
-    { label: "Geschäftsführung", href: "#leadership" },
     { label: "Insights", href: "/insights" },
-    { label: "Partner", href: "#partners" },
   ],
 
   MANAGING_DIRECTOR: {
@@ -500,20 +496,19 @@ export const de: ContentBundle = {
   ],
 
   CONTACT_ITEMS: [
-    { label: "E-Mail", value: "office@cetl-institute.eu", href: "mailto:office@cetl-institute.eu" },
+    { label: "E-Mail", value: "alinkalam@cetl.institute", href: "mailto:alinkalam@cetl.institute" },
     { label: "Standort", value: "Wien, Österreich (Zentraleuropa)", href: null },
     { label: "Akademische Partnerschaft", value: "TU Wien, Akademischer Direktor", href: null },
   ],
 
   CONTACT_INTEREST_OPTIONS: [
-    "Executive Education / Technologische Urteilskompetenz",
-    "Embedded Engineering / Forward Deployed Engineers",
-    "KI-Kompetenzprogramm für Unternehmen",
-    "Strategische Beratung",
-    "Architektur-Review & Technische Bewertung",
-    "Use-Case-Priorisierungs-Workshop",
-    "Europe Tech Hackathon",
-    "Allgemeine Anfrage",
+    "Executional Learning",
+    "Executional Assessments",
+    "Executive Education",
+    "Forward Deployed Engineering",
+    "CETL Hackathon Teilnahme",
+    "CETL Partner werden",
+    "Sonstiges",
   ],
 
   UI: {
@@ -654,6 +649,9 @@ export const de: ContentBundle = {
       mailFieldEmail: "E-Mail",
       mailFieldInterest: "Themenbereich",
     },
+    trustBar: {
+      label: "In Partnerschaft mit führenden Institutionen",
+    },
     footer: {
       tagline: "Central European Tech Leadership Institute. Technologische Souveränität ist kein Zustand. Sie ist eine Kompetenz.",
       navLabel: "Navigation",
@@ -662,6 +660,7 @@ export const de: ContentBundle = {
       region: "Zentraleuropa",
       copyright: "Alle Rechte vorbehalten.",
       complianceLine: "Sämtliche Leistungen richten sich ausschließlich an Organisationen außerhalb der Versicherungsbranche.",
+      imprintLabel: "Impressum",
     },
     testimonials: {
       label: "Stimmen aus der Praxis",
@@ -726,7 +725,7 @@ export const de: ContentBundle = {
       quadrantCore: "Kernkompetenzen 2030",
       quadrantOutOfFocus: "Nachrangige Skills",
       quadrantSteady: "Stabile Skills",
-      focusLabel: "CETL-Fokus",
+      focusLabel: "CETL-Fokus: Aufkommende & Kernkompetenzen 2030",
       categories: {
         cognitive: "Kognitive Fähigkeiten",
         engagement: "Engagement-Fähigkeiten",

@@ -557,6 +557,9 @@ export interface ContentBundle {
       mailFieldInterest: string;
       privacyNote: string;
     };
+    trustBar: {
+      label: string;
+    };
     footer: {
       tagline: string;
       navLabel: string;
@@ -565,6 +568,7 @@ export interface ContentBundle {
       region: string;
       copyright: string;
       complianceLine: string;
+      imprintLabel: string;
     };
     pillars: { label: string; title: string; subtitle: string };
     programs: {

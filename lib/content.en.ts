@@ -6,8 +6,8 @@ export const en: ContentBundle = {
     name: "CETL Institute",
     fullName: "Central European Tech Leadership Institute",
     url: "https://cetl-institute.vercel.app",
-    email: "office@cetl-institute.eu",
-    formEmail: "vorstand@eqaf.eu",
+    email: "alinkalam@cetl.institute",
+    formEmail: "alinkalam@cetl.institute",
     location: "Vienna, Austria",
     region: "Central Europe",
     academic: "TU Wien, Academic Director",
@@ -17,13 +17,9 @@ export const en: ContentBundle = {
   },
 
   NAV_LINKS: [
-    { label: "ELaaS", href: "#elaas" },
-    { label: "Portfolio", href: "#portfolio" },
-    { label: "Packages", href: "#packages" },
-    { label: "Programmes", href: "#programmes" },
-    { label: "Ecosystem", href: "#ecosystem" },
-    { label: "Evidence", href: "#evidence" },
-    { label: "Institute", href: "#about" },
+    { label: "About", href: "#about" },
+    { label: "Products", href: "#products" },
+    { label: "Programs", href: "#programs" },
     { label: "Insights", href: "/insights" },
   ],
 
@@ -79,7 +75,7 @@ export const en: ContentBundle = {
       ],
       outcomeLabel: "From targeted training to full learning journeys",
       cta: "Design a Customized Programme",
-      ctaHref: "mailto:vorstand@eqaf.eu",
+      ctaHref: "mailto:alinkalam@cetl.institute",
     },
     {
       number: "3",
@@ -116,7 +112,7 @@ export const en: ContentBundle = {
       ],
       outcomeLabel: "From community knowledge to real projects",
       cta: "Bring a Challenge to CETL",
-      ctaHref: "mailto:vorstand@eqaf.eu",
+      ctaHref: "mailto:alinkalam@cetl.institute",
     },
   ],
 
@@ -139,7 +135,7 @@ export const en: ContentBundle = {
       price: "€35,000",
       priceNote: "For up to 20 participants",
       cta: "Discuss the Foundation Package",
-      ctaHref: "mailto:vorstand@eqaf.eu",
+      ctaHref: "mailto:alinkalam@cetl.institute",
     },
     {
       number: "2",
@@ -159,7 +155,7 @@ export const en: ContentBundle = {
       price: "€65,000",
       priceNote: "For up to 20 participants",
       cta: "Design a Customized Package",
-      ctaHref: "mailto:vorstand@eqaf.eu",
+      ctaHref: "mailto:alinkalam@cetl.institute",
       featured: true,
     },
     {
@@ -180,7 +176,7 @@ export const en: ContentBundle = {
       ],
       price: "Tailored to scope and duration",
       cta: "Scope an Embedded Engagement",
-      ctaHref: "mailto:vorstand@eqaf.eu",
+      ctaHref: "mailto:alinkalam@cetl.institute",
       featured: true,
     },
     {
@@ -201,7 +197,7 @@ export const en: ContentBundle = {
       price: "€5,000–€12,000",
       priceNote: "Depending on challenge scope",
       cta: "Bring Your Challenge",
-      ctaHref: "mailto:vorstand@eqaf.eu",
+      ctaHref: "mailto:alinkalam@cetl.institute",
     },
   ],
 
@@ -426,7 +422,7 @@ export const en: ContentBundle = {
   ],
 
   PROGRAMS: [
-    { tag: "Foundation", title: "Enterprise Data & AI Capability Programme", format: "3–12 months", level: "All roles", description: "One coordinated capability system for the entire organization. Shared foundation, role-based specialization and guided projects.", href: "#programmes" },
+    { tag: "Foundation", title: "Enterprise Data & AI Capability Programme", format: "3–12 months", level: "All roles", description: "One coordinated capability system for the entire organization. Shared foundation, role-based specialization and guided projects.", href: "/programme/ki-kompetenzprogramm" },
     { tag: "Specialization", title: "Everyday AI Learning Journey", format: "Modular", level: "Business Users", description: "Apply AI effectively and safely in daily work. Practical, role-specific and connected to real organizational tools." },
     { tag: "Leadership", title: "AI Leadership Programme", format: "Intensive", level: "C-Suite & Board", description: "Steer AI strategy, investments, governance and operating models with genuine technological judgment." },
     { tag: "Technical", title: "AI Expert Track", format: "Deep-Dive", level: "Technical Staff", description: "Validate, design and implement Data and AI solutions in the organization's real technical context." },
@@ -575,13 +571,17 @@ export const en: ContentBundle = {
   CONTACT_ITEMS: [
     { label: "Institute", value: "CETL Institute", href: null },
     { label: "Location", value: "Vienna, Austria", href: null },
-    { label: "Email", value: "office@cetl-institute.eu", href: "mailto:office@cetl-institute.eu" },
+    { label: "Email", value: "alinkalam@cetl.institute", href: "mailto:alinkalam@cetl.institute" },
   ],
 
   CONTACT_INTEREST_OPTIONS: [
-    "Executional Learning Foundation", "Executional Learning Customized", "Flagship Embedded Engineering",
-    "Executional Community Package", "Enterprise Data & AI Programme", "Customized Education",
-    "Technical Assessment", "Academic Partnership", "Strategic Partnership", "Other",
+    "Executional Learning",
+    "Executional Assessments",
+    "Executive Education",
+    "Forward Deployed Engineering",
+    "CETL Hackathon Participation",
+    "Become CETL Partner",
+    "Others",
   ],
 
   INSIGHTS: ARTICLE_META.en,
@@ -663,7 +663,7 @@ export const en: ContentBundle = {
       quadrantCore: "Core Skills in 2030",
       quadrantOutOfFocus: "Out of Focus Skills",
       quadrantSteady: "Steady Skills",
-      focusLabel: "CETL Focus",
+      focusLabel: "CETL Focus: Emerging & Core Skills 2030",
       categories: {
         cognitive: "Cognitive Skills",
         engagement: "Engagement Skills",
@@ -895,14 +895,18 @@ export const en: ContentBundle = {
       privacyNote: "Your contact details are used only to respond to this inquiry. We do not share your data with third parties.",
     },
 
+    trustBar: {
+      label: "In Partnership with Leading Institutions",
+    },
     footer: {
       tagline: "CETL Institute is a Central European capability-building and execution ecosystem combining academic excellence, industry practice and community-powered execution.",
       navLabel: "Navigation",
       contactLabel: "Contact",
       location: "Vienna, Austria",
       region: "Central Europe",
-      copyright: `© ${new Date().getFullYear()} CETL Institute. All rights reserved.`,
+      copyright: "All rights reserved.",
       complianceLine: "All CETL services are directed exclusively at organizations outside the insurance sector.",
+      imprintLabel: "Legal Notice",
     },
 
     pillars: { label: "What We Do", title: "Three integrated capabilities", subtitle: "From learning to execution" },

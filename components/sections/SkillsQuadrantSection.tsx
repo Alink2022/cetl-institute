@@ -77,16 +77,20 @@ export function SkillsQuadrantSection() {
             {ui.headline}
           </h2>
           <p className="text-cetl-text-muted text-lg leading-relaxed">{ui.intro}</p>
+          <div className="inline-flex items-center gap-2 mt-6 px-4 py-2 rounded-full border border-cetl-gold/40 bg-cetl-gold/10">
+            <span className="text-cetl-gold-700 text-sm" aria-hidden>★</span>
+            <span className="text-cetl-gold-deep text-xs font-semibold tracking-wide">{ui.focusLabel}</span>
+          </div>
         </div>
 
         <div className="rounded-2xl border border-cetl-border bg-white p-4 sm:p-8">
           <div className="relative w-full" style={{ aspectRatio: `${VB.w} / ${VB.h}` }}>
             <svg viewBox={`0 0 ${VB.w} ${VB.h}`} className="absolute inset-0 w-full h-full">
-              {/* Core-2030 quadrant highlight */}
+              {/* CETL focus: Emerging + Core-2030 quadrants highlighted */}
               <rect
-                x={dividerXpx}
+                x={PLOT.left}
                 y={PLOT.top}
-                width={PLOT.right - dividerXpx}
+                width={PLOT.right - PLOT.left}
                 height={dividerYpx - PLOT.top}
                 fill="var(--color-cetl-gold-200)"
                 opacity="0.35"
@@ -133,15 +137,10 @@ export function SkillsQuadrantSection() {
               </text>
 
               {/* Quadrant labels */}
-              <text x={PLOT.left + 10} y={PLOT.top + 18} fontSize="12" fontWeight="700" fill="var(--color-cetl-text-muted)">{ui.quadrantEmerging}</text>
+              <text x={PLOT.left + 10} y={PLOT.top + 18} fontSize="12" fontWeight="700" fill="var(--color-cetl-gold-700)">{ui.quadrantEmerging}</text>
               <text x={PLOT.right - 10} y={PLOT.top + 18} textAnchor="end" fontSize="12" fontWeight="700" fill="var(--color-cetl-gold-700)">{ui.quadrantCore}</text>
               <text x={PLOT.left + 10} y={PLOT.bottom - 10} fontSize="12" fontWeight="700" fill="var(--color-cetl-text-muted)">{ui.quadrantOutOfFocus}</text>
               <text x={PLOT.right - 10} y={PLOT.bottom - 10} textAnchor="end" fontSize="12" fontWeight="700" fill="var(--color-cetl-text-muted)">{ui.quadrantSteady}</text>
-
-              {/* CETL focus annotation */}
-              <text x={dividerXpx + 14} y={PLOT.top + 40} fontSize="12" fontWeight="700" fill="var(--color-cetl-gold-700)">
-                ★ {ui.focusLabel}
-              </text>
 
               {/* Data points */}
               {SKILLS.map((s) => (
@@ -153,14 +152,14 @@ export function SkillsQuadrantSection() {
                 </g>
               ))}
 
-              {/* CETL logo watermark inside the focus quadrant */}
+              {/* CETL logo watermark spanning the focus zone */}
               <image
                 href="/cetl-logo.webp"
-                x={PLOT.right - 150}
-                y={PLOT.top + 60}
-                width="120"
-                height="120"
-                opacity="0.12"
+                x={(PLOT.left + PLOT.right) / 2 - 65}
+                y={PLOT.top + 20}
+                width="130"
+                height="130"
+                opacity="0.10"
               />
             </svg>
           </div>

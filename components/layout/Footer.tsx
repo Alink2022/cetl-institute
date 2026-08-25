@@ -1,23 +1,18 @@
 "use client";
 
 import Image from "next/image";
-import { usePathname } from "next/navigation";
 import { Container } from "@/components/ui/Container";
 import { useLanguage } from "@/lib/i18n";
 
 export function Footer() {
   const { t } = useLanguage();
-  const pathname = usePathname();
   const footer = t.UI.footer;
-  const footerLinks = t.NAV_LINKS;
-  // Auf Unterseiten müssen Anker-Links zurück zur Startseite führen; echte Routen bleiben unverändert.
-  const toHref = (href: string) => (href.startsWith("#") && pathname !== "/" ? `/${href}` : href);
 
   return (
     <footer className="relative border-t border-cetl-border bg-cetl-surface overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cetl-gold to-transparent opacity-40" />
       <Container className="py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {/* Brand */}
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-3">
@@ -36,22 +31,6 @@ export function Footer() {
               </div>
             </div>
             <p className="text-cetl-text-muted text-sm leading-relaxed max-w-xs">{footer.tagline}</p>
-          </div>
-
-          {/* Links */}
-          <div className="flex flex-col gap-3">
-            <span className="text-cetl-text text-xs font-semibold tracking-widest uppercase mb-1">
-              {footer.navLabel}
-            </span>
-            {footerLinks.map((item) => (
-              <a
-                key={item.href}
-                href={toHref(item.href)}
-                className="text-cetl-text-muted hover:text-cetl-gold-deep text-sm transition-colors duration-200"
-              >
-                {item.label}
-              </a>
-            ))}
           </div>
 
           {/* Contact */}
@@ -74,7 +53,12 @@ export function Footer() {
           <p className="text-cetl-text-muted/70 text-xs">
             © {new Date().getFullYear()} CETL Institute. {footer.copyright}
           </p>
-          <p className="text-cetl-text-muted/70 text-xs">{footer.complianceLine}</p>
+          <div className="flex items-center gap-4">
+            <a href="/impressum" className="text-cetl-text-muted/70 hover:text-cetl-gold-deep text-xs transition-colors duration-200">
+              {footer.imprintLabel}
+            </a>
+            <p className="text-cetl-text-muted/70 text-xs">{footer.complianceLine}</p>
+          </div>
         </div>
       </Container>
     </footer>
