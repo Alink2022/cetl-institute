@@ -10,7 +10,7 @@ export function PortfolioSection() {
   if (!t.PORTFOLIO_PRODUCTS || t.PORTFOLIO_PRODUCTS.length === 0) return null;
 
   return (
-    <section id="portfolio" className="py-24 lg:py-36 bg-cetl-warm-white relative overflow-hidden">
+    <section id="portfolio" className="py-14 lg:py-36 bg-cetl-warm-white relative overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cetl-gold-500/40 to-transparent" />
       <Container>
         <div className="max-w-3xl mb-14">

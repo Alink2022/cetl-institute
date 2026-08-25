@@ -128,7 +128,7 @@ export function ResearchSection() {
   const research = t.UI.research;
 
   return (
-    <section id="research" className="relative py-32 lg:py-44 bg-cetl-surface overflow-hidden">
+    <section id="research" className="relative py-14 lg:py-44 bg-cetl-surface overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cetl-gold to-transparent opacity-40" />
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cetl-gold-400 to-transparent opacity-40" />
 

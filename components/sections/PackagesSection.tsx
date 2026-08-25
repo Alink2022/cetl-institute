@@ -10,7 +10,7 @@ export function PackagesSection() {
   if (!t.PACKAGES || t.PACKAGES.length === 0) return null;
 
   return (
-    <section id="packages" className="py-24 lg:py-36 cetl-navy-bg relative overflow-hidden">
+    <section id="packages" className="py-14 lg:py-36 cetl-navy-bg relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full bg-cetl-gold-700/[0.04] blur-[120px]" />
       </div>

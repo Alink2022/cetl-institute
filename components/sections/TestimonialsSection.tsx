@@ -9,7 +9,7 @@ export function TestimonialsSection() {
   const ui = t.UI.testimonials;
 
   return (
-    <section className="py-32 bg-cetl-surface relative overflow-hidden">
+    <section className="py-14 lg:py-32 bg-cetl-surface relative overflow-hidden">
       {/* Subtle ambient */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-[30%] w-[600px] h-[400px] rounded-full bg-cetl-gold/[0.05] blur-[120px]" />

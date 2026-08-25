@@ -8,7 +8,7 @@ export function InstStatsBar() {
   const { t } = useLanguage();
 
   return (
-    <div className="relative bg-cetl-dark py-16 overflow-hidden">
+    <div className="relative bg-cetl-dark py-10 lg:py-16 overflow-hidden">
       <div className="absolute inset-0 pointer-events-none" aria-hidden>
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[400px] rounded-full bg-cetl-gold-700/[0.05] blur-[130px]" />
       </div>

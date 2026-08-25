@@ -9,7 +9,7 @@ export function ElaasSection() {
   const ui = t.UI.elaas;
 
   return (
-    <section id="elaas" className="py-24 lg:py-36 bg-cetl-ivory relative overflow-hidden">
+    <section id="elaas" className="py-14 lg:py-36 bg-cetl-ivory relative overflow-hidden">
       {/* Gold top border */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cetl-gold-500/50 to-transparent" />
 
