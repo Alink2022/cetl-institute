@@ -205,6 +205,142 @@ export const en: ContentBundle = {
     },
   ],
 
+  PRODUCT_GROUPS: [
+    {
+      label: "Our Products: Executional Learning",
+      cards: [
+        {
+          number: "1",
+          titleLine1: "EXECUTIONAL LEARNING",
+          titleLine2: "FOUNDATION",
+          tagline: "Customized AI & data foundation with practical enablement",
+          description: "A structured entry offering that aligns core capability building with business context and real-world application.",
+          includes: [
+            { icon: "GraduationCap", text: "Foundational AI & data learning" },
+            { icon: "Users", text: "Role- and context-aware customization" },
+            { icon: "Target", text: "Strategic orientation and use-case framing" },
+            { icon: "BookOpen", text: "Access to academic and expert-supported delivery" },
+          ],
+          footer: [{ icon: "ShieldCheck", text: "Core foundation for business activation" }],
+        },
+        {
+          number: "2",
+          ribbon: "MOST POPULAR",
+          featured: true,
+          titleLine1: "EXECUTIONAL LEARNING",
+          titleLine2: "CUSTOMIZED",
+          tagline: "Foundation plus role-based deepening and practical application",
+          description: "A flexible package for organizations that want to translate learning into function-specific capability development.",
+          includes: [
+            { icon: "CheckCircle2", text: "Everything from the foundation layer" },
+            { icon: "User", text: "Role-based specialization pathways" },
+            { icon: "Star", text: "Extended executive and expert learning formats" },
+            { icon: "BarChart2", text: "Project-oriented enablement and mentoring" },
+          ],
+          footer: [
+            { icon: "Layers", text: "Foundation Layer" },
+            { icon: "Share2", text: "Specialization Layer" },
+          ],
+        },
+        {
+          number: "3",
+          ribbon: "FLAGSHIP",
+          titleLine1: "FLAGSHIP",
+          titleLine2: "EMBEDDED ENGINEERING",
+          tagline: "Embedded activation for execution, adoption and measurable progress",
+          description: "For organizations ready to move beyond learning into hands-on implementation with embedded support.",
+          includes: [
+            { icon: "Layers", text: "Everything from Packages 1 + 2" },
+            { icon: "Settings2", text: "Embedded engineering and implementation support" },
+            { icon: "Share2", text: "Prototyping, workflow integration and activation" },
+            { icon: "Users", text: "Strong knowledge transfer into internal teams" },
+          ],
+          footer: [{ icon: "Target", text: "Execution support close to the work" }],
+        },
+        {
+          number: "4",
+          ribbon: "COMMUNITY",
+          titleLine1: "EXECUTIONAL",
+          titleLine2: "COMMUNITY PACKAGE",
+          tagline: "Community-powered co-creation for AI, data and innovation challenges",
+          description: "Activates the broader ecosystem to challenge, refine and accelerate ideas through collaborative formats.",
+          includes: [
+            { icon: "Handshake", text: "Participation at our flagship hackathon with partners such as City of Vienna, Vienna Business Agency, ÖBB, Sustainista and other ecosystem partners" },
+            { icon: "UsersRound", text: "Dedicated workshops and community-centric solution sessions before and after the hackathon for your individual challenges" },
+            { icon: "Lightbulb", text: "Access to one of the largest data & AI communities in the DACH region, connecting 15+ universities and academic bodies" },
+            { icon: "Rocket", text: "Ideal for collaboration, challenge framing, validation and early momentum" },
+          ],
+          footer: [{ icon: "UsersRound", text: "Community-powered collaboration for real innovation momentum" }],
+        },
+      ],
+    },
+    {
+      label: "Our Products: Executional Assessments & Enablements",
+      cards: [
+        {
+          number: "1",
+          titleLine1: "EXECUTIONAL",
+          titleLine2: "ASSESSMENT FOUNDATION",
+          tagline: "From real-world execution into a scalable assessment practice",
+          description: "Builds on CETL's executional learning, advisory and challenge-based formats.",
+          includes: [
+            { icon: "Target", text: "Captures performance signals under real working conditions" },
+            { icon: "Users", text: "Builds on CETL's executional learning, advisory and challenge-based formats" },
+            { icon: "ClipboardCheck", text: "Transforms observation into structured capability judgement" },
+            { icon: "ShieldCheck", text: "Creates a second strategic pillar without major new infrastructure" },
+          ],
+          footer: [{ icon: "Landmark", text: "Assessment Pillar" }],
+        },
+        {
+          number: "2",
+          ribbon: "CORE PRODUCT",
+          featured: true,
+          titleLine1: "CAPABILITY AUDIT &",
+          titleLine2: "SKILLS DUE DILIGENCE",
+          tagline: "Independent, decision-grade capability insight",
+          description: "Assessment through real business cases, not staged exercises.",
+          includes: [
+            { icon: "Briefcase", text: "Assessment through real business cases, not staged exercises" },
+            { icon: "FileText", text: "Transparent purpose, criteria and application of results" },
+            { icon: "Map", text: "Organization-wide capability view for advance, develop or redeploy decisions" },
+            { icon: "Users", text: "Relevant for transformation, succession, PE and sponsor contexts" },
+          ],
+          footer: [{ icon: "BarChart2", text: "Board-Ready Insight" }],
+        },
+        {
+          number: "3",
+          ribbon: "DELIVERY MODEL",
+          titleLine1: "PHASED AUDIT",
+          titleLine2: "ARCHITECTURE",
+          tagline: "A structured journey from baseline to capability roadmap",
+          description: "Baseline alignment, scope definition and stakeholder calibration.",
+          includes: [
+            { icon: "Calendar", text: "Baseline alignment, scope definition and stakeholder calibration" },
+            { icon: "Search", text: "Embedded assessment through real delivery observations" },
+            { icon: "Map", text: "Evidence-based capability mapping and advisory synthesis" },
+            { icon: "Users", text: "Multi-assessor perspective with academic rigor" },
+          ],
+          footer: [{ icon: "Clock", text: "Structured Delivery Engine" }],
+        },
+        {
+          number: "4",
+          ribbon: "DIFFERENTIATOR",
+          titleLine1: "THE CETL",
+          titleLine2: "EDGE",
+          tagline: "Why this model stands out in the market",
+          description: "Independent third-party perspective, less exposed to internal politics.",
+          includes: [
+            { icon: "ShieldCheck", text: "Independent third-party perspective, less exposed to internal politics" },
+            { icon: "Scale", text: "Transparent and defensible by design" },
+            { icon: "TrendingUp", text: "Predictive because capability is observed in action" },
+            { icon: "Euro", text: "One engagement can unlock both audit insight and development momentum" },
+          ],
+          footer: [{ icon: "Euro", text: "Audit-to-Enablement Model" }],
+        },
+      ],
+    },
+  ],
+
   ECOSYSTEM_NODES: [
     { number: "1", title: "Community & Collaboration", description: "Peer exchange, expert access, interdisciplinary collaboration and community-powered learning." },
     { number: "2", title: "Technology & Methodic Literacy", description: "Practical understanding of Data, AI, automation, governance and technology-related decision-making." },
@@ -478,6 +614,12 @@ export const en: ContentBundle = {
       callout: "Executional Learning days are a flexible support pool — not additional classroom days. They may include:",
       calloutItems: ["Mentoring and one-to-one enablement", "Use-case assessment and ideation", "Prioritization and strategic-fit analysis", "Cross-business alignment sessions", "Expert sessions and online enablement", "Panels and community impulses", "Project support"],
       cta: "Explore the Complete ELaaS Model",
+    },
+
+    productPortfolio: {
+      eyebrow: "The CETL Product Portfolio",
+      headline: "A system of learning, assessment and enablement.",
+      intro: "Our product portfolio connects structured executional learning with independent capability assessment and hands-on enablement — modular and combinable, from foundation to embedded execution.",
     },
 
     portfolio: {

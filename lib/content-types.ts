@@ -156,6 +156,34 @@ export interface EcosystemNode {
   description: string;
 }
 
+export type ProductIconName =
+  | "GraduationCap" | "Users" | "Target" | "BookOpen" | "ShieldCheck" | "CheckCircle2"
+  | "User" | "Star" | "BarChart2" | "Layers" | "Share2" | "Settings2" | "Handshake"
+  | "UsersRound" | "Lightbulb" | "Rocket" | "ClipboardCheck" | "Landmark" | "Briefcase"
+  | "FileText" | "Map" | "Calendar" | "Search" | "Scale" | "TrendingUp" | "Euro" | "Clock";
+
+export interface ProductCardItem {
+  icon: ProductIconName;
+  text: string;
+}
+
+export interface ProductCard {
+  number: string;
+  ribbon?: string;
+  titleLine1: string;
+  titleLine2?: string;
+  tagline: string;
+  description: string;
+  includes: ProductCardItem[];
+  footer: ProductCardItem[];
+  featured?: boolean;
+}
+
+export interface ProductGroup {
+  label: string;
+  cards: ProductCard[];
+}
+
 export interface NetworkLayer {
   number: string;
   title: string;
@@ -229,6 +257,7 @@ export interface ContentBundle {
   TAG_COLORS: Record<string, TagColor>;
   PARTNERS: Partner[];
   PARTNER_GROUPS: PartnerGroup[];
+  PRODUCT_GROUPS: ProductGroup[];
   PROBLEM_ITEMS: { title: string; desc: string }[];
   RESEARCH_STATS: ResearchStat[];
   EXECUTION_GAP: { label: string; detail: string; rows: { label: string; value: number }[] };
@@ -288,6 +317,11 @@ export interface ContentBundle {
       callout: string;
       calloutItems: string[];
       cta: string;
+    };
+    productPortfolio: {
+      eyebrow: string;
+      headline: string;
+      intro: string;
     };
     portfolio: {
       eyebrow: string;
