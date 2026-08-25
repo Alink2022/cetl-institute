@@ -377,6 +377,17 @@ export const de: ContentBundle = {
     { n: "8", icon: "UsersRound", title: "Community Befähigung", description: "Vernetzung im Ökosystem." },
   ],
 
+  MARKET_STATS: [
+    { id: "no-ai", kind: "ring", value: "80%", label: "der EU-Unternehmen nutzen bislang keine KI", source: "Eurostat — Statistical Office of the European Union" },
+    { id: "no-training", kind: "ring", value: "76%", label: "der GenAI-nutzenden KMU berichten von keiner Mitarbeiterbeteiligung an KI-Schulungen", source: "OECD — Organisation for Economic Co-operation and Development" },
+    { id: "skills-lack", kind: "ring", value: "50%", label: "der KMU ohne GenAI-Nutzung: Mitarbeitenden fehlen die nötigen Kompetenzen", source: "OECD — Organisation for Economic Co-operation and Development" },
+    { id: "biggest-barrier", kind: "ring", value: "63%", label: "nennen Kompetenzlücken als größte Barriere für die Unternehmenstransformation", source: "World Economic Forum — Future of Jobs Report 2025" },
+    { id: "vision-lack", kind: "ring", value: "43%", label: "nennen fehlende Vision der Führungsebene als Hürde für die KI-Einführung", source: "World Economic Forum — Future of Jobs Report 2025" },
+    { id: "workforce-training", kind: "ring", value: "59%", label: "der globalen Arbeitskräfte werden bis 2030 Schulungsbedarf haben", source: "World Economic Forum — Future of Jobs Report 2025" },
+    { id: "staff-obstacle", kind: "ring", value: "79%", label: "der EU-Firmen nennen fehlende qualifizierte Mitarbeitende als Investitionshindernis", source: "European Investment Bank — EIB Investment Survey 2025" },
+    { id: "genai-growth", kind: "trend", value: "9×", label: "Wachstum bei Stellenausschreibungen mit GenAI-Anforderungen, 2021–2024", source: "World Bank — Digital Progress and Trends Report 2025" },
+  ],
+
   PROBLEM_ITEMS: [
     {
       title: "PoC-Friedhöfe statt Enterprise-Betrieb",
@@ -698,6 +709,11 @@ export const de: ContentBundle = {
     programFlow: {
       headline: "So laufen unsere Programme ab",
       goal: "Data & AI Literate Organisation",
+    },
+    marketStats: {
+      eyebrow: "Der Markt im Überblick",
+      headline: "Die Kompetenzlücke ist real — und messbar.",
+      intro: "Unabhängige Studien von Eurostat, OECD, World Economic Forum, Europäischer Investitionsbank und Weltbank zeichnen ein klares Bild: Der begrenzende Faktor für KI-Wertschöpfung ist selten die Technologie, sondern fehlende Kompetenz.",
     },
     portfolio: {
       eyebrow: "CETL Institute | Produktportfolio",

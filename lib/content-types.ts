@@ -83,6 +83,14 @@ export interface ResearchStat {
   source: string;
 }
 
+export interface MarketStat {
+  id: string;
+  kind: "ring" | "trend";
+  value: string;
+  label: string;
+  source: string;
+}
+
 export interface Quote {
   quote: string;
   translation: string;
@@ -269,6 +277,7 @@ export interface ContentBundle {
   PARTNER_GROUPS: PartnerGroup[];
   PRODUCT_GROUPS: ProductGroup[];
   PROGRAM_FLOW_STEPS: ProgramFlowStep[];
+  MARKET_STATS: MarketStat[];
   PROBLEM_ITEMS: { title: string; desc: string }[];
   RESEARCH_STATS: ResearchStat[];
   EXECUTION_GAP: { label: string; detail: string; rows: { label: string; value: number }[] };
@@ -337,6 +346,11 @@ export interface ContentBundle {
     programFlow: {
       headline: string;
       goal: string;
+    };
+    marketStats: {
+      eyebrow: string;
+      headline: string;
+      intro: string;
     };
     portfolio: {
       eyebrow: string;

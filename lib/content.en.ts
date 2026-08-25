@@ -352,6 +352,17 @@ export const en: ContentBundle = {
     { n: "8", icon: "UsersRound", title: "Community Enablement", description: "Connected across the ecosystem." },
   ],
 
+  MARKET_STATS: [
+    { id: "no-ai", kind: "ring", value: "80%", label: "of EU enterprises still do not use AI", source: "Eurostat — Statistical Office of the European Union" },
+    { id: "no-training", kind: "ring", value: "76%", label: "of GenAI-using SMEs report no employee participation in AI-related training", source: "OECD — Organisation for Economic Co-operation and Development" },
+    { id: "skills-lack", kind: "ring", value: "50%", label: "of SMEs not using GenAI say employees lack the right skills to use it", source: "OECD — Organisation for Economic Co-operation and Development" },
+    { id: "biggest-barrier", kind: "ring", value: "63%", label: "cite skills gaps as the biggest barrier to business transformation", source: "World Economic Forum — Future of Jobs Report 2025" },
+    { id: "vision-lack", kind: "ring", value: "43%", label: "cite a lack of vision among managers and leaders as a barrier to AI adoption", source: "World Economic Forum — Future of Jobs Report 2025" },
+    { id: "workforce-training", kind: "ring", value: "59%", label: "of the global workforce will require training by 2030", source: "World Economic Forum — Future of Jobs Report 2025" },
+    { id: "staff-obstacle", kind: "ring", value: "79%", label: "of EU firms report the availability of skilled staff as an investment obstacle", source: "European Investment Bank — EIB Investment Survey 2025" },
+    { id: "genai-growth", kind: "trend", value: "9×", label: "growth in job vacancies requiring GenAI skills, 2021–2024", source: "World Bank — Digital Progress and Trends Report 2025" },
+  ],
+
   ECOSYSTEM_NODES: [
     { number: "1", title: "Community & Collaboration", description: "Peer exchange, expert access, interdisciplinary collaboration and community-powered learning." },
     { number: "2", title: "Technology & Methodic Literacy", description: "Practical understanding of Data, AI, automation, governance and technology-related decision-making." },
@@ -635,6 +646,11 @@ export const en: ContentBundle = {
     programFlow: {
       headline: "How our programs run",
       goal: "Data & AI Literate Organization",
+    },
+    marketStats: {
+      eyebrow: "The Market at a Glance",
+      headline: "The skills gap is real — and measurable.",
+      intro: "Independent research from Eurostat, the OECD, the World Economic Forum, the European Investment Bank and the World Bank paints a clear picture: the limiting factor for AI value creation is rarely technology — it's missing capability.",
     },
 
     portfolio: {

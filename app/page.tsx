@@ -6,6 +6,7 @@ import { InstStatsBar } from "@/components/sections/InstStatsBar";
 import { EcosystemSection } from "@/components/sections/EcosystemSection";
 import { ProductPortfolioSection } from "@/components/sections/ProductPortfolioSection";
 import { ProgramFlowSection } from "@/components/sections/ProgramFlowSection";
+import { MarketStatsSection } from "@/components/sections/MarketStatsSection";
 import { PortfolioSection } from "@/components/sections/PortfolioSection";
 import { PackagesSection } from "@/components/sections/PackagesSection";
 import { CaseStudySection } from "@/components/sections/CaseStudySection";
@@ -31,6 +32,8 @@ export default function Home() {
         <GoldDivider />
         <ProductPortfolioSection />
         <ProgramFlowSection />
+        <GoldDivider />
+        <MarketStatsSection />
         <GoldDivider />
         <PortfolioSection />
         <GoldDivider />
