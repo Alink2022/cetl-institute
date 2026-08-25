@@ -360,9 +360,9 @@ export const en: ContentBundle = {
   ],
 
   TEAM_MEMBERS: [
-    { name: "Alin Kalam", role: "Managing Director & Academic Coordinator", initials: "AK", photo: "/alin-kalam.webp" },
-    { name: "Karl Ivo Sokolov", role: "Co-Founder & Industry Expert", initials: "KS" },
-    { name: "Stefan Bauer", role: "Community & Academic Expert", initials: "SB" },
+    { name: "Alin Kalam", role: "Managing Director & Academic Coordinator", initials: "AK", photo: "/team-alin.png" },
+    { name: "Karl Ivo Sokolov", role: "Co-Founder & Industry Expert", initials: "KS", photo: "/team-ivo.jpeg" },
+    { name: "Stefan Bauer", role: "Community & Academic Expert", initials: "SB", photo: "/team-stefan.jpeg" },
   ],
 
   ECOSYSTEM_NODES: [
@@ -907,7 +907,8 @@ export const en: ContentBundle = {
       intro: "Academic excellence, industry experience and community-building — united in a team that actually lives executional learning.",
     },
     trustBar: {
-      label: "In Partnership with Leading Institutions",
+      eyebrow: "Partnerships",
+      headline: "In Partnership with Leading Institutions",
     },
     footer: {
       tagline: "CETL Institute is a Central European capability-building and execution ecosystem combining academic excellence, industry practice and community-powered execution.",

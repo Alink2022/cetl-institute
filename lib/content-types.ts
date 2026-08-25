@@ -571,7 +571,8 @@ export interface ContentBundle {
       intro: string;
     };
     trustBar: {
-      label: string;
+      eyebrow: string;
+      headline: string;
     };
     footer: {
       tagline: string;

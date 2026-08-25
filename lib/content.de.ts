@@ -385,9 +385,9 @@ export const de: ContentBundle = {
   ],
 
   TEAM_MEMBERS: [
-    { name: "Alin Kalam", role: "Managing Director & Academic Coordinator", initials: "AK", photo: "/alin-kalam.webp" },
-    { name: "Karl Ivo Sokolov", role: "Co-Founder & Industry Expert", initials: "KS" },
-    { name: "Stefan Bauer", role: "Community & Academic Expert", initials: "SB" },
+    { name: "Alin Kalam", role: "Managing Director & Academic Coordinator", initials: "AK", photo: "/team-alin.png" },
+    { name: "Karl Ivo Sokolov", role: "Co-Founder & Industry Expert", initials: "KS", photo: "/team-ivo.jpeg" },
+    { name: "Stefan Bauer", role: "Community & Academic Expert", initials: "SB", photo: "/team-stefan.jpeg" },
   ],
 
   PROBLEM_ITEMS: [
@@ -661,7 +661,8 @@ export const de: ContentBundle = {
       intro: "Akademische Exzellenz, Industrieerfahrung und Community-Aufbau — vereint in einem Team, das Executional Learning tatsächlich lebt.",
     },
     trustBar: {
-      label: "In Partnerschaft mit führenden Institutionen",
+      eyebrow: "Partnerschaften",
+      headline: "In Partnerschaft mit führenden Institutionen",
     },
     footer: {
       tagline: "Central European Tech Leadership Institute. Technologische Souveränität ist kein Zustand. Sie ist eine Kompetenz.",

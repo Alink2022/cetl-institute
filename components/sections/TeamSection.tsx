@@ -22,26 +22,29 @@ export function TeamSection() {
           <p className="text-cetl-text-muted text-lg leading-relaxed">{ui.intro}</p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div className="grid grid-cols-3 gap-3 sm:gap-6 max-w-4xl mx-auto">
           {t.TEAM_MEMBERS.map((member) => (
             <div
               key={member.name}
-              className="flex flex-col items-center text-center gap-4 bg-white rounded-2xl border border-cetl-border p-8"
+              className="flex flex-col items-center text-center gap-3 sm:gap-4 bg-white rounded-2xl border border-cetl-border p-3 sm:p-8"
             >
-              {member.photo ? (
-                <div className="relative w-24 h-24 rounded-full overflow-hidden ring-2 ring-cetl-gold/30">
-                  <Image src={member.photo} alt={member.name} fill sizes="96px" className="object-cover" />
-                </div>
-              ) : (
-                <div className="w-24 h-24 rounded-full border-2 border-cetl-gold/40 bg-gradient-to-br from-cetl-surface to-cetl-dark flex items-center justify-center">
-                  <span className="font-display text-2xl font-bold text-cetl-gold-deep tracking-wider">
-                    {member.initials}
-                  </span>
-                </div>
-              )}
+              <div className="relative w-20 h-20 sm:w-28 sm:h-28 lg:w-32 lg:h-32">
+                <div className="absolute inset-0 rounded-full bg-cetl-gold/15 blur-md" aria-hidden />
+                {member.photo ? (
+                  <div className="relative w-full h-full rounded-full overflow-hidden ring-2 ring-cetl-gold ring-offset-2 ring-offset-white">
+                    <Image src={member.photo} alt={member.name} fill sizes="128px" className="object-cover" />
+                  </div>
+                ) : (
+                  <div className="relative w-full h-full rounded-full ring-2 ring-cetl-gold ring-offset-2 ring-offset-white bg-gradient-to-br from-cetl-surface to-cetl-dark flex items-center justify-center">
+                    <span className="font-display text-xl sm:text-2xl font-bold text-cetl-gold-deep tracking-wider">
+                      {member.initials}
+                    </span>
+                  </div>
+                )}
+              </div>
               <div>
-                <p className="font-display text-lg font-bold text-cetl-text">{member.name}</p>
-                <p className="text-cetl-text-muted text-sm leading-snug mt-1">{member.role}</p>
+                <p className="font-display text-xs sm:text-lg font-bold text-cetl-text leading-snug">{member.name}</p>
+                <p className="text-cetl-text-muted text-[10px] sm:text-sm leading-snug mt-1">{member.role}</p>
               </div>
             </div>
           ))}
