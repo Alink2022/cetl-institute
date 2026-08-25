@@ -120,7 +120,7 @@ export function ProductPortfolioSection() {
           {t.PRODUCT_GROUPS.map((group) => (
             <div key={group.label} className="flex flex-col gap-6">
               <h3 className="font-display text-lg md:text-xl font-bold text-white px-1">{group.label}</h3>
-              <div className="flex sm:grid sm:grid-cols-2 xl:grid-cols-4 gap-4 overflow-x-auto snap-x snap-mandatory pb-4 px-1 -mx-1 sm:overflow-visible sm:pb-0 sm:px-0 sm:mx-0 [overflow-anchor:none] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+              <div className="flex sm:grid sm:grid-cols-2 xl:grid-cols-4 gap-4 overflow-x-auto snap-x snap-mandatory pt-3 pb-4 px-1 -mx-1 -mt-3 sm:overflow-visible sm:pt-0 sm:pb-0 sm:px-0 sm:mx-0 sm:mt-0 [overflow-anchor:none] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                 {group.cards.map((card) => (
                   <ProductCardView key={card.number + card.titleLine1} card={card} />
                 ))}
