@@ -318,7 +318,10 @@ export interface ContentBundle {
     ecosystem: {
       eyebrow: string;
       headline: string;
+      headlineSuffix?: string;
       intro: string;
+      fundamentLabel: string;
+      servicesLabel: string;
       bottomBand?: string[];
     };
     enterprise: {

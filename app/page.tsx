@@ -4,6 +4,7 @@ import { GoldDivider } from "@/components/ui/GoldDivider";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { InstStatsBar } from "@/components/sections/InstStatsBar";
 import { ProblemSection } from "@/components/sections/ProblemSection";
+import { EcosystemSection } from "@/components/sections/EcosystemSection";
 import { ElaasSection } from "@/components/sections/ElaasSection";
 import { PortfolioSection } from "@/components/sections/PortfolioSection";
 import { PackagesSection } from "@/components/sections/PackagesSection";
@@ -27,6 +28,8 @@ export default function Home() {
         <HeroSection />
         <InstStatsBar />
         <ProblemSection />
+        <GoldDivider />
+        <EcosystemSection />
         <GoldDivider />
         <ElaasSection />
         <GoldDivider />

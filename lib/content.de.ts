@@ -575,7 +575,10 @@ export const de: ContentBundle = {
     ecosystem: {
       eyebrow: "Das CETL-Ökosystem",
       headline: "CETL Institute Ökosystem",
-      intro: "Unser einzigartiges CETL-Ökosystem verbindet sechs Bausteine zu einem koordinierten System aus Wissen, Anwendung und Umsetzung.",
+      headlineSuffix: "& Leistungen",
+      intro: "Großflächige Daten- und KI-Initiativen scheitern selten an mangelnder Ambition. Sie scheitern daran, dass Strategie, Kompetenz, Datenreife, Governance und technische Umsetzung als getrennte Aktivitäten behandelt werden. Unser einzigartiges CETL-Ökosystem verbindet sechs Bausteine zu einem koordinierten System aus Wissen, Anwendung und Umsetzung, das direkt als Fundament für das einzigartige Executional Learning dient, das wir liefern.",
+      fundamentLabel: "Unser Fundament — Das CETL-Ökosystem",
+      servicesLabel: "Unsere Leistungen für Executional Learning",
       bottomBand: ["Community-getriebenes Lernen", "Umsetzungsorientierter Kompetenzaufbau", "Akademische Strenge trifft reale Umsetzung"],
     },
     enterprise: {

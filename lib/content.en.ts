@@ -524,7 +524,10 @@ export const en: ContentBundle = {
     ecosystem: {
       eyebrow: "The CETL Ecosystem",
       headline: "CETL Institute Ecosystem",
-      intro: "Our unique CETL ecosystem connects six building blocks into one coordinated system of knowledge, application and execution.",
+      headlineSuffix: "& Services",
+      intro: "Large-scale Data and AI initiatives rarely fail because organizations lack ambition. They fail because strategy, capability, data readiness, governance and technical execution are treated as separate activities. Our unique CETL ecosystem connects six building blocks into one coordinated system of knowledge, application and execution that directly serves as the fundament of the unique Executional Learning we deliver.",
+      fundamentLabel: "Our Fundament — CETL Ecosystem",
+      servicesLabel: "Our Services for Executional Learning",
       bottomBand: ["Community-driven learning", "Execution-oriented capability building", "Academic rigor meets real-world deployment"],
     },
 
