@@ -25,7 +25,6 @@ export default function Home() {
       <main id="main-content" className="relative">
         <LogoWatermark />
         <HeroSection />
-        <TrustBar />
         <InstStatsBar />
         <ProblemSection />
         <GoldDivider />
@@ -49,6 +48,7 @@ export default function Home() {
         <SPGPartnerSection />
         <GoldDivider />
         <FAQSection />
+        <TrustBar />
       </main>
       <Footer />
     </>

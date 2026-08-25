@@ -194,6 +194,42 @@ export const de: ContentBundle = {
     { name: "Siemens", sub: "Industriepartner", logo: "/logos/siemens.svg", logoWidth: 240, logoHeight: 57 },
   ],
 
+  PARTNER_GROUPS: [
+    {
+      label: "Akademische Partner",
+      partners: [
+        { name: "TU Wien", sub: "Akademischer Partner", logo: "/logos/academy/tuwien.webp" },
+        { name: "BOKU Wien", sub: "Akademischer Partner", logo: "/logos/academy/boku.png" },
+        { name: "MedUni Wien", sub: "Akademischer Partner", logo: "/logos/academy/meduni.webp" },
+        { name: "BFI Wien", sub: "Akademischer Partner", logo: "/logos/academy/bfi.png" },
+        { name: "Lauder Business School", sub: "Akademischer Partner", logo: "/logos/academy/lauder.png" },
+        { name: "The Institute of Management Accountants", sub: "Akademischer Partner", logo: "/logos/academy/ima.jpg" },
+        { name: "ÖGIG", sub: "Akademischer Partner", logo: "/logos/academy/oegig.png" },
+      ],
+    },
+    {
+      label: "Community Partner",
+      partners: [
+        { name: "Stadt Wien", sub: "Community Partner", logo: "/logos/community/stadtwien.svg" },
+        { name: "Vienna Business Agency", sub: "Community Partner", logo: "/logos/community/waa.png" },
+        { name: "Europe Direct", sub: "Community Partner", logo: "/logos/community/edic.png" },
+        { name: "EIT", sub: "Community Partner", logo: "/logos/community/eit.jpg" },
+        { name: "Tech Execution Community", sub: "Community Partner", logo: "/logos/community/tec.png" },
+        { name: "Sustainista", sub: "Community Partner", logo: "/logos/community/sustainista.png" },
+      ],
+    },
+    {
+      label: "Industrie Partner",
+      partners: [
+        { name: "Siemens", sub: "Industriepartner", logo: "/logos/industry/siemens.webp" },
+        { name: "ÖBB", sub: "Industriepartner", logo: "/logos/industry/oebb.webp" },
+        { name: "Raiffeisen", sub: "Industriepartner", logo: "/logos/industry/raiffeisen.svg" },
+        { name: "Wien Energie", sub: "Industriepartner", logo: "/logos/industry/wienenergie.svg" },
+        { name: "Caritas St. Barbara", sub: "Industriepartner", logo: "/logos/industry/caritasstbarbara.png" },
+      ],
+    },
+  ],
+
   PROBLEM_ITEMS: [
     {
       title: "PoC-Friedhöfe statt Enterprise-Betrieb",
@@ -329,7 +365,7 @@ export const de: ContentBundle = {
       headlineLine1: "Executional Learning",
       headlineAccent: "as a Service",
       subheadline: "Vom Kompetenzaufbau zur Umsetzung und skalierbaren Wirkung.",
-      body: "CETL verbindet akademische Exzellenz, Branchenpraxis und Community-gestützte Umsetzung. Wir entwickeln und aktivieren maßgeschneiderte Kompetenz-Ökosysteme rund um organisatorische Anforderungen, Rollen, Prozesse und strategische Prioritäten.",
+      body: "CETL Institute bildet die einzigartige Brücke zwischen akademischer Exzellenz, Industrie- bzw. Branchenpraxis und Community. Klassische Trainings, Weiterbildungsprogramme oder durch Consulting-Anbieter initiierte Schulungen transformieren Unternehmen nicht ganzheitlich, strategisch und zielgerichtet. Statt entlang standardisierter Kursblöcke begleiten wir Unternehmen und ihre Talente branchenübergreifend mit dem eigens entwickelten \"Executional Learning as a Service\" entlang echter Umsetzung — maßgeschneidert auf Rollen, Prozesse sowie strategische und operative Ziele. So verwandeln wir Lernen in abgeschlossene Ergebnisse, etwa im KI- und Datenumfeld, und Ergebnisse in nachhaltige Fähigkeit — und rüsten Unternehmen damit für die nächste Transformationswelle: rasant zunehmenden KI-Transformationsdruck, fortschreitende Automatisierung ganzer Industriezweige und den unaufhaltsamen Ruf nach Prozess- und Effizienzsteigerung.",
       supportingLine: "Akademische Exzellenz × Branchenpraxis × Community-Umsetzung",
       microProof: ["Maßgeschneidert auf Organisationsprioritäten", "Rollenbasierte Kompetenzreisen", "Echte Use Cases und Umsetzungspfade", "Wissenstransfer, der bleibt"],
       badgeLocation: "CETL · Wien",

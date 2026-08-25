@@ -69,6 +69,11 @@ export interface Partner {
   logoHeight?: number;
 }
 
+export interface PartnerGroup {
+  label: string;
+  partners: Partner[];
+}
+
 export interface ResearchStat {
   id: string;
   kind: "ring" | "gauge" | "bars" | "trend";
@@ -223,6 +228,7 @@ export interface ContentBundle {
   PROGRAMS: Program[];
   TAG_COLORS: Record<string, TagColor>;
   PARTNERS: Partner[];
+  PARTNER_GROUPS: PartnerGroup[];
   PROBLEM_ITEMS: { title: string; desc: string }[];
   RESEARCH_STATS: ResearchStat[];
   EXECUTION_GAP: { label: string; detail: string; rows: { label: string; value: number }[] };

@@ -289,6 +289,42 @@ export const en: ContentBundle = {
     { name: "Europe Tech Hackathon", sub: "Community Platform", logo: "/logos/eth.svg", logoWidth: 120, logoHeight: 32 },
   ],
 
+  PARTNER_GROUPS: [
+    {
+      label: "Academic Partners",
+      partners: [
+        { name: "TU Wien", sub: "Academic Partner", logo: "/logos/academy/tuwien.webp" },
+        { name: "BOKU Vienna", sub: "Academic Partner", logo: "/logos/academy/boku.png" },
+        { name: "MedUni Vienna", sub: "Academic Partner", logo: "/logos/academy/meduni.webp" },
+        { name: "BFI Vienna", sub: "Academic Partner", logo: "/logos/academy/bfi.png" },
+        { name: "Lauder Business School", sub: "Academic Partner", logo: "/logos/academy/lauder.png" },
+        { name: "The Institute of Management Accountants", sub: "Academic Partner", logo: "/logos/academy/ima.jpg" },
+        { name: "ÖGIG", sub: "Academic Partner", logo: "/logos/academy/oegig.png" },
+      ],
+    },
+    {
+      label: "Community Partners",
+      partners: [
+        { name: "City of Vienna", sub: "Community Partner", logo: "/logos/community/stadtwien.svg" },
+        { name: "Vienna Business Agency", sub: "Community Partner", logo: "/logos/community/waa.png" },
+        { name: "Europe Direct", sub: "Community Partner", logo: "/logos/community/edic.png" },
+        { name: "EIT", sub: "Community Partner", logo: "/logos/community/eit.jpg" },
+        { name: "Tech Execution Community", sub: "Community Partner", logo: "/logos/community/tec.png" },
+        { name: "Sustainista", sub: "Community Partner", logo: "/logos/community/sustainista.png" },
+      ],
+    },
+    {
+      label: "Industry Partners",
+      partners: [
+        { name: "Siemens", sub: "Industry Partner", logo: "/logos/industry/siemens.webp" },
+        { name: "ÖBB", sub: "Industry Partner", logo: "/logos/industry/oebb.webp" },
+        { name: "Raiffeisen", sub: "Industry Partner", logo: "/logos/industry/raiffeisen.svg" },
+        { name: "Wien Energie", sub: "Industry Partner", logo: "/logos/industry/wienenergie.svg" },
+        { name: "Caritas St. Barbara", sub: "Industry Partner", logo: "/logos/industry/caritasstbarbara.png" },
+      ],
+    },
+  ],
+
   RESEARCH_STATS: [
     { id: "transformation", kind: "ring", value: "70%", label: "Transformation projects miss objectives", detail: "Most fail not due to technology, but to organizational capability and execution gaps.", source: "McKinsey & Company" },
     { id: "ai-value", kind: "gauge", value: "85%", label: "AI projects fail to scale", detail: "Governance, data readiness and execution structures are the real limiting factors.", source: "Gartner" },
@@ -399,7 +435,7 @@ export const en: ContentBundle = {
       headlineLine1: "Executional Learning",
       headlineAccent: "as a Service",
       subheadline: "From capability building to execution and scalable impact.",
-      body: "CETL bridges the gap between classical education, academic rigor, industry expertise and real execution. We design and activate customized capability-building ecosystems around organizational needs, roles, processes and strategic priorities.",
+      body: "CETL Institute is the unique bridge between academic excellence, industry practice, and community. Classical trainings, upskilling programs, or consulting-led workshops don't transform organizations holistically, strategically, or with lasting intent. Instead of standardized course blocks, we accompany companies and their talent across industries with our proprietary \"Executional Learning as a Service\" — built around real execution, tailored to roles, processes, and strategic as well as operational objectives. This is how we turn learning into completed outcomes, whether in the AI or data domain, and outcomes into lasting capability — equipping organizations for the next wave of transformation: accelerating AI transformation pressure, advancing automation across entire industries, and the relentless demand for process and efficiency gains.",
       ctaPrimary: "Explore the ELaaS Model",
       ctaSecondary: "Discuss Your Capability Agenda",
       supportingLine: "Academic excellence × Industry practice × Community-powered execution",
