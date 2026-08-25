@@ -10,7 +10,7 @@ export function CaseStudySection() {
   const cs = t.CASE_STUDY;
 
   return (
-    <section id="case-study" className="py-14 lg:py-32 bg-cetl-dark relative overflow-hidden">
+    <section id="case-study" className="py-14 lg:py-20 bg-cetl-dark relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none" aria-hidden>
         <Image src="/h.webp" alt="" fill sizes="100vw" className="object-cover opacity-[0.07]" />
         <div className="absolute inset-0 bg-gradient-to-b from-cetl-dark via-cetl-dark/60 to-cetl-dark" />

@@ -23,15 +23,15 @@ export function TrustBar() {
                 {group.partners.map((partner) => (
                   <div
                     key={partner.name}
-                    className="flex items-center justify-center h-11 px-4 rounded-lg bg-white border border-cetl-border shadow-[0_1px_6px_-2px_rgba(0,0,0,0.06)] hover:shadow-[0_4px_14px_-4px_rgba(0,0,0,0.12)] hover:-translate-y-0.5 transition-all duration-300"
+                    className="flex items-center justify-center h-14 px-5 rounded-lg bg-white border border-cetl-border shadow-[0_1px_6px_-2px_rgba(0,0,0,0.06)] hover:shadow-[0_4px_14px_-4px_rgba(0,0,0,0.12)] hover:-translate-y-0.5 transition-all duration-300"
                     title={partner.name}
                   >
                     <Image
                       src={partner.logo}
                       alt={partner.name}
-                      width={partner.logoWidth ?? 110}
-                      height={partner.logoHeight ?? 32}
-                      style={{ width: "auto", height: "auto", maxWidth: 100, maxHeight: 28 }}
+                      width={partner.logoWidth ?? 130}
+                      height={partner.logoHeight ?? 38}
+                      style={{ width: "auto", height: "auto", maxWidth: 120, maxHeight: 34 }}
                       className="object-contain"
                       unoptimized
                     />

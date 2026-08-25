@@ -200,7 +200,6 @@ export const de: ContentBundle = {
         { name: "BFI Wien", sub: "Akademischer Partner", logo: "/logos/academy/bfi.png" },
         { name: "Lauder Business School", sub: "Akademischer Partner", logo: "/logos/academy/lauder.png" },
         { name: "The Institute of Management Accountants", sub: "Akademischer Partner", logo: "/logos/academy/ima.jpg" },
-        { name: "ÖGIG", sub: "Akademischer Partner", logo: "/logos/academy/oegig.png" },
       ],
     },
     {
@@ -222,6 +221,7 @@ export const de: ContentBundle = {
         { name: "Raiffeisen", sub: "Industriepartner", logo: "/logos/industry/raiffeisen.svg" },
         { name: "Wien Energie", sub: "Industriepartner", logo: "/logos/industry/wienenergie.svg" },
         { name: "Caritas St. Barbara", sub: "Industriepartner", logo: "/logos/industry/caritasstbarbara.png" },
+        { name: "ÖGIG", sub: "Industriepartner", logo: "/logos/academy/oegig.png" },
       ],
     },
   ],

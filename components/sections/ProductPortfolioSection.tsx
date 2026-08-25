@@ -101,14 +101,14 @@ export function ProductPortfolioSection() {
   if (!t.PRODUCT_GROUPS || t.PRODUCT_GROUPS.length === 0) return null;
 
   return (
-    <section id="products" className="relative py-14 lg:py-44 cetl-navy-bg overflow-hidden">
+    <section id="products" className="relative py-14 lg:py-24 cetl-navy-bg overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[400px] rounded-full bg-cetl-gold-700/[0.05] blur-[130px]" />
       </div>
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cetl-gold-400/30 to-transparent" />
 
       <Container className="relative">
-        <div className="max-w-3xl mx-auto mb-12 text-center">
+        <div className="max-w-5xl mx-auto mb-12 text-center">
           <p className="text-cetl-gold-400/80 text-xs font-semibold tracking-[0.3em] uppercase mb-4">{ui.eyebrow}</p>
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-5">
             {ui.headline}

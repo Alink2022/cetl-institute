@@ -10,7 +10,7 @@ export function InsightsSection() {
   const ui = t.UI.insights;
 
   return (
-    <section className="py-14 lg:py-32 bg-cetl-dark relative overflow-hidden">
+    <section className="py-14 lg:py-20 bg-cetl-dark relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute bottom-0 right-[20%] w-[500px] h-[400px] rounded-full bg-cetl-gold-400/[0.06] blur-[140px]" />
       </div>

@@ -27,10 +27,10 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contact" className="relative py-14 lg:py-44 bg-cetl-surface overflow-hidden">
+    <section id="contact" className="relative py-14 lg:py-24 bg-cetl-surface overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cetl-gold to-transparent opacity-40" />
       <Container className="relative">
-        <div className="max-w-3xl mx-auto mb-12 text-center">
+        <div className="max-w-5xl mx-auto mb-12 text-center">
           <p className="text-cetl-gold-700 text-xs font-semibold tracking-[0.3em] uppercase mb-4">{contact.eyebrow}</p>
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-cetl-text leading-tight mb-5">
             {contact.title}
