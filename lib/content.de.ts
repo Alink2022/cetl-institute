@@ -574,7 +574,7 @@ export const de: ContentBundle = {
     },
     ecosystem: {
       eyebrow: "Das CETL-Ökosystem",
-      headline: "Das Ökosystem von Central European Tech Leadership Institute",
+      headline: "CETL Institute Ökosystem",
       intro: "Unser einzigartiges CETL-Ökosystem verbindet sechs Bausteine zu einem koordinierten System aus Wissen, Anwendung und Umsetzung.",
       bottomBand: ["Community-getriebenes Lernen", "Umsetzungsorientierter Kompetenzaufbau", "Akademische Strenge trifft reale Umsetzung"],
     },

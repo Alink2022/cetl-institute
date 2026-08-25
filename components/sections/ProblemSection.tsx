@@ -16,7 +16,7 @@ export function ProblemSection() {
       <Container className="relative">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Ecosystem side */}
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-6 h-full">
             <div>
               <p className="text-cetl-gold-700 text-xs font-semibold tracking-[0.3em] uppercase mb-4">
                 {ecosystem.eyebrow}
@@ -32,12 +32,25 @@ export function ProblemSection() {
               height={1000}
               className="w-full h-auto object-contain"
             />
+            {ecosystem.bottomBand && ecosystem.bottomBand.length > 0 && (
+              <div className="flex flex-wrap gap-3 mt-auto pt-2">
+                {ecosystem.bottomBand.map((item) => (
+                  <span
+                    key={item}
+                    className="px-4 py-2 rounded-full border border-cetl-gold/30 bg-cetl-gold/5 text-cetl-gold-deep text-xs font-semibold tracking-wide"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Problems side */}
           <div className="flex flex-col gap-8">
-            <p className="text-cetl-text-muted text-lg leading-relaxed">{problem.intro}</p>
-            <p className="text-cetl-text-muted text-lg leading-relaxed">{ecosystem.intro}</p>
+            <p className="text-cetl-text-muted text-lg leading-relaxed">
+              {problem.intro} {ecosystem.intro}
+            </p>
 
             <div className="flex flex-col gap-5">
               {t.PROBLEM_ITEMS.map((item) => (

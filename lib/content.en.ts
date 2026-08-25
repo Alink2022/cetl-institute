@@ -523,7 +523,7 @@ export const en: ContentBundle = {
 
     ecosystem: {
       eyebrow: "The CETL Ecosystem",
-      headline: "The Ecosystem of Central European Tech Leadership Institute",
+      headline: "CETL Institute Ecosystem",
       intro: "Our unique CETL ecosystem connects six building blocks into one coordinated system of knowledge, application and execution.",
       bottomBand: ["Community-driven learning", "Execution-oriented capability building", "Academic rigor meets real-world deployment"],
     },
