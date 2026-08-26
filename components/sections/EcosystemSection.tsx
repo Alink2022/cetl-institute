@@ -7,10 +7,12 @@ import { useLanguage } from "@/lib/i18n";
 
 const NODE_ICONS = [Users, Monitor, Building2, GraduationCap, Lightbulb, Network];
 
-// 6 positions evenly spaced around a circle, starting at top, clockwise. Percent coordinates.
+// 6 positions forming a hexagon (2 upper corners, 2 side, 2 lower corners) — no node sits
+// exactly at top/bottom-center, matching the reference layout. Percent coordinates.
 const R = 34;
+const ICON_D = 15; // icon circle diameter, % of diagram width
 const NODE_POSITIONS = Array.from({ length: 6 }, (_, i) => {
-  const angle = (-90 + i * 60) * (Math.PI / 180);
+  const angle = (-60 + i * 60) * (Math.PI / 180);
   return { x: 50 + R * Math.cos(angle), y: 50 + R * Math.sin(angle) };
 });
 
@@ -35,11 +37,11 @@ export function EcosystemSection() {
         </div>
 
         {/* Ecosystem circle diagram */}
-        <div className="w-full max-w-[820px] mx-auto px-4 sm:px-8">
+        <div className="w-full max-w-[900px] mx-auto px-2 sm:px-6">
           <div className="relative w-full aspect-square">
             {/* Connecting ring */}
             <div
-              className="absolute rounded-full border border-cetl-gold/50"
+              className="absolute rounded-full border-2 border-cetl-gold/60"
               style={{ left: `${50 - R}%`, top: `${50 - R}%`, width: `${R * 2}%`, height: `${R * 2}%` }}
               aria-hidden
             />
@@ -58,21 +60,32 @@ export function EcosystemSection() {
             {t.ECOSYSTEM_NODES.map((node, i) => {
               const Icon = NODE_ICONS[i % NODE_ICONS.length];
               const pos = NODE_POSITIONS[i];
+              const isRight = pos.x >= 50;
               return (
-                <div
-                  key={node.number}
-                  className="absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-2"
-                  style={{ left: `${pos.x}%`, top: `${pos.y}%`, width: "30%" }}
-                >
-                  <div className="relative w-[62%] aspect-square rounded-full bg-white border-2 border-cetl-gold flex items-center justify-center shrink-0 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.18)]">
-                    <span className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-cetl-gold-500 text-cetl-navy-900 text-[10px] font-bold flex items-center justify-center ring-2 ring-white">
-                      {node.number}
-                    </span>
+                <div key={node.number}>
+                  {/* Icon */}
+                  <div
+                    className="absolute -translate-x-1/2 -translate-y-1/2 rounded-full bg-white border-[3px] border-cetl-gold flex items-center justify-center shadow-[0_2px_12px_-4px_rgba(0,0,0,0.18)]"
+                    style={{ left: `${pos.x}%`, top: `${pos.y}%`, width: `${ICON_D}%`, aspectRatio: "1 / 1" }}
+                  >
                     <Icon className="w-[50%] h-[50%] text-cetl-navy-800" strokeWidth={2} />
                   </div>
-                  <span className="text-cetl-text text-[11px] sm:text-xs font-bold text-center leading-tight">
-                    {node.title}
-                  </span>
+                  {/* Connector + label, placed outside the ring on the icon's side */}
+                  <div
+                    className={`absolute -translate-y-1/2 flex items-center gap-2 ${isRight ? "flex-row" : "flex-row-reverse"}`}
+                    style={
+                      isRight
+                        ? { left: `calc(${pos.x}% + ${ICON_D / 2}%)`, top: `${pos.y}%`, maxWidth: "26%" }
+                        : { right: `calc(${100 - pos.x}% + ${ICON_D / 2}%)`, top: `${pos.y}%`, maxWidth: "26%" }
+                    }
+                  >
+                    <span className="h-[3px] w-4 sm:w-6 bg-cetl-gold shrink-0 rounded-full" aria-hidden />
+                    <span
+                      className={`text-cetl-text text-[11px] sm:text-sm font-bold leading-tight ${isRight ? "text-left" : "text-right"}`}
+                    >
+                      {node.title}
+                    </span>
+                  </div>
                 </div>
               );
             })}
