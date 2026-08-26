@@ -35,7 +35,7 @@ export function EcosystemSection() {
         </div>
 
         {/* Ecosystem circle diagram */}
-        <div className="w-full max-w-[560px] mx-auto px-6 sm:px-10">
+        <div className="w-full max-w-[820px] mx-auto px-4 sm:px-8">
           <div className="relative w-full aspect-square">
             {/* Connecting ring */}
             <div
