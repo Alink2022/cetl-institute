@@ -360,6 +360,63 @@ export const de: ContentBundle = {
         },
       ],
     },
+    {
+      label: "Unsere Leistungen für Executional Learning",
+      cards: [
+        {
+          number: "1",
+          titleLine1: "CUSTOMIZED",
+          titleLine2: "EXECUTIONAL LEARNING",
+          tagline: "Lernreisen, die Kompetenzen direkt in der Praxis aktivieren",
+          description: "Lernformate, die auf reale Anwendung statt Theorie ausgelegt sind.",
+          includes: [
+            { icon: "GraduationCap", text: "Maßgeschneiderte Lernformate" },
+            { icon: "User", text: "Rollenbasierte Aktivierung" },
+            { icon: "CheckCircle2", text: "Von Wissen zu Umsetzung" },
+          ],
+          footer: [{ icon: "Target", text: "Praxisnahe Kompetenzaktivierung" }],
+        },
+        {
+          number: "2",
+          titleLine1: "CUSTOMIZED EDUCATION",
+          titleLine2: "DESIGN & DELIVERY",
+          tagline: "Skalierbare Lernarchitekturen, abgestimmt auf Kontext und Zielgruppe",
+          description: "Modulare Programme, die mit der Organisation mitwachsen.",
+          includes: [
+            { icon: "Layers", text: "Modularer Programmaufbau" },
+            { icon: "Share2", text: "Flexible Delivery-Formate" },
+            { icon: "Briefcase", text: "Praxisnahe Business-Relevanz" },
+          ],
+          footer: [{ icon: "BookOpen", text: "Architektur für skalierbares Lernen" }],
+        },
+        {
+          number: "3",
+          titleLine1: "EMBEDDED ENGINEERING &",
+          titleLine2: "CAPABILITY ACTIVATION",
+          tagline: "Praxisnahe Befähigung nah an realen Business-Herausforderungen",
+          description: "Technische Umsetzungsunterstützung direkt im Tagesgeschäft.",
+          includes: [
+            { icon: "Settings2", text: "Use-Case-Implementierung" },
+            { icon: "ClipboardCheck", text: "Prototyping & Validierung" },
+            { icon: "ShieldCheck", text: "Technische Befähigung" },
+          ],
+          footer: [{ icon: "Target", text: "Umsetzung direkt im Betrieb" }],
+        },
+        {
+          number: "4",
+          titleLine1: "COMMUNITY, AUSTAUSCH &",
+          titleLine2: "CO-CREATION",
+          tagline: "Kollaborative Formate, die Ökosystem-Energie in Wirkung verwandeln",
+          description: "Vernetzung, die aus Austausch konkrete Lösungen macht.",
+          includes: [
+            { icon: "Handshake", text: "Experten-Austausch" },
+            { icon: "UsersRound", text: "Co-Creation-Formate" },
+            { icon: "Lightbulb", text: "Von der Idee zur Lösung" },
+          ],
+          footer: [{ icon: "UsersRound", text: "Gemeinsam mehr bewirken" }],
+        },
+      ],
+    },
   ],
 
   PROGRAM_FLOW_STEPS: [
@@ -780,11 +837,8 @@ export const de: ContentBundle = {
     },
     ecosystem: {
       eyebrow: "Das CETL-Ökosystem",
-      headline: "CETL Institute Ökosystem",
-      headlineSuffix: "& Leistungen",
+      headline: "CETL Ökosystem",
       intro: "Großflächige Daten- und KI-Initiativen scheitern selten an mangelnder Ambition. Sie scheitern daran, dass Strategie, Kompetenz, Datenreife, Governance und technische Umsetzung als getrennte Aktivitäten behandelt werden. Unser einzigartiges CETL-Ökosystem verbindet sechs Bausteine zu einem koordinierten System aus Wissen, Anwendung und Umsetzung, das direkt als Fundament für das einzigartige Executional Learning dient, das wir liefern.",
-      fundamentLabel: "Unser Fundament — Das CETL-Ökosystem",
-      servicesLabel: "Unsere Leistungen für Executional Learning",
       bottomBand: ["Community-getriebenes Lernen", "Umsetzungsorientierter Kompetenzaufbau", "Akademische Strenge trifft reale Umsetzung"],
     },
     enterprise: {

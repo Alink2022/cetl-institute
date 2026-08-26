@@ -1,8 +1,18 @@
 "use client";
 
 import Image from "next/image";
+import { Users, Monitor, Building2, GraduationCap, Lightbulb, Network } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { useLanguage } from "@/lib/i18n";
+
+const NODE_ICONS = [Users, Monitor, Building2, GraduationCap, Lightbulb, Network];
+
+// 6 positions evenly spaced around a circle, starting at top, clockwise. Percent coordinates.
+const R = 34;
+const NODE_POSITIONS = Array.from({ length: 6 }, (_, i) => {
+  const angle = (-90 + i * 60) * (Math.PI / 180);
+  return { x: 50 + R * Math.cos(angle), y: 50 + R * Math.sin(angle) };
+});
 
 export function EcosystemSection() {
   const { t } = useLanguage();
@@ -14,42 +24,63 @@ export function EcosystemSection() {
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cetl-gold-400 to-transparent opacity-40" />
 
       <Container className="relative">
-        <div className="max-w-5xl mx-auto mb-14 text-center">
+        <div className="max-w-5xl mx-auto mb-16 text-center">
           <p className="text-cetl-gold-700 text-xs font-semibold tracking-[0.3em] uppercase mb-4">
             {ecosystem.eyebrow}
           </p>
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-cetl-text leading-tight mb-6">
             {ecosystem.headline}
-            {ecosystem.headlineSuffix ? ` ${ecosystem.headlineSuffix}` : ""}
           </h2>
           <p className="text-cetl-text-muted text-lg leading-relaxed">{ecosystem.intro}</p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <div className="flex flex-col gap-5">
-            <h3 className="font-display text-lg font-bold text-cetl-text">{ecosystem.fundamentLabel}</h3>
-            <Image
-              src="/elaas/cetl-ecosystem.png"
-              alt={ecosystem.fundamentLabel}
-              width={1200}
-              height={1000}
-              className="w-full h-auto object-contain"
+        {/* Ecosystem circle diagram */}
+        <div className="w-full max-w-[560px] mx-auto px-6 sm:px-10">
+          <div className="relative w-full aspect-square">
+            {/* Connecting ring */}
+            <div
+              className="absolute rounded-full border border-cetl-gold/50"
+              style={{ left: `${50 - R}%`, top: `${50 - R}%`, width: `${R * 2}%`, height: `${R * 2}%` }}
+              aria-hidden
             />
-          </div>
-          <div className="flex flex-col gap-5">
-            <h3 className="font-display text-lg font-bold text-cetl-text">{ecosystem.servicesLabel}</h3>
-            <Image
-              src="/elaas/cetl-services.png"
-              alt={ecosystem.servicesLabel}
-              width={1200}
-              height={1200}
-              className="w-full h-auto object-contain"
-            />
+
+            {/* Center: CETL logo */}
+            <div
+              className="absolute -translate-x-1/2 -translate-y-1/2 w-[30%] h-[30%] rounded-full bg-cetl-navy-800 border-4 border-cetl-gold flex items-center justify-center shadow-[0_0_36px_-6px_var(--color-cetl-gold-400)]"
+              style={{ left: "50%", top: "50%" }}
+            >
+              <div className="relative w-[55%] h-[55%]">
+                <Image src="/cetl-logo.webp" alt="CETL Institute" fill sizes="120px" className="object-contain" />
+              </div>
+            </div>
+
+            {/* 6 nodes */}
+            {t.ECOSYSTEM_NODES.map((node, i) => {
+              const Icon = NODE_ICONS[i % NODE_ICONS.length];
+              const pos = NODE_POSITIONS[i];
+              return (
+                <div
+                  key={node.number}
+                  className="absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-2"
+                  style={{ left: `${pos.x}%`, top: `${pos.y}%`, width: "30%" }}
+                >
+                  <div className="relative w-[62%] aspect-square rounded-full bg-white border-2 border-cetl-gold flex items-center justify-center shrink-0 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.18)]">
+                    <span className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-cetl-gold-500 text-cetl-navy-900 text-[10px] font-bold flex items-center justify-center ring-2 ring-white">
+                      {node.number}
+                    </span>
+                    <Icon className="w-[50%] h-[50%] text-cetl-navy-800" strokeWidth={2} />
+                  </div>
+                  <span className="text-cetl-text text-[11px] sm:text-xs font-bold text-center leading-tight">
+                    {node.title}
+                  </span>
+                </div>
+              );
+            })}
           </div>
         </div>
 
         {ecosystem.bottomBand && ecosystem.bottomBand.length > 0 && (
-          <div className="flex flex-wrap gap-3 mt-10 pt-6 border-t border-cetl-border">
+          <div className="flex flex-wrap justify-center gap-3 mt-14 pt-6 border-t border-cetl-border max-w-3xl mx-auto">
             {ecosystem.bottomBand.map((item) => (
               <span
                 key={item}

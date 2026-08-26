@@ -335,6 +335,63 @@ export const en: ContentBundle = {
         },
       ],
     },
+    {
+      label: "Our Services for Executional Learning",
+      cards: [
+        {
+          number: "1",
+          titleLine1: "CUSTOMIZED",
+          titleLine2: "EXECUTIONAL LEARNING",
+          tagline: "Learning journeys designed to activate capabilities in practice",
+          description: "Learning formats built for real application, not theory.",
+          includes: [
+            { icon: "GraduationCap", text: "Tailored learning formats" },
+            { icon: "User", text: "Role-based activation" },
+            { icon: "CheckCircle2", text: "From knowledge to execution" },
+          ],
+          footer: [{ icon: "Target", text: "Practical capability activation" }],
+        },
+        {
+          number: "2",
+          titleLine1: "CUSTOMIZED EDUCATION",
+          titleLine2: "DESIGN & DELIVERY",
+          tagline: "Scalable learning architectures aligned to context and audience",
+          description: "Modular programs that grow with the organization.",
+          includes: [
+            { icon: "Layers", text: "Modular program design" },
+            { icon: "Share2", text: "Flexible delivery formats" },
+            { icon: "Briefcase", text: "Practical business relevance" },
+          ],
+          footer: [{ icon: "BookOpen", text: "Architecture for scalable learning" }],
+        },
+        {
+          number: "3",
+          titleLine1: "EMBEDDED ENGINEERING &",
+          titleLine2: "CAPABILITY ACTIVATION",
+          tagline: "Hands-on enablement close to real business challenges",
+          description: "Technical implementation support inside daily operations.",
+          includes: [
+            { icon: "Settings2", text: "Use-case implementation" },
+            { icon: "ClipboardCheck", text: "Prototype & validate" },
+            { icon: "ShieldCheck", text: "Technical enablement" },
+          ],
+          footer: [{ icon: "Target", text: "Execution inside operations" }],
+        },
+        {
+          number: "4",
+          titleLine1: "COMMUNITY, EXCHANGE &",
+          titleLine2: "CO-CREATION",
+          tagline: "Collaborative formats that turn ecosystem energy into impact",
+          description: "Connections that turn exchange into concrete solutions.",
+          includes: [
+            { icon: "Handshake", text: "Expert exchange" },
+            { icon: "UsersRound", text: "Co-creation formats" },
+            { icon: "Lightbulb", text: "From ideas to solutions" },
+          ],
+          footer: [{ icon: "UsersRound", text: "Achieving more, together" }],
+        },
+      ],
+    },
   ],
 
   PROGRAM_FLOW_STEPS: [
@@ -725,11 +782,8 @@ export const en: ContentBundle = {
 
     ecosystem: {
       eyebrow: "The CETL Ecosystem",
-      headline: "CETL Institute Ecosystem",
-      headlineSuffix: "& Services",
+      headline: "CETL Ecosystem",
       intro: "Large-scale Data and AI initiatives rarely fail because organizations lack ambition. They fail because strategy, capability, data readiness, governance and technical execution are treated as separate activities. Our unique CETL ecosystem connects six building blocks into one coordinated system of knowledge, application and execution that directly serves as the fundament of the unique Executional Learning we deliver.",
-      fundamentLabel: "Our Fundament — CETL Ecosystem",
-      servicesLabel: "Our Services for Executional Learning",
       bottomBand: ["Community-driven learning", "Execution-oriented capability building", "Academic rigor meets real-world deployment"],
     },
 
