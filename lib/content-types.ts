@@ -218,14 +218,18 @@ export interface ExecutionalService {
 }
 
 export type MethodologyIconName =
-  | "Target" | "Users" | "Footprints" | "TrendingUp"
-  | "User" | "Lightbulb" | "UsersRound" | "ShieldCheck"
-  | "Eye" | "Puzzle" | "GraduationCap" | "Rocket" | "BarChart2" | "RefreshCw";
+  | "Landmark" | "Factory" | "Users" | "GraduationCap" | "Target" | "TrendingUp"
+  | "BookOpen" | "User" | "Search" | "ClipboardCheck" | "UsersRound" | "Flag" | "ShieldCheck";
 
-export interface MethodologyPanelItem {
+export interface MethodologyPillar {
   icon: MethodologyIconName;
   title: string;
   desc: string;
+}
+
+export interface MethodologyModule {
+  icon: MethodologyIconName;
+  title: string;
 }
 
 export interface MethodologyFlowStep {
@@ -235,15 +239,20 @@ export interface MethodologyFlowStep {
   desc: string;
 }
 
+export interface MethodologyOutcome {
+  icon: MethodologyIconName;
+  title: string;
+  desc: string;
+}
+
 export interface ElaasMethodology {
   eyebrow: string;
   headline: string;
-  badge: { name: string; line1: string; line2: string };
-  approachHeading: string;
-  approach: MethodologyPanelItem[];
-  principlesHeading: string;
-  principles: MethodologyPanelItem[];
+  pillars: MethodologyPillar[];
+  modules: MethodologyModule[];
+  embeddedNote: string;
   steps: MethodologyFlowStep[];
+  outcomes: MethodologyOutcome[];
 }
 
 export interface NetworkLayer {
