@@ -46,11 +46,11 @@ export function EcosystemSection() {
 
             {/* Center: CETL logo */}
             <div
-              className="absolute -translate-x-1/2 -translate-y-1/2 w-[30%] h-[30%] rounded-full bg-cetl-navy-800 border-4 border-cetl-gold flex items-center justify-center shadow-[0_0_36px_-6px_var(--color-cetl-gold-400)]"
+              className="absolute -translate-x-1/2 -translate-y-1/2 w-[34%] h-[34%] rounded-full bg-cetl-navy-800 border-4 border-cetl-gold flex items-center justify-center shadow-[0_0_36px_-6px_var(--color-cetl-gold-400)]"
               style={{ left: "50%", top: "50%" }}
             >
-              <div className="relative w-[55%] h-[55%]">
-                <Image src="/cetl-logo.webp" alt="CETL Institute" fill sizes="120px" className="object-contain" />
+              <div className="relative w-[82%] h-[82%]">
+                <Image src="/cetl-logo.webp" alt="CETL Institute" fill sizes="160px" className="object-contain" />
               </div>
             </div>
 
