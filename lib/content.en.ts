@@ -371,6 +371,7 @@ export const en: ContentBundle = {
   ELAAS_METHODOLOGY: {
     eyebrow: "Our Core USP",
     headline: "Executional Learning as a Service Methodology",
+    intro: "Customized Executional Learning activates capabilities directly in practice — with tailored learning formats and role-based activation. Our education design scales these learning architectures flexibly to context and audience, while embedded engineering brings enablement close to real business challenges. Through our community, we turn ecosystem energy into shared impact — from ideas to solutions.",
     pillars: [
       { icon: "Landmark", title: "Academic World", desc: "Structured fundamentals, rigorous learning design, role-based learning paths." },
       { icon: "Factory", title: "Industrial Execution", desc: "Real business challenges, domain use cases, measurable business impact." },
@@ -381,6 +382,7 @@ export const en: ContentBundle = {
       { icon: "Target", title: "Specialization Module" },
       { icon: "TrendingUp", title: "Executional Learning Module" },
     ],
+    customizationLabel: "Customization",
     embeddedNote: "Learning is embedded into real work — not separated from it.",
     steps: [
       { n: "1", icon: "BookOpen", title: "Build Foundations", desc: "Data literacy, AI basics, responsible use." },
@@ -396,6 +398,7 @@ export const en: ContentBundle = {
       { icon: "ShieldCheck", title: "Governance-Safe Adoption", desc: "Responsible, secure and compliant usage." },
       { icon: "TrendingUp", title: "Scalable Execution Capability", desc: "Multipliers, refresh cycles and long-term impact." },
     ],
+    capabilitiesHeading: "Our Services for Executional Learning",
   },
 
   PROGRAM_FLOW_STEPS: [
@@ -709,7 +712,6 @@ export const en: ContentBundle = {
       eyebrow: "CETL Products",
       headline: "A unique framework of learning, assessment and enablement.",
       intro: "The CETL portfolio is strategically and operationally designed for the specific maturity gaps of organizations with complex enterprise architecture and regulatory requirements. We connect structured executional learning with independent capability assessment and hands-on enablement — modular and combinable, from foundation to embedded execution, with cross-industry use cases, industry workshops, data & AI literacy blocks and tech modules.",
-      servicesHeading: "Our Services for Executional Learning",
     },
     programFlow: {
       headline: "How our programs run",

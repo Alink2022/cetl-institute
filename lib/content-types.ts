@@ -248,11 +248,14 @@ export interface MethodologyOutcome {
 export interface ElaasMethodology {
   eyebrow: string;
   headline: string;
+  intro: string;
   pillars: MethodologyPillar[];
   modules: MethodologyModule[];
+  customizationLabel: string;
   embeddedNote: string;
   steps: MethodologyFlowStep[];
   outcomes: MethodologyOutcome[];
+  capabilitiesHeading: string;
 }
 
 export interface NetworkLayer {
@@ -398,7 +401,6 @@ export interface ContentBundle {
       eyebrow: string;
       headline: string;
       intro: string;
-      servicesHeading: string;
     };
     programFlow: {
       headline: string;

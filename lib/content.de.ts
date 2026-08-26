@@ -396,6 +396,7 @@ export const de: ContentBundle = {
   ELAAS_METHODOLOGY: {
     eyebrow: "Unser Core USP",
     headline: "Executional Learning as a Service Methodik",
+    intro: "Individuelles Executional Learning aktiviert Kompetenzen direkt in der Praxis — mit maßgeschneiderten Lernformaten und rollenbasierter Aktivierung. Unser Bildungsdesign skaliert diese Lernarchitekturen flexibel auf Kontext und Zielgruppe, während Embedded Engineering die Befähigung nah an reale Business-Herausforderungen bringt. Über unsere Community verwandeln wir Ökosystem-Energie in gemeinsame Wirkung — von der Idee zur Lösung.",
     pillars: [
       { icon: "Landmark", title: "Akademische Welt", desc: "Strukturierte Grundlagen, fundiertes Lerndesign, rollenbasierte Lernpfade." },
       { icon: "Factory", title: "Industrielle Umsetzung", desc: "Reale Business-Herausforderungen, fachspezifische Use Cases, messbare Business-Wirkung." },
@@ -406,6 +407,7 @@ export const de: ContentBundle = {
       { icon: "Target", title: "Spezialisierungs-Modul" },
       { icon: "TrendingUp", title: "Executional-Learning-Modul" },
     ],
+    customizationLabel: "Maßschneiderung",
     embeddedNote: "Lernen ist in die reale Arbeit eingebettet — nicht davon getrennt.",
     steps: [
       { n: "1", icon: "BookOpen", title: "Grundlagen aufbauen", desc: "Datenkompetenz, KI-Grundlagen, verantwortungsvoller Einsatz." },
@@ -421,6 +423,7 @@ export const de: ContentBundle = {
       { icon: "ShieldCheck", title: "Governance-sichere Einführung", desc: "Verantwortungsvoller, sicherer und konformer Einsatz." },
       { icon: "TrendingUp", title: "Skalierbare Umsetzungskompetenz", desc: "Multiplikatoren, Refresh-Zyklen und langfristige Wirkung." },
     ],
+    capabilitiesHeading: "Unsere Leistungen für Executional Learning",
   },
 
   PROGRAM_FLOW_STEPS: [
@@ -777,7 +780,6 @@ export const de: ContentBundle = {
       eyebrow: "CETL Produkte",
       headline: "Einzigartiges Rahmenwerk aus Lernen, Bewertung und Befähigung.",
       intro: "CETL Portfolio ist strategisch & operativ auf die spezifischen Reifegradlücken von Organisationen mit komplexer Enterprise-Architektur und regulatorischen Anforderungen ausgelegt. Wir verbinden strukturiertes Executional Learning mit unabhängiger Fähigkeitsbewertung und praxisnaher Befähigung — modular kombinierbar, von der Grundlage bis zur eingebetteten Umsetzung mit branchenübergreifenden Use Cases, Industry-Workshops, Data-&-AI-Literacy-Blöcken und Tech-Modulen.",
-      servicesHeading: "Unsere Leistungen für Executional Learning",
     },
     programFlow: {
       headline: "So laufen unsere Programme ab",

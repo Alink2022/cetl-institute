@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { useLanguage } from "@/lib/i18n";
-import type { ProductCard, ProductIconName, ExecutionalService } from "@/lib/content-types";
+import type { ProductCard, ProductIconName } from "@/lib/content-types";
 
 const ICON_MAP: Record<ProductIconName, React.ElementType> = {
   GraduationCap, Users, Target, BookOpen, ShieldCheck, CheckCircle2,
@@ -94,36 +94,6 @@ function ProductCardView({ card }: { card: ProductCard }) {
   );
 }
 
-function ServiceCard({ service }: { service: ExecutionalService }) {
-  const Icon = ICON_MAP[service.icon];
-  return (
-    <div className="flex flex-col gap-5 bg-white rounded-2xl border border-cetl-border shadow-[0_2px_16px_-8px_rgba(0,0,0,0.12)] p-6">
-      <div className="flex items-start gap-3">
-        <div className="w-9 h-9 rounded-lg bg-cetl-gold-500 text-cetl-navy-900 font-display font-bold text-base flex items-center justify-center shrink-0">
-          {service.number}
-        </div>
-        <div>
-          <h3 className="font-display text-cetl-navy-900 font-bold text-base leading-snug">{service.title}</h3>
-          <p className="text-cetl-text-muted text-xs leading-snug mt-1">{service.subtitle}</p>
-        </div>
-      </div>
-      <div className="grid grid-cols-[auto_1fr] gap-4 items-center">
-        <div className="w-16 h-16 rounded-full bg-cetl-gold-200/50 flex items-center justify-center shrink-0">
-          <Icon className="w-8 h-8 text-cetl-gold-700" strokeWidth={1.5} />
-        </div>
-        <div className="flex flex-col gap-2.5">
-          {service.items.map((item) => (
-            <div key={item} className="flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-cetl-gold-500 shrink-0" strokeWidth={2} />
-              <span className="text-cetl-text text-sm leading-snug">{item}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export function ProductPortfolioSection() {
   const { t } = useLanguage();
   const ui = t.UI.productPortfolio;
@@ -158,17 +128,6 @@ export function ProductPortfolioSection() {
             </div>
           ))}
         </div>
-
-        {t.EXECUTIONAL_SERVICES && t.EXECUTIONAL_SERVICES.length > 0 && (
-          <div className="flex flex-col gap-6 mt-14">
-            <h3 className="font-display text-lg md:text-xl font-bold text-white px-1">{ui.servicesHeading}</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-              {t.EXECUTIONAL_SERVICES.map((service) => (
-                <ServiceCard key={service.number + service.title} service={service} />
-              ))}
-            </div>
-          </div>
-        )}
       </Container>
     </section>
   );
