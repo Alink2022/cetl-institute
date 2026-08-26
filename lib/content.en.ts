@@ -368,6 +368,35 @@ export const en: ContentBundle = {
     },
   ],
 
+  ELAAS_METHODOLOGY: {
+    eyebrow: "Our Core USP",
+    headline: "Executional Learning as a Service Methodology",
+    badge: { name: "CETL Institute", line1: "Executional Learning", line2: "as a Service (ELaaS)" },
+    approachHeading: "Our Approach",
+    approach: [
+      { icon: "Target", title: "Outcome-Driven", desc: "Focus on measurable business and capability outcomes." },
+      { icon: "Users", title: "Role-Based & Practical", desc: "Learning tailored to real roles, real challenges, real context." },
+      { icon: "Footprints", title: "Executional Learning", desc: "Apply in real initiatives with mentoring and feedback." },
+      { icon: "TrendingUp", title: "Sustainable Impact", desc: "Build long-term capability, confidence and value." },
+    ],
+    principlesHeading: "Our Learning Principles",
+    principles: [
+      { icon: "Target", title: "Business Impact First", desc: "Every learning path starts with business outcomes." },
+      { icon: "User", title: "Role & Domain Relevance", desc: "Content and practice tailored to real roles and domains." },
+      { icon: "Lightbulb", title: "Learn by Doing", desc: "Real use cases, real tools, real execution." },
+      { icon: "UsersRound", title: "Community & Mentoring", desc: "Peer exchange, expert mentoring and feedback." },
+      { icon: "ShieldCheck", title: "Trust, Ethics & Governance", desc: "Responsible AI & data use as a foundation." },
+    ],
+    steps: [
+      { n: "1", icon: "Eye", title: "Understand", desc: "Understand business goals, challenges, context and capability gaps." },
+      { n: "2", icon: "Puzzle", title: "Design", desc: "Co-design role-based learning journey, use cases and success measures." },
+      { n: "3", icon: "GraduationCap", title: "Learn", desc: "Interactive learning and tools — from foundations to deep dive tracks." },
+      { n: "4", icon: "Rocket", title: "Apply", desc: "Apply in real projects and initiatives with guided frameworks and methods." },
+      { n: "5", icon: "BarChart2", title: "Measure", desc: "Track progress, measure impact and refine based on evidence." },
+      { n: "6", icon: "RefreshCw", title: "Scale", desc: "Scale successes, embed in operations and grow community capability." },
+    ],
+  },
+
   PROGRAM_FLOW_STEPS: [
     { n: "1", icon: "Search", title: "Assessment", description: "Capturing baseline and maturity." },
     { n: "2", icon: "Settings2", title: "Customization", description: "Tailoring the program to context." },

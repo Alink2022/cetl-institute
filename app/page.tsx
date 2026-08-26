@@ -4,6 +4,7 @@ import { GoldDivider } from "@/components/ui/GoldDivider";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { InstStatsBar } from "@/components/sections/InstStatsBar";
 import { EcosystemSection } from "@/components/sections/EcosystemSection";
+import { MethodologySection } from "@/components/sections/MethodologySection";
 import { ProductPortfolioSection } from "@/components/sections/ProductPortfolioSection";
 import { MarketStatsSection } from "@/components/sections/MarketStatsSection";
 import { SkillsQuadrantSection } from "@/components/sections/SkillsQuadrantSection";
@@ -25,9 +26,10 @@ export default function Home() {
         <LogoWatermark />
         <HeroSection />
         <InstStatsBar />
-        <EcosystemSection />
+        <MethodologySection />
         <GoldDivider />
         <ProductPortfolioSection />
+        <EcosystemSection />
         <GoldDivider />
         <MarketStatsSection />
         <SkillsQuadrantSection />

@@ -217,6 +217,35 @@ export interface ExecutionalService {
   items: string[];
 }
 
+export type MethodologyIconName =
+  | "Target" | "Users" | "Footprints" | "TrendingUp"
+  | "User" | "Lightbulb" | "UsersRound" | "ShieldCheck"
+  | "Eye" | "Puzzle" | "GraduationCap" | "Rocket" | "BarChart2" | "RefreshCw";
+
+export interface MethodologyPanelItem {
+  icon: MethodologyIconName;
+  title: string;
+  desc: string;
+}
+
+export interface MethodologyFlowStep {
+  n: string;
+  icon: MethodologyIconName;
+  title: string;
+  desc: string;
+}
+
+export interface ElaasMethodology {
+  eyebrow: string;
+  headline: string;
+  badge: { name: string; line1: string; line2: string };
+  approachHeading: string;
+  approach: MethodologyPanelItem[];
+  principlesHeading: string;
+  principles: MethodologyPanelItem[];
+  steps: MethodologyFlowStep[];
+}
+
 export interface NetworkLayer {
   number: string;
   title: string;
@@ -292,6 +321,7 @@ export interface ContentBundle {
   PARTNER_GROUPS: PartnerGroup[];
   PRODUCT_GROUPS: ProductGroup[];
   EXECUTIONAL_SERVICES: ExecutionalService[];
+  ELAAS_METHODOLOGY: ElaasMethodology;
   PROGRAM_FLOW_STEPS: ProgramFlowStep[];
   MARKET_STATS: MarketStat[];
   TEAM_MEMBERS: TeamMember[];

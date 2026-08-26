@@ -393,6 +393,35 @@ export const de: ContentBundle = {
     },
   ],
 
+  ELAAS_METHODOLOGY: {
+    eyebrow: "Unser Core USP",
+    headline: "Executional Learning as a Service Methodik",
+    badge: { name: "CETL Institute", line1: "Executional Learning", line2: "as a Service (ELaaS)" },
+    approachHeading: "Unser Ansatz",
+    approach: [
+      { icon: "Target", title: "Ergebnisorientiert", desc: "Fokus auf messbare Business- und Kompetenz-Ergebnisse." },
+      { icon: "Users", title: "Rollenbasiert & Praxisnah", desc: "Lernen zugeschnitten auf reale Rollen, echte Herausforderungen, echten Kontext." },
+      { icon: "Footprints", title: "Executional Learning", desc: "Anwendung in realen Initiativen mit Mentoring und Feedback." },
+      { icon: "TrendingUp", title: "Nachhaltige Wirkung", desc: "Aufbau langfristiger Kompetenz, Sicherheit und Wert." },
+    ],
+    principlesHeading: "Unsere Lernprinzipien",
+    principles: [
+      { icon: "Target", title: "Business Impact zuerst", desc: "Jeder Lernpfad startet mit Business-Ergebnissen." },
+      { icon: "User", title: "Rollen- & Fachrelevanz", desc: "Inhalte und Praxis zugeschnitten auf reale Rollen und Fachbereiche." },
+      { icon: "Lightbulb", title: "Lernen durch Tun", desc: "Echte Use Cases, echte Tools, echte Umsetzung." },
+      { icon: "UsersRound", title: "Community & Mentoring", desc: "Peer-Austausch, Experten-Mentoring und Feedback." },
+      { icon: "ShieldCheck", title: "Vertrauen, Ethik & Governance", desc: "Verantwortungsvoller KI- & Daten-Einsatz als Grundlage." },
+    ],
+    steps: [
+      { n: "1", icon: "Eye", title: "Verstehen", desc: "Geschäftsziele, Herausforderungen, Kontext und Kompetenzlücken verstehen." },
+      { n: "2", icon: "Puzzle", title: "Design", desc: "Rollenbasierte Lernreise, Use Cases und Erfolgsmessung gemeinsam gestalten." },
+      { n: "3", icon: "GraduationCap", title: "Lernen", desc: "Interaktives Lernen und Tools — von Grundlagen bis zu Deep-Dive-Tracks." },
+      { n: "4", icon: "Rocket", title: "Anwenden", desc: "Anwendung in realen Projekten und Initiativen mit begleitenden Frameworks und Methoden." },
+      { n: "5", icon: "BarChart2", title: "Messen", desc: "Fortschritt verfolgen, Wirkung messen und evidenzbasiert nachschärfen." },
+      { n: "6", icon: "RefreshCw", title: "Skalieren", desc: "Erfolge skalieren, in den Betrieb einbetten und Community-Kompetenz ausbauen." },
+    ],
+  },
+
   PROGRAM_FLOW_STEPS: [
     { n: "1", icon: "Search", title: "Assessment", description: "Ausgangslage und Reifegrad erfassen." },
     { n: "2", icon: "Settings2", title: "Customization", description: "Programm auf Kontext zuschneiden." },
