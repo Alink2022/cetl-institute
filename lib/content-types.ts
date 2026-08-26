@@ -209,6 +209,14 @@ export interface ProductGroup {
   cards: ProductCard[];
 }
 
+export interface ExecutionalService {
+  number: string;
+  title: string;
+  subtitle: string;
+  icon: ProductIconName;
+  items: string[];
+}
+
 export interface NetworkLayer {
   number: string;
   title: string;
@@ -283,6 +291,7 @@ export interface ContentBundle {
   PARTNERS: Partner[];
   PARTNER_GROUPS: PartnerGroup[];
   PRODUCT_GROUPS: ProductGroup[];
+  EXECUTIONAL_SERVICES: ExecutionalService[];
   PROGRAM_FLOW_STEPS: ProgramFlowStep[];
   MARKET_STATS: MarketStat[];
   TEAM_MEMBERS: TeamMember[];
@@ -350,6 +359,7 @@ export interface ContentBundle {
       eyebrow: string;
       headline: string;
       intro: string;
+      servicesHeading: string;
     };
     programFlow: {
       headline: string;

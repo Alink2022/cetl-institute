@@ -62,11 +62,11 @@ function TrendBadge() {
 
 function StatCard({ stat }: { stat: MarketStat }) {
   return (
-    <div className="w-[78vw] sm:w-auto shrink-0 snap-start flex flex-col items-center text-center gap-4 bg-cetl-dark rounded-2xl border border-cetl-border p-6">
+    <div className="w-[78vw] sm:w-auto shrink-0 snap-start flex flex-col items-center text-center gap-3 bg-transparent rounded-2xl border-2 border-cetl-navy-800 p-6">
       {stat.kind === "ring" ? <RingChart value={parseInt(stat.value, 10) || 0} /> : <TrendBadge />}
-      <span className="font-display text-3xl font-bold cetl-gold-text">{stat.value}</span>
-      <p className="text-white text-sm leading-snug">{stat.label}</p>
-      <p className="text-white/40 text-[10px] tracking-wide leading-snug mt-auto pt-3 border-t border-white/10 w-full">
+      <span className="font-display text-5xl sm:text-6xl font-extrabold cetl-gold-text leading-none">{stat.value}</span>
+      <p className="text-cetl-text text-sm leading-snug">{stat.label}</p>
+      <p className="text-cetl-text-muted/70 text-[10px] tracking-wide leading-snug mt-auto pt-3 border-t border-cetl-border w-full">
         {stat.source}
       </p>
     </div>
