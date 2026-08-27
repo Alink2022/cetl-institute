@@ -217,44 +217,12 @@ export interface ExecutionalService {
   items: string[];
 }
 
-export type MethodologyIconName =
-  | "Landmark" | "Factory" | "Users" | "GraduationCap" | "Target" | "TrendingUp"
-  | "BookOpen" | "User" | "Search" | "ClipboardCheck" | "UsersRound" | "Flag" | "ShieldCheck";
-
-export interface MethodologyPillar {
-  icon: MethodologyIconName;
-  title: string;
-  desc: string;
-}
-
-export interface MethodologyModule {
-  icon: MethodologyIconName;
-  title: string;
-}
-
-export interface MethodologyFlowStep {
-  n: string;
-  icon: MethodologyIconName;
-  title: string;
-  desc: string;
-}
-
-export interface MethodologyOutcome {
-  icon: MethodologyIconName;
-  title: string;
-  desc: string;
-}
-
 export interface ElaasMethodology {
   eyebrow: string;
   headline: string;
-  intro: string;
-  pillars: MethodologyPillar[];
-  modules: MethodologyModule[];
-  customizationLabel: string;
-  embeddedNote: string;
-  steps: MethodologyFlowStep[];
-  outcomes: MethodologyOutcome[];
+  intro: string[];
+  image: string;
+  imageAlt: string;
   capabilitiesHeading: string;
 }
 

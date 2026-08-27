@@ -395,34 +395,14 @@ export const de: ContentBundle = {
 
   ELAAS_METHODOLOGY: {
     eyebrow: "Unser Core USP",
-    headline: "Executional Learning as a Service Methodik",
-    intro: "Individuelles Executional Learning aktiviert Kompetenzen direkt in der Praxis — mit maßgeschneiderten Lernformaten und rollenbasierter Aktivierung. Unser Bildungsdesign skaliert diese Lernarchitekturen flexibel auf Kontext und Zielgruppe, während Embedded Engineering die Befähigung nah an reale Business-Herausforderungen bringt. Über unsere Community verwandeln wir Ökosystem-Energie in gemeinsame Wirkung — von der Idee zur Lösung.",
-    pillars: [
-      { icon: "Landmark", title: "Akademische Welt", desc: "Strukturierte Grundlagen, fundiertes Lerndesign, rollenbasierte Lernpfade." },
-      { icon: "Factory", title: "Industrielle Umsetzung", desc: "Reale Business-Herausforderungen, fachspezifische Use Cases, messbare Business-Wirkung." },
-      { icon: "Users", title: "Community & Ökosystem", desc: "Peer-Learning, Experten, Best Practices, Multiplikatoreffekt." },
+    headline: "Executional Learning as a Service: Methodik & Ökosystem",
+    intro: [
+      "Unsere Executional-Learning-Methodik kombiniert das Beste aus hochkarätigen akademischen Modulen mit Zertifizierung, Industrie und Community — und aktiviert Kompetenzen direkt in der Praxis, mit maßgeschneiderten Lernformaten und rollenbasierter Aktivierung für die Transformation von Unternehmen.",
+      "Die Methodik skaliert diese Lernarchitekturen flexibel auf Kontext und Zielgruppe, während beispielsweise Embedded Engineering die Befähigung nah an reale Business-Herausforderungen bringt. Über unsere Community verwandeln wir Ökosystem-Energie in gemeinsame Wirkung — von der Idee zur Lösung, die standardisierte Lernformate, Lehrgänge und Seminare (manchmal mit kurzen Capstones) allein nicht liefern können.",
+      "Über Forward Deployed Engineering (FDE) und Community-Ansätze schließen wir die Marktlücke zwischen Theorie und Praxis.",
     ],
-    modules: [
-      { icon: "GraduationCap", title: "Grundlagen-Modul" },
-      { icon: "Target", title: "Spezialisierungs-Modul" },
-      { icon: "TrendingUp", title: "Executional-Learning-Modul" },
-    ],
-    customizationLabel: "Maßschneiderung",
-    embeddedNote: "Lernen ist in die reale Arbeit eingebettet — nicht davon getrennt.",
-    steps: [
-      { n: "1", icon: "BookOpen", title: "Grundlagen aufbauen", desc: "Datenkompetenz, KI-Grundlagen, verantwortungsvoller Einsatz." },
-      { n: "2", icon: "User", title: "Rollenbasierte Spezialisierung", desc: "Alltags-KI und Business-KI-Tracks." },
-      { n: "3", icon: "Search", title: "Use Cases identifizieren", desc: "Reale Geschäftschancen identifizieren." },
-      { n: "4", icon: "ClipboardCheck", title: "Bewerten & Priorisieren", desc: "Wert, Machbarkeit und strategische Passung bewerten." },
-      { n: "5", icon: "UsersRound", title: "Begleiten & Aktivieren", desc: "Coaching, Feedback, Pilotprojekte und Ownership." },
-      { n: "6", icon: "Flag", title: "Review, Roadmap & Skalierung", desc: "Übergabe, Multiplikatoren, Governance und nächste Schritte." },
-    ],
-    outcomes: [
-      { icon: "Target", title: "Priorisiertes Use-Case-Portfolio", desc: "Klare Chancen mit Ownership und nächsten Schritten." },
-      { icon: "Users", title: "KI- & Daten-kompetente Teams", desc: "Gemeinsame Sprache über Business, Daten und Governance hinweg." },
-      { icon: "ShieldCheck", title: "Governance-sichere Einführung", desc: "Verantwortungsvoller, sicherer und konformer Einsatz." },
-      { icon: "TrendingUp", title: "Skalierbare Umsetzungskompetenz", desc: "Multiplikatoren, Refresh-Zyklen und langfristige Wirkung." },
-    ],
+    image: "/elaas/elaas-methodology-ecosystem.png",
+    imageAlt: "ELaaS Methodik & Ökosystem: Foundation-, Specialization- und Executional-Modul im 6-Schritte-Zyklus rund um akademische Welt, Industrie und Community",
     capabilitiesHeading: "Unsere Leistungen für Executional Learning",
   },
 
