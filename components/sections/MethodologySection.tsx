@@ -108,8 +108,8 @@ export function MethodologySection() {
                   <div key={step.n} className="flex items-center">
                     <div className="flex flex-col items-center gap-3 text-center max-w-[200px]">
                       <span className="text-cetl-gold-700 text-xs font-semibold tracking-widest">{step.n}</span>
-                      <div className="w-16 h-16 rounded-full bg-cetl-gold-200/50 flex items-center justify-center">
-                        <Icon className="w-7 h-7 text-cetl-gold-700" strokeWidth={1.5} aria-hidden="true" />
+                      <div className="w-16 h-16 rounded-full border border-cetl-navy-900/25 bg-white flex items-center justify-center">
+                        <Icon className="w-7 h-7 text-cetl-navy-900" strokeWidth={1.5} aria-hidden="true" />
                       </div>
                       <span className="font-display text-base font-bold text-cetl-navy-900">{step.title}</span>
                       <p className="text-cetl-text-muted text-xs leading-relaxed">{step.description}</p>
