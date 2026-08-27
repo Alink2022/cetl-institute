@@ -1,40 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { Brain, TrendingUp, Award, Lightbulb, Cog, Users, Flag, UserCheck, MessageCircle, Code2, Briefcase, Target, ChevronRight, ArrowRight, Shield, BookOpen, Layers, Network, Zap, BarChart2, GraduationCap, Building2, Globe, Cpu } from "lucide-react";
-import { SectionHeader } from "@/components/ui/SectionHeader";
+import { UserCheck, MessageCircle, Code2, Briefcase } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 import { Container } from "@/components/ui/Container";
 import { TiltCard } from "@/components/ui/TiltCard";
 import { useLanguage } from "@/lib/i18n";
-import type { LucideIconName } from "@/lib/content-types";
-
-const ICON_MAP: Record<LucideIconName, React.ElementType> = {
-  Brain, TrendingUp, Award, Users, Lightbulb, Cog, Flag,
-  Target, ChevronRight, ArrowRight, Shield, BookOpen, Layers,
-  Network, Zap, BarChart2, GraduationCap, Building2, Globe, Cpu,
-};
-
-// Pillar-Nummer, die den ELaaS-Anker (#elaas) aus dem NAV trägt — Embedded Engineering
-// ist der Ort, an dem das frühere ELaaS-Konzept jetzt lebt.
-const ELAAS_ANCHOR_PILLAR = "02";
-
-function CheckIcon() {
-  return (
-    <svg
-      className="w-4 h-4 text-cetl-gold-deep shrink-0 mt-0.5"
-      viewBox="0 0 16 16"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <polyline points="2 8 6 12 14 4" />
-    </svg>
-  );
-}
 
 const SVG_PROPS = {
   viewBox: "0 0 16 16",
@@ -79,101 +50,6 @@ export function ProgramsSection() {
   return (
     <section id="programs" className="py-14 lg:py-24 bg-cetl-dark">
       <Container>
-        {/* ── Section header ── */}
-        <SectionHeader
-          label={t.UI.pillars.label}
-          title={t.UI.pillars.title}
-          subtitle={t.UI.pillars.subtitle}
-          className="mb-16"
-          dark
-        />
-
-        {/* ── Category pillars (condensed) ── */}
-        <div id="services" className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
-          {t.PILLARS.map((pillar) => {
-            const Icon = ICON_MAP[pillar.icon];
-            return (
-              <TiltCard
-                key={pillar.number}
-                className="gradient-edge relative flex flex-col bg-cetl-surface rounded-2xl border border-cetl-border p-8"
-              >
-                {pillar.number === ELAAS_ANCHOR_PILLAR && (
-                  <span id="elaas" className="absolute -top-24" aria-hidden="true" />
-                )}
-                {/* Number accent */}
-                <span className="font-display text-7xl font-bold text-cetl-gold/[0.08] group-hover:text-cetl-gold/20 transition-colors absolute top-6 right-6 leading-none select-none">
-                  {pillar.number}
-                </span>
-
-                <div className="mb-6">
-                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-cetl-gold/20 to-cetl-gold-400/10 border border-cetl-gold/25 flex items-center justify-center mb-5 shadow-[0_0_24px_-8px_color-mix(in_srgb,var(--color-cetl-gold)_50%,transparent)]">
-                    <Icon className="w-7 h-7 text-cetl-gold-deep" strokeWidth={1.5} aria-hidden="true" />
-                  </div>
-                  <p className="text-cetl-text-muted text-xs font-semibold tracking-widest uppercase mb-2">
-                    {pillar.subtitle}
-                  </p>
-                  <h3 className="font-display text-2xl font-bold text-cetl-text">{pillar.title}</h3>
-                </div>
-
-                <p className="text-cetl-text-muted text-base leading-relaxed mb-8">
-                  {pillar.description}
-                </p>
-
-                <ul className="mt-auto flex flex-col gap-3">
-                  {pillar.items.map((item) => (
-                    <li key={item} className="flex items-start gap-3 text-base">
-                      <CheckIcon />
-                      <span className="text-cetl-text-muted">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </TiltCard>
-            );
-          })}
-        </div>
-
-        {/* ── Methodology: how the programs run ── */}
-        <div className="mb-20 pb-20 border-b border-cetl-border/50">
-          <SectionHeader
-            label={t.UI.methodology.label}
-            title={t.UI.methodology.title}
-            subtitle={t.UI.methodology.subtitle}
-            className="mb-14"
-            dark
-          />
-          <div className="relative flex flex-wrap justify-center gap-x-2 gap-y-10">
-            {t.METHODOLOGY_STEPS.map((step, i) => {
-              const Icon = ICON_MAP[step.icon];
-              return (
-                <div key={step.n} className="flex items-center">
-                  <div className="flex flex-col items-center gap-3 text-center max-w-[220px]">
-                    <span className="text-cetl-gold-deep text-sm font-semibold tracking-widest">{step.n}</span>
-                    <div className="w-20 h-20 rounded-full border border-cetl-border bg-cetl-dark flex items-center justify-center">
-                      <Icon className="w-8 h-8 text-cetl-gold-deep" strokeWidth={1.5} aria-hidden="true" />
-                    </div>
-                    <span className="font-display text-lg font-bold text-white">{step.title}</span>
-                    <p className="text-white/60 text-sm leading-relaxed">{step.description}</p>
-                  </div>
-                  {i < t.METHODOLOGY_STEPS.length - 1 && (
-                    <div className="hidden md:block w-8 lg:w-12 h-px bg-gradient-to-r from-cetl-gold/40 via-cetl-border to-cetl-gold/40 mx-1 -translate-y-14" />
-                  )}
-                </div>
-              );
-            })}
-          </div>
-          <div className="flex justify-center mt-12">
-            <Link
-              href="/programme/ki-kompetenzprogramm"
-              className="text-cetl-gold-400 text-sm font-semibold hover:text-white transition-colors duration-200 flex items-center gap-1.5"
-            >
-              {t.UI.methodology.cta}
-              <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M3 8h10M9 4l4 4-4 4" />
-              </svg>
-            </Link>
-          </div>
-        </div>
-
         {/* ── Flagship program: featured, single, in depth ── */}
         <div className="flex items-center gap-3 mb-2">
           <div className="h-px w-8 bg-cetl-gold/40" />

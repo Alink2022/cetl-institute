@@ -36,15 +36,6 @@ export interface InstStat {
   sub: string;
 }
 
-export interface Pillar {
-  number: string;
-  icon: LucideIconName;
-  title: string;
-  subtitle: string;
-  description: string;
-  items: string[];
-}
-
 export interface Program {
   tag: string;
   title: string;
@@ -287,7 +278,6 @@ export interface ContentBundle {
     credentials: { label: string; sub: string; logo?: string }[];
     focus: string[];
   };
-  PILLARS: Pillar[];
   METHODOLOGY_STEPS: MethodologyStep[];
   PROGRAMS: Program[];
   TAG_COLORS: Record<string, TagColor>;
@@ -587,7 +577,6 @@ export interface ContentBundle {
       complianceLine: string;
       imprintLabel: string;
     };
-    pillars: { label: string; title: string; subtitle: string };
     programs: {
       label: string;
       title: string;

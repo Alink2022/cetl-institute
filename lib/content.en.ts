@@ -450,12 +450,6 @@ export const en: ContentBundle = {
     { figure: "24%", claim: "Illustrative operational execution capability vs. documented AI strategy (82% leadership awareness, 54% documented strategy).", source: "CETL Execution Readiness Index", interpretation: "The gap between documented strategy and real operational execution capability is CETL's central focus area.", isIllustrative: true },
   ],
 
-  PILLARS: [
-    { number: "01", icon: "Brain", title: "Executional Learning", subtitle: "From Capability to Execution", description: "A standardized Data & AI foundation combined with customized activation, role-based journeys and guided use-case work.", items: ["8-day standardized Data & AI Foundation", "Role-based specialization tracks", "Use-case assessment and prioritization", "7-day Executional Learning support pool"] },
-    { number: "02", icon: "TrendingUp", title: "Embedded Engineering", subtitle: "Capability That Stays", description: "CETL experts work temporarily alongside internal teams to activate selected use cases, validate prototypes, enable workflows and transfer technical methods.", items: ["Forward-Deployed-Engineer-inspired approach", "Use-case activation and prototyping", "Knowledge transfer through joint execution", "Technical enablement close to the work"] },
-    { number: "03", icon: "Award", title: "Technical Assessment", subtitle: "Vendor-Neutral. Uncompromised.", description: "Independent architecture reviews, feasibility assessments, data and governance readiness evaluations.", items: ["Vendor-neutral architecture reviews", "Data and governance readiness assessments", "AI operating-model reviews", "Implementation-readiness assessments"] },
-  ],
-
   METHODOLOGY_STEPS: [
     { n: "01", icon: "Brain", title: "Understand", description: "Participants build the technological and methodological literacy required to evaluate Data, AI, automation, opportunities, limitations and risks realistically." },
     { n: "02", icon: "Layers", title: "Apply", description: "Organizational tools, processes, standards and work contexts are integrated directly into the learning journey." },
@@ -948,7 +942,6 @@ export const en: ContentBundle = {
       imprintLabel: "Legal Notice",
     },
 
-    pillars: { label: "What We Do", title: "Three integrated capabilities", subtitle: "From learning to execution" },
     programs: { label: "Programmes", title: "Structured for every role", subtitle: "One foundation. Differentiated journeys.", cta: "Explore Programmes", filterAll: "All", filterLabel: "Filter by level", ctaAdvisor: "Discuss Your Capability Agenda", detailCta: "Learn More" },
     partners: { trusted: "Selected organizations in the CETL ecosystem", blurbBefore: "", blurbHackathon: "Europe Tech Hackathon", blurbAfter: "" },
     research: { label: "Evidence", title: "The execution gap is measurable.", subtitle: "Research consistently supports the case for coordinated capability systems.", cta: "Explore Research" },

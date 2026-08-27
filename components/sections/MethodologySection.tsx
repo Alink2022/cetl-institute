@@ -1,15 +1,21 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import {
-  GraduationCap, BookOpen, Settings2, Lightbulb, CheckCircle2,
+  GraduationCap, BookOpen, Settings2, Lightbulb, CheckCircle2, Cog, Users, Flag, ArrowRight,
+  Brain, Layers, Network, Target,
 } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { useLanguage } from "@/lib/i18n";
-import type { ProductIconName } from "@/lib/content-types";
+import type { ProductIconName, LucideIconName } from "@/lib/content-types";
 
 const CAPABILITY_ICON_MAP: Partial<Record<ProductIconName, React.ElementType>> = {
   GraduationCap, BookOpen, Settings2, Lightbulb,
+};
+
+const FLOW_ICON_MAP: Partial<Record<LucideIconName, React.ElementType>> = {
+  Lightbulb, Cog, Users, Flag, Brain, Layers, Network, Target,
 };
 
 export function MethodologySection() {
@@ -82,6 +88,47 @@ export function MethodologySection() {
                   </div>
                 );
               })}
+            </div>
+          </div>
+        )}
+
+        {/* Methodology flow: how it plays out step by step */}
+        {t.METHODOLOGY_STEPS && t.METHODOLOGY_STEPS.length > 0 && (
+          <div className="max-w-5xl mx-auto mt-14 pt-14 border-t border-cetl-border">
+            <h3 className="font-display text-cetl-navy-900 text-xl sm:text-2xl font-bold text-center mb-3">
+              {t.UI.methodology.title}
+            </h3>
+            <p className="text-cetl-text-muted text-sm sm:text-base leading-relaxed text-center max-w-2xl mx-auto mb-10">
+              {t.UI.methodology.subtitle}
+            </p>
+            <div className="flex flex-wrap justify-center gap-x-2 gap-y-10">
+              {t.METHODOLOGY_STEPS.map((step, i) => {
+                const Icon = FLOW_ICON_MAP[step.icon] ?? Lightbulb;
+                return (
+                  <div key={step.n} className="flex items-center">
+                    <div className="flex flex-col items-center gap-3 text-center max-w-[200px]">
+                      <span className="text-cetl-gold-700 text-xs font-semibold tracking-widest">{step.n}</span>
+                      <div className="w-16 h-16 rounded-full bg-cetl-gold-200/50 flex items-center justify-center">
+                        <Icon className="w-7 h-7 text-cetl-gold-700" strokeWidth={1.5} aria-hidden="true" />
+                      </div>
+                      <span className="font-display text-base font-bold text-cetl-navy-900">{step.title}</span>
+                      <p className="text-cetl-text-muted text-xs leading-relaxed">{step.description}</p>
+                    </div>
+                    {i < t.METHODOLOGY_STEPS.length - 1 && (
+                      <div className="hidden md:block w-8 lg:w-10 h-px bg-cetl-border mx-1 -translate-y-10" />
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+            <div className="flex justify-center mt-10">
+              <Link
+                href="/programme/ki-kompetenzprogramm"
+                className="text-cetl-gold-700 text-sm font-semibold hover:text-cetl-navy-900 transition-colors duration-200 flex items-center gap-1.5"
+              >
+                {t.UI.methodology.cta}
+                <ArrowRight className="w-4 h-4" strokeWidth={2} aria-hidden="true" />
+              </Link>
             </div>
           </div>
         )}

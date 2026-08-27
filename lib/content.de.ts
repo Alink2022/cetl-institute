@@ -41,47 +41,6 @@ export const de: ContentBundle = {
     focus: ["AI-Strategie & Governance", "Decision Intelligence", "Market Intelligence", "Datenstrategie"],
   },
 
-  PILLARS: [
-    {
-      number: "01",
-      icon: "Brain",
-      title: "Executive Education",
-      subtitle: "Technologische Sprachfähigkeit",
-      description:
-        "Keine Schulung. Keine Bewusstseins-Kampagne. Führungsteams entwickeln die technologische Urteilskompetenz, um Vendor-Narrative zu dekodieren, Architekturrisiken eigenständig zu bewerten und Use-Case-Portfolios nach strategischer Priorität, nicht nach Demonstrationsfähigkeit, zu gewichten.",
-      items: [
-        "Technologie-Risikobewertung für strategische Entscheider",
-        "Strukturierte Use-Case-Priorisierung nach Datenreife und ROI",
-        "AI Governance Frameworks für regulierte Branchen",
-      ],
-    },
-    {
-      number: "02",
-      icon: "TrendingUp",
-      title: "Embedded Engineering",
-      subtitle: "Kompetenz, die bleibt",
-      description:
-        "Forward Deployed Engineers sind keine externen Berater. Sie sind temporär eingebettete Fachexperten, die methodisch neben den eigenen technischen Teams arbeiten. Das Ziel ist nicht die Projektlieferung, sondern der strukturierte Transfer von Enterprise-AI- und Daten-Kompetenz direkt in die eigene Organisation. Validierte Kompetenz verbleibt dabei in der Organisation, herstellerneutral und strukturell unabhängig von externen Anbietern.",
-      items: [
-        "Forward Deployed Engineers (3–6 Monate, projektintegriert)",
-        "Interne KI-Fähigkeit als messbare Delivery-Metrik",
-        "Governance-Framework-Entwicklung mit internen Teams",
-      ],
-    },
-    {
-      number: "03",
-      icon: "Award",
-      title: "Technische Bewertung",
-      subtitle: "Herstellerneutral. Unbestechlich.",
-      description:
-        "CETL hält keine Reseller-Vereinbarungen, keine Plattform-Partnerschaften. Architektur-Reviews, Feasibility-Assessments und Legacy-Decommissioning-Strategien werden ausschließlich auf Basis technischer Validität, Compliance-Anforderungen und langfristiger Architektursouveränität entwickelt.",
-      items: [
-        "Vendor-neutrale Architektur- und Feasibility-Reviews",
-        "Daten- und Governance-Reifegrad-Assessment",
-        "Legacy-Decommissioning-Roadmaps mit Risikoprofil",
-      ],
-    },
-  ],
 
   METHODOLOGY_STEPS: [
     {
@@ -614,12 +573,6 @@ export const de: ContentBundle = {
       intro:
         "Großflächige KI- und Dateninitiativen scheitern nicht an mangelnder Ambition. Sie scheitern an der strukturellen Inkompatibilität zwischen Strategieebene und technischer Realität: zwischen dem, was eine Roadmap verspricht, und dem, was Enterprise-Architektur, Datenreife und Governance tatsächlich tragen.",
       answer: "Das strukturelle Gegenmittel: methodischer Kompetenzaufbau statt Consulting-Abhängigkeit →",
-    },
-    pillars: {
-      label: "Das Leistungsportfolio",
-      title: "Drei Instrumente. Ein Ziel: Operative KI-Souveränität.",
-      subtitle:
-        "Kein Einheitsformat. Kein generisches Curriculum. Das Portfolio ist auf die spezifischen Reifegradlücken von Organisationen mit komplexer Enterprise-Architektur und regulatorischen Anforderungen ausgelegt.",
     },
     methodology: {
       label: "So laufen unsere Programme ab",
