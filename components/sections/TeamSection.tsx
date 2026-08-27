@@ -32,7 +32,14 @@ export function TeamSection() {
                 <div className="absolute inset-0 rounded-full bg-cetl-gold/15 blur-md" aria-hidden />
                 {member.photo ? (
                   <div className="relative w-full h-full rounded-full overflow-hidden ring-2 ring-cetl-gold ring-offset-2 ring-offset-white">
-                    <Image src={member.photo} alt={member.name} fill sizes="128px" className="object-cover" />
+                    <Image
+                      src={member.photo}
+                      alt={member.name}
+                      fill
+                      sizes="128px"
+                      className="object-cover"
+                      style={member.photoPosition ? { objectPosition: member.photoPosition } : undefined}
+                    />
                   </div>
                 ) : (
                   <div className="relative w-full h-full rounded-full ring-2 ring-cetl-gold ring-offset-2 ring-offset-white bg-gradient-to-br from-cetl-surface to-cetl-dark flex items-center justify-center">

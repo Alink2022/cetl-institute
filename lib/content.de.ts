@@ -320,7 +320,7 @@ export const de: ContentBundle = {
   ],
 
   TEAM_MEMBERS: [
-    { name: "Alin Kalam", role: "Managing Director & Academic Coordinator", initials: "AK", photo: "/team-alin.png" },
+    { name: "Alin Kalam", role: "Managing Director & Academic Coordinator", initials: "AK", photo: "/team-alin.png", photoPosition: "50% 12%" },
     { name: "Karl Ivo Sokolov", role: "Co-Founder & Industry Expert", initials: "KS", photo: "/team-ivo.jpeg" },
     { name: "Stefan Bauer", role: "Community & Academic Expert", initials: "SB", photo: "/team-stefan.jpeg" },
   ],

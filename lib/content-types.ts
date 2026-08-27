@@ -69,6 +69,7 @@ export interface TeamMember {
   role: string;
   initials: string;
   photo?: string;
+  photoPosition?: string;
 }
 
 export interface MarketStat {
