@@ -70,8 +70,8 @@ export function MethodologySection() {
                     className="flex flex-col gap-4 rounded-xl border border-cetl-border bg-white p-5 shadow-[0_2px_16px_-8px_rgba(0,0,0,0.1)]"
                   >
                     <div className="flex items-center gap-3">
-                      <div className="w-9 h-9 rounded-md bg-cetl-navy-900 flex items-center justify-center shrink-0">
-                        <Icon className="w-4 h-4 text-cetl-gold-400" strokeWidth={1.5} />
+                      <div className="w-10 h-10 rounded-md border border-cetl-navy-900/25 bg-white flex items-center justify-center shrink-0">
+                        <Icon className="w-5 h-5 text-cetl-navy-900" strokeWidth={1.5} />
                       </div>
                       <h4 className="font-display text-cetl-navy-900 font-bold text-sm leading-snug">
                         {service.title}
