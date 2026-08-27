@@ -378,7 +378,7 @@ export const en: ContentBundle = {
     ],
     image: "/elaas/elaas-methodology-ecosystem.png",
     imageAlt: "ELaaS methodology & ecosystem: Foundation, Specialization and Executional module in a 6-step cycle around academic world, industry and community",
-    capabilitiesHeading: "Our Services for Executional Learning",
+    capabilitiesHeading: "Our Approach to Executional Learning",
   },
 
   PROGRAM_FLOW_STEPS: [
@@ -681,9 +681,9 @@ export const en: ContentBundle = {
     },
 
     productPortfolio: {
-      eyebrow: "CETL Products",
-      headline: "A unique framework of learning, assessment and enablement.",
-      intro: "The CETL portfolio is strategically and operationally designed for the specific maturity gaps of organizations with complex enterprise architecture and regulatory requirements. We connect structured executional learning with independent capability assessment and hands-on enablement — modular and combinable, from foundation to embedded execution, with cross-industry use cases, industry workshops, data & AI literacy blocks and tech modules.",
+      eyebrow: "CETL Portfolio",
+      headline: "Maximum customization for your organization through CETL's unique framework.",
+      intro: "CETL enables organizations through the unique, individual coupling of your company strategy (standards, tools, operational goals & challenges) with the learning outcomes and objectives of your most valuable asset: your people. The CETL portfolio is strategically and operationally designed for the specific maturity gaps of organizations with complex enterprise architecture and regulatory requirements — we connect structured executional learning with independent capability assessment and hands-on enablement, modular and combinable from foundation to embedded execution, with cross-industry use cases, industry workshops, data & AI literacy blocks and tech modules.",
     },
     programFlow: {
       headline: "How our programs run",

@@ -29,26 +29,26 @@ export function EcosystemSection() {
           {t.PARTNER_GROUPS.map((group) => (
             <div
               key={group.label}
-              className="rounded-2xl overflow-hidden border border-cetl-border bg-white shadow-[0_4px_20px_-10px_rgba(0,0,0,0.12)]"
+              className="flex flex-col rounded-2xl overflow-hidden border border-cetl-border bg-white shadow-[0_4px_20px_-10px_rgba(0,0,0,0.12)]"
             >
               <div className="bg-cetl-navy-900 py-4 px-4 text-center">
                 <h3 className="font-display text-white text-sm font-bold tracking-[0.1em] uppercase">
                   {group.label}
                 </h3>
               </div>
-              <div className="grid grid-cols-2 gap-3 p-5">
+              <div className="grid grid-cols-3 gap-x-3 gap-y-7 p-6 flex-1">
                 {group.partners.map((partner) => (
                   <div
                     key={partner.name}
-                    className="flex items-center justify-center h-16 px-3 rounded-lg bg-cetl-surface border border-cetl-border"
+                    className="flex items-center justify-center h-11"
                     title={partner.name}
                   >
                     <Image
                       src={partner.logo}
                       alt={partner.name}
-                      width={partner.logoWidth ?? 120}
-                      height={partner.logoHeight ?? 36}
-                      style={{ width: "auto", height: "auto", maxWidth: "80%", maxHeight: 34 }}
+                      width={partner.logoWidth ?? 140}
+                      height={partner.logoHeight ?? 44}
+                      style={{ width: "auto", height: "auto", maxWidth: "100%", maxHeight: 40 }}
                       className="object-contain"
                       unoptimized
                     />

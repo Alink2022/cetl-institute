@@ -403,7 +403,7 @@ export const de: ContentBundle = {
     ],
     image: "/elaas/elaas-methodology-ecosystem.png",
     imageAlt: "ELaaS Methodik & Ökosystem: Foundation-, Specialization- und Executional-Modul im 6-Schritte-Zyklus rund um akademische Welt, Industrie und Community",
-    capabilitiesHeading: "Unsere Leistungen für Executional Learning",
+    capabilitiesHeading: "Unser Zugang zum Executional Learning",
   },
 
   PROGRAM_FLOW_STEPS: [
@@ -757,9 +757,9 @@ export const de: ContentBundle = {
       cta: "Das vollständige ELaaS-Modell erkunden",
     },
     productPortfolio: {
-      eyebrow: "CETL Produkte",
-      headline: "Einzigartiges Rahmenwerk aus Lernen, Bewertung und Befähigung.",
-      intro: "CETL Portfolio ist strategisch & operativ auf die spezifischen Reifegradlücken von Organisationen mit komplexer Enterprise-Architektur und regulatorischen Anforderungen ausgelegt. Wir verbinden strukturiertes Executional Learning mit unabhängiger Fähigkeitsbewertung und praxisnaher Befähigung — modular kombinierbar, von der Grundlage bis zur eingebetteten Umsetzung mit branchenübergreifenden Use Cases, Industry-Workshops, Data-&-AI-Literacy-Blöcken und Tech-Modulen.",
+      eyebrow: "CETL Portfolio",
+      headline: "Höchste Individualisierung für Ihr Unternehmen durch CETLs einzigartiges Rahmenwerk.",
+      intro: "CETL befähigt Unternehmen durch die einzigartige, individuelle Kopplung Ihrer Unternehmensstrategie (Standards, Tools, operative Ziele & Herausforderungen) mit den Lernergebnissen und -zielen Ihres wertvollsten Guts: Ihrer Mitarbeiter:innen. CETL Portfolio ist strategisch & operativ auf die spezifischen Reifegradlücken von Organisationen mit komplexer Enterprise-Architektur und regulatorischen Anforderungen ausgelegt — wir verbinden strukturiertes Executional Learning mit unabhängiger Fähigkeitsbewertung und praxisnaher Befähigung, modular kombinierbar von der Grundlage bis zur eingebetteten Umsetzung, mit branchenübergreifenden Use Cases, Industry-Workshops, Data-&-AI-Literacy-Blöcken und Tech-Modulen.",
     },
     programFlow: {
       headline: "So laufen unsere Programme ab",
