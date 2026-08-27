@@ -370,7 +370,7 @@ export const en: ContentBundle = {
 
   ELAAS_METHODOLOGY: {
     eyebrow: "Our Core USP",
-    headline: "Executional Learning as a Service: Methodology & Ecosystem",
+    headline: "Methodology",
     intro: [
       "Our Executional Learning methodology combines the best of high-caliber academic modules with certification, industry and community — activating capabilities directly in practice, with tailored learning formats and role-based activation for enterprise transformation.",
       "The methodology scales these learning architectures flexibly to context and audience, while embedded engineering, for example, brings enablement close to real business challenges. Through our community, we turn ecosystem energy into shared impact — from idea to solution, something standardized learning formats, courses and seminars (sometimes with short capstones) cannot deliver on their own.",
@@ -682,7 +682,7 @@ export const en: ContentBundle = {
 
     productPortfolio: {
       eyebrow: "CETL Portfolio",
-      headline: "Maximum customization for your organization through CETL's unique framework.",
+      headline: "Customization for the talent in your organization.",
       intro: "CETL enables organizations through the unique, individual coupling of your company strategy (standards, tools, operational goals & challenges) with the learning outcomes and objectives of your most valuable asset: your people. The CETL portfolio is strategically and operationally designed for the specific maturity gaps of organizations with complex enterprise architecture and regulatory requirements — we connect structured executional learning with independent capability assessment and hands-on enablement, modular and combinable from foundation to embedded execution, with cross-industry use cases, industry workshops, data & AI literacy blocks and tech modules.",
     },
     programFlow: {
