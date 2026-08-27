@@ -384,16 +384,10 @@ export interface ContentBundle {
       quadrantOutOfFocus: string;
       quadrantSteady: string;
       focusLabel: string;
-      categories: {
-        cognitive: string;
-        engagement: string;
-        ethics: string;
-        management: string;
-        physical: string;
-        selfEfficacy: string;
-        technology: string;
-        workingWithOthers: string;
-      };
+    };
+    techQuote: {
+      quote: string;
+      body: string;
     };
     portfolio: {
       eyebrow: string;

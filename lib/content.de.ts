@@ -782,16 +782,10 @@ export const de: ContentBundle = {
       quadrantOutOfFocus: "Nachrangige Skills",
       quadrantSteady: "Stabile Skills",
       focusLabel: "CETL-Fokus: Aufkommende & Kernkompetenzen 2030",
-      categories: {
-        cognitive: "Kognitive Fähigkeiten",
-        engagement: "Engagement-Fähigkeiten",
-        ethics: "Ethik",
-        management: "Management-Fähigkeiten",
-        physical: "Physische Fähigkeiten",
-        selfEfficacy: "Selbstwirksamkeit",
-        technology: "Technologie-Fähigkeiten",
-        workingWithOthers: "Zusammenarbeit",
-      },
+    },
+    techQuote: {
+      quote: "Technologie wird zur Commodity.",
+      body: "Für die zukünftige, post-KI-transformierte Ära brauchen wir Fachexpert:innen und Entscheidungsträger:innen mit höchster Literacy in KI, Daten und Technologie an der Schnittstelle zu ihrem Fachgebiet.",
     },
     portfolio: {
       eyebrow: "CETL Institute | Produktportfolio",

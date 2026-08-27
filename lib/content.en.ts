@@ -706,16 +706,10 @@ export const en: ContentBundle = {
       quadrantOutOfFocus: "Out of Focus Skills",
       quadrantSteady: "Steady Skills",
       focusLabel: "CETL Focus: Emerging & Core Skills 2030",
-      categories: {
-        cognitive: "Cognitive Skills",
-        engagement: "Engagement Skills",
-        ethics: "Ethics",
-        management: "Management Skills",
-        physical: "Physical Abilities",
-        selfEfficacy: "Self-Efficacy",
-        technology: "Technology Skills",
-        workingWithOthers: "Working with Others",
-      },
+    },
+    techQuote: {
+      quote: "Technology is becoming a commodity.",
+      body: "For the future, post-AI-transformed era, we need subject-matter experts and decision-makers with the highest literacy in AI, data and technology at the intersection with their field.",
     },
 
     portfolio: {

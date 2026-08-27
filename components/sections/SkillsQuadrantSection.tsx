@@ -60,7 +60,6 @@ const scaleY = (v: number) => PLOT.bottom - (v / 100) * (PLOT.bottom - PLOT.top)
 export function SkillsQuadrantSection() {
   const { t } = useLanguage();
   const ui = t.UI.skillsQuadrant;
-  const cat = ui.categories;
 
   const dividerXpx = scaleX(DIVIDER_X);
   const dividerYpx = scaleY(DIVIDER_Y);
@@ -164,17 +163,7 @@ export function SkillsQuadrantSection() {
             </svg>
           </div>
 
-          {/* Legend */}
-          <div className="flex flex-wrap justify-center gap-x-5 gap-y-2 mt-6 pt-6 border-t border-cetl-border">
-            {(Object.keys(cat) as CategoryKey[]).map((key) => (
-              <div key={key} className="flex items-center gap-1.5">
-                <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: CATEGORY_COLOR[key] }} />
-                <span className="text-cetl-text-muted text-xs">{cat[key]}</span>
-              </div>
-            ))}
-          </div>
-
-          <p className="text-cetl-text-muted/60 text-[10px] tracking-wide text-center mt-4">{ui.source}</p>
+          <p className="text-cetl-text-muted/60 text-[10px] tracking-wide text-center mt-6 pt-6 border-t border-cetl-border">{ui.source}</p>
         </div>
       </Container>
     </section>

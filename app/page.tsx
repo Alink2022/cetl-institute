@@ -8,6 +8,7 @@ import { MethodologySection } from "@/components/sections/MethodologySection";
 import { ProductPortfolioSection } from "@/components/sections/ProductPortfolioSection";
 import { MarketStatsSection } from "@/components/sections/MarketStatsSection";
 import { SkillsQuadrantSection } from "@/components/sections/SkillsQuadrantSection";
+import { TechQuoteSection } from "@/components/sections/TechQuoteSection";
 import { CaseStudySection } from "@/components/sections/CaseStudySection";
 import { ProgramsSection } from "@/components/sections/ProgramsSection";
 import { InsightsSection } from "@/components/sections/InsightsSection";
@@ -33,6 +34,7 @@ export default function Home() {
         <GoldDivider />
         <MarketStatsSection />
         <SkillsQuadrantSection />
+        <TechQuoteSection />
         <GoldDivider />
         <ProgramsSection />
         <GoldDivider />
