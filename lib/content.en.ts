@@ -409,14 +409,6 @@ export const en: ContentBundle = {
     { name: "Stefan Bauer", role: "Community & Academic Expert", initials: "SB", photo: "/team-stefan.jpeg" },
   ],
 
-  ECOSYSTEM_NODES: [
-    { number: "1", title: "Community & Collaboration", description: "Peer exchange, expert access, interdisciplinary collaboration and community-powered learning." },
-    { number: "2", title: "Technology & Methodic Literacy", description: "Practical understanding of Data, AI, automation, governance and technology-related decision-making." },
-    { number: "3", title: "Case-based Education", description: "Learning built around real organizations, business challenges, workflows and use cases." },
-    { number: "4", title: "Scientific Coordination", description: "Academic rigor, curriculum quality, methodological consistency and university collaboration." },
-    { number: "5", title: "Innovation & Idea Labs", description: "Structured ideation, experimentation, use-case development, prototyping and validation." },
-    { number: "6", title: "Education as a Service Platform", description: "Modular and scalable capability programmes designed to evolve with organizational demand." },
-  ],
 
   NETWORK_LAYERS: [
     {
@@ -770,7 +762,7 @@ export const en: ContentBundle = {
     ecosystem: {
       eyebrow: "The CETL Ecosystem",
       headline: "CETL Ecosystem",
-      intro: "Large-scale Data and AI initiatives rarely fail because organizations lack ambition. They fail because strategy, capability, data readiness, governance and technical execution are treated as separate activities. Our unique CETL ecosystem connects six building blocks into one coordinated system of knowledge, application and execution that directly serves as the fundament of the unique Executional Learning we deliver.",
+      intro: "Large-scale Data and AI initiatives rarely fail because organizations lack ambition. They fail because strategy, capability, data readiness, governance and technical execution are treated as separate activities. Our unique CETL ecosystem connects academic excellence, industry practice and community into one coordinated system of knowledge, application and execution that directly serves as the fundament of the unique Executional Learning we deliver.",
       bottomBand: ["Community-driven learning", "Execution-oriented capability building", "Academic rigor meets real-world deployment"],
     },
 

@@ -165,12 +165,6 @@ export interface Package {
   featured?: boolean;
 }
 
-export interface EcosystemNode {
-  number: string;
-  title: string;
-  description: string;
-}
-
 export type ProgramFlowIconName =
   | "Search" | "Settings2" | "Rocket" | "Cog" | "Users" | "Globe" | "TrendingUp" | "UsersRound";
 
@@ -316,7 +310,6 @@ export interface ContentBundle {
   /* ── New ELaaS content ── */
   PORTFOLIO_PRODUCTS: PortfolioProduct[];
   PACKAGES: Package[];
-  ECOSYSTEM_NODES: EcosystemNode[];
   NETWORK_LAYERS: NetworkLayer[];
   ROLE_CARDS: RoleCard[];
   EVIDENCE_STATS: EvidenceStat[];
