@@ -103,7 +103,7 @@ export interface CaseMetric {
   highlight?: boolean;
 }
 
-export type CaseStudyIconName = "Landmark" | "Factory";
+export type CaseStudyIconName = "Landmark" | "Factory" | "GraduationCap";
 
 export interface CaseStudyExample {
   icon: CaseStudyIconName;

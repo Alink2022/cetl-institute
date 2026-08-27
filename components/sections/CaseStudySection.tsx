@@ -2,13 +2,13 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Landmark, Factory, ChevronLeft, ChevronRight } from "lucide-react";
+import { Landmark, Factory, GraduationCap, ChevronLeft, ChevronRight } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { useLanguage } from "@/lib/i18n";
 import type { CaseStudyExample, CaseStudyIconName } from "@/lib/content-types";
 
 const ICON_MAP: Record<CaseStudyIconName, React.ElementType> = {
-  Landmark, Factory,
+  Landmark, Factory, GraduationCap,
 };
 
 function CaseStudyCard({ example }: { example: CaseStudyExample }) {

@@ -560,7 +560,7 @@ export const en: ContentBundle = {
     {
       icon: "Factory",
       sector: "Infrastructure & Industry",
-      headline: "AI Hackathon with Cross-Industry Activation",
+      headline: "Executional Learning & Community Program",
       desc: "A large-scale format with 70+ experts from 12 universities and universities of applied sciences produced more than 12 solution impulses for deep-tech AI projects — embedded in a multi-stage enablement programme.",
       metrics: [
         { label: "AI Hackathon", value: "70+ experts, 12 institutions" },
@@ -584,6 +584,18 @@ export const en: ContentBundle = {
         { label: "Total Programme Scope", value: "31 days", highlight: true },
         { label: "Executional Learning", value: "80 hrs (10 days)" },
         { label: "Delivery Model", value: "ELaaS" },
+      ],
+    },
+    {
+      icon: "GraduationCap",
+      sector: "University Executive Academy",
+      headline: "Customized Education Design for Executive Programs",
+      desc: "Individual education design for a university's executive programme — from concept to hands-on application with participants' own data and use cases.",
+      metrics: [
+        { label: "Education Design for Executive Programmes", value: "6 days" },
+        { label: "Bring Your Own Data Project", value: "16 hrs" },
+        { label: "Use Case Discovery Track", value: "8 hrs" },
+        { label: "Storytelling with Data", value: "16 hrs" },
       ],
     },
   ],
