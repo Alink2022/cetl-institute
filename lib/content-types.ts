@@ -1,5 +1,4 @@
 export type LucideIconName = "Brain" | "TrendingUp" | "Award" | "Users" | "Lightbulb" | "Cog" | "Flag" | "Target" | "ChevronRight" | "ArrowRight" | "Shield" | "BookOpen" | "Layers" | "Network" | "Zap" | "BarChart2" | "GraduationCap" | "Building2" | "Globe" | "Cpu";
-export type TagColor = "gold" | "blue" | "muted";
 
 export interface Testimonial {
   quote: string;
@@ -34,15 +33,6 @@ export interface InstStat {
   value: string;
   label: string;
   sub: string;
-}
-
-export interface Program {
-  tag: string;
-  title: string;
-  format: string;
-  level: string;
-  description: string;
-  href?: string;
 }
 
 export interface MethodologyStep {
@@ -113,10 +103,14 @@ export interface CaseMetric {
   highlight?: boolean;
 }
 
-export interface CasePrinciple {
-  num: string;
-  title: string;
+export type CaseStudyIconName = "Landmark" | "Factory";
+
+export interface CaseStudyExample {
+  icon: CaseStudyIconName;
+  sector: string;
+  headline: string;
   desc: string;
+  metrics: CaseMetric[];
 }
 
 export interface IntersectionPartner {
@@ -245,14 +239,7 @@ export interface ContentBundle {
     quoteAttribution: string;
   };
   FACULTY_POSITIONS: FacultyPosition[];
-  CASE_STUDY: {
-    clientTag: string;
-    client: string;
-    title: string;
-    desc: string;
-    metrics: CaseMetric[];
-    principles: CasePrinciple[];
-  };
+  CASE_STUDIES: CaseStudyExample[];
   INTERSECTION_CATEGORIES: IntersectionCategory[];
   SITE: {
     name: string;
@@ -279,8 +266,6 @@ export interface ContentBundle {
     focus: string[];
   };
   METHODOLOGY_STEPS: MethodologyStep[];
-  PROGRAMS: Program[];
-  TAG_COLORS: Record<string, TagColor>;
   PARTNERS: Partner[];
   PARTNER_GROUPS: PartnerGroup[];
   PRODUCT_GROUPS: ProductGroup[];
@@ -458,11 +443,8 @@ export interface ContentBundle {
     caseStudy: {
       eyebrow: string;
       headline: string;
-      body: string;
-      cta: string;
-      label: string;
-      title: string;
       subtitle: string;
+      cta: string;
     };
     evidence: {
       eyebrow: string;
@@ -576,16 +558,6 @@ export interface ContentBundle {
       copyright: string;
       complianceLine: string;
       imprintLabel: string;
-    };
-    programs: {
-      label: string;
-      title: string;
-      subtitle: string;
-      cta: string;
-      filterAll: string;
-      filterLabel: string;
-      ctaAdvisor: string;
-      detailCta: string;
     };
     partners: { trusted: string; blurbBefore: string; blurbHackathon: string; blurbAfter: string };
     research: { label: string; title: string; subtitle: string; cta: string };

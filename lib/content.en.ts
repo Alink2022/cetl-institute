@@ -19,7 +19,7 @@ export const en: ContentBundle = {
   NAV_LINKS: [
     { label: "About", href: "#about" },
     { label: "Products", href: "#products" },
-    { label: "Programs", href: "#programs" },
+    { label: "Programs", href: "#case-study" },
     { label: "Insights", href: "/insights" },
   ],
 
@@ -457,14 +457,6 @@ export const en: ContentBundle = {
     { n: "04", icon: "Target", title: "Execute", description: "Every journey ends in a concrete organizational output: a use case, prototype, business case, operating-model decision or implementation roadmap." },
   ],
 
-  PROGRAMS: [
-    { tag: "Foundation", title: "Enterprise Data & AI Capability Programme", format: "3–12 months", level: "All roles", description: "One coordinated capability system for the entire organization. Shared foundation, role-based specialization and guided projects.", href: "/programme/ki-kompetenzprogramm" },
-    { tag: "Specialization", title: "Everyday AI Learning Journey", format: "Modular", level: "Business Users", description: "Apply AI effectively and safely in daily work. Practical, role-specific and connected to real organizational tools." },
-    { tag: "Leadership", title: "AI Leadership Programme", format: "Intensive", level: "C-Suite & Board", description: "Steer AI strategy, investments, governance and operating models with genuine technological judgment." },
-    { tag: "Technical", title: "AI Expert Track", format: "Deep-Dive", level: "Technical Staff", description: "Validate, design and implement Data and AI solutions in the organization's real technical context." },
-  ],
-
-  TAG_COLORS: { Foundation: "gold", Specialization: "blue", Leadership: "muted", Technical: "gold" },
 
   PROBLEM_ITEMS: [
     { title: "PoC graveyards instead of enterprise operations", desc: "A use case works in a sandbox, but production data, governance, ownership and implementation responsibilities remain unresolved. The result is activity without scalable value creation." },
@@ -564,24 +556,37 @@ export const en: ContentBundle = {
     { initials: "ID", role: "Industry Director", desc: "Enterprise relevance, corporate access and cross-sector transfer." },
   ],
 
-  CASE_STUDY: {
-    clientTag: "Enterprise Programme",
-    client: "RLB OÖ × CETL Institute",
-    title: "Executional Learning in Practice",
-    desc: "A customized Enterprise Data & AI Capability Programme combining a shared foundation, differentiated role tracks and guided project work. Structured as an integrated organizational enablement system rather than a conventional training catalogue.",
-    metrics: [
-      { label: "Foundation Programme", value: "15 days", highlight: true },
-      { label: "Role Tracks", value: "2 × 8 days" },
-      { label: "Total Programme Scope", value: "31 days", highlight: true },
-      { label: "Guided Projects", value: "Own use case" },
-      { label: "Delivery Model", value: "ELaaS" },
-    ],
-    principles: [
-      { num: "01", title: "Role-Specific Enablement", desc: "Learning journeys for AI Leadership, Everyday AI, AI Champions and internal AI experts, aligned with responsibility and maturity." },
-      { num: "02", title: "Guided Projects with Output", desc: "Each learning path concludes with structured use cases, business cases or implementation contributions, from initial canvas to final pitch." },
-      { num: "03", title: "Direct Contribution to Strategy", desc: "Programme outputs feed into the organization's use-case pipeline, prioritization logic and transformation agenda." },
-    ],
-  },
+  CASE_STUDIES: [
+    {
+      icon: "Factory",
+      sector: "Infrastructure & Industry",
+      headline: "AI Hackathon with Cross-Industry Activation",
+      desc: "A large-scale format with 70+ experts from 12 universities and universities of applied sciences produced more than 12 solution impulses for deep-tech AI projects — embedded in a multi-stage enablement programme.",
+      metrics: [
+        { label: "AI Hackathon", value: "70+ experts, 12 institutions" },
+        { label: "Deep-Tech AI Solution Impulses", value: "12+", highlight: true },
+        { label: "Foundation", value: "6 days" },
+        { label: "Executive Enablement Track", value: "4 days" },
+        { label: "Company-Wide AI Basics Training", value: "8 hrs (digital)" },
+        { label: "Executional Learning", value: "80 hrs (10 days) per project" },
+        { label: "Out-of-the-Box Sessions", value: "20+ hrs, cross-industry experts" },
+        { label: "AI Roadmap Mentoring", value: "Strategy guidance" },
+      ],
+    },
+    {
+      icon: "Landmark",
+      sector: "Banking & Finance",
+      headline: "Executional Learning in Action",
+      desc: "A tailored AI capability programme for a regional bank: an integrated enablement system with role-specific learning paths and guided projects — not a training catalogue.",
+      metrics: [
+        { label: "Foundation Programme", value: "15 days" },
+        { label: "Role Tracks (AI Users, AI Champions)", value: "2 × 8 days" },
+        { label: "Total Programme Scope", value: "31 days", highlight: true },
+        { label: "Executional Learning", value: "80 hrs (10 days)" },
+        { label: "Delivery Model", value: "ELaaS" },
+      ],
+    },
+  ],
 
   INTERSECTION_CATEGORIES: [
     { label: "Academic & Professional", partners: [{ name: "TU Wien", desc: "Technical University of Vienna" }, { name: "Institute of Management Accountants", desc: "Professional institution" }, { name: "Lauder Business School", desc: "Business school" }] },
@@ -807,13 +812,10 @@ export const en: ContentBundle = {
     },
 
     caseStudy: {
-      eyebrow: "Executional Learning in Practice",
-      headline: "Proof that capability building can connect directly to organizational execution.",
-      body: "A customized Enterprise Data & AI Capability Programme combines a shared foundation, differentiated role tracks and guided project work.",
+      eyebrow: "In Practice",
+      headline: "Examples of Customized Programs.",
+      subtitle: "Two organizations, two starting points — one individually tailored Executional Learning programme.",
       cta: "Discuss a Similar Programme",
-      label: "Client Case",
-      title: "Executional Learning in Practice",
-      subtitle: "RLB OÖ × CETL Institute",
     },
 
     evidence: {
@@ -942,7 +944,6 @@ export const en: ContentBundle = {
       imprintLabel: "Legal Notice",
     },
 
-    programs: { label: "Programmes", title: "Structured for every role", subtitle: "One foundation. Differentiated journeys.", cta: "Explore Programmes", filterAll: "All", filterLabel: "Filter by level", ctaAdvisor: "Discuss Your Capability Agenda", detailCta: "Learn More" },
     partners: { trusted: "Selected organizations in the CETL ecosystem", blurbBefore: "", blurbHackathon: "Europe Tech Hackathon", blurbAfter: "" },
     research: { label: "Evidence", title: "The execution gap is measurable.", subtitle: "Research consistently supports the case for coordinated capability systems.", cta: "Explore Research" },
     instStats: { label: "The CETL Model at a Glance" },

@@ -1,98 +1,147 @@
 "use client";
 
-import Image from "next/image";
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Landmark, Factory, ChevronLeft, ChevronRight } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { useLanguage } from "@/lib/i18n";
+import type { CaseStudyExample, CaseStudyIconName } from "@/lib/content-types";
+
+const ICON_MAP: Record<CaseStudyIconName, React.ElementType> = {
+  Landmark, Factory,
+};
+
+function CaseStudyCard({ example }: { example: CaseStudyExample }) {
+  const Icon = ICON_MAP[example.icon];
+  return (
+    <div className="gradient-edge relative rounded-2xl border border-cetl-border overflow-hidden bg-cetl-navy-800/40 p-8 lg:p-10 h-full">
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-cetl-gold/70 via-cetl-gold-light/40 to-transparent" />
+
+      <div className="flex items-center gap-3 mb-6">
+        <div className="w-12 h-12 rounded-xl bg-cetl-gold/10 ring-1 ring-cetl-gold/20 flex items-center justify-center shrink-0">
+          <Icon className="w-6 h-6 text-cetl-gold-400" strokeWidth={1.75} aria-hidden="true" />
+        </div>
+        <div>
+          <p className="text-cetl-gold-deep text-[10px] tracking-[0.3em] uppercase font-semibold mb-1">
+            {example.sector}
+          </p>
+          <h3 className="font-display text-xl md:text-2xl font-bold text-white leading-snug">
+            {example.headline}
+          </h3>
+        </div>
+      </div>
+
+      <p className="text-white/55 text-sm leading-relaxed mb-8">{example.desc}</p>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 sm:gap-x-8">
+        {example.metrics.map((m, i) => (
+          <div
+            key={m.label}
+            className={`flex items-center justify-between gap-4 py-3 border-b border-white/[0.07] ${
+              i % 2 === 0 ? "sm:pr-8" : "sm:pl-8"
+            }`}
+          >
+            <span className="text-white/45 text-xs sm:text-sm">{m.label}</span>
+            <span
+              className={`text-xs sm:text-sm font-semibold shrink-0 text-right ${
+                m.highlight ? "text-cetl-gold-400" : "text-white"
+              }`}
+            >
+              {m.value}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export function CaseStudySection() {
   const { t } = useLanguage();
   const ui = t.UI.caseStudy;
-  const cs = t.CASE_STUDY;
+  const examples = t.CASE_STUDIES;
+  const [index, setIndex] = useState(0);
+
+  const goTo = (i: number) => setIndex((i + examples.length) % examples.length);
 
   return (
     <section id="case-study" className="py-14 lg:py-20 bg-cetl-dark relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none" aria-hidden>
-        <Image src="/h.webp" alt="" fill sizes="100vw" className="object-cover opacity-[0.07]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-cetl-dark via-cetl-dark/60 to-cetl-dark" />
-      </div>
       <div className="absolute top-0 right-[15%] w-[500px] h-[400px] rounded-full bg-cetl-navy-700/[0.07] blur-[140px] pointer-events-none" />
 
       <Container className="relative">
-        {/* Section header */}
-        <div className="flex items-center gap-3 mb-3">
-          <div className="h-px w-8 bg-cetl-gold/40" />
-          <p className="text-cetl-gold-deep text-xs tracking-[0.3em] uppercase font-semibold">{ui.label}</p>
+        {/* Section header — centered, matching the site-wide pattern */}
+        <div className="max-w-3xl mx-auto text-center mb-12">
+          <p className="text-cetl-gold-700 text-xs font-semibold tracking-[0.3em] uppercase mb-4">{ui.eyebrow}</p>
+          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-5">
+            {ui.headline}
+          </h2>
+          <p className="text-white/55 text-lg leading-relaxed">{ui.subtitle}</p>
         </div>
-        <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-2">{ui.title}</h2>
-        <p className="text-white/50 text-sm leading-relaxed mb-12 max-w-xl">{ui.subtitle}</p>
 
-        {/* Main card */}
-        <div className="gradient-edge relative rounded-2xl border border-cetl-border overflow-hidden bg-cetl-navy-800/40">
-          {/* Gold top line */}
-          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-cetl-gold/70 via-cetl-gold-light/40 to-transparent" />
-
-          <div className="grid grid-cols-1 lg:grid-cols-2">
-            {/* Left: client identity + metrics */}
-            <div className="p-8 lg:p-10 flex flex-col gap-7 lg:border-r border-white/[0.06]">
-              {/* Partner logos */}
-              <div className="flex items-center gap-3">
-                <div className="rounded-full bg-cetl-gold/10 ring-1 ring-cetl-gold/20 p-1.5 flex items-center justify-center">
-                  <Image src="/cetl-logo.webp" alt="CETL Institute" width={32} height={32} className="object-contain" />
-                </div>
-                <span className="text-cetl-gold/50 text-xl font-light select-none">×</span>
-                <div className="w-10 h-10 rounded-xl bg-white border border-cetl-border/60 flex items-center justify-center p-1.5 shrink-0">
-                  <Image src="/logos/raiffeisen.svg" alt="Raiffeisenlandesbank OÖ" width={28} height={28} className="object-contain" unoptimized />
-                </div>
-              </div>
-
-              {/* Client name */}
-              <div>
-                <p className="text-cetl-gold-deep text-[10px] tracking-[0.3em] uppercase font-semibold mb-1.5">{cs.clientTag}</p>
-                <h3 className="font-display text-2xl md:text-3xl font-bold text-white leading-snug">{cs.client}</h3>
-              </div>
-
-              <p className="text-white/55 text-sm leading-relaxed">{cs.desc}</p>
-
-              {/* Metrics */}
-              <div className="flex flex-col divide-y divide-white/[0.07] mt-auto">
-                {cs.metrics.map((m) => (
-                  <div key={m.label} className="flex items-center justify-between py-3.5 gap-4">
-                    <span className="text-white/45 text-sm">{m.label}</span>
-                    <span className={`text-sm font-semibold shrink-0 ${m.highlight ? "text-cetl-gold-400" : "text-white"}`}>
-                      {m.value}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Right: principles */}
-            <div className="p-8 lg:p-10 flex flex-col gap-6">
-              <p className="text-white/35 text-[10px] tracking-[0.3em] uppercase font-semibold">Kernprinzipien</p>
-
-              <div className="flex flex-col gap-7">
-                {cs.principles.map((p) => (
-                  <div key={p.num} className="flex gap-5 items-start group">
-                    <span className="font-display text-4xl font-bold text-cetl-gold/20 shrink-0 leading-none w-9 mt-0.5 group-hover:text-cetl-gold/35 transition-colors duration-300">
-                      {p.num}
-                    </span>
-                    <div>
-                      <h4 className="font-display text-base font-bold text-white mb-1.5 leading-snug">{p.title}</h4>
-                      <p className="text-white/50 text-sm leading-relaxed">{p.desc}</p>
+        {/* Swipeable examples */}
+        {examples && examples.length > 0 && (
+          <div className="max-w-3xl mx-auto">
+            <div className="relative">
+              <div className="overflow-hidden rounded-2xl">
+                <motion.div
+                  className="flex"
+                  animate={{ x: `-${index * 100}%` }}
+                  transition={{ type: "spring", stiffness: 300, damping: 32 }}
+                  drag={examples.length > 1 ? "x" : false}
+                  dragConstraints={{ left: 0, right: 0 }}
+                  dragElastic={0.12}
+                  onDragEnd={(_, info) => {
+                    if (info.offset.x < -70) goTo(index + 1);
+                    else if (info.offset.x > 70) goTo(index - 1);
+                  }}
+                >
+                  {examples.map((example) => (
+                    <div key={example.sector} className="w-full shrink-0 px-0.5">
+                      <CaseStudyCard example={example} />
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </motion.div>
               </div>
 
-              {/* Quote accent */}
-              <div className="mt-auto pt-6 border-t border-white/[0.07]">
-                <p className="text-white/25 text-xs italic leading-relaxed">
-                  &ldquo;Kein Schulungskatalog — ein integriertes Enabling-System mit messbarem Transfer.&rdquo;
-                </p>
-              </div>
+              {examples.length > 1 && (
+                <>
+                  <button
+                    type="button"
+                    onClick={() => goTo(index - 1)}
+                    aria-label="Previous"
+                    className="hidden sm:flex absolute top-1/2 -translate-y-1/2 -left-5 w-10 h-10 rounded-full bg-cetl-dark border border-cetl-border items-center justify-center text-white/60 hover:text-white hover:border-cetl-gold/40 transition-colors duration-200"
+                  >
+                    <ChevronLeft className="w-5 h-5" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => goTo(index + 1)}
+                    aria-label="Next"
+                    className="hidden sm:flex absolute top-1/2 -translate-y-1/2 -right-5 w-10 h-10 rounded-full bg-cetl-dark border border-cetl-border items-center justify-center text-white/60 hover:text-white hover:border-cetl-gold/40 transition-colors duration-200"
+                  >
+                    <ChevronRight className="w-5 h-5" />
+                  </button>
+                </>
+              )}
             </div>
+
+            {examples.length > 1 && (
+              <div className="flex justify-center gap-2 mt-6">
+                {examples.map((example, i) => (
+                  <button
+                    key={example.sector}
+                    type="button"
+                    onClick={() => setIndex(i)}
+                    aria-label={example.sector}
+                    className={`h-2 rounded-full transition-all duration-300 ${
+                      i === index ? "w-6 bg-cetl-gold-400" : "w-2 bg-white/20 hover:bg-white/35"
+                    }`}
+                  />
+                ))}
+              </div>
+            )}
           </div>
-        </div>
+        )}
 
         {/* CTA */}
         <div className="flex justify-center mt-12">

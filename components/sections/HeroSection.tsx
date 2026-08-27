@@ -162,7 +162,7 @@ export function HeroSection() {
           className="mt-10 flex flex-col sm:flex-row items-center gap-4"
         >
           <MagneticButton
-            href="#programs"
+            href="#case-study"
             className="w-full sm:w-auto relative px-9 py-4 bg-cetl-gold-500 text-cetl-navy-900 font-semibold tracking-wide text-center overflow-hidden group block shadow-[0_4px_24px_-8px_color-mix(in_srgb,var(--color-cetl-gold-500)_50%,transparent)]"
           >
             <span className="relative z-10">{hero.ctaPrimary}</span>

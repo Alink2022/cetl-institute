@@ -20,7 +20,7 @@ export const de: ContentBundle = {
   NAV_LINKS: [
     { label: "Über uns", href: "#about" },
     { label: "Produkte", href: "#products" },
-    { label: "Programme", href: "#programs" },
+    { label: "Programme", href: "#case-study" },
     { label: "Insights", href: "/insights" },
   ],
 
@@ -72,74 +72,6 @@ export const de: ContentBundle = {
         "Jede Lernreise endet in einem konkreten Anwendungsfall: strukturierte Use Cases, Prototypen, Business Cases oder Umsetzungsroadmaps.",
     },
   ],
-
-  PROGRAMS: [
-    {
-      tag: "Executive Education",
-      title: "Technologische Urteilskompetenz",
-      format: "Halbtags / Ganztags",
-      level: "Strategische Führungsebene",
-      description:
-        "Intensive Formate, die die Fähigkeit entwickeln, Vendor-Narrative zu dekodieren, Architekturrisiken eigenständig zu bewerten und Use-Case-Portfolios nach strategischer Priorität zu gewichten, ohne technisches Vorwissen vorauszusetzen.",
-    },
-    {
-      tag: "Strategische Beratung",
-      title: "AI-Strategie-Bootcamp",
-      format: "2–3-tägig, intensiv",
-      level: "Führungsteams",
-      description:
-        "Praxis-Bootcamp, das AI-Strategie in operationale Roadmaps überführt. Teams verlassen das Programm mit priorisierten Use Cases, klar definierten Governance-Strukturen und einer Umsetzungsverantwortung, die intern verbleibt.",
-    },
-    {
-      tag: "ELaaS",
-      title: "Forward Deployed Engineer Programm",
-      format: "3–6 Monate Einsatz",
-      level: "Fach- und Architekturteams",
-      description:
-        "CETL-Engineers arbeiten direkt in Ihren Teams, projektintegriert, nicht parallel. Ergebnis: validierte interne Experten, dokumentierte Governance-Strukturen und eine Use-Case-Pipeline, die eigenständig weiterentwickelt werden kann.",
-    },
-    {
-      tag: "Technische Bewertung",
-      title: "Architektur-Review & Feasibility",
-      format: "4–6 Wochen",
-      level: "Architektur & Technologieführung",
-      description:
-        "Herstellerneutrale Auditierung der bestehenden AI- und Datenarchitektur. Liefert: Machbarkeitsbericht, Risikoregister, Vendor-Lock-in-Analyse und methodische Legacy-Decommissioning-Roadmap.",
-    },
-    {
-      tag: "Executive Education",
-      title: "Technologie-Trendbriefing",
-      format: "2–3 Stunden",
-      level: "Strategische Entscheider",
-      description:
-        "Kuratierte Briefings zu AI-Entwicklungen der jeweiligen Branche: regulatorisches Umfeld, Wettbewerbsarchitekturen und aufkommende Use Cases, ohne Vendor-Agenda.",
-    },
-    {
-      tag: "ELaaS",
-      title: "Use-Case-Priorisierungs-Workshop",
-      format: "1 Tag",
-      level: "Bereichsübergreifende Teams",
-      description:
-        "Strukturierte Methodik zur Identifikation und Priorisierung von KI-Use-Cases nach Datenreife, Governance-Voraussetzungen und ROI-Potenzial. Ergebnis: ein umsetzbares Innovations-Backlog mit klarer Verantwortungsstruktur.",
-    },
-    {
-      tag: "Unternehmensprogramm",
-      title: "KI-Kompetenzprogramm für Unternehmen",
-      format: "Modular · 3–12 Monate",
-      level: "Alle Rollen: Mitarbeitende bis Führung",
-      description:
-        "Rollenbasiertes Befähigungsprogramm, das Wissensaufbau, praktische Anwendung und reale Use Cases verbindet. Vom Foundation Program bis zur KI-Leadership-Journey: jede Lernreise endet in einem konkreten, unternehmenseigenen Ergebnis.",
-      href: "/programme/ki-kompetenzprogramm",
-    },
-  ],
-
-  TAG_COLORS: {
-    "Executive Education": "gold",
-    "Strategische Beratung": "blue",
-    ELaaS: "gold",
-    "Technische Bewertung": "muted",
-    Unternehmensprogramm: "blue",
-  },
 
   PARTNERS: [
     { name: "TU Wien", sub: "Akademischer Partner", logo: "/logos/tuwien.svg", logoWidth: 230, logoHeight: 67 },
@@ -582,17 +514,6 @@ export const de: ContentBundle = {
       cta: "Methodik im Detail ansehen",
       closingLine: "Jede Lernreise muss zu einer stärkeren internen Kompetenz und einem konkreten nächsten Schritt führen.",
     },
-    programs: {
-      label: "Flaggschiff-Programm",
-      title: "Ein Programm. Jede Rolle. Volle operative Wirkung.",
-      subtitle:
-        "Vom Foundation Program bis zur KI-Leadership-Journey: unser durchgängiges Format bringt Wissensaufbau, praktische Anwendung und reale Use Cases in einem System zusammen, für jede Rolle im Unternehmen.",
-      cta: "Framework-Gespräch initiieren",
-      filterAll: "Alle Formate",
-      filterLabel: "Format filtern",
-      ctaAdvisor: "Mit einem Experten sprechen",
-      detailCta: "Programm im Detail entdecken",
-    },
     partners: {
       trusted: "Vertrauen führender Institutionen & Organisationen",
       blurbBefore: "Veranstalter des",
@@ -857,12 +778,9 @@ export const de: ContentBundle = {
       subtitle: "CETL steht präzise im Zentrum von Academia, Community und Industrie: der Schnittpunkt aus Enterprise-Nachfrage, Flagship-Community-Sichtbarkeit und akademischer Partnerschaftstiefe.",
     },
     caseStudy: {
-      eyebrow: "Executional Learning in der Praxis",
-      headline: "Nachweis, dass Kompetenzaufbau direkt mit der organisatorischen Umsetzung verbunden werden kann.",
-      body: "Ein maßgeschneidertes Enterprise-Data-&-AI-Kompetenzsystem kombiniert eine gemeinsame Grundlage, differenzierte Rollenpfade und begleitete Projekte.",
-      label: "In der Praxis",
-      title: "Nachweis, dass das Modell funktioniert.",
-      subtitle: "Executional Learning in der Umsetzung, mit messbarem Transfer.",
+      eyebrow: "In der Praxis",
+      headline: "Beispiele maßgeschneiderter Programme.",
+      subtitle: "Zwei Organisationen, zwei Ausgangslagen — ein individuell zugeschnittenes Executional-Learning-Programm.",
       cta: "Ähnliches Ergebnis für Ihr Unternehmen besprechen",
     },
     faculty: {
@@ -965,24 +883,37 @@ export const de: ContentBundle = {
     { initials: "CD", role: "Community Director", desc: "Europe Tech Hackathon, Executive-Formate und Community-Aktivierung." },
   ],
 
-  CASE_STUDY: {
-    clientTag: "CLIENT CASE",
-    client: "RLB OÖ × CETL Institute",
-    title: "Nachweis, dass das Modell funktioniert.",
-    desc: "Customized Executional Learning-Programme liefern bereits für Enterprise-Kunden, exemplarisch das KI-Kompetenz-Programm gemeinsam mit der Raiffeisenlandesbank Oberösterreich: ein integriertes Enabling-System, kein Schulungskatalog.",
-    metrics: [
-      { label: "Foundation Programm", value: "15 Tage" },
-      { label: "Role-Tracks (KI-Anwender:innen, KI-Champions)", value: "2 × 8 Tage" },
-      { label: "Gesamtprogramm-Umfang", value: "31 Tage", highlight: true },
-      { label: "Guided Projects", value: "Eigener Use Case" },
-      { label: "Delivery Model", value: "ELaaS" },
-    ],
-    principles: [
-      { num: "I", title: "Rollenspezifisches Enabling", desc: "Learning Journeys für KI-Leadership, KI-Anwender:innen, KI-Champions und interne KI-Entwickler:innen, abgestimmt auf Verantwortung und Reifegrad." },
-      { num: "II", title: "Guided Projects mit Output", desc: "Jeder Lernpfad endet in konkreten Use Cases, Business Cases oder Implementierungsbeiträgen, vom Canvas bis zum finalen Pitch." },
-      { num: "III", title: "Direkter Beitrag zur Strategie", desc: "Die Ergebnisse fließen direkt in die Use-Case-Pipeline, Priorisierungslogik und Transformationsinitiative des Kunden: messbarer Transfer." },
-    ],
-  },
+  CASE_STUDIES: [
+    {
+      icon: "Factory",
+      sector: "Infrastruktur & Industrie",
+      headline: "AI Hackathon mit branchenübergreifender Aktivierung",
+      desc: "Ein groß angelegtes Format mit über 70 Expert:innen aus 12 Universitäten und Fachhochschulen erarbeitete mehr als 12 Lösungsimpulse für Deep-Tech-KI-Projekte — eingebettet in ein mehrstufiges Befähigungsprogramm.",
+      metrics: [
+        { label: "AI Hackathon", value: "70+ Expert:innen, 12 Hochschulen" },
+        { label: "Lösungsimpulse Deep-Tech-KI", value: "12+", highlight: true },
+        { label: "Foundation", value: "6 Tage" },
+        { label: "Executive Enablement Track", value: "4 Tage" },
+        { label: "Unternehmensweite KI-Basis-Schulung", value: "8 Std. (digital)" },
+        { label: "Executional Learning", value: "80 Std. (10 Tage) je Projekt" },
+        { label: "Out-of-the-Box Sessions", value: "20+ Std., Cross-Industrie-Expert:innen" },
+        { label: "AI Roadmap Mentoring", value: "Strategy Guidance" },
+      ],
+    },
+    {
+      icon: "Landmark",
+      sector: "Bank & Finanz",
+      headline: "Umgesetztes Executional Learning",
+      desc: "Ein maßgeschneidertes KI-Kompetenzprogramm für eine Regionalbank: ein integriertes Enabling-System mit rollenspezifischen Lernpfaden und begleiteten Projekten — kein Schulungskatalog.",
+      metrics: [
+        { label: "Foundation Programm", value: "15 Tage" },
+        { label: "Role-Tracks (KI-Anwender:innen, KI-Champions)", value: "2 × 8 Tage" },
+        { label: "Gesamtprogramm-Umfang", value: "31 Tage", highlight: true },
+        { label: "Executional Learning", value: "80 Std. (10 Tage)" },
+        { label: "Delivery Model", value: "ELaaS" },
+      ],
+    },
+  ],
 
   INTERSECTION_CATEGORIES: [
     {
