@@ -13,7 +13,6 @@ import { CaseStudySection } from "@/components/sections/CaseStudySection";
 import { InsightsSection } from "@/components/sections/InsightsSection";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { TeamSection } from "@/components/sections/TeamSection";
-import { TrustBar } from "@/components/sections/TrustBar";
 import { LogoWatermark } from "@/components/ui/LogoWatermark";
 import { FAQSection } from "@/components/sections/FAQSection";
 import { ContactSection } from "@/components/sections/ContactSection";
@@ -34,7 +33,6 @@ export default function Home() {
         <MarketStatsSection />
         <SkillsQuadrantSection />
         <TechQuoteSection />
-        <GoldDivider />
         <CaseStudySection />
         <InsightsSection />
         <GoldDivider />
@@ -43,7 +41,6 @@ export default function Home() {
         <FAQSection />
         <ContactSection />
         <TeamSection />
-        <TrustBar />
       </main>
       <Footer />
     </>

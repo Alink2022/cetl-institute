@@ -941,10 +941,6 @@ export const en: ContentBundle = {
       headline: "The people behind CETL Institute",
       intro: "Academic excellence, industry experience and community-building — united in a team that actually lives executional learning.",
     },
-    trustBar: {
-      eyebrow: "Partnerships",
-      headline: "In Partnership with Leading Institutions",
-    },
     footer: {
       tagline: "CETL Institute is a Central European capability-building and execution ecosystem combining academic excellence, industry practice and community-powered execution.",
       navLabel: "Navigation",

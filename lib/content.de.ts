@@ -578,10 +578,6 @@ export const de: ContentBundle = {
       headline: "Die Köpfe hinter CETL Institute",
       intro: "Akademische Exzellenz, Industrieerfahrung und Community-Aufbau — vereint in einem Team, das Executional Learning tatsächlich lebt.",
     },
-    trustBar: {
-      eyebrow: "Partnerschaften",
-      headline: "In Partnerschaft mit führenden Institutionen",
-    },
     footer: {
       tagline: "Central European Tech Leadership Institute. Technologische Souveränität ist kein Zustand. Sie ist eine Kompetenz.",
       navLabel: "Navigation",

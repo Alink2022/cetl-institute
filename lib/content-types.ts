@@ -546,10 +546,6 @@ export interface ContentBundle {
       headline: string;
       intro: string;
     };
-    trustBar: {
-      eyebrow: string;
-      headline: string;
-    };
     footer: {
       tagline: string;
       navLabel: string;

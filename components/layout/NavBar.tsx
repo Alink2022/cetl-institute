@@ -84,7 +84,7 @@ export function NavBar() {
     <nav className="fixed top-0 left-0 right-0 z-50 pt-3 md:pt-4">
       <Container>
         <div
-          className={`flex items-center justify-between h-20 md:h-24 px-4 md:px-5 rounded-full transition-all duration-500 ${
+          className={`flex items-center justify-between h-20 md:h-24 px-4 md:px-5 rounded-xl transition-all duration-500 ${
             scrolled
               ? "glass-panel shadow-[0_8px_40px_-12px_color-mix(in_srgb,var(--color-cetl-gold)_25%,transparent)]"
               : "bg-transparent border border-transparent"
