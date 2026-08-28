@@ -90,19 +90,21 @@ export function NavBar() {
           }`}
         >
           {/* Logo */}
-          <a href={isHome ? "#" : "/"} className="flex items-center gap-2 group shrink-0">
-            <div className="rounded-full bg-cetl-gold/10 ring-1 ring-cetl-gold/20 p-1 group-hover:scale-105 transition-transform duration-300">
+          <a href={isHome ? "#" : "/"} className="flex items-center gap-2.5 group shrink-0">
+            <div className="group-hover:scale-105 transition-transform duration-300">
               <Image
                 src="/cetl-logo.webp"
                 alt="CETL Institute"
-                width={80}
-                height={80}
-                className="object-contain w-14 h-14 md:w-20 md:h-20"
+                width={96}
+                height={96}
+                className="object-contain w-16 h-16 md:w-24 md:h-24"
               />
             </div>
             <div className="flex flex-col leading-tight">
               <span className="text-white font-display font-bold text-lg md:text-xl tracking-wide">CETL</span>
-              <span className="text-white/70 text-xs tracking-[0.2em] uppercase">Institute</span>
+              <span className="text-white/70 text-[9px] md:text-[10px] tracking-wide whitespace-nowrap">
+                {t.SITE.fullName}
+              </span>
             </div>
           </a>
 
@@ -193,12 +195,10 @@ export function NavBar() {
 
         <div className="flex flex-col h-full pt-20 px-8 pb-8 overflow-y-auto">
           <div className="flex items-center gap-3 mb-8">
-            <div className="rounded-full bg-cetl-gold/10 ring-1 ring-cetl-gold/20 p-1.5">
-              <Image src="/cetl-logo.webp" alt="CETL Institute" width={80} height={80} className="object-contain" />
-            </div>
-            <div className="flex flex-col leading-none">
+            <Image src="/cetl-logo.webp" alt="CETL Institute" width={92} height={92} className="object-contain w-[92px] h-[92px]" />
+            <div className="flex flex-col leading-tight">
               <span className="text-white font-display font-bold text-base tracking-wide">CETL</span>
-              <span className="text-white/70 text-xs tracking-widest uppercase">Institute</span>
+              <span className="text-white/70 text-[10px] tracking-wide leading-snug">{t.SITE.fullName}</span>
             </div>
           </div>
           {t.NAV_LINKS.map((link, i) => (
