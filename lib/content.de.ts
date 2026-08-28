@@ -453,7 +453,7 @@ export const de: ContentBundle = {
   ],
 
   UI: {
-    nav: { ctaContact: "Kontakt aufnehmen", toggleMenu: "Menü umschalten" },
+    nav: { ctaContact: "Gespräch vereinbaren", toggleMenu: "Menü umschalten" },
     hero: {
       eyebrow: "Central European Tech Leadership Institute",
       headlineLine1: "Executional Learning",
@@ -472,7 +472,7 @@ export const de: ContentBundle = {
       headlineLine3: "für Unternehmen.",
       paragraph:
         "Wir machen Ihre Organisation KI-fähig — von der Führungsebene bis in jede Rolle. Wissenschaftlich fundiert. Praktisch umgesetzt.",
-      ctaPrimary: "Programm kennenlernen",
+      ctaPrimary: "Programmbeispiele ansehen",
       ctaSecondary: "Gespräch vereinbaren",
       stats: [
         { value: "3", label: "Instrumente" },
@@ -777,7 +777,7 @@ export const de: ContentBundle = {
       eyebrow: "In der Praxis",
       headline: "Beispiele maßgeschneiderter Programme.",
       subtitle: "Zwei Organisationen, zwei Ausgangslagen — ein individuell zugeschnittenes Executional-Learning-Programm.",
-      cta: "Ähnliches Ergebnis für Ihr Unternehmen besprechen",
+      cta: "Ähnliches Programm für Ihr Unternehmen besprechen",
     },
     faculty: {
       label: "People",

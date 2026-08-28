@@ -640,7 +640,7 @@ export const en: ContentBundle = {
   INSIGHTS: ARTICLE_META.en,
 
   UI: {
-    nav: { ctaContact: "Discuss Your Capability Agenda", toggleMenu: "Toggle navigation menu" },
+    nav: { ctaContact: "Schedule a Conversation", toggleMenu: "Toggle navigation menu" },
 
     hero: {
       eyebrow: "Central European Tech Leadership Institute",
@@ -653,8 +653,8 @@ export const en: ContentBundle = {
         "Through our proprietary ELaaS (Executional Learning as a Service), we accompany organizations and their talent across industries along real execution — tailored to roles, processes, and strategic as well as operational objectives.",
         "Instead of classical course blocks (standard trainings, upskilling programs, or consulting-led workshops), we help organizations navigate the current wave of transformation with ELaaS: accelerating AI transformation pressure, advancing automation across entire industries, and the relentless demand for process and efficiency gains.",
       ],
-      ctaPrimary: "Explore the ELaaS Model",
-      ctaSecondary: "Discuss Your Capability Agenda",
+      ctaPrimary: "See Program Examples",
+      ctaSecondary: "Schedule a Conversation",
       supportingLine: "Academic excellence × Industry practice × Community-powered execution",
       microProof: ["Customized to organizational priorities", "Role-based capability journeys", "Real use cases and implementation pathways", "Knowledge transfer that stays"],
       headlineGradient: "as a Service",
@@ -924,7 +924,7 @@ export const en: ContentBundle = {
       interestPlaceholder: "Select an area",
       contextLabel: "Organizational Context",
       contextPlaceholder: "Briefly describe your organizational priorities, target groups, current capability level or execution challenges.",
-      submit: "Initiate the Conversation",
+      submit: "Submit Request",
       successTitle: "Message received.",
       successText: "We will review your context and respond within one business day to discuss the right approach for your organization.",
       mailSubjectPrefix: "CETL Inquiry",
