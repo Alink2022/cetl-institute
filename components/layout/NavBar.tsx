@@ -107,25 +107,25 @@ export function NavBar() {
           </a>
 
           {/* Desktop links */}
-          <div className="hidden xl:flex items-center">
+          <div className="hidden 2xl:flex items-center">
             {t.NAV_LINKS.map((link) => (
               <a
                 key={link.href}
                 href={toHref(link.href)}
-                className="relative px-2 py-2 text-white/70 hover:text-white text-xs font-medium tracking-wide whitespace-nowrap transition-colors duration-200 group"
+                className="relative px-3 py-2 text-white/70 hover:text-white text-sm font-medium tracking-wide whitespace-nowrap transition-colors duration-200 group"
               >
                 {link.label}
-                <span className="absolute left-2 right-2 -bottom-0.5 h-px bg-gradient-to-r from-cetl-gold to-cetl-gold-400 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
+                <span className="absolute left-3 right-3 -bottom-0.5 h-px bg-gradient-to-r from-cetl-gold to-cetl-gold-400 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
               </a>
             ))}
           </div>
 
           {/* CTA */}
-          <div className="hidden xl:flex items-center gap-2">
+          <div className="hidden 2xl:flex items-center gap-3">
             <LanguageSwitch />
             <a
               href={`mailto:${t.SITE.formEmail}`}
-              className="relative px-4 py-2.5 rounded-sm bg-cetl-navy-700 text-white text-xs font-semibold tracking-wide whitespace-nowrap overflow-hidden group transition-transform duration-300 hover:scale-105"
+              className="relative px-5 py-2.5 rounded-sm bg-cetl-navy-700 text-white text-sm font-semibold tracking-wide whitespace-nowrap overflow-hidden group transition-transform duration-300 hover:scale-105"
             >
               <span className="relative z-10">{t.UI.nav.ctaContact}</span>
               <span className="absolute inset-0 bg-cetl-navy-700-dark opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -135,7 +135,7 @@ export function NavBar() {
           {/* Mobile menu button */}
           <button
             ref={mobileToggleRef}
-            className="xl:hidden text-white/70 hover:text-white p-3"
+            className="2xl:hidden text-white/70 hover:text-white p-3"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label={t.UI.nav.toggleMenu}
             aria-expanded={mobileOpen}
@@ -170,7 +170,7 @@ export function NavBar() {
         // `inert` hält das Menü (und alle Links darin) aus dem Tab-Fokus heraus, solange es
         // unsichtbar ist — sonst könnten Tastaturnutzer:innen unsichtbare Links fokussieren.
         inert={!mobileOpen}
-        className={`xl:hidden fixed inset-0 top-0 bg-cetl-navy-900/98 backdrop-blur-xl transition-all duration-500 ${
+        className={`2xl:hidden fixed inset-0 top-0 bg-cetl-navy-900/98 backdrop-blur-xl transition-all duration-500 ${
           mobileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
       >
