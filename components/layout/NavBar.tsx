@@ -174,6 +174,23 @@ export function NavBar() {
           mobileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
       >
+        {/* Explicit close affordance — the toggle button in the bar above is visually
+            covered by this overlay's backdrop once open, so without this the menu had
+            no visible way out other than Escape or clicking a link. */}
+        <button
+          type="button"
+          onClick={() => {
+            setMobileOpen(false);
+            mobileToggleRef.current?.focus();
+          }}
+          aria-label={t.UI.nav.toggleMenu}
+          className="absolute top-6 right-6 sm:top-8 sm:right-8 z-10 flex items-center gap-2 text-white/70 hover:text-white transition-colors duration-200 p-2"
+        >
+          <svg className="w-6 h-6" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M12 15l-5-5 5-5M7 10h9" />
+          </svg>
+        </button>
+
         <div className="flex flex-col h-full pt-20 px-8 pb-8 overflow-y-auto">
           <div className="flex items-center gap-3 mb-8">
             <div className="rounded-full bg-cetl-gold/10 ring-1 ring-cetl-gold/20 p-1.5">
