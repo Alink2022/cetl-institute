@@ -11,7 +11,7 @@ export function TeamSection() {
   if (!t.TEAM_MEMBERS || t.TEAM_MEMBERS.length === 0) return null;
 
   return (
-    <section className="relative py-14 lg:py-24 bg-cetl-surface overflow-hidden">
+    <section id="team" className="relative py-14 lg:py-24 bg-cetl-surface overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cetl-gold to-transparent opacity-40" />
       <Container className="relative">
         <div className="max-w-5xl mx-auto mb-12 text-center">

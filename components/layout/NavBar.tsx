@@ -3,7 +3,6 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Container } from "@/components/ui/Container";
 import { LanguageSwitch } from "@/components/ui/LanguageSwitch";
 import { useLanguage } from "@/lib/i18n";
 
@@ -82,7 +81,7 @@ export function NavBar() {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 pt-3 md:pt-4">
-      <Container>
+      <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
         <div
           className={`flex items-center justify-between h-20 md:h-24 px-4 md:px-5 rounded-xl transition-all duration-500 ${
             scrolled
@@ -108,25 +107,25 @@ export function NavBar() {
           </a>
 
           {/* Desktop links */}
-          <div className="hidden lg:flex items-center gap-1">
+          <div className="hidden xl:flex items-center">
             {t.NAV_LINKS.map((link) => (
               <a
                 key={link.href}
                 href={toHref(link.href)}
-                className="relative px-4 py-2 text-white/70 hover:text-white text-sm font-medium tracking-wide transition-colors duration-200 group"
+                className="relative px-2 py-2 text-white/70 hover:text-white text-xs font-medium tracking-wide whitespace-nowrap transition-colors duration-200 group"
               >
                 {link.label}
-                <span className="absolute left-4 right-4 -bottom-0.5 h-px bg-gradient-to-r from-cetl-gold to-cetl-gold-400 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
+                <span className="absolute left-2 right-2 -bottom-0.5 h-px bg-gradient-to-r from-cetl-gold to-cetl-gold-400 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
               </a>
             ))}
           </div>
 
           {/* CTA */}
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden xl:flex items-center gap-2">
             <LanguageSwitch />
             <a
               href={`mailto:${t.SITE.formEmail}`}
-              className="relative px-5 py-2.5 rounded-sm bg-cetl-navy-700 text-white text-sm font-semibold tracking-wide overflow-hidden group transition-transform duration-300 hover:scale-105"
+              className="relative px-4 py-2.5 rounded-sm bg-cetl-navy-700 text-white text-xs font-semibold tracking-wide whitespace-nowrap overflow-hidden group transition-transform duration-300 hover:scale-105"
             >
               <span className="relative z-10">{t.UI.nav.ctaContact}</span>
               <span className="absolute inset-0 bg-cetl-navy-700-dark opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -136,7 +135,7 @@ export function NavBar() {
           {/* Mobile menu button */}
           <button
             ref={mobileToggleRef}
-            className="md:hidden text-white/70 hover:text-white p-3"
+            className="xl:hidden text-white/70 hover:text-white p-3"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label={t.UI.nav.toggleMenu}
             aria-expanded={mobileOpen}
@@ -159,7 +158,7 @@ export function NavBar() {
             </svg>
           </button>
         </div>
-      </Container>
+      </div>
 
       {/* Mobile full-screen menu */}
       <div
@@ -171,11 +170,11 @@ export function NavBar() {
         // `inert` hält das Menü (und alle Links darin) aus dem Tab-Fokus heraus, solange es
         // unsichtbar ist — sonst könnten Tastaturnutzer:innen unsichtbare Links fokussieren.
         inert={!mobileOpen}
-        className={`md:hidden fixed inset-0 top-0 bg-cetl-navy-900/98 backdrop-blur-xl transition-all duration-500 ${
+        className={`xl:hidden fixed inset-0 top-0 bg-cetl-navy-900/98 backdrop-blur-xl transition-all duration-500 ${
           mobileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
       >
-        <div className="flex flex-col h-full pt-20 px-8">
+        <div className="flex flex-col h-full pt-20 px-8 pb-8 overflow-y-auto">
           <div className="flex items-center gap-3 mb-8">
             <div className="rounded-full bg-cetl-gold/10 ring-1 ring-cetl-gold/20 p-1.5">
               <Image src="/cetl-logo.webp" alt="CETL Institute" width={80} height={80} className="object-contain" />
@@ -190,7 +189,7 @@ export function NavBar() {
               key={link.href}
               href={toHref(link.href)}
               onClick={() => setMobileOpen(false)}
-              className="text-white text-3xl font-display font-semibold py-4 border-b border-white/10 transition-all duration-500"
+              className="text-white text-2xl font-display font-semibold py-3 border-b border-white/10 transition-all duration-500"
               style={{
                 transitionDelay: mobileOpen ? `${i * 60}ms` : "0ms",
                 opacity: mobileOpen ? 1 : 0,

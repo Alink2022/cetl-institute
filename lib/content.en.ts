@@ -17,10 +17,15 @@ export const en: ContentBundle = {
   },
 
   NAV_LINKS: [
-    { label: "About", href: "#about" },
-    { label: "Products", href: "#products" },
-    { label: "Programs", href: "#case-study" },
-    { label: "Insights", href: "/insights" },
+    { label: "About CETL", href: "#about" },
+    { label: "Portfolio", href: "#products" },
+    { label: "Ecosystem", href: "#ecosystem" },
+    { label: "Market & Skills", href: "#market-overview" },
+    { label: "References", href: "#case-study" },
+    { label: "Customer Voices", href: "#testimonials" },
+    { label: "Get in Touch", href: "#contact" },
+    { label: "Team", href: "#team" },
+    { label: "FAQ", href: "#faq" },
   ],
 
   MANAGING_DIRECTOR: {

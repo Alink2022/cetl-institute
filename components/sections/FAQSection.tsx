@@ -12,7 +12,7 @@ export function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="py-14 lg:py-24 bg-cetl-dark">
+    <section id="faq" className="py-14 lg:py-24 bg-cetl-dark">
       <Container className="max-w-4xl">
         <SectionHeader label={t.UI.faq.label} title={t.UI.faq.title} className="mb-12" dark />
 
