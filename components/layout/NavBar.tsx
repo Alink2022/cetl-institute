@@ -95,17 +95,17 @@ export function NavBar() {
           }`}
         >
           {/* Logo */}
-          <a href={isHome ? "#" : "/"} className="flex items-center gap-2 group shrink-0">
-            <div className="group-hover:scale-105 transition-transform duration-300">
+          <a href={isHome ? "#" : "/"} className="flex items-center gap-1 group shrink-0">
+            <div className="relative w-20 h-20 md:w-28 md:h-28 overflow-hidden shrink-0 group-hover:scale-105 transition-transform duration-300">
               <Image
                 src="/cetl-logo.webp"
                 alt="CETL Institute"
-                width={112}
-                height={112}
-                className="object-contain w-20 h-20 md:w-28 md:h-28"
+                fill
+                sizes="112px"
+                className="object-cover scale-125"
               />
             </div>
-            <div className="w-px self-stretch bg-white/20" aria-hidden="true" />
+            <div className="w-px h-9 md:h-10 self-center bg-white/20" aria-hidden="true" />
             <div className="flex flex-col items-start text-left leading-tight pl-2">
               <span className="text-white font-display font-normal text-sm md:text-base tracking-wide">
                 {fullNameLine1}
@@ -202,9 +202,11 @@ export function NavBar() {
         </button>
 
         <div className="flex flex-col h-full pt-20 px-8 pb-8 overflow-y-auto">
-          <div className="flex items-center gap-2 mb-8">
-            <Image src="/cetl-logo.webp" alt="CETL Institute" width={104} height={104} className="object-contain w-[104px] h-[104px]" />
-            <div className="w-px self-stretch bg-white/20" aria-hidden="true" />
+          <div className="flex items-center gap-1 mb-8">
+            <div className="relative w-[104px] h-[104px] overflow-hidden shrink-0">
+              <Image src="/cetl-logo.webp" alt="CETL Institute" fill sizes="104px" className="object-cover scale-125" />
+            </div>
+            <div className="w-px h-9 self-center bg-white/20" aria-hidden="true" />
             <div className="flex flex-col items-start text-left leading-tight pl-2">
               <span className="text-white font-display font-normal text-sm tracking-wide">{fullNameLine1}</span>
               <span className="text-white font-display font-normal text-sm tracking-wide">{fullNameLine2}</span>
