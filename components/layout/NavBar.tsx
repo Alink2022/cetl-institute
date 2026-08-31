@@ -95,7 +95,7 @@ export function NavBar() {
           }`}
         >
           {/* Logo */}
-          <a href={isHome ? "#" : "/"} className="flex items-center gap-3 group shrink-0">
+          <a href={isHome ? "#" : "/"} className="flex items-center gap-2 group shrink-0">
             <div className="group-hover:scale-105 transition-transform duration-300">
               <Image
                 src="/cetl-logo.webp"
@@ -105,11 +105,12 @@ export function NavBar() {
                 className="object-contain w-20 h-20 md:w-28 md:h-28"
               />
             </div>
-            <div className="flex flex-col leading-tight">
-              <span className="text-white font-display font-bold text-sm md:text-base tracking-wide">
+            <div className="w-px self-stretch bg-white/20" aria-hidden="true" />
+            <div className="flex flex-col items-start text-left leading-tight pl-2">
+              <span className="text-white font-display font-normal text-sm md:text-base tracking-wide">
                 {fullNameLine1}
               </span>
-              <span className="text-white font-display font-bold text-sm md:text-base tracking-wide">
+              <span className="text-white font-display font-normal text-sm md:text-base tracking-wide">
                 {fullNameLine2}
               </span>
             </div>
@@ -201,11 +202,12 @@ export function NavBar() {
         </button>
 
         <div className="flex flex-col h-full pt-20 px-8 pb-8 overflow-y-auto">
-          <div className="flex items-center gap-3 mb-8">
+          <div className="flex items-center gap-2 mb-8">
             <Image src="/cetl-logo.webp" alt="CETL Institute" width={104} height={104} className="object-contain w-[104px] h-[104px]" />
-            <div className="flex flex-col leading-tight">
-              <span className="text-white font-display font-bold text-sm tracking-wide">{fullNameLine1}</span>
-              <span className="text-white font-display font-bold text-sm tracking-wide">{fullNameLine2}</span>
+            <div className="w-px self-stretch bg-white/20" aria-hidden="true" />
+            <div className="flex flex-col items-start text-left leading-tight pl-2">
+              <span className="text-white font-display font-normal text-sm tracking-wide">{fullNameLine1}</span>
+              <span className="text-white font-display font-normal text-sm tracking-wide">{fullNameLine2}</span>
             </div>
           </div>
           {t.NAV_LINKS.map((link, i) => (
