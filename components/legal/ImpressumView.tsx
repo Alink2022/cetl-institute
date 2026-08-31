@@ -8,40 +8,40 @@ import { useLanguage } from "@/lib/i18n";
 const CONTENT = {
   de: {
     title: "Impressum",
-    intro: "Angaben gemäß § 5 ECG, § 25 Mediengesetz und § 14 UGB.",
+    intro: "Angaben gemäß § 5 ECG, § 25 Mediengesetz und § 14 UGB. Die Gesellschaft befindet sich aktuell in Gründung — einzelne Angaben werden nach Eintragung ergänzt.",
     sections: [
       {
         label: "Medieninhaber & Herausgeber",
-        lines: ["[FIRMENNAME]", "[RECHTSFORM]", "[ANSCHRIFT — Straße, PLZ, Ort]", "Österreich"],
+        lines: ["CETL Institute", "Rechtsform: in Gründung", "Anschrift: wird in Kürze ergänzt", "Österreich"],
       },
       {
         label: "Vertretungsberechtigte Person(en)",
-        lines: ["[VOR- UND NACHNAME, FUNKTION]"],
+        lines: ["Alin Kalam, Managing Director"],
       },
       {
         label: "Kontakt",
-        lines: ["E-Mail: alinkalam@cetl.institute", "Telefon: [TELEFONNUMMER]"],
+        lines: ["E-Mail: alinkalam@cetl.institute", "Telefon: wird in Kürze ergänzt"],
       },
       {
         label: "Unternehmensgegenstand",
-        lines: ["[UNTERNEHMENSGEGENSTAND]"],
+        lines: ["Aus- und Weiterbildung, Beratung sowie praxisnahe Befähigung im Bereich Data, KI und Technologie (Executional Learning as a Service)."],
       },
       {
         label: "Firmenbuchnummer & -gericht",
-        lines: ["[FIRMENBUCHNUMMER]", "[FIRMENBUCHGERICHT]"],
+        lines: ["Wird nach Eintragung ins Firmenbuch ergänzt."],
       },
       {
         label: "UID-Nummer",
-        lines: ["[UID-NUMMER]"],
+        lines: ["Wird nach Erteilung ergänzt."],
       },
       {
         label: "Zuständige Aufsichtsbehörde / Kammer",
-        lines: ["[AUFSICHTSBEHÖRDE ODER KAMMER, FALLS ZUTREFFEND]"],
+        lines: ["Falls zutreffend, wird in Kürze ergänzt."],
       },
       {
         label: "EU-Streitschlichtung",
         lines: [
-          "Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: https://ec.europa.eu/consumers/odr/. Wir sind zur Teilnahme an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle [NICHT] verpflichtet.",
+          "Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: https://ec.europa.eu/consumers/odr/. Angaben zu einer Teilnahmepflicht an einem Verbraucherschlichtungsverfahren folgen in Kürze.",
         ],
       },
       {
@@ -54,40 +54,40 @@ const CONTENT = {
   },
   en: {
     title: "Legal Notice",
-    intro: "Information pursuant to § 5 ECG, § 25 Media Act and § 14 UGB (Austria).",
+    intro: "Information pursuant to § 5 ECG, § 25 Media Act and § 14 UGB (Austria). The company is currently being formed — individual details will be added once registration is complete.",
     sections: [
       {
         label: "Media Owner & Publisher",
-        lines: ["[COMPANY NAME]", "[LEGAL FORM]", "[ADDRESS — Street, Postal Code, City]", "Austria"],
+        lines: ["CETL Institute", "Legal form: in formation", "Address: to be added shortly", "Austria"],
       },
       {
         label: "Authorized Representative(s)",
-        lines: ["[FULL NAME, TITLE]"],
+        lines: ["Alin Kalam, Managing Director"],
       },
       {
         label: "Contact",
-        lines: ["Email: alinkalam@cetl.institute", "Phone: [PHONE NUMBER]"],
+        lines: ["Email: alinkalam@cetl.institute", "Phone: to be added shortly"],
       },
       {
         label: "Business Purpose",
-        lines: ["[BUSINESS PURPOSE]"],
+        lines: ["Education, consulting and hands-on enablement in Data, AI and technology (Executional Learning as a Service)."],
       },
       {
         label: "Commercial Register Number & Court",
-        lines: ["[COMPANY REGISTER NUMBER]", "[COMPANY REGISTER COURT]"],
+        lines: ["To be added once registration is complete."],
       },
       {
         label: "VAT ID",
-        lines: ["[VAT ID NUMBER]"],
+        lines: ["To be added once issued."],
       },
       {
         label: "Competent Supervisory Authority / Chamber",
-        lines: ["[SUPERVISORY AUTHORITY OR CHAMBER, IF APPLICABLE]"],
+        lines: ["To be added shortly, if applicable."],
       },
       {
         label: "EU Online Dispute Resolution",
         lines: [
-          "The European Commission provides a platform for online dispute resolution (ODR): https://ec.europa.eu/consumers/odr/. We are [NOT] obligated to participate in dispute resolution proceedings before a consumer arbitration board.",
+          "The European Commission provides a platform for online dispute resolution (ODR): https://ec.europa.eu/consumers/odr/. Details on any obligation to participate in consumer arbitration proceedings will follow shortly.",
         ],
       },
       {

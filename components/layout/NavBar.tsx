@@ -16,6 +16,11 @@ export function NavBar() {
   const isHome = pathname === "/";
   const toHref = (href: string) => (href.startsWith("#") && !isHome ? `/${href}` : href);
 
+  // "Central European Tech Leadership Institute" auf zwei Zeilen aufteilen fürs Logo-Lockup.
+  const fullNameWords = t.SITE.fullName.split(" ");
+  const fullNameLine1 = fullNameWords.slice(0, 3).join(" ");
+  const fullNameLine2 = fullNameWords.slice(3).join(" ");
+
   const rafRef = useRef<number | null>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const mobileToggleRef = useRef<HTMLButtonElement>(null);
@@ -90,20 +95,22 @@ export function NavBar() {
           }`}
         >
           {/* Logo */}
-          <a href={isHome ? "#" : "/"} className="flex items-center gap-2.5 group shrink-0">
+          <a href={isHome ? "#" : "/"} className="flex items-center gap-3 group shrink-0">
             <div className="group-hover:scale-105 transition-transform duration-300">
               <Image
                 src="/cetl-logo.webp"
                 alt="CETL Institute"
-                width={96}
-                height={96}
-                className="object-contain w-16 h-16 md:w-24 md:h-24"
+                width={112}
+                height={112}
+                className="object-contain w-20 h-20 md:w-28 md:h-28"
               />
             </div>
             <div className="flex flex-col leading-tight">
-              <span className="text-white font-display font-bold text-lg md:text-xl tracking-wide">CETL</span>
-              <span className="text-white/70 text-[9px] md:text-[10px] tracking-wide whitespace-nowrap">
-                {t.SITE.fullName}
+              <span className="text-white font-display font-bold text-sm md:text-base tracking-wide">
+                {fullNameLine1}
+              </span>
+              <span className="text-white font-display font-bold text-sm md:text-base tracking-wide">
+                {fullNameLine2}
               </span>
             </div>
           </a>
@@ -195,10 +202,10 @@ export function NavBar() {
 
         <div className="flex flex-col h-full pt-20 px-8 pb-8 overflow-y-auto">
           <div className="flex items-center gap-3 mb-8">
-            <Image src="/cetl-logo.webp" alt="CETL Institute" width={92} height={92} className="object-contain w-[92px] h-[92px]" />
+            <Image src="/cetl-logo.webp" alt="CETL Institute" width={104} height={104} className="object-contain w-[104px] h-[104px]" />
             <div className="flex flex-col leading-tight">
-              <span className="text-white font-display font-bold text-base tracking-wide">CETL</span>
-              <span className="text-white/70 text-[10px] tracking-wide leading-snug">{t.SITE.fullName}</span>
+              <span className="text-white font-display font-bold text-sm tracking-wide">{fullNameLine1}</span>
+              <span className="text-white font-display font-bold text-sm tracking-wide">{fullNameLine2}</span>
             </div>
           </div>
           {t.NAV_LINKS.map((link, i) => (
