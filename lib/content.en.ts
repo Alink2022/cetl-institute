@@ -512,6 +512,57 @@ export const en: ContentBundle = {
     },
   ],
 
+  EXPERT_POOL: [
+    {
+      icon: "Target",
+      title: "Program Director & AI Literacy Lead",
+      desc: "Program architecture, AI literacy, community, overall governance.",
+      tags: ["Insurance", "Banking", "TU Wien"],
+    },
+    {
+      icon: "Laptop",
+      title: "Everyday AI Lecturer / Trainer",
+      desc: "Everyday AI, safe usage, prompting, office productivity.",
+      tags: ["Tech", "Higher Education"],
+    },
+    {
+      icon: "MessageCircle",
+      title: "LLM & GenAI Lecturer",
+      desc: "LLMs, GenAI, enterprise AI, language-model infrastructure.",
+      tags: ["LLM", "Enterprise Tech"],
+    },
+    {
+      icon: "Eye",
+      title: "Computer Vision Lecturer",
+      desc: "CV models, document recognition, OCR, visual AI.",
+      tags: ["Computer Vision", "Research"],
+    },
+    {
+      icon: "Lightbulb",
+      title: "Business AI Lecturer / Trainer",
+      desc: "Data, tech, innovation, business AI.",
+      tags: ["Data", "Innovation"],
+    },
+    {
+      icon: "TrendingUp",
+      title: "Storytelling with Data Lecturer",
+      desc: "Data storytelling, management communication, decision support.",
+      tags: ["Banking & Finance"],
+    },
+    {
+      icon: "Landmark",
+      title: "Business & Domain Impulse Speaker",
+      desc: "Business AI, AI use cases, operational scaling.",
+      tags: ["Aviation", "Defense", "DACH"],
+    },
+    {
+      icon: "UsersRound",
+      title: "Community & Ecosystem Representative",
+      desc: "AI scalability, community, ecosystem perspective.",
+      tags: ["Community", "Ecosystem"],
+    },
+  ],
+
   RESEARCH_STATS: [
     { id: "transformation", kind: "ring", value: "70%", label: "Transformation projects miss objectives", detail: "Most fail not due to technology, but to organizational capability and execution gaps.", source: "McKinsey & Company" },
     { id: "ai-value", kind: "gauge", value: "85%", label: "AI projects fail to scale", detail: "Governance, data readiness and execution structures are the real limiting factors.", source: "Gartner" },
@@ -774,6 +825,7 @@ export const en: ContentBundle = {
       headline: "CETL Ecosystem",
       intro: "Large-scale Data and AI initiatives rarely fail because organizations lack ambition. They fail because strategy, capability, data readiness, governance and technical execution are treated as separate activities. Our unique CETL ecosystem connects academic excellence, industry practice and community into one coordinated system of knowledge, application and execution that directly serves as the fundament of the unique Executional Learning we deliver.",
       bottomBand: ["Community-driven learning", "Execution-oriented capability building", "Academic rigor meets real-world deployment"],
+      expertPoolHeading: "Cross-Business & Cross-Industry Expert Pool of CETL",
     },
 
     enterprise: {

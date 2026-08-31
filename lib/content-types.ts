@@ -206,6 +206,16 @@ export interface ElaasMethodology {
   capabilitiesHeading: string;
 }
 
+export type ExpertPoolIconName =
+  | "Target" | "Laptop" | "MessageCircle" | "Eye" | "Lightbulb" | "TrendingUp" | "Landmark" | "UsersRound";
+
+export interface ExpertPoolMember {
+  icon: ExpertPoolIconName;
+  title: string;
+  desc: string;
+  tags: string[];
+}
+
 export interface NetworkLayer {
   number: string;
   title: string;
@@ -269,6 +279,7 @@ export interface ContentBundle {
   METHODOLOGY_STEPS: MethodologyStep[];
   PARTNERS: Partner[];
   PARTNER_GROUPS: PartnerGroup[];
+  EXPERT_POOL: ExpertPoolMember[];
   PRODUCT_GROUPS: ProductGroup[];
   EXECUTIONAL_SERVICES: ExecutionalService[];
   ELAAS_METHODOLOGY: ElaasMethodology;
@@ -396,6 +407,7 @@ export interface ContentBundle {
       headline: string;
       intro: string;
       bottomBand?: string[];
+      expertPoolHeading: string;
     };
     enterprise: {
       eyebrow: string;

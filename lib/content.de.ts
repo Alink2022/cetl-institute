@@ -122,6 +122,57 @@ export const de: ContentBundle = {
     },
   ],
 
+  EXPERT_POOL: [
+    {
+      icon: "Target",
+      title: "Program Director & AI Literacy Lead",
+      desc: "Programmarchitektur, KI-Literacy, Community, Gesamtsteuerung.",
+      tags: ["Versicherung", "Banking", "TU Wien"],
+    },
+    {
+      icon: "Laptop",
+      title: "Everyday AI Lecturer / Trainer",
+      desc: "Everyday AI, sichere Nutzung, Prompting, Office Productivity.",
+      tags: ["Tech", "Higher Education"],
+    },
+    {
+      icon: "MessageCircle",
+      title: "LLM & GenAI Lecturer",
+      desc: "LLMs, GenAI, Enterprise AI, Sprachmodelle-Infrastruktur.",
+      tags: ["LLM", "Enterprise Tech"],
+    },
+    {
+      icon: "Eye",
+      title: "Computer Vision Lecturer",
+      desc: "CV-Modelle, Dokumentenerkennung, OCR, visuelle KI.",
+      tags: ["Computer Vision", "Research"],
+    },
+    {
+      icon: "Lightbulb",
+      title: "Business AI Lecturer / Trainer",
+      desc: "Data, Tech, Innovation, Business AI.",
+      tags: ["Data", "Innovation"],
+    },
+    {
+      icon: "TrendingUp",
+      title: "Storytelling with Data Lecturer",
+      desc: "Data Storytelling, Management-Kommunikation, Entscheidungsunterstützung.",
+      tags: ["Banking & Finance"],
+    },
+    {
+      icon: "Landmark",
+      title: "Business & Domain Impulse Speaker",
+      desc: "Business AI, AI Use Cases, operative Skalierung.",
+      tags: ["Aviation", "Defense", "DACH"],
+    },
+    {
+      icon: "UsersRound",
+      title: "Community & Ecosystem Representative",
+      desc: "AI Scalability, Community, Ökosystem-Perspektive.",
+      tags: ["Community", "Ecosystem"],
+    },
+  ],
+
   PRODUCT_GROUPS: [
     {
       label: "Unsere Produkte: Executional Learning",
@@ -696,6 +747,7 @@ export const de: ContentBundle = {
       headline: "CETL Ökosystem",
       intro: "Großflächige Daten- und KI-Initiativen scheitern selten an mangelnder Ambition. Sie scheitern daran, dass Strategie, Kompetenz, Datenreife, Governance und technische Umsetzung als getrennte Aktivitäten behandelt werden. Unser einzigartiges CETL-Ökosystem verbindet akademische Exzellenz, Industriepraxis und Community zu einem koordinierten System aus Wissen, Anwendung und Umsetzung, das direkt als Fundament für das einzigartige Executional Learning dient, das wir liefern.",
       bottomBand: ["Community-getriebenes Lernen", "Umsetzungsorientierter Kompetenzaufbau", "Akademische Strenge trifft reale Umsetzung"],
+      expertPoolHeading: "Cross-Business & Cross-Industry Expert Pool von CETL",
     },
     enterprise: {
       eyebrow: "Flaggschiff-Unternehmensprogramm",
