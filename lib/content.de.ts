@@ -906,6 +906,7 @@ export const de: ContentBundle = {
     { value: "Eigene Community", label: "Flagship Community Format", sub: "\"Central Europe Tech Hackathon\" mit der Stadt Wien und zahlreichen Partnern" },
     { value: "50+", label: "Trainer & Lektor:innen", sub: "Industrieübergreifender Trainer- & Lektorenpool" },
     { value: "12+", label: "Akademische Projekte", sub: "Umgesetzte akademische Projekte" },
+    { value: "18+", label: "Partnerorganisationen", sub: "Akademische, Industrie- & Community-Partner" },
   ],
 
   COMMUNITY: {

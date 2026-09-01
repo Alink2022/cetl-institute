@@ -14,14 +14,16 @@ export function InstStatsBar() {
       </div>
 
       <Container className="relative">
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-          {t.INST_STATS.map((stat, i) => (
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+          {t.INST_STATS.map((stat, i) => {
+            const isNumeric = /^\d+\+?$/.test(stat.value);
+            return (
             <div
               key={i}
               className="group flex flex-col gap-1.5 rounded-lg border border-cetl-gold-400/25 bg-cetl-navy-800/60 hover:border-cetl-gold-400/60 p-4 transition-all duration-300"
             >
               <span
-                className={`font-display font-bold leading-none ${stat.value.length > 6 ? "text-lg" : "text-3xl"}`}
+                className={`font-display font-extrabold leading-none ${isNumeric ? "text-4xl sm:text-5xl" : stat.value.length > 6 ? "text-lg" : "text-3xl"}`}
                 style={{
                   background: "linear-gradient(100deg, var(--color-cetl-gold), var(--color-cetl-gold-light))",
                   WebkitBackgroundClip: "text",
@@ -38,7 +40,8 @@ export function InstStatsBar() {
                 {boldElaas(stat.sub)}
               </span>
             </div>
-          ))}
+            );
+          })}
         </div>
       </Container>
     </div>
