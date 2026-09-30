@@ -1,44 +1,47 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* ── CETL Navy Scale ── */
-  --color-cetl-navy-950: #02101F;
-  --color-cetl-navy-900: #03142D;
-  --color-cetl-navy-800: #061B3A;
-  --color-cetl-navy-700: #0B2A54;
-  --color-cetl-navy-600: #123765;
+  /* ── CETL Navy Scale → Burgundy-Ink (Rebrand 30.09.2026) ──
+     Namen bleiben "navy-*", damit bestehende Tailwind-Klassen (bg-cetl-navy-900
+     etc.) im ganzen Projekt weiterlaufen. Werte sind jetzt Ink/Burgundy. */
+  --color-cetl-navy-950: #170A0D;
+  --color-cetl-navy-900: #1F0E13; /* ink-900 — Fließtext, dunkelste Fläche */
+  --color-cetl-navy-800: #2A1119; /* ink-700 — dunkle Sektionen */
+  --color-cetl-navy-700: #7A1A36; /* brand-700 — Buttons/Links auf Dunkel, ehem. "Navy-CTA" */
+  --color-cetl-navy-600: #9B2242; /* brand-600 — Primärfarbe */
 
-  /* ── CETL Gold Scale ── */
-  --color-cetl-gold-700: #9F6508;
-  --color-cetl-gold-600: #BF7F0D;
-  --color-cetl-gold-500: #D79A1E;
-  --color-cetl-gold-400: #E6B64A;
-  --color-cetl-gold-300: #F0CE78;
-  --color-cetl-gold-200: #F7E3AE;
+  /* ── CETL Gold Scale → Burgundy-Brand ── */
+  --color-cetl-gold-700: #7A1A36; /* brand-700 — Links, Eyebrow, Icons */
+  --color-cetl-gold-600: #8C1E3C; /* Zwischenstufe 700→600 */
+  --color-cetl-gold-500: #9B2242; /* brand-600 — Primärfarbe: Buttons, Highlight */
+  --color-cetl-gold-400: #E5A9B8; /* brand-300 — Akzent auf Dunkel */
+  --color-cetl-gold-300: #EEC2CD; /* Zwischenstufe, heller Akzent */
+  --color-cetl-gold-200: #F6E3E8; /* brand-100 — Icon-Kacheln, Chips */
 
   /* ── Neutral Scale ── */
-  --color-cetl-ivory: #F7F5EF;
-  --color-cetl-warm-white: #FCFBF8;
-  --color-cetl-silver: #D9DEE7;
-  --color-cetl-text: #071833;
-  --color-cetl-muted: #5B6574;
+  --color-cetl-ivory: #F8F1F2;
+  --color-cetl-warm-white: #FBF6F7;
+  --color-cetl-silver: #EBDFE2;
+  --color-cetl-text: #1F0E13;
+  --color-cetl-muted: #746166;
   --color-cetl-error: #DC2626;
 
   /* ── Semantic aliases (Tailwind v4 compatibility) ── */
-  --color-cetl-border: #D8DDE5;
-  --color-cetl-surface: #FCFBF8;
-  --color-cetl-surface-2: #F7F5EF;
-  --color-cetl-gold: #D79A1E;
-  --color-cetl-gold-deep: #9F6508;
-  --color-cetl-gold-light: #F0CE78;
-  --color-cetl-dark: #03142D;
-  --color-cetl-darker: #02101F;
-  --color-cetl-text-muted: #5B6574;
+  --color-cetl-border: #EBDFE2;
+  --color-cetl-surface: #FBF6F7;
+  --color-cetl-surface-2: #F8F1F2;
+  --color-cetl-gold: #9B2242;
+  --color-cetl-gold-deep: #7A1A36;
+  --color-cetl-gold-light: #E5A9B8;
+  --color-cetl-dark: #2A1119;
+  --color-cetl-darker: #1F0E13;
+  --color-cetl-text-muted: #746166;
+  --color-cetl-amber: #C9911F; /* Sekundärakzent, nur sehr sparsam */
 
   /* ── Typography ── */
-  --font-display: var(--font-barlow);
-  --font-sans: var(--font-manrope);
-  --font-body: var(--font-manrope);
+  --font-display: var(--font-inter);
+  --font-sans: var(--font-inter);
+  --font-body: var(--font-inter);
 
   /* ── Animations ── */
   --animate-fade-in: fade-in 0.5s ease both;
@@ -73,15 +76,16 @@ html {
 }
 
 body {
-  background: #FCFBF8;
-  color: #071833;
-  font-family: var(--font-manrope), system-ui, sans-serif;
+  background: #FBF6F7;
+  color: #1F0E13;
+  font-family: var(--font-inter), system-ui, -apple-system, "Segoe UI", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5, .font-display {
-  font-family: var(--font-barlow), system-ui, sans-serif;
+  font-family: var(--font-inter), system-ui, -apple-system, "Segoe UI", sans-serif;
+  letter-spacing: -0.02em;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -98,14 +102,14 @@ h1, h2, h3, h4, h5, .font-display {
 
 /* ── Focus & Selection ── */
 :focus-visible {
-  outline: 2px solid #E6B64A;
+  outline: 3px solid #9B2242;
   outline-offset: 3px;
   border-radius: 2px;
 }
 
 ::selection {
-  background: color-mix(in srgb, #E6B64A 26%, transparent);
-  color: #071833;
+  background: color-mix(in srgb, #9B2242 22%, transparent);
+  color: #1F0E13;
 }
 
 /* ── Skip link ── */
@@ -114,8 +118,8 @@ h1, h2, h3, h4, h5, .font-display {
   top: -100%;
   left: 1rem;
   padding: 0.5rem 1.25rem;
-  background: #D79A1E;
-  color: #03142D;
+  background: #9B2242;
+  color: #fff;
   font-weight: 700;
   font-size: 0.875rem;
   border-radius: 0 0 4px 4px;
@@ -128,17 +132,17 @@ h1, h2, h3, h4, h5, .font-display {
 /* ── Anchor offset for sticky nav ── */
 [id] { scroll-margin-top: 96px; }
 
-/* ── Gold gradient text ── */
+/* ── Burgundy gradient text (ehem. Gold-Gradient) ── */
 .cetl-gold-text {
-  background: linear-gradient(110deg, #BF7F0D 0%, #E6B64A 40%, #F0CE78 55%, #C88710 80%);
+  background: linear-gradient(110deg, #7A1A36 0%, #9B2242 40%, #B8395C 55%, #7A1A36 80%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* ── Gold shimmer text ── */
+/* ── Burgundy shimmer text (ehem. Gold-Shimmer) ── */
 .cetl-gold-shimmer {
-  background: linear-gradient(110deg, #9F6508 0%, #E0A72C 25%, #F2D27C 48%, #C88710 72%, #E8B84D 100%);
+  background: linear-gradient(110deg, #7A1A36 0%, #9B2242 25%, #C15A78 48%, #7A1A36 72%, #9B2242 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -146,19 +150,19 @@ h1, h2, h3, h4, h5, .font-display {
   animation: shimmer 2.4s ease-in-out infinite;
 }
 
-/* ── Gold ribbon ── */
+/* ── Burgundy ribbon (ehem. Gold-Ribbon) ── */
 .cetl-ribbon {
-  background: linear-gradient(110deg, #A96C08 0%, #E0A72C 25%, #F2D27C 48%, #C88710 72%, #E8B84D 100%);
+  background: linear-gradient(110deg, #7A1A36 0%, #9B2242 25%, #C15A78 48%, #7A1A36 72%, #9B2242 100%);
   background-size: 200% auto;
   animation: shimmer 2.4s ease-in-out infinite;
 }
 
-/* ── Navy gradient bg ── */
+/* ── Dark-section gradient bg (ehem. Navy) ── */
 .cetl-navy-bg {
-  background: linear-gradient(135deg, #02101F 0%, #03142D 55%, #0B2A54 100%);
+  background: linear-gradient(135deg, #170A0D 0%, #1F0E13 55%, #2A1119 100%);
 }
 
-/* ── Gold divider line with dots ── */
+/* ── Divider line with dots (ehem. Gold-Rule) ── */
 .cetl-gold-rule {
   position: relative;
   display: flex;
@@ -170,25 +174,25 @@ h1, h2, h3, h4, h5, .font-display {
   content: "";
   flex: 1;
   height: 1px;
-  background: linear-gradient(90deg, transparent, #E6B64A 40%, #E6B64A 60%, transparent);
+  background: linear-gradient(90deg, transparent, #9B2242 40%, #9B2242 60%, transparent);
   opacity: 0.5;
 }
 
 /* ── Card shadows ── */
 .cetl-card-shadow {
-  box-shadow: 0 12px 36px rgba(3, 20, 45, 0.10);
+  box-shadow: 0 12px 36px rgba(31, 14, 19, 0.10);
 }
 
 .cetl-card-shadow-dark {
-  box-shadow: 0 18px 48px rgba(3, 20, 45, 0.22);
+  box-shadow: 0 18px 48px rgba(31, 14, 19, 0.22);
 }
 
-/* ── Glass panel (semi-transparent navy, for forms on dark sections) ── */
+/* ── Glass panel (semi-transparent dark, for forms on dark sections) ── */
 .glass-panel {
-  background: rgba(6, 27, 58, 0.70);
+  background: rgba(42, 17, 25, 0.70);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(230, 182, 74, 0.14);
+  border: 1px solid rgba(229, 169, 184, 0.14);
 }
 
 /* ── Marquee track ── */
@@ -203,10 +207,10 @@ h1, h2, h3, h4, h5, .font-display {
 
 /* ── Scrollbar ── */
 ::-webkit-scrollbar { width: 7px; }
-::-webkit-scrollbar-track { background: #F7F5EF; }
+::-webkit-scrollbar-track { background: #F8F1F2; }
 ::-webkit-scrollbar-thumb {
-  background: #D9DEE7;
+  background: #EBDFE2;
   border-radius: 999px;
-  border: 1px solid #F7F5EF;
+  border: 1px solid #F8F1F2;
 }
-::-webkit-scrollbar-thumb:hover { background: #D79A1E; }
+::-webkit-scrollbar-thumb:hover { background: #9B2242; }

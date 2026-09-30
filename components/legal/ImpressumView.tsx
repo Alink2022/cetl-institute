@@ -8,15 +8,15 @@ import { useLanguage } from "@/lib/i18n";
 const CONTENT = {
   de: {
     title: "Impressum",
-    intro: "Angaben gemäß § 5 ECG, § 25 Mediengesetz und § 14 UGB. Die Gesellschaft befindet sich aktuell in Gründung — einzelne Angaben werden nach Eintragung ergänzt.",
+    intro: "Angaben gemäß § 5 ECG, § 25 Mediengesetz und § 14 UGB.",
     sections: [
       {
         label: "Medieninhaber & Herausgeber",
-        lines: ["CETL Institute", "Rechtsform: in Gründung", "Anschrift: wird in Kürze ergänzt", "Österreich"],
+        lines: ["CETL Institute GmbH", "Gesellschaft mit beschränkter Haftung (GmbH)", "Wipplinger Straße 4/2. OG, 1010 Wien", "Österreich"],
       },
       {
         label: "Vertretungsberechtigte Person(en)",
-        lines: ["Alin Kalam, Managing Director"],
+        lines: ["Alin Kalam, Geschäftsführer"],
       },
       {
         label: "Kontakt",
@@ -24,15 +24,15 @@ const CONTENT = {
       },
       {
         label: "Unternehmensgegenstand",
-        lines: ["Aus- und Weiterbildung, Beratung sowie praxisnahe Befähigung im Bereich Data, KI und Technologie (Executional Learning as a Service)."],
+        lines: ["Organisation und Abhaltung von Schulungen und Fortbildungen."],
       },
       {
         label: "Firmenbuchnummer & -gericht",
-        lines: ["Wird nach Eintragung ins Firmenbuch ergänzt."],
+        lines: ["FN 688297 b", "Handelsgericht Wien"],
       },
       {
         label: "UID-Nummer",
-        lines: ["Wird nach Erteilung ergänzt."],
+        lines: ["Wird nach Erteilung durch das Finanzamt ergänzt."],
       },
       {
         label: "Zuständige Aufsichtsbehörde / Kammer",
@@ -54,11 +54,11 @@ const CONTENT = {
   },
   en: {
     title: "Legal Notice",
-    intro: "Information pursuant to § 5 ECG, § 25 Media Act and § 14 UGB (Austria). The company is currently being formed — individual details will be added once registration is complete.",
+    intro: "Information pursuant to § 5 ECG, § 25 Media Act and § 14 UGB (Austria).",
     sections: [
       {
         label: "Media Owner & Publisher",
-        lines: ["CETL Institute", "Legal form: in formation", "Address: to be added shortly", "Austria"],
+        lines: ["CETL Institute GmbH", "Limited liability company (GmbH)", "Wipplinger Straße 4/2nd floor, 1010 Vienna", "Austria"],
       },
       {
         label: "Authorized Representative(s)",
@@ -70,15 +70,15 @@ const CONTENT = {
       },
       {
         label: "Business Purpose",
-        lines: ["Education, consulting and hands-on enablement in Data, AI and technology (Executional Learning as a Service)."],
+        lines: ["Organizing and delivering training and continuing education."],
       },
       {
         label: "Commercial Register Number & Court",
-        lines: ["To be added once registration is complete."],
+        lines: ["FN 688297 b", "Vienna Commercial Court"],
       },
       {
         label: "VAT ID",
-        lines: ["To be added once issued."],
+        lines: ["To be added once issued by the tax office."],
       },
       {
         label: "Competent Supervisory Authority / Chamber",
