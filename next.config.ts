@@ -33,6 +33,26 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  // Vercel weist jedem Projekt automatisch eine <project>.vercel.app-Domain
+  // zu, die sich im Dashboard nicht löschen lässt. Damit ausschließlich
+  // www.cetl.institute als Live-Seite erreichbar ist, leiten wir die
+  // Vercel-Standarddomain und die nackte Apex-Domain dauerhaft auf www um.
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "cetl-institute.vercel.app" }],
+        destination: "https://www.cetl.institute/:path*",
+        permanent: true,
+      },
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "cetl.institute" }],
+        destination: "https://www.cetl.institute/:path*",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
