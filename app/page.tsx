@@ -1,8 +1,9 @@
 "use client";
 
+import { useState, type FormEvent } from "react";
 import Link from "next/link";
 import { useLanguage } from "@/lib/i18n";
-import { REDESIGN_DE, REDESIGN_EN, type PortfolioIcon } from "@/lib/redesign-content";
+import { REDESIGN_DE, REDESIGN_EN, type PortfolioIcon, type RedesignContent } from "@/lib/redesign-content";
 import { RedesignNavBar } from "@/components/redesign/RedesignNavBar";
 import { RedesignFooter } from "@/components/redesign/RedesignFooter";
 import { Icon, IconSprite, type IconName } from "@/components/ui/IconSprite";
@@ -43,6 +44,72 @@ function PortfolioCardEl({ icon, flag, label, title, desc, items, foot }: { icon
       <ul>{items.map((it) => <li key={it}>{it}</li>)}</ul>
       <p className="foot">{foot}</p>
     </div>
+  );
+}
+
+function ContactForm({ fields }: { fields: RedesignContent["kontakt"]["fields"] }) {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [topic, setTopic] = useState("");
+  const [context, setContext] = useState("");
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+
+  async function handleSubmit(e: FormEvent) {
+    e.preventDefault();
+    setStatus("sending");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, topic, context }),
+      });
+      if (!res.ok) throw new Error("request failed");
+      setStatus("sent");
+      setName("");
+      setEmail("");
+      setTopic("");
+      setContext("");
+    } catch {
+      setStatus("error");
+    }
+  }
+
+  if (status === "sent") {
+    return (
+      <div className="card" role="status">
+        <p style={{ margin: 0 }}>{fields.success}</p>
+      </div>
+    );
+  }
+
+  return (
+    <form className="card" onSubmit={handleSubmit}>
+      <label className="field">
+        <span>{fields.name}</span>
+        <input type="text" required value={name} onChange={(e) => setName(e.target.value)} />
+      </label>
+      <label className="field">
+        <span>{fields.email}</span>
+        <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
+      </label>
+      <label className="field">
+        <span>{fields.topic}</span>
+        <select value={topic} onChange={(e) => setTopic(e.target.value)}>
+          <option value="" disabled>{fields.topicPlaceholder}</option>
+          {fields.topics.map((t) => <option key={t}>{t}</option>)}
+        </select>
+      </label>
+      <label className="field">
+        <span>{fields.context}</span>
+        <textarea rows={4} value={context} onChange={(e) => setContext(e.target.value)} />
+      </label>
+      {status === "error" && (
+        <p style={{ color: "var(--brand-700)", fontSize: "0.9rem", marginBottom: 16 }}>{fields.error}</p>
+      )}
+      <button className="btn btn-primary" type="submit" disabled={status === "sending"}>
+        {status === "sending" ? fields.sending : fields.submit}
+      </button>
+    </form>
   );
 }
 
@@ -403,19 +470,7 @@ export default function Home() {
                 <a href="mailto:alinkalam@cetl.institute">alinkalam@cetl.institute</a>
               </address>
             </div>
-            <form className="card" onSubmit={(e) => e.preventDefault()}>
-              <label className="field"><span>{rd.kontakt.fields.name}</span><input type="text" required /></label>
-              <label className="field"><span>{rd.kontakt.fields.email}</span><input type="email" required /></label>
-              <label className="field">
-                <span>{rd.kontakt.fields.topic}</span>
-                <select defaultValue="">
-                  <option value="" disabled>{rd.kontakt.fields.topicPlaceholder}</option>
-                  {rd.kontakt.fields.topics.map((topic) => <option key={topic}>{topic}</option>)}
-                </select>
-              </label>
-              <label className="field"><span>{rd.kontakt.fields.context}</span><textarea rows={4} /></label>
-              <button className="btn btn-primary" type="submit">{rd.kontakt.fields.submit}</button>
-            </form>
+            <ContactForm fields={rd.kontakt.fields} />
           </div>
         </section>
 

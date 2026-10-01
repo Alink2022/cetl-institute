@@ -88,7 +88,7 @@ export interface RedesignContent {
   kontakt: {
     eyebrow: string; title: string; lead: string;
     addressName: string; addressStreet: string; addressCity: string;
-    fields: { name: string; email: string; topic: string; topicPlaceholder: string; topics: string[]; context: string; submit: string };
+    fields: { name: string; email: string; topic: string; topicPlaceholder: string; topics: string[]; context: string; submit: string; sending: string; success: string; error: string };
   };
   team: { eyebrow: string; title: string; lead: string };
   footer: { tagline: string; navLabel: string; contactLabel: string; legal: string; insuranceNote: string; imprint: string };
@@ -262,6 +262,9 @@ export const REDESIGN_DE: RedesignContent = {
       topicPlaceholder: "Bereich auswählen",
       topics: ["Executional Learning", "Executional Assessments", "Executive Education", "Forward Deployed Engineering", "CETL Hackathon Teilnahme", "CETL Partner werden", "Sonstiges"],
       context: "Organisatorischer Kontext", submit: "Anfrage übermitteln",
+      sending: "Wird gesendet…",
+      success: "Danke! Ihre Anfrage ist angekommen, wir melden uns zeitnah.",
+      error: "Da ist etwas schiefgelaufen. Bitte versuchen Sie es erneut oder schreiben Sie direkt an alinkalam@cetl.institute.",
     },
   },
   team: {
@@ -447,6 +450,9 @@ export const REDESIGN_EN: RedesignContent = {
       topicPlaceholder: "Select a topic",
       topics: ["Executional Learning", "Executional Assessments", "Executive Education", "Forward Deployed Engineering", "CETL hackathon participation", "Becoming a CETL partner", "Something else"],
       context: "Organisational context", submit: "Send enquiry",
+      sending: "Sending…",
+      success: "Thank you! Your enquiry has reached us — we'll be in touch shortly.",
+      error: "Something went wrong. Please try again or write directly to alinkalam@cetl.institute.",
     },
   },
   team: {
