@@ -5,7 +5,7 @@ export const en: ContentBundle = {
   SITE: {
     name: "CETL Institute",
     fullName: "Central European Tech Leadership Institute",
-    url: "https://cetl-institute.vercel.app",
+    url: "https://www.cetl.institute",
     email: "alinkalam@cetl.institute",
     formEmail: "alinkalam@cetl.institute",
     location: "Vienna, Austria",

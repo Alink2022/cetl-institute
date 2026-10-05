@@ -13,7 +13,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://cetl-institute.vercel.app"),
+  metadataBase: new URL("https://www.cetl.institute"),
   title: {
     default: "CETL Institute | Executional Learning as a Service",
     template: "%s | CETL Institute",
@@ -24,6 +24,7 @@ export const metadata: Metadata = {
     "Executional Learning as a Service", "ELaaS", "Data AI capability building",
     "executive education Vienna", "organizational transformation", "embedded engineering",
     "enterprise AI programme", "CETL Institute",
+    "Think Tank KI", "AI Think Tank Wien", "Tech Leadership Think Tank",
   ],
   openGraph: {
     title: "CETL Institute | Executional Learning as a Service",
