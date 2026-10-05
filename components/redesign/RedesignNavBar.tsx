@@ -5,12 +5,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useLanguage } from "@/lib/i18n";
 import { REDESIGN_DE, REDESIGN_EN, type RedesignContent } from "@/lib/redesign-content";
-import { LogoWordmark } from "@/components/ui/Logo";
+import { LogoMonogram, LogoWordmark } from "@/components/ui/Logo";
 import { Icon } from "@/components/ui/IconSprite";
 
 type NavId = "methodik" | "portfolio" | "oekosystem" | "markt" | "praxis" | "thinkTank" | "faq";
 
-const DESKTOP_ITEMS: NavId[] = ["methodik", "portfolio", "oekosystem", "markt", "praxis", "thinkTank"];
+const DESKTOP_ITEMS: NavId[] = ["methodik", "portfolio", "thinkTank", "oekosystem", "markt", "praxis"];
 const MOBILE_ITEMS: NavId[] = [...DESKTOP_ITEMS, "faq"];
 
 // Think Tank ist eine eigene Seite, alle anderen Punkte sind Anker der Startseite.
@@ -82,7 +82,8 @@ export function RedesignNavBar() {
       <header className="top">
         <div className="topbar">
           <Link href={onHome ? "#top" : "/"} className="brand" aria-label={rd.nav.home}>
-            <LogoWordmark className="h-7 text-[color:var(--brand-600)]" />
+            <LogoWordmark className="brand-full" />
+            <LogoMonogram className="brand-mono" />
           </Link>
 
           <nav className="main" aria-label={rd.nav.langLabel}>

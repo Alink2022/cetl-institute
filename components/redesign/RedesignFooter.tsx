@@ -7,7 +7,7 @@ import { REDESIGN_DE, REDESIGN_EN } from "@/lib/redesign-content";
 import { LogoWordmark } from "@/components/ui/Logo";
 import { navHref, navLabel } from "./RedesignNavBar";
 
-const FOOTER_ITEMS = ["methodik", "portfolio", "oekosystem", "markt", "praxis", "thinkTank", "faq"] as const;
+const FOOTER_ITEMS = ["methodik", "portfolio", "thinkTank", "oekosystem", "markt", "praxis", "faq"] as const;
 
 export function RedesignFooter() {
   const { lang } = useLanguage();
@@ -21,7 +21,7 @@ export function RedesignFooter() {
         <div className="wrap">
           <div className="fgrid">
             <div>
-              <LogoWordmark className="h-6 text-white mb-4" />
+              <LogoWordmark className="h-10 text-white mb-4" />
               <p className="muted max-w-sm">{rd.footer.tagline}</p>
             </div>
             <div>

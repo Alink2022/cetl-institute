@@ -130,8 +130,8 @@ h1, h2, h3, h4, h5, .font-display {
 .skip-link:focus { top: 0; }
 
 /* ── Anchor offset for sticky nav ── */
-[id] { scroll-margin-top: 84px; }
-@media (max-width: 820px) { [id] { scroll-margin-top: 72px; } }
+[id] { scroll-margin-top: 104px; }
+@media (max-width: 820px) { [id] { scroll-margin-top: 80px; } }
 
 /* ==========================================================================
    Referenz-Designsystem — 1:1 aus CETL_Website_Dev_Package/index.html +
@@ -210,7 +210,13 @@ h1, h2, h3, h4, h5, .font-display {
 
 /* Header */
 .rd header.top { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
-.rd .topbar { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 12px 24px; }
+.rd .topbar { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 20px 24px; }
+.rd .brand-full { height: 56px; }
+.rd .brand-mono { display: none; height: 44px; }
+@media (min-width: 1081px) and (max-width: 1279px) { .rd .topbar { gap: 16px; } .rd .brand-full { height: 38px; } .rd nav.main { gap: 16px; font-size: 0.85rem; } .rd .topbar .btn { padding: 10px 16px; font-size: 0.88rem; } }
+@media (max-width: 1080px) { .rd .topbar { padding: 18px 28px; } }
+@media (max-width: 760px) { .rd .brand-full { display: none; } .rd .brand-mono { display: block; } .rd .topbar { padding: 16px 24px; } }
+@media (max-width: 520px) { .rd .brand-mono { height: 40px; } .rd .topbar { padding: 14px 20px; } }
 .rd .topbar .btn { padding: 12px 22px; font-size: 0.95rem; }
 .rd .brand { display: flex; align-items: center; color: var(--brand-600); }
 .rd nav.main { display: flex; gap: 26px; font-size: 0.9rem; }
@@ -482,7 +488,7 @@ h1, h2, h3, h4, h5, .font-display {
 /* Artikeltext */
 .rd .tt-article { max-width: 780px; margin: 0 auto; padding: 4rem 24px 2rem; }
 .rd .prose p { font-size: 1.125rem; line-height: 1.78; margin: 0 0 1.35rem; color: var(--ink-900); }
-.rd .prose h2 { font-size: var(--step-3); margin: 3.5rem 0 1.1rem; scroll-margin-top: 96px; }
+.rd .prose h2 { font-size: var(--step-3); margin: 3.5rem 0 1.1rem; scroll-margin-top: 112px; }
 .rd .prose h3 { font-size: var(--step-1); color: var(--brand-700); margin: 2.4rem 0 0.7rem; }
 .rd .prose strong { font-weight: 600; }
 .rd .prose blockquote { margin: 2.75rem 0; padding: 0.25rem 0 0.25rem 1.6rem; border-left: 3px solid var(--brand-600); }
