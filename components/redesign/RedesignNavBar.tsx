@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useLanguage } from "@/lib/i18n";
 import { REDESIGN_DE, REDESIGN_EN, type RedesignContent } from "@/lib/redesign-content";
-import { LogoMonogram, LogoWordmark } from "@/components/ui/Logo";
+import { LogoWordmark } from "@/components/ui/Logo";
 import { Icon } from "@/components/ui/IconSprite";
 
 type NavId = "methodik" | "portfolio" | "oekosystem" | "markt" | "praxis" | "thinkTank" | "faq";
@@ -83,7 +83,6 @@ export function RedesignNavBar() {
         <div className="topbar">
           <Link href={onHome ? "#top" : "/"} className="brand" aria-label={rd.nav.home}>
             <LogoWordmark className="brand-full" />
-            <LogoMonogram className="brand-mono" />
           </Link>
 
           <nav className="main" aria-label={rd.nav.langLabel}>

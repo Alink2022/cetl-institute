@@ -111,7 +111,7 @@ export interface RedesignContent {
     fields: { name: string; email: string; role: string; rolePlaceholder: string; roles: string[]; topic: string; topicPlaceholder: string; topics: ContactTopic[]; context: string; submit: string; sending: string; success: string; error: string };
   };
   team: { eyebrow: string; title: string; lead: string };
-  footer: { tagline: string; navLabel: string; contactLabel: string; legal: string; insuranceNote: string; imprint: string };
+  footer: { tagline: string; contactLabel: string; legal: string; insuranceNote: string; imprint: string };
 }
 
 export const REDESIGN_DE: RedesignContent = {
@@ -337,7 +337,6 @@ export const REDESIGN_DE: RedesignContent = {
   },
   footer: {
     tagline: "Technologische Souveränität ist kein Zustand. Sie ist eine Kompetenz.",
-    navLabel: "Navigation",
     contactLabel: "Kontakt",
     legal: "© 2026 CETL Institute GmbH · FN 688297 b, Handelsgericht Wien · Geschäftsführer Alin Kalam",
     insuranceNote: "Sämtliche Leistungen richten sich ausschließlich an Organisationen außerhalb der Versicherungsbranche.",
@@ -568,7 +567,6 @@ export const REDESIGN_EN: RedesignContent = {
   },
   footer: {
     tagline: "Technological sovereignty is not a state. It is a capability.",
-    navLabel: "Navigation",
     contactLabel: "Contact",
     legal: "© 2026 CETL Institute GmbH · FN 688297 b, Vienna Commercial Court · Managing Director Alin Kalam",
     insuranceNote: "All services are directed exclusively at organisations outside the insurance sector.",

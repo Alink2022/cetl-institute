@@ -213,11 +213,11 @@ h1, h2, h3, h4, h5, .font-display {
 .rd header.top { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
 .rd .topbar { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 20px 24px; }
 .rd .brand-full { height: 56px; }
-.rd .brand-mono { display: none; height: 44px; }
 @media (min-width: 1081px) and (max-width: 1279px) { .rd .topbar { gap: 16px; } .rd .brand-full { height: 38px; } .rd nav.main { gap: 16px; font-size: 0.85rem; } .rd .topbar .btn { padding: 10px 16px; font-size: 0.88rem; } }
 @media (max-width: 1080px) { .rd .topbar { padding: 18px 28px; } }
-@media (max-width: 760px) { .rd .brand-full { display: none; } .rd .brand-mono { display: block; } .rd .topbar { padding: 16px 24px; } }
-@media (max-width: 520px) { .rd .brand-mono { height: 40px; } .rd .topbar { padding: 14px 20px; } }
+@media (max-width: 760px) { .rd .brand-full { height: 46px; } .rd .topbar { padding: 16px 24px; } }
+@media (max-width: 520px) { .rd .brand-full { height: 42px; } .rd .topbar { padding: 14px 20px; } }
+@media (max-width: 340px) { .rd .brand-full { height: 36px; } }
 .rd .topbar .btn { padding: 12px 22px; font-size: 0.95rem; }
 .rd .brand { display: flex; align-items: center; color: var(--brand-600); }
 .rd nav.main { display: flex; gap: 26px; font-size: 0.9rem; }
@@ -360,7 +360,7 @@ h1, h2, h3, h4, h5, .font-display {
 .rd .person { text-align: left; }
 .rd footer.rdfoot { background: var(--ink-700); color: #E8D5DA; padding: 72px 0 40px; }
 .rd footer.rdfoot a { color: #fff; }
-.rd footer.rdfoot .fgrid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 32px; }
+.rd footer.rdfoot .fgrid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 32px; }
 @media (max-width: 780px) { .rd footer.rdfoot .fgrid { grid-template-columns: 1fr; } }
 .rd .legal { border-top: 1px solid rgba(255,255,255,0.14); margin-top: 40px; padding-top: 20px; font-size: var(--step--1); display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
 @media (prefers-reduced-motion: reduce) { .rd * { animation: none !important; transition: none !important; } }

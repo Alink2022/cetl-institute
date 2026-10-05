@@ -1,18 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useLanguage } from "@/lib/i18n";
 import { REDESIGN_DE, REDESIGN_EN } from "@/lib/redesign-content";
 import { LogoWordmark } from "@/components/ui/Logo";
-import { navHref, navLabel } from "./RedesignNavBar";
-
-const FOOTER_ITEMS = ["methodik", "portfolio", "thinkTank", "oekosystem", "markt", "praxis", "faq"] as const;
 
 export function RedesignFooter() {
   const { lang } = useLanguage();
-  const pathname = usePathname();
-  const onHome = pathname === "/";
   const rd = lang === "de" ? REDESIGN_DE : REDESIGN_EN;
 
   return (
@@ -23,16 +17,6 @@ export function RedesignFooter() {
             <div>
               <LogoWordmark className="h-10 text-white mb-4" />
               <p className="muted max-w-sm">{rd.footer.tagline}</p>
-            </div>
-            <div>
-              <h4 className="text-white mb-4">{rd.footer.navLabel}</h4>
-              <ul className="list-none pl-0 m-0 flex flex-col gap-2">
-                {FOOTER_ITEMS.map((id) => (
-                  <li key={id} className="m-0">
-                    <Link href={navHref(id, onHome)} className="muted">{navLabel(rd, id)}</Link>
-                  </li>
-                ))}
-              </ul>
             </div>
             <div>
               <h4 className="text-white mb-4">{rd.footer.contactLabel}</h4>

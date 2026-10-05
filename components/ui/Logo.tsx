@@ -26,23 +26,3 @@ export function LogoWordmark({ className = "" }: LogoProps) {
     />
   );
 }
-
-export function LogoMonogram({ className = "" }: LogoProps) {
-  return (
-    <span
-      aria-hidden="true"
-      className={`inline-block bg-current ${className}`}
-      style={{
-        aspectRatio: "180.95 / 142.17",
-        WebkitMaskImage: "url(/CETL_Logo_Icon.svg)",
-        maskImage: "url(/CETL_Logo_Icon.svg)",
-        WebkitMaskRepeat: "no-repeat",
-        maskRepeat: "no-repeat",
-        WebkitMaskSize: "contain",
-        maskSize: "contain",
-        WebkitMaskPosition: "center",
-        maskPosition: "center",
-      }}
-    />
-  );
-}
