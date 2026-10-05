@@ -586,7 +586,7 @@ h1, h2, h3, h4, h5, .font-display {
 /* Hintergründe */
 .rd .dots { background-color: var(--surface); background-image: radial-gradient(rgba(122, 26, 54, 0.1) 1px, transparent 1.4px); background-size: 22px 22px; }
 .rd .glow { background: radial-gradient(60% 55% at 100% 0%, rgba(246, 227, 232, 0.95), transparent 70%), var(--surface); }
-.rd .stage { position: relative; overflow: hidden; isolation: isolate; color: #fff; border-top: 0; background: linear-gradient(135deg, var(--ink-900) 0%, var(--ink-700) 50%, #3d1424 100%); }
+.rd .stage { position: relative; overflow: hidden; overflow: clip; isolation: isolate; color: #fff; border-top: 0; background: linear-gradient(135deg, var(--ink-900) 0%, var(--ink-700) 50%, #3d1424 100%); }
 .rd .stage::after { content: ""; position: absolute; z-index: -1; right: -6rem; top: 8%; width: min(48vw, 38rem); aspect-ratio: 180.95 / 142.17; background: rgba(229, 169, 184, 0.08); -webkit-mask: url(/CETL_Logo_Icon.svg) no-repeat center / contain; mask: url(/CETL_Logo_Icon.svg) no-repeat center / contain; pointer-events: none; }
 .rd .stage h2 { color: #fff; }
 .rd .stage .lead { color: #E8D5DA; }
@@ -805,8 +805,8 @@ h1, h2, h3, h4, h5, .font-display {
    Nur Mobile (<= 680px): Pill-Tabs und wischbare Kartenreihen statt langer
    Kartenstapel. Desktop und Tablet bleiben unverändert.
    ========================================================================== */
-.rd .mtabs { display: none; }
 .rd .t-short { display: none; }
+.rd .vsrow, .rd .strip, .rd .lab { display: none; }
 @media (max-width: 680px) {
   .rd .tabs { display: flex; flex-direction: row; width: 100%; gap: 4px; padding: 5px; border-radius: 999px; }
   .rd .tab { flex: 1 1 0; min-width: 0; justify-content: center; gap: 0; padding: 10px 6px; font-size: 0.85rem; }
@@ -814,13 +814,27 @@ h1, h2, h3, h4, h5, .font-display {
   .rd .tab .t-short { display: inline; }
   .rd .tab .n { display: none; }
 
-  .rd .mtabs { display: flex; gap: 4px; padding: 5px; margin-top: 2.25rem; background: rgba(255, 255, 255, 0.07); border: 1px solid rgba(255, 255, 255, 0.16); border-radius: 999px; }
-  .rd .mtab { flex: 1 1 auto; font-family: var(--sans); font-size: 0.82rem; font-weight: 500; line-height: 1.2; padding: 10px 8px; border: 0; border-radius: 999px; background: transparent; color: #E8D5DA; cursor: pointer; }
-  .rd .mtab[aria-selected="true"] { background: var(--brand-600); color: #fff; }
-  .rd .vs2 { margin-top: 1.25rem; gap: 0; }
-  .rd .vs2 [data-m-hidden="true"] { display: none; }
+  .rd .vsrow { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 12px; margin: 2.25rem 0 0; }
+  .rd .vsrow .a { padding: 8px 16px; border-radius: 999px; background: var(--brand-600); color: #fff; font-size: 0.85rem; font-weight: 600; }
+  .rd .vsrow .v { font-size: 1.5rem; font-weight: 600; letter-spacing: 0.04em; color: #fff; }
+  .rd .vsrow .b { font-size: 0.82rem; color: rgba(232, 213, 218, 0.72); }
+
+  /* Kartenstapel: Executional Learning vorn, die klassischen Wege als Laschen */
+  .rd .vs2 { display: flex; flex-direction: row; align-items: stretch; gap: 0; margin-top: 1rem; }
   .rd .others { display: contents; }
   .rd .others .cap { display: none; }
+  .rd .vs2 > .elc, .rd .vs2 .oc { position: relative; flex: 1 1 0; min-width: 0; margin-left: -8px; z-index: 5; }
+  .rd .vs2 > :first-child { margin-left: 0; }
+  .rd .vs2 [data-m-hidden="true"] { flex: 0 0 44px; z-index: 1; padding: 0; overflow: visible; cursor: pointer; border-radius: 16px; }
+  .rd .vs2 .oc[data-m-hidden="true"] { background: linear-gradient(180deg, rgba(232, 213, 218, 0.28), rgba(232, 213, 218, 0.13)); border-color: rgba(255, 255, 255, 0.2); }
+  .rd .vs2 .oc[data-m-hidden="true"]:nth-of-type(2) { z-index: 2; }
+  .rd .vs2 .elc[data-m-hidden="true"]::after { display: none; }
+  .rd .vs2 [data-m-hidden="true"] > :not(.strip):not(.lab) { display: none; }
+  .rd .strip { position: absolute; inset: 0; width: 100%; padding: 0; border: 0; background: transparent; cursor: pointer; z-index: 2; }
+  .rd .lab { width: 44px; line-height: 44px; margin-top: 18px; position: sticky; top: 96px; writing-mode: vertical-rl; transform: rotate(180deg); white-space: nowrap; text-align: end; font-family: var(--sans); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255, 255, 255, 0.92); }
+  .rd .lab::after { content: "+"; padding-inline-start: 12px; font-size: 1.15rem; font-weight: 400; letter-spacing: 0; }
+  .rd .vs2 [data-m-hidden="true"] .strip { display: block; }
+  .rd .vs2 [data-m-hidden="true"] .lab { display: block; align-self: flex-start; }
 
   .rd .swipe { display: grid !important; grid-template-columns: none !important; grid-auto-flow: column; grid-auto-columns: 84%; gap: 14px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; margin-left: -24px; margin-right: -24px; padding: 4px 24px 14px; scroll-padding-left: 24px; scrollbar-width: none; }
   .rd .swipe::-webkit-scrollbar { display: none; }

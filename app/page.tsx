@@ -113,15 +113,15 @@ export default function Home() {
           <h2>{rd.usp.title}</h2>
           <p className="lead">{rd.usp.lead}</p>
 
-          <div className="mtabs" role="tablist" aria-label={rd.usp.title}>
-            {rd.usp.mobileTabs.map((label, i) => (
-              <button key={label} type="button" role="tab" aria-selected={uspView === i} className="mtab" onClick={() => setUspView(i)}>
-                {label}
-              </button>
-            ))}
-          </div>
+          <p className="vsrow" aria-hidden="true">
+            <span className="a">{rd.usp.mobileTabs[0]}</span>
+            <span className="v">VS</span>
+            <span className="b">{rd.usp.mobileTabs[1]} · {rd.usp.mobileTabs[2]}</span>
+          </p>
           <div className="vs2">
             <div className="elc" data-m-hidden={uspView !== 0}>
+              <span className="lab" aria-hidden="true">{rd.usp.hero.title}</span>
+              <button type="button" className="strip" aria-label={rd.usp.hero.title} aria-expanded={uspView === 0} onClick={() => setUspView(0)} />
               <span className="tag">{rd.usp.hero.tag}</span>
               <h3>{rd.usp.hero.title}</h3>
               <p className="claim">{rd.usp.hero.claim}</p>
@@ -152,6 +152,8 @@ export default function Home() {
               <p className="cap">{rd.usp.compareLabel}</p>
               {rd.usp.others.map((o, oi) => (
                 <div className="oc" key={o.label} data-m-hidden={uspView !== oi + 1}>
+                  <span className="lab" aria-hidden="true">{o.label}</span>
+                  <button type="button" className="strip" aria-label={o.label} aria-expanded={uspView === oi + 1} onClick={() => setUspView(oi + 1)} />
                   <p className="lbl">{o.label}</p>
                   <h4>{o.title}</h4>
                   <ul>
