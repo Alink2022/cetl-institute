@@ -1,23 +1,19 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useLanguage } from "@/lib/i18n";
 import { REDESIGN_DE, REDESIGN_EN } from "@/lib/redesign-content";
 import { LogoWordmark } from "@/components/ui/Logo";
+import { navHref, navLabel } from "./RedesignNavBar";
 
-const NAV_ANCHORS = ["methodik", "portfolio", "oekosystem", "markt", "faq"] as const;
+const FOOTER_ITEMS = ["methodik", "portfolio", "oekosystem", "markt", "praxis", "thinkTank", "faq"] as const;
 
 export function RedesignFooter() {
   const { lang } = useLanguage();
+  const pathname = usePathname();
+  const onHome = pathname === "/";
   const rd = lang === "de" ? REDESIGN_DE : REDESIGN_EN;
-
-  const navLabels: Record<(typeof NAV_ANCHORS)[number], string> = {
-    methodik: rd.nav.methodik,
-    portfolio: rd.nav.portfolio,
-    oekosystem: rd.nav.oekosystem,
-    markt: rd.nav.markt,
-    faq: rd.nav.faq,
-  };
 
   return (
     <div className="rd">
@@ -31,9 +27,9 @@ export function RedesignFooter() {
             <div>
               <h4 className="text-white mb-4">{rd.footer.navLabel}</h4>
               <ul className="list-none pl-0 m-0 flex flex-col gap-2">
-                {NAV_ANCHORS.map((a) => (
-                  <li key={a} className="m-0">
-                    <a href={`#${a}`} className="muted">{navLabels[a]}</a>
+                {FOOTER_ITEMS.map((id) => (
+                  <li key={id} className="m-0">
+                    <Link href={navHref(id, onHome)} className="muted">{navLabel(rd, id)}</Link>
                   </li>
                 ))}
               </ul>

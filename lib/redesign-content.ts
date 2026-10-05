@@ -32,7 +32,13 @@ export interface RedesignProduct {
   foot: string;
 }
 
-export type PortfolioIcon = "certificate" | "path" | "gear" | "chats-circle" | "clipboard-text" | "magnifying-glass" | "chart-line";
+export type PortfolioIcon = "certificate" | "path" | "gear" | "chats-circle" | "clipboard-text" | "magnifying-glass" | "chart-line" | "briefcase" | "buildings" | "graduation-cap";
+
+export type ContactTopicId =
+  | "executional-learning" | "executional-assessments" | "executive-education" | "thinktank"
+  | "market-analysis" | "fde" | "hackathon" | "partner" | "guest" | "other";
+
+export interface ContactTopic { id: ContactTopicId; label: string }
 
 export interface RedesignPortfolioCard {
   icon: PortfolioIcon;
@@ -56,7 +62,7 @@ export interface RedesignFaq {
 }
 
 export interface RedesignContent {
-  nav: { methodik: string; portfolio: string; oekosystem: string; markt: string; praxis: string; insights: string; faq: string; cta: string; langLabel: string; menuOpen: string; menuClose: string; home: string };
+  nav: { methodik: string; portfolio: string; oekosystem: string; markt: string; praxis: string; thinkTank: string; faq: string; cta: string; langLabel: string; menuOpen: string; menuClose: string; home: string };
   hero: { eyebrow: string; hl1: string; hl2: string; lead: string; ctaPrimary: string; ctaSecondary: string; badgesLabel: string };
   beweis: {
     items: { icon: "graduation-cap" | "chats-circle" | "briefcase"; strong: string; span: string }[];
@@ -73,6 +79,7 @@ export interface RedesignContent {
     eyebrow: string; title: string; lead: string;
     learningTitle: string; learning: RedesignPortfolioCard[];
     assessmentTitle: string; assessment: RedesignPortfolioCard[];
+    thinkTankTitle: string; thinkTankLead: string; thinkTank: RedesignPortfolioCard[]; thinkTankCta: string;
   };
   oekosystem: {
     eyebrow: string; title: string; lead: string;
@@ -82,13 +89,13 @@ export interface RedesignContent {
   markt: { eyebrow: string; title: string; lead: string; figures: RedesignFigure[] };
   zitat: { eyebrow: string; quote: string; body: string };
   praxis: { eyebrow: string; title: string; lead: string; cards: RedesignProduct[]; cta: string };
-  insights: { eyebrow: string; title: string; lead: string; cta: string };
+  thinkTank: { eyebrow: string; title: string; lead: string; ctaAll: string; ctaServices: string };
   stimmen: { eyebrow: string; title: string; lead: string };
   faq: { eyebrow: string; title: string; items: RedesignFaq[] };
   kontakt: {
     eyebrow: string; title: string; lead: string;
     addressName: string; addressStreet: string; addressCity: string;
-    fields: { name: string; email: string; topic: string; topicPlaceholder: string; topics: string[]; context: string; submit: string; sending: string; success: string; error: string };
+    fields: { name: string; email: string; role: string; rolePlaceholder: string; roles: string[]; topic: string; topicPlaceholder: string; topics: ContactTopic[]; context: string; submit: string; sending: string; success: string; error: string };
   };
   team: { eyebrow: string; title: string; lead: string };
   footer: { tagline: string; navLabel: string; contactLabel: string; legal: string; insuranceNote: string; imprint: string };
@@ -97,7 +104,7 @@ export interface RedesignContent {
 export const REDESIGN_DE: RedesignContent = {
   nav: {
     methodik: "Methodik", portfolio: "Portfolio", oekosystem: "Ökosystem", markt: "Markt",
-    praxis: "Referenzen", insights: "Insights", faq: "Fragen",
+    praxis: "Referenzen", thinkTank: "Think Tank", faq: "Fragen",
     cta: "Gespräch vereinbaren", langLabel: "Sprache / Language",
     menuOpen: "Menü öffnen", menuClose: "Menü schließen", home: "CETL Institute, zur Startseite",
   },
@@ -171,6 +178,16 @@ export const REDESIGN_DE: RedesignContent = {
       { icon: "magnifying-glass", flag: "Kernprodukt", label: "Capability Audit", title: "Unabhängige, entscheidungsreife Kompetenzeinsicht", desc: "Bewertung anhand realer Business Cases.", items: ["Reale Business Cases", "Transparente Kriterien", "Entscheidungen zu Advance und Develop", "Transformation und Nachfolge"], foot: "Entscheidungsreif für den Vorstand" },
       { icon: "chart-line", label: "Phased Audit Architecture", title: "Von der Baseline zur Kompetenz-Roadmap", desc: "Strukturierter, mehrstufiger Bewertungsprozess.", items: ["Baseline und Stakeholder-Kalibrierung", "Eingebettetes Assessment", "Evidenzbasiertes Mapping", "Multi-Assessor-Perspektive"], foot: "Ihr Fahrplan zur Kompetenz-Roadmap" },
     ],
+    thinkTankTitle: "Think Tank Services",
+    thinkTankLead: "Für Geschäftsführung, HR und Learning & Development, die aktuelles Denken zu KI, Kompetenzen und der Zukunft der Arbeit in ihre Organisation holen wollen, bevor sie investieren.",
+    thinkTankCta: "Think Tank für Ihre Organisation besprechen",
+    thinkTank: [
+      { icon: "briefcase", flag: "Einstieg", label: "Briefing", title: "Executive Briefing", desc: "Aktuelle Analyse für Vorstand, Führungskreis oder HR- und L&D-Leitung, zugeschnitten auf Branche, Ausgangslage und Zielgruppe.", items: ["2 bis 3 Stunden, vor Ort oder remote", "Basierend auf Think-Tank-Publikationen und Ihrem Kontext", "Diskussion konkreter Entscheidungsfragen", "Kurzes Briefing-Dokument als Ergebnis"], foot: "Klarheit vor der nächsten Investitionsentscheidung" },
+      { icon: "path", flag: "Meistgewählt", label: "Workshop", title: "Foresight Lab", desc: "Strukturierter Workshop, in dem die Führungsebene oder HR und L&D Szenarien zur Entwicklung von KI in ihrer Branche erarbeiten, etwa zu Geschäftsmodellen oder zu Rollen und Kompetenzen von morgen.", items: ["1 bis 2 Tage", "Szenarien, Trendbewertung und strategische Optionen", "Input aus Forschung und Branchenpraxis", "Ergebnis: Szenario-Map und priorisierte Handlungsfelder"], foot: "Strategie, die mehrere Zukünfte aushält" },
+      { icon: "buildings", flag: "Flagship", label: "Retainer", title: "Think Tank in Residence", desc: "Der CETL Think Tank als laufender Sparringspartner Ihrer Führung.", items: ["Rahmenvertrag über 6 bis 12 Monate", "Quartalsweise Briefings und Trend-Updates", "Ad-hoc-Einschätzungen zu Anbietern, Regulierung und Technologie", "Zugang zu Forschenden und Fellows aus dem Netzwerk"], foot: "Ein eigener Think Tank, ohne ihn aufbauen zu müssen" },
+      { icon: "clipboard-text", label: "Position Paper", title: "Auftragsstudie", desc: "Eine Analyse oder ein Position Paper zu einer Frage, die Ihre Organisation oder Ihre Branche bewegt.", items: ["Fragestellung gemeinsam definiert", "Recherche, Interviews und Auswertung", "Wahlweise vertraulich oder als gemeinsame Publikation", "Präsentation der Ergebnisse vor dem Führungskreis"], foot: "Fundierte Grundlage für Strategie und Kommunikation" },
+      { icon: "magnifying-glass", label: "Research", title: "Markt- und Kompetenzanalyse", desc: "Marktforschung zu den Fragen, die HR, L&D und Geschäftsführung vor einer KI-Investition klären müssen.", items: ["Nachfrage nach KI-Kompetenzen in Ihrer Branche und Region", "Veränderung von Rollen und Anforderungsprofilen", "Benchmark von Lern- und Qualifizierungsansätzen", "Herstellerneutrale Übersicht über Anbieter und Plattformen"], foot: "Entscheidungen auf Basis von Marktdaten statt Anbieterversprechen" },
+    ],
   },
   oekosystem: {
     eyebrow: "Das CETL Ökosystem",
@@ -228,11 +245,12 @@ export const REDESIGN_DE: RedesignContent = {
     ],
     cta: "Ähnliches Programm besprechen",
   },
-  insights: {
-    eyebrow: "Thought Leadership",
-    title: "Aus der Forschung in die Praxis",
-    lead: "Analysen und Frameworks für Entscheider, die über den nächsten Piloten hinausdenken.",
-    cta: "Alle Publikationen",
+  thinkTank: {
+    eyebrow: "CETL Think Tank",
+    title: "Denken, das Entscheidungen vorbereitet",
+    lead: "Der CETL Think Tank verbindet Forschung, Industriepraxis und die Erfahrung aus unseren Programmen zu Analysen für Geschäftsführung, HR und Learning & Development. Jede Publikation vertritt eine klare These und endet mit Konsequenzen für Führung, Governance, Architektur und Kompetenzentwicklung.",
+    ctaAll: "Alle Publikationen",
+    ctaServices: "Think Tank für Ihre Organisation",
   },
   stimmen: {
     eyebrow: "Stimmen aus der Praxis",
@@ -248,6 +266,9 @@ export const REDESIGN_DE: RedesignContent = {
       { q: "Für welche Organisationstypen ist das Portfolio ausgelegt?", a: "Für Organisationen mit komplexer Enterprise-Architektur und regulatorischen Anforderungen, primär Finanzbranche, Industrie und öffentlicher Sektor. Der Fokus liegt auf Organisationen, die KI nicht als isoliertes Innovationsprojekt, sondern als strategische Infrastruktur behandeln." },
       { q: "Wie strukturiert sich ein Engagement?", a: "Nach einem Rahmengespräch entsteht ein definiertes Leistungsbild mit Meilensteinen, messbaren Ergebnissen und transparentem Vergütungsmodell, wahlweise Tagessatz, Festpreis oder Rahmenvertrag. Der Prozess ist auf die Beschaffungsanforderungen regulierter Organisationen ausgelegt." },
       { q: "Wie lange dauert ein typisches Engagement?", a: "Von wenigen Stunden bis zu mehreren Monaten. Punktuelle Formate wie Briefings und Workshops dauern Stunden bis Tage, das rollenbasierte KI-Kompetenzprogramm läuft modular über 3 bis 12 Monate. Die Dauer jedes Formats ist bei den Programmkarten ausgewiesen." },
+      { q: "Was ist der CETL Think Tank?", a: "Der CETL Think Tank ist der Forschungs- und Publikationsbereich des Instituts. Er veröffentlicht unabhängige Analysen zu KI, Daten und Tech Leadership und bietet Organisationen Formate an, um diese Erkenntnisse in Führung und Strategie zu übertragen, von Executive Briefings bis zum laufenden Sparring." },
+      { q: "Wie bleibt der Think Tank bei Auftragsarbeiten unabhängig?", a: "Auftragsstudien werden als solche gekennzeichnet, wenn sie veröffentlicht werden. Inhaltliche Schlussfolgerungen liegen ausschließlich beim CETL, und wie bei allen Leistungen bestehen keine Partnerschaften mit KI- oder Cloud-Anbietern, die Ergebnisse beeinflussen könnten. Gastautorinnen und Gastautoren, die bei Technologieanbietern tätig sind, legen ihre Zugehörigkeit offen, und jeder Gastbeitrag entsteht gemeinsam mit einem Mitglied des CETL." },
+      { q: "Wie unterstützt das CETL HR und Learning & Development?", a: "HR und L&D verantworten den Aufbau von KI-Kompetenz in der Organisation, auch im Hinblick auf die Pflicht zur KI-Kompetenz nach Artikel 4 des EU AI Act. Das CETL unterstützt sie mit rollenbasierten Lernprogrammen, Kompetenz-Assessments, Markt- und Kompetenzanalysen sowie Think-Tank-Formaten zur Zukunft von Rollen, Kompetenzen und Lernen." },
     ],
   },
   kontakt: {
@@ -258,9 +279,11 @@ export const REDESIGN_DE: RedesignContent = {
     addressStreet: "Wipplinger Straße 4/2. OG",
     addressCity: "1010 Wien, Österreich",
     fields: {
-      name: "Vollständiger Name *", email: "E-Mail *", topic: "Themenbereich",
+      name: "Vollständiger Name *", email: "E-Mail *",
+      role: "Ihre Funktion (optional)", rolePlaceholder: "Funktion auswählen", roles: ["Geschäftsführung", "HR / People", "Learning & Development", "IT / Data", "Fachbereich"],
+      topic: "Themenbereich",
       topicPlaceholder: "Bereich auswählen",
-      topics: ["Executional Learning", "Executional Assessments", "Executive Education", "Forward Deployed Engineering", "CETL Hackathon Teilnahme", "CETL Partner werden", "Sonstiges"],
+      topics: [{ id: "executional-learning", label: "Executional Learning" }, { id: "executional-assessments", label: "Executional Assessments" }, { id: "executive-education", label: "Executive Education" }, { id: "thinktank", label: "Think Tank Services" }, { id: "market-analysis", label: "Markt- und Kompetenzanalyse" }, { id: "fde", label: "Forward Deployed Engineering" }, { id: "hackathon", label: "CETL Hackathon Teilnahme" }, { id: "partner", label: "CETL Partner werden" }, { id: "other", label: "Sonstiges" }],
       context: "Organisatorischer Kontext", submit: "Anfrage übermitteln",
       sending: "Wird gesendet…",
       success: "Danke! Ihre Anfrage ist angekommen, wir melden uns zeitnah.",
@@ -285,7 +308,7 @@ export const REDESIGN_DE: RedesignContent = {
 export const REDESIGN_EN: RedesignContent = {
   nav: {
     methodik: "Method", portfolio: "Portfolio", oekosystem: "Ecosystem", markt: "Market",
-    praxis: "Case studies", insights: "Insights", faq: "Questions",
+    praxis: "Case studies", thinkTank: "Think Tank", faq: "Questions",
     cta: "Arrange a conversation", langLabel: "Sprache / Language",
     menuOpen: "Open menu", menuClose: "Close menu", home: "CETL Institute, back to the homepage",
   },
@@ -359,6 +382,16 @@ export const REDESIGN_EN: RedesignContent = {
       { icon: "magnifying-glass", flag: "Core product", label: "Capability Audit", title: "Independent capability insight, ready for a decision", desc: "Assessment against real business cases.", items: ["Real business cases", "Transparent criteria", "Advance and develop decisions", "Transformation and succession"], foot: "Ready for the board to decide on" },
       { icon: "chart-line", label: "Phased Audit Architecture", title: "From baseline to capability roadmap", desc: "A structured, multi-stage assessment process.", items: ["Baseline and stakeholder calibration", "Embedded assessment", "Evidence-based mapping", "Multi-assessor perspective"], foot: "Your route to a capability roadmap" },
     ],
+    thinkTankTitle: "Think Tank Services",
+    thinkTankLead: "For executive management, HR and Learning & Development who want to bring current thinking on AI, skills and the future of work into their organisation before they invest.",
+    thinkTankCta: "Discuss a Think Tank engagement",
+    thinkTank: [
+      { icon: "briefcase", flag: "Entry point", label: "Briefing", title: "Executive Briefing", desc: "A current analysis for the board, the leadership team or the head of HR and L&D, tailored to sector, starting point and audience.", items: ["2 to 3 hours, on site or remote", "Based on Think Tank publications and your context", "Discussion of concrete decision questions", "A short briefing document as the result"], foot: "Clarity before the next investment decision" },
+      { icon: "path", flag: "Most popular", label: "Workshop", title: "Foresight Lab", desc: "A structured workshop in which leadership, or HR and L&D, develop scenarios for how AI will evolve in their sector, for example on business models or on the roles and skills of tomorrow.", items: ["1 to 2 days", "Scenarios, trend assessment and strategic options", "Input from research and industry practice", "Result: a scenario map and prioritised fields of action"], foot: "Strategy that holds up across several futures" },
+      { icon: "buildings", flag: "Flagship", label: "Retainer", title: "Think Tank in Residence", desc: "The CETL Think Tank as an ongoing sparring partner for your leadership.", items: ["Framework agreement over 6 to 12 months", "Quarterly briefings and trend updates", "Ad-hoc assessments on vendors, regulation and technology", "Access to researchers and fellows from the network"], foot: "Your own think tank, without having to build one" },
+      { icon: "clipboard-text", label: "Position Paper", title: "Commissioned study", desc: "An analysis or position paper on a question that matters to your organisation or your sector.", items: ["Question defined together", "Research, interviews and evaluation", "Confidential, or published jointly", "Results presented to the leadership team"], foot: "A sound basis for strategy and communication" },
+      { icon: "magnifying-glass", label: "Research", title: "Market and skills analysis", desc: "Market research on the questions HR, L&D and executive management need to settle before an AI investment.", items: ["Demand for AI skills in your sector and region", "How roles and requirement profiles are changing", "Benchmark of learning and qualification approaches", "Vendor-neutral overview of providers and platforms"], foot: "Decisions based on market data, not vendor promises" },
+    ],
   },
   oekosystem: {
     eyebrow: "The CETL ecosystem",
@@ -416,11 +449,12 @@ export const REDESIGN_EN: RedesignContent = {
     ],
     cta: "Discuss a similar programme",
   },
-  insights: {
-    eyebrow: "Thought leadership",
-    title: "From research into practice",
-    lead: "Analyses and frameworks for decision-makers thinking beyond the next pilot.",
-    cta: "All publications",
+  thinkTank: {
+    eyebrow: "CETL Think Tank",
+    title: "Thinking that prepares decisions",
+    lead: "The CETL Think Tank combines research, industry practice and the experience from our programmes into analyses for executive management, HR and Learning & Development. Every publication takes a clear position and ends with consequences for leadership, governance, architecture and capability development.",
+    ctaAll: "All publications",
+    ctaServices: "Think Tank for your organisation",
   },
   stimmen: {
     eyebrow: "Voices from practice",
@@ -436,6 +470,9 @@ export const REDESIGN_EN: RedesignContent = {
       { q: "Which kinds of organisation is the portfolio built for?", a: "Organisations with complex enterprise architectures and regulatory requirements — primarily financial services, industry and the public sector. The focus is on organisations that treat AI as strategic infrastructure rather than an isolated innovation project." },
       { q: "How is an engagement structured?", a: "After an initial conversation we define a scope with milestones, measurable outcomes and a transparent commercial model — day rate, fixed price or framework agreement. The process is built for the procurement requirements of regulated organisations." },
       { q: "How long does a typical engagement run?", a: "From a few hours to several months. Single formats such as briefings and workshops run hours to days; the role-based AI capability programme runs modularly over 3 to 12 months. The duration of each format is stated on the programme cards." },
+      { q: "What is the CETL Think Tank?", a: "The CETL Think Tank is the institute's research and publishing arm. It publishes independent analyses on AI, data and tech leadership and offers organisations formats to carry these insights into leadership and strategy, from executive briefings to ongoing sparring." },
+      { q: "How does the Think Tank stay independent when it takes commissions?", a: "Commissioned studies are labelled as such when published. Substantive conclusions rest solely with CETL, and as with all our services there are no partnerships with AI or cloud vendors that could influence results. Guest authors who work for technology vendors disclose their affiliation, and every guest contribution is written together with a member of CETL." },
+      { q: "How does CETL support HR and Learning & Development?", a: "HR and L&D are responsible for building AI literacy in the organisation, including with a view to the AI literacy obligation under Article 4 of the EU AI Act. CETL supports them with role-based learning programmes, skills assessments, market and skills analyses and Think Tank formats on the future of roles, skills and learning." },
     ],
   },
   kontakt: {
@@ -446,9 +483,11 @@ export const REDESIGN_EN: RedesignContent = {
     addressStreet: "Wipplinger Straße 4/2. OG",
     addressCity: "1010 Vienna, Austria",
     fields: {
-      name: "Full name *", email: "Email *", topic: "Topic",
+      name: "Full name *", email: "Email *",
+      role: "Your role (optional)", rolePlaceholder: "Select a role", roles: ["Executive management", "HR / People", "Learning & Development", "IT / Data", "Business unit"],
+      topic: "Topic",
       topicPlaceholder: "Select a topic",
-      topics: ["Executional Learning", "Executional Assessments", "Executive Education", "Forward Deployed Engineering", "CETL hackathon participation", "Becoming a CETL partner", "Something else"],
+      topics: [{ id: "executional-learning", label: "Executional Learning" }, { id: "executional-assessments", label: "Executional Assessments" }, { id: "executive-education", label: "Executive Education" }, { id: "thinktank", label: "Think Tank Services" }, { id: "market-analysis", label: "Market and skills analysis" }, { id: "fde", label: "Forward Deployed Engineering" }, { id: "hackathon", label: "CETL hackathon participation" }, { id: "partner", label: "Becoming a CETL partner" }, { id: "other", label: "Something else" }],
       context: "Organisational context", submit: "Send enquiry",
       sending: "Sending…",
       success: "Thank you! Your enquiry has reached us — we'll be in touch shortly.",

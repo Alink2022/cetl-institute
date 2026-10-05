@@ -1,12 +1,14 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
 import Link from "next/link";
 import { useLanguage } from "@/lib/i18n";
-import { REDESIGN_DE, REDESIGN_EN, type PortfolioIcon, type RedesignContent } from "@/lib/redesign-content";
-import { RedesignNavBar } from "@/components/redesign/RedesignNavBar";
-import { RedesignFooter } from "@/components/redesign/RedesignFooter";
-import { Icon, IconSprite, type IconName } from "@/components/ui/IconSprite";
+import { REDESIGN_DE, REDESIGN_EN } from "@/lib/redesign-content";
+import { sortedPublications } from "@/lib/thinktank";
+import { PageShell } from "@/components/redesign/PageShell";
+import { PortfolioCard } from "@/components/redesign/PortfolioCard";
+import { ContactForm } from "@/components/redesign/ContactForm";
+import { PubCard } from "@/components/thinktank/PubCard";
+import { Icon, type IconName } from "@/components/ui/IconSprite";
 
 const ACADEMIC_LOGOS = [
   { src: "/logos/academy/tuwien.webp", alt: "TU Wien" },
@@ -33,99 +35,16 @@ const INDUSTRY_LOGOS = [
   { src: "/logos/academy/oegig.png", alt: "ÖGIG" },
 ];
 
-function PortfolioCardEl({ icon, flag, label, title, desc, items, foot }: { icon: PortfolioIcon; flag?: string; label: string; title: string; desc: string; items: string[]; foot: string }) {
-  return (
-    <div className="card prod">
-      {flag && <span className="flag">{flag}</span>}
-      <span className="ico ico-sm"><Icon name={icon as IconName} /></span>
-      <p className="label">{label}</p>
-      <h4>{title}</h4>
-      <p className="muted" style={{ marginTop: 10, fontSize: ".95rem" }}>{desc}</p>
-      <ul>{items.map((it) => <li key={it}>{it}</li>)}</ul>
-      <p className="foot">{foot}</p>
-    </div>
-  );
-}
-
-function ContactForm({ fields }: { fields: RedesignContent["kontakt"]["fields"] }) {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [topic, setTopic] = useState("");
-  const [context, setContext] = useState("");
-  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
-
-  async function handleSubmit(e: FormEvent) {
-    e.preventDefault();
-    setStatus("sending");
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, topic, context }),
-      });
-      if (!res.ok) throw new Error("request failed");
-      setStatus("sent");
-      setName("");
-      setEmail("");
-      setTopic("");
-      setContext("");
-    } catch {
-      setStatus("error");
-    }
-  }
-
-  if (status === "sent") {
-    return (
-      <div className="card" role="status">
-        <p style={{ margin: 0 }}>{fields.success}</p>
-      </div>
-    );
-  }
-
-  return (
-    <form className="card" onSubmit={handleSubmit}>
-      <label className="field">
-        <span>{fields.name}</span>
-        <input type="text" required value={name} onChange={(e) => setName(e.target.value)} />
-      </label>
-      <label className="field">
-        <span>{fields.email}</span>
-        <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
-      </label>
-      <label className="field">
-        <span>{fields.topic}</span>
-        <select value={topic} onChange={(e) => setTopic(e.target.value)}>
-          <option value="" disabled>{fields.topicPlaceholder}</option>
-          {fields.topics.map((t) => <option key={t}>{t}</option>)}
-        </select>
-      </label>
-      <label className="field">
-        <span>{fields.context}</span>
-        <textarea rows={4} value={context} onChange={(e) => setContext(e.target.value)} />
-      </label>
-      {status === "error" && (
-        <p style={{ color: "var(--brand-700)", fontSize: "0.9rem", marginBottom: 16 }}>{fields.error}</p>
-      )}
-      <button className="btn btn-primary" type="submit" disabled={status === "sending"}>
-        {status === "sending" ? fields.sending : fields.submit}
-      </button>
-    </form>
-  );
-}
 
 export default function Home() {
   const { lang, t } = useLanguage();
   const rd = lang === "de" ? REDESIGN_DE : REDESIGN_EN;
-  const insights = t.INSIGHTS.slice(0, 3);
+  const latest = sortedPublications().slice(0, 3);
   const testimonials = t.TESTIMONIALS;
   const team = t.TEAM_MEMBERS;
 
   return (
-    <div className="rd">
-      <IconSprite />
-      <RedesignNavBar />
-
-      <main id="top">
+    <PageShell>
         {/* HERO */}
         <section className="hero">
           <img
@@ -278,13 +197,22 @@ export default function Home() {
 
             <h3 style={{ margin: "48px 0 20px" }}>{rd.portfolio.learningTitle}</h3>
             <div className="grid g4">
-              {rd.portfolio.learning.map((c) => <PortfolioCardEl key={c.title} {...c} />)}
+              {rd.portfolio.learning.map((c) => <PortfolioCard key={c.title} {...c} />)}
             </div>
 
             <h3 style={{ margin: "5rem 0 1.5rem" }}>{rd.portfolio.assessmentTitle}</h3>
             <div className="grid g3">
-              {rd.portfolio.assessment.map((c) => <PortfolioCardEl key={c.title} {...c} />)}
+              {rd.portfolio.assessment.map((c) => <PortfolioCard key={c.title} {...c} />)}
             </div>
+
+            <h3 style={{ margin: "5rem 0 0.5rem" }}>{rd.portfolio.thinkTankTitle}</h3>
+            <p className="muted" style={{ margin: "0 0 1.5rem", maxWidth: "72ch" }}>{rd.portfolio.thinkTankLead}</p>
+            <div className="grid g3">
+              {rd.portfolio.thinkTank.map((c) => <PortfolioCard key={c.title} {...c} />)}
+            </div>
+            <p style={{ marginTop: "3rem" }}>
+              <Link className="btn btn-primary" href="/think-tank#services">{rd.portfolio.thinkTankCta}</Link>
+            </p>
           </div>
         </section>
 
@@ -400,23 +328,19 @@ export default function Home() {
           </div>
         </section>
 
-        {/* INSIGHTS */}
-        <section id="insights" className="alt">
+        {/* THINK TANK */}
+        <section id="think-tank" className="alt">
           <div className="wrap">
-            <p className="eyebrow">{rd.insights.eyebrow}</p>
-            <h2>{rd.insights.title}</h2>
-            <p className="lead" style={{ margin: "16px 0 3rem" }}>{rd.insights.lead}</p>
+            <p className="eyebrow">{rd.thinkTank.eyebrow}</p>
+            <h2>{rd.thinkTank.title}</h2>
+            <p className="lead" style={{ margin: "16px 0 3rem" }}>{rd.thinkTank.lead}</p>
             <div className="grid g3">
-              {insights.map((item) => (
-                <Link href={`/insights/${item.slug}`} className="card prod" key={item.slug} style={{ display: "block", color: "inherit" }}>
-                  <span className="chip">{item.tag}</span>
-                  <h4 style={{ marginTop: 14 }}>{item.title}</h4>
-                  <p className="muted" style={{ marginTop: 10, fontSize: ".95rem" }}>{item.teaser}</p>
-                  <p className="foot">{item.category} · {item.readTime}</p>
-                </Link>
-              ))}
+              {latest.map((pub) => <PubCard key={pub.slug} pub={pub} lang={lang} />)}
             </div>
-            <p style={{ marginTop: "3rem" }}><Link className="btn btn-ghost" href="/insights">{rd.insights.cta}</Link></p>
+            <p style={{ marginTop: "3rem", display: "flex", gap: 14, flexWrap: "wrap" }}>
+              <Link className="btn btn-primary" href="/think-tank">{rd.thinkTank.ctaAll}</Link>
+              <Link className="btn btn-ghost" href="/think-tank#services">{rd.thinkTank.ctaServices}</Link>
+            </p>
           </div>
         </section>
 
@@ -493,9 +417,6 @@ export default function Home() {
             </div>
           </div>
         </section>
-      </main>
-
-      <RedesignFooter />
-    </div>
+    </PageShell>
   );
 }

@@ -39,6 +39,9 @@ const nextConfig: NextConfig = {
   // Vercel-Standarddomain und die nackte Apex-Domain dauerhaft auf www um.
   async redirects() {
     return [
+      // Insights wurde zum CETL Think Tank: alte URLs behalten ihre Rankings.
+      { source: "/insights", destination: "/think-tank", permanent: true },
+      { source: "/insights/:slug", destination: "/think-tank/:slug", permanent: true },
       {
         source: "/:path*",
         has: [{ type: "host", value: "cetl-institute.vercel.app" }],

@@ -20,17 +20,20 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "server_not_configured" }, { status: 500 });
   }
 
-  let body: { name?: string; email?: string; topic?: string; context?: string };
+  let body: { name?: string; email?: string; role?: string; topic?: string; context?: string };
   try {
     body = await request.json();
   } catch {
     return NextResponse.json({ error: "invalid_body" }, { status: 400 });
   }
 
-  const name = (body.name ?? "").trim();
-  const email = (body.email ?? "").trim();
-  const topic = (body.topic ?? "").trim();
-  const context = (body.context ?? "").trim();
+  const clean = (v: unknown, max: number) => (typeof v === "string" ? v.trim().slice(0, max) : "");
+  const oneLine = (v: string) => v.replace(/[\r\n]+/g, " ");
+  const name = oneLine(clean(body.name, 200));
+  const email = oneLine(clean(body.email, 200));
+  const role = oneLine(clean(body.role, 200));
+  const topic = oneLine(clean(body.topic, 200));
+  const context = clean(body.context, 5000);
 
   const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!name || !EMAIL_RE.test(email)) {
@@ -48,6 +51,7 @@ export async function POST(request: Request) {
       html: `
         <p><strong>Name:</strong> ${escapeHtml(name)}</p>
         <p><strong>E-Mail:</strong> ${escapeHtml(email)}</p>
+        <p><strong>Funktion / Organisation:</strong> ${escapeHtml(role || "—")}</p>
         <p><strong>Themenbereich:</strong> ${escapeHtml(topic || "—")}</p>
         <p><strong>Organisatorischer Kontext:</strong></p>
         <p>${escapeHtml(context || "—").replace(/\n/g, "<br>")}</p>
