@@ -150,7 +150,7 @@ export const REDESIGN_DE: RedesignContent = {
   usp: {
     eyebrow: "Unser Ansatz",
     title: "Warum Executional Learning der Unterschied ist",
-    lead: "Weiterbildung bleibt oft Theorie, Beratung bleibt Projekt. Executional Learning verbindet das Beste aus beiden und baut Kompetenz auf, die in Ihrer Organisation bleibt.",
+    lead: "Technologien und Märkte drehen sich schneller denn je. Weiterbildung bleibt dabei oft Theorie, Beratung bleibt Projekt. Unsere einzigartige Antwort ist Executional Learning: Es verbindet das Beste aus beiden und baut Kompetenz auf, die Ihre Organisation nachhaltig transformiert und zukunftsfest macht.",
     hero: {
       tag: "Der CETL-Unterschied",
       title: "Executional Learning",
@@ -380,7 +380,7 @@ export const REDESIGN_EN: RedesignContent = {
   usp: {
     eyebrow: "Our approach",
     title: "Why Executional Learning makes the difference",
-    lead: "Training too often stays theory, consulting stays a project. Executional Learning combines the best of both and builds capability that stays in your organisation.",
+    lead: "Technologies and markets are moving faster than ever. Training too often stays theory, and consulting stays a project. Our unique answer is Executional Learning: it combines the best of both and builds capability that transforms your organisation for good and makes it future-ready.",
     hero: {
       tag: "The CETL difference",
       title: "Executional Learning",
