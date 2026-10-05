@@ -73,12 +73,13 @@ export interface RedesignContent {
   };
   usp: {
     eyebrow: string; title: string; lead: string;
-    contrast: { label: string; title: string; items: string[]; highlight?: boolean }[];
-    formulaTitle: string;
-    formula: { title: string; text: string }[];
-    result: { title: string; text: string };
-    asaTitle: string; asaLead: string;
-    principles: { title: string; text: string }[];
+    hero: {
+      tag: string; title: string; claim: string;
+      points: { title: string; text: string }[];
+      formulaLabel: string; formula: string[]; result: string;
+    };
+    compareLabel: string;
+    others: { label: string; title: string; items: string[] }[];
     ctaPrimary: string; ctaSecondary: string;
   };
   methodik: { eyebrow: string; title: string; lead: string; modulesTitle: string; modules: RedesignModule[] };
@@ -146,26 +147,28 @@ export const REDESIGN_DE: RedesignContent = {
   },
   usp: {
     eyebrow: "Unser Ansatz",
-    title: "Executional Learning: Lernen, das in Umsetzung endet",
-    lead: "Weiterbildung vermittelt Wissen, aber keine Umsetzung. Beratung liefert Umsetzung, aber kein Wissen, das bleibt. Executional Learning ist das eigens entwickelte Format des CETL, das beides zu einem Vorgang macht: Ihre Teams lernen an den eigenen Aufgaben, Werkzeugen und Zielen und liefern dabei ein reales Ergebnis.",
-    contrast: [
-      { label: "Klassische Weiterbildung", title: "Wissen ohne Umsetzung", items: ["Standardkurse und Kursblöcke", "Erfolg gemessen an Teilnahme", "Der Transfer in die Arbeit bleibt Ihre Aufgabe"] },
-      { label: "Klassische Beratung", title: "Umsetzung ohne Wissenstransfer", items: ["Empfehlungen und Projektressourcen", "Beides endet mit dem Vertrag", "Abhängigkeit statt Befähigung"] },
-      { label: "Executional Learning", title: "Lernen und Liefern in einem Vorgang", items: ["Maßgeschneidert auf Rollen, Prozesse und Ziele", "An echten Use Cases und den eigenen Werkzeugen", "Endet in einem Ergebnis: Use Case, Prototyp oder Roadmap"], highlight: true },
-    ],
-    formulaTitle: "Woraus Executional Learning besteht",
-    formula: [
-      { title: "Akademische Module", text: "Zertifizierte Inhalte mit der TU Wien und über 15 Hochschulen im DACH-Raum" },
-      { title: "Branchenpraxis", text: "Über 50 Lehrende aus Banking, Versicherung, Industrie, Aviation und öffentlichem Sektor" },
-      { title: "Community-Umsetzung", text: "Hackathon, Co-Creation und Forward Deployed Engineering bringen Ideen in die Anwendung" },
-    ],
-    result: { title: "Kompetenz, die bleibt", text: "Ihre Organisation kann danach selbst, was sie vorher nicht konnte" },
-    asaTitle: "Warum „as a Service“?",
-    asaLead: "Ein flexibler Baukasten statt eines starren Curriculums: Sie nutzen, was Ihre Organisation braucht, und kombinieren es modular.",
-    principles: [
-      { title: "Standardisierter Kern", text: "Strukturierte Data- und KI-Grundlagen, die für alle Rollen tragen" },
-      { title: "Maßgeschneiderte Aktivierung", text: "Rollenbasierte Lernreisen und Use Cases, zugeschnitten auf Ihre Organisation" },
-      { title: "Umsetzung nah an der Arbeit", text: "Begleitete Projekte und eingebettete Befähigung direkt im Tagesgeschäft" },
+    title: "Warum Executional Learning der Unterschied ist",
+    lead: "Weiterbildung bleibt oft Theorie, Beratung bleibt Projekt. Executional Learning verbindet das Beste aus beiden und baut Kompetenz auf, die in Ihrer Organisation bleibt.",
+    hero: {
+      tag: "Der CETL-Unterschied",
+      title: "Executional Learning",
+      claim: "Die Brücke zwischen akademischer Exzellenz und echter Umsetzung, maßgeschneidert auf Ihre Organisation.",
+      points: [
+        { title: "Maßgeschneidert", text: "Jeder Lernpfad wird aus Ihrer Strategie, Ihren Rollen, Prozessen und Werkzeugen abgeleitet. Kein Katalog: Grundlagen, Vertiefung und Umsetzung werden pro Organisation neu zusammengestellt." },
+        { title: "Das Beste aus zwei Welten", text: "Zertifizierte Module akademischer Partner liefern Tiefe und Abschlüsse. Praktiker und Embedded Engineers bringen sie direkt an Ihren eigenen Use Cases zur Anwendung." },
+        { title: "Transformationstreiber", text: "Als Service (ELaaS) modular abrufbar: Foundation für alle, Specialization für Rollen, Executional für Projekte. Sie aktivieren, was gerade zählt, im Tempo der KI." },
+        { title: "Breitenwirkung", text: "Basisschulung für alle, Executive-Track für die Führung, Role Tracks für Anwender und Champions. So wird AI Literacy zur Fähigkeit der Organisation, nicht Einzelwissen." },
+        { title: "Begleitung, die bleibt", text: "Mentoring, Use-Case-Bewertung und Projektunterstützung laufen im flexiblen Pool der Executional-Learning-Tage weiter, auch nach dem Programm." },
+        { title: "Ergebnis statt Teilnahme", text: "Jede Lernreise endet in einem Use Case, Prototyp, Business Case oder einer Umsetzungsroadmap, aus Ihrem Arbeitsalltag und mit Ihren Daten." },
+      ],
+      formulaLabel: "Das Rezept",
+      formula: ["Akademische Partner", "Branchenpraxis", "Community-Umsetzung"],
+      result: "Kompetenz, die bleibt",
+    },
+    compareLabel: "Zum Vergleich: der klassische Weg",
+    others: [
+      { label: "Klassische Aus- und Weiterbildung", title: "Wissen ohne Umsetzung", items: ["Uneinheitliche Standards, Abschlüsse und Schwerpunkte: Qualität und Vergleichbarkeit schwanken je Anbieter", "Kaum Umsetzung: höchstens Capstones oder Konzeptprojekte, selten im echten Arbeitskontext", "Standardformate: gleicher Inhalt für alle Rollen, Ihre Werkzeuge und Prozesse kommen nicht vor", "Keine Begleitung nach dem Kurs: im KI-Tempo veraltet Wissen schnell", "Einmaleffekt zu hohen Kosten: Teilnahme wird bezahlt, Wirkung im Alltag bleibt offen"] },
+      { label: "Klassische Beratung", title: "Umsetzung ohne Befähigung", items: ["Fokus fast nur auf Umsetzung: das Ergebnis kommt, das Wissen dahinter bleibt beim Anbieter", "Training nur als Nachtrag: Schulungen kommen spät und ergänzen, statt zu tragen", "Keine standardisierten Formate oder Zertifikate: Kompetenz bleibt unbelegt", "Maßschneiderung nur auf Projektebene: die Organisation darüber hinaus bleibt unberührt", "Einmaleffekt zu hohen Kosten: mit dem Projektende endet die Wirkung, weil Ihre Organisation nicht befähigt wurde"] },
     ],
     ctaPrimary: "Bausteine ansehen",
     ctaSecondary: "So funktioniert es",
@@ -374,26 +377,28 @@ export const REDESIGN_EN: RedesignContent = {
   },
   usp: {
     eyebrow: "Our approach",
-    title: "Executional Learning: learning that ends in execution",
-    lead: "Training conveys knowledge, but not execution. Consulting delivers execution, but not knowledge that stays. Executional Learning is CETL's own purpose-built format that turns both into one process: your teams learn on their own tasks, tools and goals, and deliver a real result while doing so.",
-    contrast: [
-      { label: "Classic training", title: "Knowledge without execution", items: ["Standard courses and course blocks", "Success measured by attendance", "Transfer into the work stays your job"] },
-      { label: "Classic consulting", title: "Execution without knowledge transfer", items: ["Recommendations and project resources", "Both end with the contract", "Dependency instead of capability"] },
-      { label: "Executional Learning", title: "Learning and delivering in one process", items: ["Tailored to roles, processes and goals", "On real use cases and your own tools", "Ends in a result: a use case, prototype or roadmap"], highlight: true },
-    ],
-    formulaTitle: "What Executional Learning is made of",
-    formula: [
-      { title: "Academic modules", text: "Certified content with TU Wien and more than 15 universities across the DACH region" },
-      { title: "Industry practice", text: "More than 50 practitioners from banking, insurance, industry, aviation and the public sector" },
-      { title: "Community execution", text: "Hackathon, co-creation and Forward Deployed Engineering carry ideas into application" },
-    ],
-    result: { title: "Capability that stays", text: "Your organisation can do afterwards what it could not do before" },
-    asaTitle: "Why “as a Service”?",
-    asaLead: "A flexible toolkit instead of a rigid curriculum: you use what your organisation needs and combine it modularly.",
-    principles: [
-      { title: "A standardised core", text: "Structured data and AI foundations that hold for every role" },
-      { title: "Tailored activation", text: "Role-based learning journeys and use cases, fitted to your organisation" },
-      { title: "Execution close to the work", text: "Supported projects and embedded enablement right in day-to-day operations" },
+    title: "Why Executional Learning makes the difference",
+    lead: "Training too often stays theory, consulting stays a project. Executional Learning combines the best of both and builds capability that stays in your organisation.",
+    hero: {
+      tag: "The CETL difference",
+      title: "Executional Learning",
+      claim: "The bridge between academic excellence and real execution, tailored to your organisation.",
+      points: [
+        { title: "Tailored", text: "Every learning path is derived from your strategy, roles, processes and tools. No catalogue: foundation, specialisation and execution are assembled anew for each organisation." },
+        { title: "The best of two worlds", text: "Certified modules from academic partners provide depth and qualifications. Practitioners and embedded engineers apply them directly to your own use cases." },
+        { title: "A transformation driver", text: "Available as a modular service (ELaaS): Foundation for everyone, Specialization for roles, Executional for projects. You activate what matters now, at the pace of AI." },
+        { title: "Broad impact", text: "Basic training for everyone, an executive track for leadership, role tracks for users and champions. AI literacy becomes a capability of the organisation, not individual knowledge." },
+        { title: "Support that stays", text: "Mentoring, use-case assessment and project support continue in the flexible pool of Executional Learning days, also after the programme." },
+        { title: "Results, not attendance", text: "Every learning journey ends in a use case, prototype, business case or implementation roadmap, drawn from your daily work and using your data." },
+      ],
+      formulaLabel: "The recipe",
+      formula: ["Academic partners", "Industry practice", "Community execution"],
+      result: "Capability that stays",
+    },
+    compareLabel: "For comparison: the classic way",
+    others: [
+      { label: "Classic education and training", title: "Knowledge without execution", items: ["Inconsistent standards, qualifications and focus: quality and comparability vary by provider", "Little execution: at best capstones or concept projects, rarely in the real work context", "Standard formats: the same content for every role, your tools and processes do not feature", "No support after the course: at the pace of AI, knowledge goes stale quickly", "A one-off effect at high cost: attendance is paid for, impact in daily work stays open"] },
+      { label: "Classic consulting", title: "Execution without enablement", items: ["Focus almost only on execution: the result arrives, the knowledge behind it stays with the provider", "Training only as an afterthought: courses come late and add on instead of carrying", "No standardised formats or certificates: capability stays unproven", "Tailoring only at project level: the organisation beyond it is left untouched", "A one-off effect at high cost: the impact ends with the project, because your organisation was not enabled"] },
     ],
     ctaPrimary: "See the building blocks",
     ctaSecondary: "How it works",

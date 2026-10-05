@@ -112,51 +112,48 @@ export default function Home() {
           <h2>{rd.usp.title}</h2>
           <p className="lead">{rd.usp.lead}</p>
 
-          <div className="vs">
-            {rd.usp.contrast.map((c) => (
-              <div className={`col${c.highlight ? " hl" : ""}`} key={c.label}>
-                <p className="lbl">{c.label}</p>
-                <h3>{c.title}</h3>
-                <ul>
-                  {c.items.map((it) => (
-                    <li key={it}>
-                      <Icon name={c.highlight ? "check" : "x"} />
-                      <span>{it}</span>
-                    </li>
-                  ))}
-                </ul>
+          <div className="vs2">
+            <div className="elc">
+              <span className="tag">{rd.usp.hero.tag}</span>
+              <h3>{rd.usp.hero.title}</h3>
+              <p className="claim">{rd.usp.hero.claim}</p>
+              <ul>
+                {rd.usp.hero.points.map((pt) => (
+                  <li key={pt.title}>
+                    <Icon name="check" />
+                    <span>
+                      <b>{pt.title}</b>
+                      <span className="s">{pt.text}</span>
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              <div className="mini">
+                <span className="lbl">{rd.usp.hero.formulaLabel}</span>
+                {rd.usp.hero.formula.map((f, i) => (
+                  <Fragment key={f}>
+                    <span className="pill">{f}</span>
+                    <span className="op" aria-hidden="true">{i < rd.usp.hero.formula.length - 1 ? "+" : "="}</span>
+                  </Fragment>
+                ))}
+                <span className="pill res">{rd.usp.hero.result}</span>
               </div>
-            ))}
-          </div>
-
-          <p className="eqhead">{rd.usp.formulaTitle}</p>
-          <div className="eq">
-            {rd.usp.formula.map((f, i) => (
-              <Fragment key={f.title}>
-                <div className="tile">
-                  <h4>{f.title}</h4>
-                  <p>{f.text}</p>
-                </div>
-                <span className="op" aria-hidden="true">{i < rd.usp.formula.length - 1 ? "+" : "="}</span>
-              </Fragment>
-            ))}
-            <div className="tile res">
-              <h4>{rd.usp.result.title}</h4>
-              <p>{rd.usp.result.text}</p>
             </div>
-          </div>
 
-          <div className="asa">
-            <div>
-              <h3>{rd.usp.asaTitle}</h3>
-              <p className="lead">{rd.usp.asaLead}</p>
-            </div>
-            <div className="pr">
-              {rd.usp.principles.map((p, i) => (
-                <div key={p.title}>
-                  <b>{String(i + 1).padStart(2, "0")}</b>
-                  <h4>{p.title}</h4>
-                  <p>{p.text}</p>
+            <div className="others">
+              <p className="cap">{rd.usp.compareLabel}</p>
+              {rd.usp.others.map((o) => (
+                <div className="oc" key={o.label}>
+                  <p className="lbl">{o.label}</p>
+                  <h4>{o.title}</h4>
+                  <ul>
+                    {o.items.map((it) => (
+                      <li key={it}>
+                        <Icon name="x" />
+                        <span>{it}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               ))}
             </div>
