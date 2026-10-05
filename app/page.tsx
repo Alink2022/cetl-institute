@@ -1,11 +1,12 @@
 "use client";
 
+import { Fragment } from "react";
 import Link from "next/link";
 import { useLanguage } from "@/lib/i18n";
 import { REDESIGN_DE, REDESIGN_EN } from "@/lib/redesign-content";
 import { sortedPublications } from "@/lib/thinktank";
 import { PageShell } from "@/components/redesign/PageShell";
-import { PortfolioCard } from "@/components/redesign/PortfolioCard";
+import { PortfolioTabs } from "@/components/redesign/PortfolioTabs";
 import { ContactForm } from "@/components/redesign/ContactForm";
 import { PubCard } from "@/components/thinktank/PubCard";
 import { Icon, type IconName } from "@/components/ui/IconSprite";
@@ -34,7 +35,7 @@ const INDUSTRY_LOGOS = [
   { src: "/logos/industry/caritasstbarbara.png", alt: "Caritas St. Barbara" },
   { src: "/logos/academy/oegig.png", alt: "ÖGIG" },
 ];
-
+const ECO_LOGOS = [ACADEMIC_LOGOS, COMMUNITY_LOGOS, INDUSTRY_LOGOS];
 
 export default function Home() {
   const { lang, t } = useLanguage();
@@ -42,317 +43,303 @@ export default function Home() {
   const latest = sortedPublications().slice(0, 3);
   const testimonials = t.TESTIMONIALS;
   const team = t.TEAM_MEMBERS;
+  const ecoCaptions = [rd.oekosystem.partnerLabels.academic, rd.oekosystem.partnerLabels.community, rd.oekosystem.partnerLabels.industry];
 
   return (
     <PageShell>
-        {/* HERO */}
-        <section className="hero">
-          <img
-            className="hero-bg"
-            src="/cetl-hero-01.webp"
-            width={1920}
-            height={942}
-            alt={lang === "de" ? "Zwei Fachkräfte im Gespräch an einem Besprechungstisch, vor sich ein aufgeklappter Laptop" : "Two professionals in conversation at a meeting table with an open laptop"}
-            fetchPriority="high"
-          />
-          <div className="hero-scrim" />
-          <div className="hero-wide">
-            <p className="eyebrow">{rd.hero.eyebrow}</p>
-            <h1>
-              <span className="hl">{rd.hero.hl1}</span><br />
-              <span className="hl">{rd.hero.hl2}</span>
-            </h1>
-            <p className="hero-lead">{rd.hero.lead}</p>
-            <div className="cta">
-              <a className="btn btn-primary" href="#portfolio">{rd.hero.ctaPrimary}</a>
-              <a className="btn btn-ghost btn-onimage" href="#kontakt">{rd.hero.ctaSecondary}</a>
-            </div>
+      {/* HERO */}
+      <section className="hero">
+        <img
+          className="hero-bg"
+          src="/cetl-hero-01.webp"
+          width={1920}
+          height={942}
+          alt={lang === "de" ? "Zwei Fachkräfte im Gespräch an einem Besprechungstisch, vor sich ein aufgeklappter Laptop" : "Two professionals in conversation at a meeting table with an open laptop"}
+          fetchPriority="high"
+        />
+        <div className="hero-scrim" />
+        <div className="hero-wide">
+          <p className="eyebrow">{rd.hero.eyebrow}</p>
+          <h1>
+            <span className="hl">{rd.hero.hl1}</span><br />
+            <span className="hl">{rd.hero.hl2}</span>
+          </h1>
+          <p className="hero-lead">{rd.hero.lead}</p>
+          <div className="cta">
+            <a className="btn btn-primary" href="#portfolio">{rd.hero.ctaPrimary}</a>
+            <a className="btn btn-ghost btn-onimage" href="#kontakt">{rd.hero.ctaSecondary}</a>
           </div>
-          <aside className="hero-badges" aria-label={rd.hero.badgesLabel}>
-            <span className="badges-label">{rd.hero.badgesLabel}</span>
-            <img src="/logos/academy/tuwien.webp" alt="TU Wien" />
-            <img src="/logos/community/stadtwien.svg" alt="Stadt Wien" />
-            <img src="/logos/industry/oebb.webp" alt="ÖBB" />
-          </aside>
-        </section>
+        </div>
+        <aside className="hero-badges" aria-label={rd.hero.badgesLabel}>
+          <span className="badges-label">{rd.hero.badgesLabel}</span>
+          <img src="/logos/academy/tuwien.webp" alt="TU Wien" />
+          <img src="/logos/community/stadtwien.svg" alt="Stadt Wien" />
+          <img src="/logos/industry/oebb.webp" alt="ÖBB" />
+        </aside>
+      </section>
 
-        {/* BEWEIS */}
-        <section id="beweis" style={{ padding: "5rem 0 0", borderTop: 0 }}>
-          <div className="wrap">
-            <div className="proof">
-              {rd.beweis.items.map((item) => (
-                <div key={item.strong}>
-                  <Icon name={item.icon as IconName} />
-                  <div>
-                    <strong>{item.strong}</strong>
-                    <span>{item.span}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="keywords">
-              {rd.beweis.keywords.map((k) => (
-                <span key={k} className="chip chip-line">{k}</span>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ZAHLEN */}
-        <section id="zahlen" style={{ borderTop: 0 }}>
-          <div className="wrap">
-            <p className="eyebrow">{rd.zahlen.eyebrow}</p>
-            <h2>{rd.zahlen.title}</h2>
-            <div className="grid g4" style={{ marginTop: "3rem" }}>
-              {rd.zahlen.stats.map((s) => (
-                <div className="stat" key={s.text}>
-                  <div className="kpi">{s.kpi}</div>
-                  <p className="muted" style={{ margin: "10px 0 0" }}>{s.text}</p>
-                </div>
-              ))}
-            </div>
-            <div className="card" style={{ marginTop: "3rem", display: "flex", gap: 28, alignItems: "flex-start", flexWrap: "wrap" }}>
-              {rd.zahlen.cards.map((c) => (
-                <div style={{ flex: 1, minWidth: 260 }} key={c.title}>
-                  <span className="chip">{c.chip}</span>
-                  <h4 style={{ marginTop: 12 }}>{c.title}</h4>
-                  <p className="muted" style={{ margin: "8px 0 0" }}>{c.text}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* METHODIK */}
-        <section id="methodik" className="alt">
-          <div className="wrap">
-            <div className="split">
-              <div>
-                <p className="eyebrow">{rd.methodik.eyebrow}</p>
-                <h2>{rd.methodik.title}</h2>
-                <p className="lead" style={{ margin: "16px 0 0" }}>{rd.methodik.lead}</p>
+      {/* VERTRAUEN: Kennzahlen + Beweise */}
+      <section id="beweis" style={{ borderTop: 0 }}>
+        <div className="wrap">
+          <p className="eyebrow">{rd.zahlen.eyebrow}</p>
+          <h2>{rd.zahlen.title}</h2>
+          <div className="kpis">
+            {rd.zahlen.stats.map((s) => (
+              <div key={s.text}>
+                <div className="kpi">{s.kpi}</div>
+                <p>{s.text}</p>
               </div>
-              <figure className="media ratio-32">
-                <img
-                  src="/cetl-methodik.webp"
-                  width={1440}
-                  height={960}
-                  alt={lang === "de" ? "Trainer erläutert an einem Whiteboard eine Vorgehensweise, Teilnehmende diskutieren mit" : "A trainer explains an approach at a whiteboard while participants join the discussion"}
-                  loading="lazy"
-                />
-              </figure>
-            </div>
-            <h3 style={{ margin: "5rem 0 1.5rem" }}>{rd.methodik.modulesTitle}</h3>
-            <div className="modules">
-              {rd.methodik.modules.map((m) => (
-                <div key={m.lvl}>
-                  <p className="lvl">{m.lvl}</p>
-                  <div className="bar" />
-                  <h4>{m.title}</h4>
-                  <p className="muted" style={{ margin: "8px 0 0", fontSize: ".95rem" }}>{m.desc}</p>
+            ))}
+          </div>
+          <div className="proof">
+            {rd.beweis.items.map((item) => (
+              <div key={item.strong}>
+                <Icon name={item.icon as IconName} />
+                <div>
+                  <strong>{item.strong}</strong>
+                  <span>{item.span}</span>
                 </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* PROZESS */}
-        <section id="prozess">
-          <div className="wrap">
-            <p className="eyebrow">{rd.prozess.eyebrow}</p>
-            <h2>{rd.prozess.title}</h2>
-            <p className="lead" style={{ margin: "16px 0 3rem" }}>{rd.prozess.lead}</p>
-            <div className="stepcards">
-              {rd.prozess.steps.map((step) => (
-                <article className="stepcard" key={step.num}>
-                  <div className="head">
-                    <Icon name={step.icon} />
-                    <span className="num">{step.num}</span>
-                    <h3>{step.title}</h3>
-                  </div>
-                  <div className="body">
-                    <p className="claim">{step.claim}</p>
-                    <ul className="checks">
-                      {step.checks.map((c) => (
-                        <li key={c}>
-                          <Icon name="check" className="ic-check" />
-                          <span>{c}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <p className="foot">{step.foot}</p>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* PORTFOLIO */}
-        <section id="portfolio" className="alt">
-          <div className="wrap">
-            <p className="eyebrow">{rd.portfolio.eyebrow}</p>
-            <h2>{rd.portfolio.title}</h2>
-            <p className="lead" style={{ margin: "16px 0 0" }}>{rd.portfolio.lead}</p>
-
-            <h3 style={{ margin: "48px 0 20px" }}>{rd.portfolio.learningTitle}</h3>
-            <div className="grid g4">
-              {rd.portfolio.learning.map((c) => <PortfolioCard key={c.title} {...c} />)}
-            </div>
-
-            <h3 style={{ margin: "5rem 0 1.5rem" }}>{rd.portfolio.assessmentTitle}</h3>
-            <div className="grid g3">
-              {rd.portfolio.assessment.map((c) => <PortfolioCard key={c.title} {...c} />)}
-            </div>
-
-            <h3 style={{ margin: "5rem 0 0.5rem" }}>{rd.portfolio.thinkTankTitle}</h3>
-            <p className="muted" style={{ margin: "0 0 1.5rem", maxWidth: "72ch" }}>{rd.portfolio.thinkTankLead}</p>
-            <div className="grid g3">
-              {rd.portfolio.thinkTank.map((c) => <PortfolioCard key={c.title} {...c} />)}
-            </div>
-            <p style={{ marginTop: "3rem" }}>
-              <Link className="btn btn-primary" href="/think-tank#services">{rd.portfolio.thinkTankCta}</Link>
-            </p>
-          </div>
-        </section>
-
-        {/* OEKOSYSTEM */}
-        <section id="oekosystem">
-          <div className="wrap">
-            <div className="split" style={{ marginBottom: "3rem" }}>
-              <div>
-                <p className="eyebrow">{rd.oekosystem.eyebrow}</p>
-                <h2>{rd.oekosystem.title}</h2>
-                <p className="lead" style={{ marginTop: 16 }}>{rd.oekosystem.lead}</p>
               </div>
-              <figure className="media ratio-32">
-                <img
-                  src="/cetl-oekosystem.webp"
-                  width={1440}
-                  height={960}
-                  alt={lang === "de" ? "Arbeitssitzung an einem Besprechungstisch, ein Teilnehmer präsentiert am Flipchart" : "A working session at a meeting table, one participant presenting at a flipchart"}
-                  loading="lazy"
-                />
-              </figure>
-            </div>
-            <div className="grid g3">
-              {rd.oekosystem.cards.map((c) => (
-                <div className="card" key={c.title}>
-                  <span className="ico"><Icon name={c.icon} /></span>
-                  <h4>{c.title}</h4>
-                  <p className="muted" style={{ marginTop: 8 }}>{c.desc}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="partnerblock">
-              <h4><Icon name="graduation-cap" className="ic ico-bare" /> <span>{rd.oekosystem.partnerLabels.academic}</span></h4>
-              <div className="logos">
-                {ACADEMIC_LOGOS.map((l) => <img key={l.src} src={l.src} alt={l.alt} loading="lazy" />)}
-              </div>
-            </div>
-            <div className="partnerblock">
-              <h4><Icon name="chats-circle" className="ic ico-bare" /> <span>{rd.oekosystem.partnerLabels.community}</span></h4>
-              <div className="logos">
-                {COMMUNITY_LOGOS.map((l) => <img key={l.src} src={l.src} alt={l.alt} loading="lazy" />)}
-              </div>
-            </div>
-            <div className="partnerblock">
-              <h4><Icon name="buildings" className="ic ico-bare" /> <span>{rd.oekosystem.partnerLabels.industry}</span></h4>
-              <div className="logos">
-                {INDUSTRY_LOGOS.map((l) => <img key={l.src} src={l.src} alt={l.alt} loading="lazy" />)}
-              </div>
-            </div>
+            ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* MARKT */}
-        <section id="markt" className="alt">
-          <div className="wrap">
-            <p className="eyebrow">{rd.markt.eyebrow}</p>
-            <h2>{rd.markt.title}</h2>
-            <p className="lead" style={{ margin: "16px 0 3rem" }}>{rd.markt.lead}</p>
-            <div className="figures">
-              {rd.markt.figures.map((f) => (
-                <div className="figure" key={f.num}>
-                  <div className="num">{f.num}</div>
+      {/* USP: EXECUTIONAL LEARNING */}
+      <section id="methodik" className="stage usp cut-top prev-white">
+        <div className="wrap">
+          <p className="eyebrow">{rd.usp.eyebrow}</p>
+          <h2>{rd.usp.title}</h2>
+          <p className="lead">{rd.usp.lead}</p>
+
+          <div className="vs">
+            {rd.usp.contrast.map((c) => (
+              <div className={`col${c.highlight ? " hl" : ""}`} key={c.label}>
+                <p className="lbl">{c.label}</p>
+                <h3>{c.title}</h3>
+                <ul>
+                  {c.items.map((it) => (
+                    <li key={it}>
+                      <Icon name={c.highlight ? "check" : "x"} />
+                      <span>{it}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          <p className="eqhead">{rd.usp.formulaTitle}</p>
+          <div className="eq">
+            {rd.usp.formula.map((f, i) => (
+              <Fragment key={f.title}>
+                <div className="tile">
+                  <h4>{f.title}</h4>
                   <p>{f.text}</p>
-                  <hr />
-                  <p className="src">{f.src}</p>
+                </div>
+                <span className="op" aria-hidden="true">{i < rd.usp.formula.length - 1 ? "+" : "="}</span>
+              </Fragment>
+            ))}
+            <div className="tile res">
+              <h4>{rd.usp.result.title}</h4>
+              <p>{rd.usp.result.text}</p>
+            </div>
+          </div>
+
+          <div className="asa">
+            <div>
+              <h3>{rd.usp.asaTitle}</h3>
+              <p className="lead">{rd.usp.asaLead}</p>
+            </div>
+            <div className="pr">
+              {rd.usp.principles.map((p, i) => (
+                <div key={p.title}>
+                  <b>{String(i + 1).padStart(2, "0")}</b>
+                  <h4>{p.title}</h4>
+                  <p>{p.text}</p>
                 </div>
               ))}
             </div>
           </div>
-        </section>
 
-        {/* HALTUNG / QUOTE */}
-        <section className="dark">
-          <div className="wrap" style={{ display: "flex", gap: 48, flexWrap: "wrap", alignItems: "center" }}>
-            <div style={{ flex: 2, minWidth: 300 }}>
-              <p className="eyebrow">{rd.zitat.eyebrow}</p>
-              <p className="quote">{rd.zitat.quote}</p>
-            </div>
-            <div style={{ flex: "1.4 1 0%", minWidth: 280 }}>
-              <p className="muted">{rd.zitat.body}</p>
-            </div>
+          <div className="cta">
+            <a className="btn btn-primary" href="#portfolio">{rd.usp.ctaPrimary}</a>
+            <a className="btn btn-ghost" href="#prozess">{rd.usp.ctaSecondary}</a>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* PRAXIS */}
-        <section id="praxis">
-          <div className="wrap">
-            <p className="eyebrow">{rd.praxis.eyebrow}</p>
-            <h2>{rd.praxis.title}</h2>
-            <p className="lead" style={{ margin: "16px 0 3rem" }}>{rd.praxis.lead}</p>
-            <figure className="media ratio-wide" style={{ marginBottom: "3rem" }}>
+      {/* SO FUNKTIONIERT ES: Module + Prozess */}
+      <section id="prozess" className="dots">
+        <div className="wrap">
+          <div className="split">
+            <div>
+              <p className="eyebrow">{rd.methodik.eyebrow}</p>
+              <h2>{rd.methodik.title}</h2>
+              <p className="lead" style={{ margin: "16px 0 0" }}>{rd.methodik.lead}</p>
+            </div>
+            <figure className="media ratio-32">
               <img
-                src="/cetl-referenzband.webp"
-                width={1707}
+                src="/cetl-methodik.webp"
+                width={1440}
                 height={960}
-                alt={lang === "de" ? "Workshopraum mit Teilnehmenden an einem langen Tisch, Vortragender am Whiteboard" : "A workshop room with participants at a long table and a presenter at the whiteboard"}
+                alt={lang === "de" ? "Trainer erläutert an einem Whiteboard eine Vorgehensweise, Teilnehmende diskutieren mit" : "A trainer explains an approach at a whiteboard while participants join the discussion"}
                 loading="lazy"
               />
             </figure>
-            <div className="grid g3">
-              {rd.praxis.cards.map((c) => (
-                <div className="card prod" key={c.title}>
-                  <p className="label">{c.label}</p>
+          </div>
+
+          <h3 style={{ margin: "4.5rem 0 1.5rem" }}>{rd.methodik.modulesTitle}</h3>
+          <div className="modules">
+            {rd.methodik.modules.map((m) => (
+              <div key={m.lvl}>
+                <p className="lvl">{m.lvl}</p>
+                <div className="bar" />
+                <h4>{m.title}</h4>
+                <p className="muted" style={{ margin: "8px 0 0", fontSize: ".95rem" }}>{m.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="railhead">
+            <p className="eyebrow">{rd.prozess.eyebrow}</p>
+            <h3>{rd.prozess.title}</h3>
+            <p className="lead">{rd.prozess.lead}</p>
+          </div>
+          <div className="rail">
+            {rd.prozess.steps.map((step) => (
+              <div className="rstep" key={step.num}>
+                <span className="node">{step.num}</span>
+                <article className="rcard">
+                  <span className="ico ico-sm"><Icon name={step.icon} /></span>
+                  <h3>{step.title}</h3>
+                  <p className="claim">{step.claim}</p>
+                  <ul className="checks">
+                    {step.checks.map((c) => (
+                      <li key={c}>
+                        <Icon name="check" className="ic-check" />
+                        <span>{c}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="foot">{step.foot}</p>
+                </article>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* PORTFOLIO */}
+      <section id="portfolio">
+        <div className="wrap">
+          <p className="eyebrow">{rd.portfolio.eyebrow}</p>
+          <h2>{rd.portfolio.title}</h2>
+          <p className="lead" style={{ margin: "16px 0 0" }}>{rd.portfolio.lead}</p>
+          <PortfolioTabs portfolio={rd.portfolio} />
+        </div>
+      </section>
+
+      {/* ÖKOSYSTEM */}
+      <section id="oekosystem" className="glow">
+        <div className="wrap">
+          <div className="split">
+            <div>
+              <p className="eyebrow">{rd.oekosystem.eyebrow}</p>
+              <h2>{rd.oekosystem.title}</h2>
+              <p className="lead" style={{ marginTop: 16 }}>{rd.oekosystem.lead}</p>
+            </div>
+            <figure className="media ratio-32">
+              <img
+                src="/cetl-oekosystem.webp"
+                width={1440}
+                height={960}
+                alt={lang === "de" ? "Arbeitssitzung an einem Besprechungstisch, ein Teilnehmer präsentiert am Flipchart" : "A working session at a meeting table, one participant presenting at a flipchart"}
+                loading="lazy"
+              />
+            </figure>
+          </div>
+          <div className="eco">
+            {rd.oekosystem.cards.map((c, i) => (
+              <div className="card" key={c.title}>
+                <div className="top">
+                  <span className="ico"><Icon name={c.icon} /></span>
                   <h4>{c.title}</h4>
-                  <p className="muted" style={{ margin: "10px 0 0", fontSize: ".95rem" }}>{c.desc}</p>
-                  <ul style={{ marginTop: 16 }}>{c.items.map((it) => <li key={it}>{it}</li>)}</ul>
-                  <p className="foot">{c.foot}</p>
+                  <p className="muted">{c.desc}</p>
                 </div>
-              ))}
-            </div>
-            <p style={{ marginTop: "3rem" }}><a className="btn btn-primary" href="#kontakt">{rd.praxis.cta}</a></p>
+                <div className="partners">
+                  <p className="cap">{ecoCaptions[i]}</p>
+                  <div className="lg">
+                    {ECO_LOGOS[i].map((l) => <img key={l.src} src={l.src} alt={l.alt} loading="lazy" />)}
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* THINK TANK */}
-        <section id="think-tank" className="alt">
-          <div className="wrap">
-            <p className="eyebrow">{rd.thinkTank.eyebrow}</p>
-            <h2>{rd.thinkTank.title}</h2>
-            <p className="lead" style={{ margin: "16px 0 3rem" }}>{rd.thinkTank.lead}</p>
-            <div className="grid g3">
-              {latest.map((pub) => <PubCard key={pub.slug} pub={pub} lang={lang} />)}
-            </div>
-            <p style={{ marginTop: "3rem", display: "flex", gap: 14, flexWrap: "wrap" }}>
-              <Link className="btn btn-primary" href="/think-tank">{rd.thinkTank.ctaAll}</Link>
-              <Link className="btn btn-ghost" href="/think-tank#services">{rd.thinkTank.ctaServices}</Link>
-            </p>
+      {/* MARKT + HALTUNG */}
+      <section id="markt">
+        <div className="wrap">
+          <p className="eyebrow">{rd.markt.eyebrow}</p>
+          <h2>{rd.markt.title}</h2>
+          <p className="lead" style={{ margin: "16px 0 3rem" }}>{rd.markt.lead}</p>
+          <div className="figures">
+            {rd.markt.figures.map((f) => (
+              <div className="figure" key={f.num}>
+                <div className="num">{f.num}</div>
+                <p>{f.text}</p>
+                <hr />
+                <p className="src">{f.src}</p>
+              </div>
+            ))}
           </div>
-        </section>
+          <div className="statement">
+            <div>
+              <p className="eyebrow">{rd.zitat.eyebrow}</p>
+              <p className="quote">{rd.zitat.quote}</p>
+            </div>
+            <p className="body">{rd.zitat.body}</p>
+          </div>
+        </div>
+      </section>
 
-        {/* STIMMEN */}
-        <section id="stimmen">
-          <div className="wrap">
+      {/* PRAXIS + STIMMEN */}
+      <section id="praxis" className="alt">
+        <div className="wrap">
+          <p className="eyebrow">{rd.praxis.eyebrow}</p>
+          <h2>{rd.praxis.title}</h2>
+          <p className="lead" style={{ margin: "16px 0 3rem" }}>{rd.praxis.lead}</p>
+          <figure className="media ratio-wide" style={{ marginBottom: "3rem" }}>
+            <img
+              src="/cetl-referenzband.webp"
+              width={1707}
+              height={960}
+              alt={lang === "de" ? "Workshopraum mit Teilnehmenden an einem langen Tisch, Vortragender am Whiteboard" : "A workshop room with participants at a long table and a presenter at the whiteboard"}
+              loading="lazy"
+            />
+          </figure>
+          <div className="grid g3">
+            {rd.praxis.cards.map((c) => (
+              <div className="card prod" key={c.title}>
+                <p className="label">{c.label}</p>
+                <h4>{c.title}</h4>
+                <p className="muted" style={{ margin: "10px 0 0", fontSize: ".95rem" }}>{c.desc}</p>
+                <ul style={{ marginTop: 16 }}>{c.items.map((it) => <li key={it}>{it}</li>)}</ul>
+                <p className="foot">{c.foot}</p>
+              </div>
+            ))}
+          </div>
+          <p style={{ marginTop: "3rem" }}><a className="btn btn-primary" href="#kontakt">{rd.praxis.cta}</a></p>
+
+          <div className="voices" id="stimmen">
             <p className="eyebrow">{rd.stimmen.eyebrow}</p>
-            <h2>{rd.stimmen.title}</h2>
-            <p className="lead" style={{ margin: "16px 0 3rem" }}>{rd.stimmen.lead}</p>
+            <h3>{rd.stimmen.title}</h3>
+            <p className="lead">{rd.stimmen.lead}</p>
             <div className="grid g3">
               {testimonials.map((tItem) => (
-                <div className="card" key={tItem.role}>
+                <div className="card voice" key={tItem.role}>
                   <p style={{ fontSize: "var(--step-1)", lineHeight: 1.4 }}>{tItem.quote}</p>
                   <p className="tag" style={{ margin: "16px 0 0" }}>
                     <strong style={{ color: "var(--ink-900)" }}>{tItem.role}</strong><br />
@@ -362,61 +349,78 @@ export default function Home() {
               ))}
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* FAQ */}
-        <section id="faq" className="alt">
-          <div className="wrap" style={{ maxWidth: 900 }}>
-            <p className="eyebrow">{rd.faq.eyebrow}</p>
-            <h2>{rd.faq.title}</h2>
-            <div style={{ marginTop: "3rem" }}>
-              {rd.faq.items.map((item, i) => (
-                <details key={item.q} open={i === 0}>
-                  <summary>{item.q}</summary>
-                  <p>{item.a}</p>
-                </details>
-              ))}
-            </div>
+      {/* THINK TANK */}
+      <section id="think-tank" className="stage cut-top prev-surface">
+        <div className="wrap">
+          <p className="eyebrow">{rd.thinkTank.eyebrow}</p>
+          <h2>{rd.thinkTank.title}</h2>
+          <p className="lead" style={{ margin: "16px 0 3rem", maxWidth: "70ch" }}>{rd.thinkTank.lead}</p>
+          <div className="grid g3">
+            {latest.map((pub) => <PubCard key={pub.slug} pub={pub} lang={lang} />)}
           </div>
-        </section>
+          <p style={{ marginTop: "3rem", display: "flex", gap: 14, flexWrap: "wrap" }}>
+            <Link className="btn btn-primary" href="/think-tank">{rd.thinkTank.ctaAll}</Link>
+            <Link className="btn btn-ghost" href="/think-tank#services">{rd.thinkTank.ctaServices}</Link>
+          </p>
+        </div>
+      </section>
 
-        {/* KONTAKT */}
-        <section id="kontakt">
-          <div className="wrap" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 56 }}>
-            <div>
-              <p className="eyebrow">{rd.kontakt.eyebrow}</p>
-              <h2>{rd.kontakt.title}</h2>
-              <p className="lead" style={{ marginTop: 16 }}>{rd.kontakt.lead}</p>
-              <address className="muted" style={{ marginTop: 24, fontStyle: "normal", lineHeight: 1.8 }}>
-                <strong style={{ color: "var(--ink-900)" }}>{rd.kontakt.addressName}</strong><br />
-                {rd.kontakt.addressStreet}<br />
-                {rd.kontakt.addressCity}<br />
-                <a href="mailto:alinkalam@cetl.institute">alinkalam@cetl.institute</a>
-              </address>
-            </div>
-            <ContactForm fields={rd.kontakt.fields} />
-          </div>
-        </section>
-
-        {/* TEAM */}
-        <section id="team" className="alt">
-          <div className="wrap">
-            <p className="eyebrow">{rd.team.eyebrow}</p>
-            <h2>{rd.team.title}</h2>
-            <p className="lead" style={{ margin: "16px 0 3rem" }}>{rd.team.lead}</p>
-            <div className="grid g3">
-              {team.map((member) => (
-                <div className="card person" key={member.name}>
-                  <div className="avatar">
-                    <img src={member.photo} alt={member.name} style={member.photoPosition ? { objectPosition: member.photoPosition } : undefined} />
-                  </div>
-                  <h4>{member.name}</h4>
-                  <p className="muted" style={{ margin: "6px 0 0" }}>{member.role}</p>
+      {/* TEAM */}
+      <section id="team">
+        <div className="wrap">
+          <p className="eyebrow">{rd.team.eyebrow}</p>
+          <h2>{rd.team.title}</h2>
+          <p className="lead" style={{ margin: "16px 0 3rem" }}>{rd.team.lead}</p>
+          <div className="grid g3">
+            {team.map((member) => (
+              <div className="card person" key={member.name}>
+                <div className="avatar">
+                  <img src={member.photo} alt={member.name} style={member.photoPosition ? { objectPosition: member.photoPosition } : undefined} />
                 </div>
-              ))}
-            </div>
+                <h4>{member.name}</h4>
+                <p className="muted" style={{ margin: "6px 0 0" }}>{member.role}</p>
+              </div>
+            ))}
           </div>
-        </section>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq" className="alt">
+        <div className="wrap" style={{ maxWidth: 900 }}>
+          <p className="eyebrow">{rd.faq.eyebrow}</p>
+          <h2>{rd.faq.title}</h2>
+          <div style={{ marginTop: "3rem" }}>
+            {rd.faq.items.map((item, i) => (
+              <details key={item.q} open={i === 0}>
+                <summary>{item.q}</summary>
+                <p>{item.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* KONTAKT */}
+      <section id="kontakt" className="contact">
+        <div className="wrap kontaktgrid">
+          <div>
+            <p className="eyebrow">{rd.kontakt.eyebrow}</p>
+            <h2>{rd.kontakt.title}</h2>
+            <p className="lead" style={{ marginTop: 16 }}>{rd.kontakt.lead}</p>
+            <address className="muted" style={{ marginTop: 24, fontStyle: "normal", lineHeight: 1.8 }}>
+              <strong style={{ color: "var(--ink-900)" }}>{rd.kontakt.addressName}</strong><br />
+              {rd.kontakt.addressStreet}<br />
+              {rd.kontakt.addressCity}<br />
+              <a href="mailto:alinkalam@cetl.institute">alinkalam@cetl.institute</a>
+            </address>
+          </div>
+          <ContactForm fields={rd.kontakt.fields} />
+        </div>
+      </section>
     </PageShell>
   );
 }

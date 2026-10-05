@@ -66,17 +66,27 @@ export interface RedesignContent {
   hero: { eyebrow: string; hl1: string; hl2: string; lead: string; ctaPrimary: string; ctaSecondary: string; badgesLabel: string };
   beweis: {
     items: { icon: "graduation-cap" | "chats-circle" | "briefcase"; strong: string; span: string }[];
-    keywords: string[];
   };
   zahlen: {
     eyebrow: string; title: string;
     stats: { kpi: string; text: string }[];
-    cards: { chip: string; title: string; text: string }[];
+  };
+  usp: {
+    eyebrow: string; title: string; lead: string;
+    contrast: { label: string; title: string; items: string[]; highlight?: boolean }[];
+    formulaTitle: string;
+    formula: { title: string; text: string }[];
+    result: { title: string; text: string };
+    asaTitle: string; asaLead: string;
+    principles: { title: string; text: string }[];
+    ctaPrimary: string; ctaSecondary: string;
   };
   methodik: { eyebrow: string; title: string; lead: string; modulesTitle: string; modules: RedesignModule[] };
   prozess: { eyebrow: string; title: string; lead: string; steps: RedesignStepCard[] };
   portfolio: {
     eyebrow: string; title: string; lead: string;
+    tabs: { learning: string; assessment: string; thinkTank: string };
+    learningLead: string; assessmentLead: string;
     learningTitle: string; learning: RedesignPortfolioCard[];
     assessmentTitle: string; assessment: RedesignPortfolioCard[];
     thinkTankTitle: string; thinkTankLead: string; thinkTank: RedesignPortfolioCard[]; thinkTankCta: string;
@@ -123,7 +133,6 @@ export const REDESIGN_DE: RedesignContent = {
       { icon: "chats-circle", strong: "Community mit der Stadt Wien", span: "Central Europe Tech Hackathon als Flaggschiffformat." },
       { icon: "briefcase", strong: "Über 50 Lehrende aus der Praxis", span: "Banking, Versicherung, Industrie, Aviation, öffentlicher Sektor." },
     ],
-    keywords: ["Executive Education", "Embedded Engineering", "Technische Bewertung", "KI-Kompetenzprogramme", "Forward Deployed Engineers", "Governance Frameworks", "Data Literacy", "Use-Case-Aktivierung"],
   },
   zahlen: {
     eyebrow: "Akademische Exzellenz × Branchenpraxis × Community",
@@ -134,10 +143,32 @@ export const REDESIGN_DE: RedesignContent = {
       { kpi: "12+", text: "umgesetzte akademische Projekte" },
       { kpi: "18+", text: "Partnerorganisationen aus Hochschule, Industrie und Community" },
     ],
-    cards: [
-      { chip: "ELaaS", title: "Executional Learning as a Service", text: "Das eigene Lieferformat: akademische Module, Industriepraxis und Community-Umsetzung in einer Architektur, modular kombinierbar." },
-      { chip: "Eigene Community", title: "Central Europe Tech Hackathon", text: "Flaggschiffformat gemeinsam mit der Stadt Wien und zahlreichen Partnern aus Hochschule und Industrie." },
+  },
+  usp: {
+    eyebrow: "Unser Ansatz",
+    title: "Executional Learning: Lernen, das in Umsetzung endet",
+    lead: "Weiterbildung vermittelt Wissen, aber keine Umsetzung. Beratung liefert Umsetzung, aber kein Wissen, das bleibt. Executional Learning ist das eigens entwickelte Format des CETL, das beides zu einem Vorgang macht: Ihre Teams lernen an den eigenen Aufgaben, Werkzeugen und Zielen und liefern dabei ein reales Ergebnis.",
+    contrast: [
+      { label: "Klassische Weiterbildung", title: "Wissen ohne Umsetzung", items: ["Standardkurse und Kursblöcke", "Erfolg gemessen an Teilnahme", "Der Transfer in die Arbeit bleibt Ihre Aufgabe"] },
+      { label: "Klassische Beratung", title: "Umsetzung ohne Wissenstransfer", items: ["Empfehlungen und Projektressourcen", "Beides endet mit dem Vertrag", "Abhängigkeit statt Befähigung"] },
+      { label: "Executional Learning", title: "Lernen und Liefern in einem Vorgang", items: ["Maßgeschneidert auf Rollen, Prozesse und Ziele", "An echten Use Cases und den eigenen Werkzeugen", "Endet in einem Ergebnis: Use Case, Prototyp oder Roadmap"], highlight: true },
     ],
+    formulaTitle: "Woraus Executional Learning besteht",
+    formula: [
+      { title: "Akademische Module", text: "Zertifizierte Inhalte mit der TU Wien und über 15 Hochschulen im DACH-Raum" },
+      { title: "Branchenpraxis", text: "Über 50 Lehrende aus Banking, Versicherung, Industrie, Aviation und öffentlichem Sektor" },
+      { title: "Community-Umsetzung", text: "Hackathon, Co-Creation und Forward Deployed Engineering bringen Ideen in die Anwendung" },
+    ],
+    result: { title: "Kompetenz, die bleibt", text: "Ihre Organisation kann danach selbst, was sie vorher nicht konnte" },
+    asaTitle: "Warum „as a Service“?",
+    asaLead: "Ein flexibler Baukasten statt eines starren Curriculums: Sie nutzen, was Ihre Organisation braucht, und kombinieren es modular.",
+    principles: [
+      { title: "Standardisierter Kern", text: "Strukturierte Data- und KI-Grundlagen, die für alle Rollen tragen" },
+      { title: "Maßgeschneiderte Aktivierung", text: "Rollenbasierte Lernreisen und Use Cases, zugeschnitten auf Ihre Organisation" },
+      { title: "Umsetzung nah an der Arbeit", text: "Begleitete Projekte und eingebettete Befähigung direkt im Tagesgeschäft" },
+    ],
+    ctaPrimary: "Bausteine ansehen",
+    ctaSecondary: "So funktioniert es",
   },
   methodik: {
     eyebrow: "Methodik",
@@ -163,8 +194,11 @@ export const REDESIGN_DE: RedesignContent = {
   },
   portfolio: {
     eyebrow: "CETL Portfolio",
-    title: "Welche Bausteine setzt die Methodik in der Praxis um?",
-    lead: "Vier Leistungsbereiche, die die drei Module und den Vier-Schritte-Prozess in konkrete Programme übersetzen.",
+    title: "Bausteine, die sich Ihrer Organisation anpassen",
+    lead: "Jeder Baustein wird auf Rollen, Prozesse und Ziele Ihrer Organisation zugeschnitten und lässt sich modular kombinieren, von der Grundlage bis zur eingebetteten Umsetzung.",
+    tabs: { learning: "Executional Learning", assessment: "Assessments", thinkTank: "Think Tank Services" },
+    learningLead: "Von der Grundlage bis zur eingebetteten Umsetzung, modular kombinierbar und auf Ihre Rollen zugeschnitten.",
+    assessmentLead: "Unabhängige Fähigkeitsbewertung, entscheidungsreif für Vorstand und Führungsebene.",
     learningTitle: "Executional Learning",
     learning: [
       { icon: "certificate", label: "Foundation", title: "KI- und Datengrundlage mit praktischer Befähigung", desc: "Strukturierter Einstieg: Kompetenzaufbau trifft Business-Kontext.", items: ["Grundlegendes KI- und Datenlernen", "Rollen- und kontextspezifisch", "Strategische Use-Case-Ausrichtung", "Akademische Delivery"], foot: "Startpunkt Ihrer KI-Souveränität" },
@@ -327,7 +361,6 @@ export const REDESIGN_EN: RedesignContent = {
       { icon: "chats-circle", strong: "Community with the City of Vienna", span: "Central Europe Tech Hackathon as our flagship format." },
       { icon: "briefcase", strong: "More than 50 practitioners teaching", span: "Banking, insurance, industry, aviation, public sector." },
     ],
-    keywords: ["Executive Education", "Embedded Engineering", "Technical assessment", "AI capability programmes", "Forward Deployed Engineers", "Governance frameworks", "Data literacy", "Use case activation"],
   },
   zahlen: {
     eyebrow: "Academic rigour × industry practice × community",
@@ -338,10 +371,32 @@ export const REDESIGN_EN: RedesignContent = {
       { kpi: "12+", text: "academic projects delivered" },
       { kpi: "18+", text: "partner organisations from academia, industry and community" },
     ],
-    cards: [
-      { chip: "ELaaS", title: "Executional Learning as a Service", text: "Our own delivery format: academic modules, industry practice and community execution in one architecture, combined as needed." },
-      { chip: "Our own community", title: "Central Europe Tech Hackathon", text: "Flagship format run with the City of Vienna and numerous partners from academia and industry." },
+  },
+  usp: {
+    eyebrow: "Our approach",
+    title: "Executional Learning: learning that ends in execution",
+    lead: "Training conveys knowledge, but not execution. Consulting delivers execution, but not knowledge that stays. Executional Learning is CETL's own purpose-built format that turns both into one process: your teams learn on their own tasks, tools and goals, and deliver a real result while doing so.",
+    contrast: [
+      { label: "Classic training", title: "Knowledge without execution", items: ["Standard courses and course blocks", "Success measured by attendance", "Transfer into the work stays your job"] },
+      { label: "Classic consulting", title: "Execution without knowledge transfer", items: ["Recommendations and project resources", "Both end with the contract", "Dependency instead of capability"] },
+      { label: "Executional Learning", title: "Learning and delivering in one process", items: ["Tailored to roles, processes and goals", "On real use cases and your own tools", "Ends in a result: a use case, prototype or roadmap"], highlight: true },
     ],
+    formulaTitle: "What Executional Learning is made of",
+    formula: [
+      { title: "Academic modules", text: "Certified content with TU Wien and more than 15 universities across the DACH region" },
+      { title: "Industry practice", text: "More than 50 practitioners from banking, insurance, industry, aviation and the public sector" },
+      { title: "Community execution", text: "Hackathon, co-creation and Forward Deployed Engineering carry ideas into application" },
+    ],
+    result: { title: "Capability that stays", text: "Your organisation can do afterwards what it could not do before" },
+    asaTitle: "Why “as a Service”?",
+    asaLead: "A flexible toolkit instead of a rigid curriculum: you use what your organisation needs and combine it modularly.",
+    principles: [
+      { title: "A standardised core", text: "Structured data and AI foundations that hold for every role" },
+      { title: "Tailored activation", text: "Role-based learning journeys and use cases, fitted to your organisation" },
+      { title: "Execution close to the work", text: "Supported projects and embedded enablement right in day-to-day operations" },
+    ],
+    ctaPrimary: "See the building blocks",
+    ctaSecondary: "How it works",
   },
   methodik: {
     eyebrow: "Method",
@@ -367,8 +422,11 @@ export const REDESIGN_EN: RedesignContent = {
   },
   portfolio: {
     eyebrow: "CETL Portfolio",
-    title: "Which building blocks put the method into practice?",
-    lead: "Four service areas that translate the three modules and the four-step process into concrete programmes.",
+    title: "Building blocks that adapt to your organisation",
+    lead: "Every building block is tailored to the roles, processes and goals of your organisation and can be combined modularly, from foundation to embedded delivery.",
+    tabs: { learning: "Executional Learning", assessment: "Assessments", thinkTank: "Think Tank Services" },
+    learningLead: "From foundation to embedded delivery, modular and tailored to your roles.",
+    assessmentLead: "Independent capability assessment, ready for board and leadership decisions.",
     learningTitle: "Executional Learning",
     learning: [
       { icon: "certificate", label: "Foundation", title: "AI and data fundamentals with hands-on enablement", desc: "A structured start: capability building meets business context.", items: ["Core AI and data learning", "Specific to role and setting", "Use cases aligned to strategy", "Academic delivery"], foot: "The starting point for your AI sovereignty" },
