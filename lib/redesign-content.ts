@@ -132,7 +132,7 @@ export const REDESIGN_DE: RedesignContent = {
   },
   beweis: {
     items: [
-      { icon: "graduation-cap", strong: "Akademischer Partner: TU Wien", span: "Dazu BOKU, MedUni Wien, BFI, Lauder Business School und ein Netzwerk aus über 15 Hochschulen im DACH-Raum." },
+      { icon: "graduation-cap", strong: "Hochkarätige akademische Partner", span: "Universitäten und Hochschulen wie BOKU, MedUni Wien, BFI und Lauder Business School, ein Netzwerk aus über 15 im DACH-Raum." },
       { icon: "chats-circle", strong: "Community mit der Stadt Wien", span: "Central Europe Tech Hackathon als Flaggschiffformat." },
       { icon: "briefcase", strong: "Über 50 Lehrende aus der Praxis", span: "Banking, Versicherung, Industrie, Aviation, öffentlicher Sektor." },
     ],
@@ -234,7 +234,7 @@ export const REDESIGN_DE: RedesignContent = {
     title: "Drei Welten, ein koordiniertes System",
     lead: "Großflächige Daten- und KI-Initiativen scheitern selten an fehlender Ambition. Sie scheitern daran, dass Strategie, Kompetenz, Datenreife, Governance und technische Umsetzung getrennt behandelt werden. Das Ökosystem verbindet akademische Exzellenz, Industriepraxis und Community zu einem System aus Wissen, Anwendung und Umsetzung.",
     cards: [
-      { icon: "graduation-cap", title: "Hochschulen und Forschung", desc: "Partnerschaft mit der TU Wien, Netzwerk aus über 15 Hochschulen im DACH-Raum, Zertifizierung akademischer Module." },
+      { icon: "graduation-cap", title: "Hochschulen und Forschung", desc: "Partnerschaft mit führenden Universitäten, Netzwerk aus über 15 Hochschulen im DACH-Raum, Zertifizierung akademischer Module." },
       { icon: "chats-circle", title: "Ökosystem und Formate", desc: "Central Europe Tech Hackathon mit der Stadt Wien, Co-Creation-Workshops, Challenge-Framing mit Startups und Vereinen." },
       { icon: "buildings", title: "Praxis und Anwendung", desc: "Use Cases aus Banking, Versicherung, Industrie, Aviation und öffentlichem Sektor, eingebracht von aktiven Praktikerinnen und Praktikern." },
     ],
@@ -362,7 +362,7 @@ export const REDESIGN_EN: RedesignContent = {
   },
   beweis: {
     items: [
-      { icon: "graduation-cap", strong: "Academic partner: TU Wien", span: "Alongside BOKU, MedUni Vienna, BFI, Lauder Business School and a network of more than 15 universities across the DACH region." },
+      { icon: "graduation-cap", strong: "Top-tier academic partners", span: "Universities and institutions such as BOKU, MedUni Vienna, BFI and Lauder Business School, part of a network of more than 15 across the DACH region." },
       { icon: "chats-circle", strong: "Community with the City of Vienna", span: "Central Europe Tech Hackathon as our flagship format." },
       { icon: "briefcase", strong: "More than 50 practitioners teaching", span: "Banking, insurance, industry, aviation, public sector." },
     ],
@@ -464,7 +464,7 @@ export const REDESIGN_EN: RedesignContent = {
     title: "Three worlds, one coordinated system",
     lead: "Large-scale data and AI initiatives rarely fail for lack of ambition. They fail because strategy, capability, data maturity, governance and technical delivery are treated separately. The ecosystem joins academic rigour, industry practice and community into one system of knowledge, application and delivery.",
     cards: [
-      { icon: "graduation-cap", title: "Universities and research", desc: "Partnership with TU Wien, a network of more than 15 universities across DACH, certification of academic modules." },
+      { icon: "graduation-cap", title: "Universities and research", desc: "Partnerships with leading universities, a network of more than 15 universities across DACH, certification of academic modules." },
       { icon: "chats-circle", title: "Ecosystem and formats", desc: "Central Europe Tech Hackathon with the City of Vienna, co-creation workshops, challenge framing with startups and associations." },
       { icon: "buildings", title: "Practice and application", desc: "Use cases from banking, insurance, industry, aviation and the public sector, brought in by active practitioners." },
     ],
