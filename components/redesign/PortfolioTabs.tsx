@@ -19,9 +19,9 @@ export function PortfolioTabs({ portfolio }: { portfolio: RedesignContent["portf
   }, []);
 
   const panels: Record<TabId, { lead: string; cards: RedesignContent["portfolio"]["learning"]; grid: string }> = {
-    learning: { lead: portfolio.learningLead, cards: portfolio.learning, grid: "grid g4" },
-    assessment: { lead: portfolio.assessmentLead, cards: portfolio.assessment, grid: "grid g3" },
-    thinkTank: { lead: portfolio.thinkTankLead, cards: portfolio.thinkTank, grid: "grid g3" },
+    learning: { lead: portfolio.learningLead, cards: portfolio.learning, grid: "grid g4 swipe" },
+    assessment: { lead: portfolio.assessmentLead, cards: portfolio.assessment, grid: "grid g3 swipe" },
+    thinkTank: { lead: portfolio.thinkTankLead, cards: portfolio.thinkTank, grid: "grid g3 swipe" },
   };
 
   const onKey = (e: KeyboardEvent, id: TabId) => {
@@ -50,7 +50,8 @@ export function PortfolioTabs({ portfolio }: { portfolio: RedesignContent["portf
             onClick={() => setTab(id)}
             onKeyDown={(e) => onKey(e, id)}
           >
-            {portfolio.tabs[id]}
+            <span className="t-full">{portfolio.tabs[id]}</span>
+            <span className="t-short">{portfolio.tabsShort[id]}</span>
             <span className="n">{panels[id].cards.length}</span>
           </button>
         ))}

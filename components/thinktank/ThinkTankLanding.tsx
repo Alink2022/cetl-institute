@@ -79,7 +79,7 @@ export function ThinkTankLanding() {
             </div>
             <p className="lead" style={{ margin: 0 }}>{copy.claim.text}</p>
           </div>
-          <div className="tt-standards">
+          <div className="tt-standards swipe">
             {copy.claim.standards.map((s, i) => (
               <div className="card" key={s.title}>
                 <span className="n">{String(i + 1).padStart(2, "0")}</span>
@@ -96,7 +96,7 @@ export function ThinkTankLanding() {
         <div className="wrap">
           <p className="eyebrow">{copy.audiences.eyebrow}</p>
           <h2>{copy.audiences.title}</h2>
-          <div className="grid g3" style={{ marginTop: "3rem" }}>
+          <div className="grid g3 swipe" style={{ marginTop: "3rem" }}>
             {copy.audiences.cards.map((c) => (
               <div className="card" key={c.id}>
                 <span className="ico"><Icon name={AUDIENCE_ICON[c.id]} /></span>
@@ -117,7 +117,7 @@ export function ThinkTankLanding() {
           <p className="eyebrow">{copy.fields.eyebrow}</p>
           <h2>{copy.fields.title}</h2>
           <p className="lead" style={{ margin: "16px 0 3rem" }}>{copy.fields.lead}</p>
-          <div className="grid g3">
+          <div className="grid g3 swipe">
             {TT_FIELDS.map((f, i) => {
               const n = TT_PUBLICATIONS.filter((p) => p.field === f.id).length;
               return (
@@ -202,7 +202,7 @@ export function ThinkTankLanding() {
           <p className="eyebrow">{copy.services.eyebrow}</p>
           <h2>{copy.services.title}</h2>
           <p className="lead" style={{ margin: "16px 0 3rem" }}>{rd.portfolio.thinkTankLead}</p>
-          <div className="grid g3">
+          <div className="grid g3 swipe">
             {rd.portfolio.thinkTank.map((c) => <PortfolioCard key={c.title} {...c} />)}
           </div>
           <p style={{ marginTop: "3rem" }}>
@@ -219,7 +219,7 @@ export function ThinkTankLanding() {
           <p className="lead" style={{ margin: "16px 0 0" }}>{copy.authors.lead}</p>
 
           <p className="subhead">{copy.authors.team}</p>
-          <div className="tt-people">
+          <div className="tt-people team-list">
             {team.map((a) => {
               const written = TT_PUBLICATIONS.filter((p) => p.authors.includes(a.id));
               const fields = [...new Set(written.map((p) => p.field))].map((f) => fieldTitle(f, lang));

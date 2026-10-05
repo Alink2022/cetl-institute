@@ -79,6 +79,7 @@ export interface RedesignContent {
       formulaLabel: string; formula: string[]; result: string;
     };
     compareLabel: string;
+    mobileTabs: string[];
     others: { label: string; title: string; items: string[] }[];
     ctaPrimary: string; ctaSecondary: string;
   };
@@ -87,6 +88,7 @@ export interface RedesignContent {
   portfolio: {
     eyebrow: string; title: string; lead: string;
     tabs: { learning: string; assessment: string; thinkTank: string };
+    tabsShort: { learning: string; assessment: string; thinkTank: string };
     learningLead: string; assessmentLead: string;
     learningTitle: string; learning: RedesignPortfolioCard[];
     assessmentTitle: string; assessment: RedesignPortfolioCard[];
@@ -166,6 +168,7 @@ export const REDESIGN_DE: RedesignContent = {
       result: "Kompetenz, die bleibt",
     },
     compareLabel: "Zum Vergleich: der klassische Weg",
+    mobileTabs: ["Executional Learning", "Weiterbildung", "Beratung"],
     others: [
       { label: "Klassische Aus- und Weiterbildung", title: "Wissen ohne Umsetzung", items: ["Uneinheitliche Standards, Abschlüsse und Schwerpunkte: Qualität und Vergleichbarkeit schwanken je Anbieter", "Kaum Umsetzung: höchstens Capstones oder Konzeptprojekte, selten im echten Arbeitskontext", "Standardformate: gleicher Inhalt für alle Rollen, Ihre Werkzeuge und Prozesse kommen nicht vor", "Keine Begleitung nach dem Kurs: im KI-Tempo veraltet Wissen schnell", "Einmaleffekt zu hohen Kosten: Teilnahme wird bezahlt, Wirkung im Alltag bleibt offen"] },
       { label: "Klassische Beratung", title: "Umsetzung ohne Befähigung", items: ["Fokus fast nur auf Umsetzung: das Ergebnis kommt, das Wissen dahinter bleibt beim Anbieter", "Training nur als Nachtrag: Schulungen kommen spät und ergänzen, statt zu tragen", "Keine standardisierten Formate oder Zertifikate: Kompetenz bleibt unbelegt", "Maßschneiderung nur auf Projektebene: die Organisation darüber hinaus bleibt unberührt", "Einmaleffekt zu hohen Kosten: mit dem Projektende endet die Wirkung, weil Ihre Organisation nicht befähigt wurde"] },
@@ -200,6 +203,7 @@ export const REDESIGN_DE: RedesignContent = {
     title: "Bausteine, die sich Ihrer Organisation anpassen",
     lead: "Jeder Baustein wird auf Rollen, Prozesse und Ziele Ihrer Organisation zugeschnitten und lässt sich modular kombinieren, von der Grundlage bis zur eingebetteten Umsetzung.",
     tabs: { learning: "Executional Learning", assessment: "Assessments", thinkTank: "Think Tank Services" },
+    tabsShort: { learning: "Learning", assessment: "Assessments", thinkTank: "Think Tank" },
     learningLead: "Von der Grundlage bis zur eingebetteten Umsetzung, modular kombinierbar und auf Ihre Rollen zugeschnitten.",
     assessmentLead: "Unabhängige Fähigkeitsbewertung, entscheidungsreif für Vorstand und Führungsebene.",
     learningTitle: "Executional Learning",
@@ -396,6 +400,7 @@ export const REDESIGN_EN: RedesignContent = {
       result: "Capability that stays",
     },
     compareLabel: "For comparison: the classic way",
+    mobileTabs: ["Executional Learning", "Training", "Consulting"],
     others: [
       { label: "Classic education and training", title: "Knowledge without execution", items: ["Inconsistent standards, qualifications and focus: quality and comparability vary by provider", "Little execution: at best capstones or concept projects, rarely in the real work context", "Standard formats: the same content for every role, your tools and processes do not feature", "No support after the course: at the pace of AI, knowledge goes stale quickly", "A one-off effect at high cost: attendance is paid for, impact in daily work stays open"] },
       { label: "Classic consulting", title: "Execution without enablement", items: ["Focus almost only on execution: the result arrives, the knowledge behind it stays with the provider", "Training only as an afterthought: courses come late and add on instead of carrying", "No standardised formats or certificates: capability stays unproven", "Tailoring only at project level: the organisation beyond it is left untouched", "A one-off effect at high cost: the impact ends with the project, because your organisation was not enabled"] },
@@ -430,6 +435,7 @@ export const REDESIGN_EN: RedesignContent = {
     title: "Building blocks that adapt to your organisation",
     lead: "Every building block is tailored to the roles, processes and goals of your organisation and can be combined modularly, from foundation to embedded delivery.",
     tabs: { learning: "Executional Learning", assessment: "Assessments", thinkTank: "Think Tank Services" },
+    tabsShort: { learning: "Learning", assessment: "Assessments", thinkTank: "Think Tank" },
     learningLead: "From foundation to embedded delivery, modular and tailored to your roles.",
     assessmentLead: "Independent capability assessment, ready for board and leadership decisions.",
     learningTitle: "Executional Learning",

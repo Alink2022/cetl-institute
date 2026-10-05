@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import Link from "next/link";
 import { useLanguage } from "@/lib/i18n";
 import { REDESIGN_DE, REDESIGN_EN } from "@/lib/redesign-content";
@@ -43,6 +43,7 @@ export default function Home() {
   const latest = sortedPublications().slice(0, 3);
   const testimonials = t.TESTIMONIALS;
   const team = t.TEAM_MEMBERS;
+  const [uspView, setUspView] = useState(0);
   const ecoCaptions = [rd.oekosystem.partnerLabels.academic, rd.oekosystem.partnerLabels.community, rd.oekosystem.partnerLabels.industry];
 
   return (
@@ -112,8 +113,15 @@ export default function Home() {
           <h2>{rd.usp.title}</h2>
           <p className="lead">{rd.usp.lead}</p>
 
+          <div className="mtabs" role="tablist" aria-label={rd.usp.title}>
+            {rd.usp.mobileTabs.map((label, i) => (
+              <button key={label} type="button" role="tab" aria-selected={uspView === i} className="mtab" onClick={() => setUspView(i)}>
+                {label}
+              </button>
+            ))}
+          </div>
           <div className="vs2">
-            <div className="elc">
+            <div className="elc" data-m-hidden={uspView !== 0}>
               <span className="tag">{rd.usp.hero.tag}</span>
               <h3>{rd.usp.hero.title}</h3>
               <p className="claim">{rd.usp.hero.claim}</p>
@@ -142,8 +150,8 @@ export default function Home() {
 
             <div className="others">
               <p className="cap">{rd.usp.compareLabel}</p>
-              {rd.usp.others.map((o) => (
-                <div className="oc" key={o.label}>
+              {rd.usp.others.map((o, oi) => (
+                <div className="oc" key={o.label} data-m-hidden={uspView !== oi + 1}>
                   <p className="lbl">{o.label}</p>
                   <h4>{o.title}</h4>
                   <ul>
@@ -203,7 +211,7 @@ export default function Home() {
             <h3>{rd.prozess.title}</h3>
             <p className="lead">{rd.prozess.lead}</p>
           </div>
-          <div className="rail">
+          <div className="rail swipe">
             {rd.prozess.steps.map((step) => (
               <div className="rstep" key={step.num}>
                 <span className="node">{step.num}</span>
@@ -256,7 +264,7 @@ export default function Home() {
               />
             </figure>
           </div>
-          <div className="eco">
+          <div className="eco swipe">
             {rd.oekosystem.cards.map((c, i) => (
               <div className="card" key={c.title}>
                 <div className="top">
@@ -282,7 +290,7 @@ export default function Home() {
           <p className="eyebrow">{rd.markt.eyebrow}</p>
           <h2>{rd.markt.title}</h2>
           <p className="lead" style={{ margin: "16px 0 3rem" }}>{rd.markt.lead}</p>
-          <div className="figures">
+          <div className="figures swipe">
             {rd.markt.figures.map((f) => (
               <div className="figure" key={f.num}>
                 <div className="num">{f.num}</div>
@@ -317,7 +325,7 @@ export default function Home() {
               loading="lazy"
             />
           </figure>
-          <div className="grid g3">
+          <div className="grid g3 swipe">
             {rd.praxis.cards.map((c) => (
               <div className="card prod" key={c.title}>
                 <p className="label">{c.label}</p>
@@ -334,7 +342,7 @@ export default function Home() {
             <p className="eyebrow">{rd.stimmen.eyebrow}</p>
             <h3>{rd.stimmen.title}</h3>
             <p className="lead">{rd.stimmen.lead}</p>
-            <div className="grid g3">
+            <div className="grid g3 swipe">
               {testimonials.map((tItem) => (
                 <div className="card voice" key={tItem.role}>
                   <p style={{ fontSize: "var(--step-1)", lineHeight: 1.4 }}>{tItem.quote}</p>
@@ -355,7 +363,7 @@ export default function Home() {
           <p className="eyebrow">{rd.thinkTank.eyebrow}</p>
           <h2>{rd.thinkTank.title}</h2>
           <p className="lead" style={{ margin: "16px 0 3rem", maxWidth: "70ch" }}>{rd.thinkTank.lead}</p>
-          <div className="grid g3">
+          <div className="grid g3 swipe">
             {latest.map((pub) => <PubCard key={pub.slug} pub={pub} lang={lang} />)}
           </div>
           <p style={{ marginTop: "3rem", display: "flex", gap: 14, flexWrap: "wrap" }}>
@@ -371,7 +379,7 @@ export default function Home() {
           <p className="eyebrow">{rd.team.eyebrow}</p>
           <h2>{rd.team.title}</h2>
           <p className="lead" style={{ margin: "16px 0 3rem" }}>{rd.team.lead}</p>
-          <div className="grid g3">
+          <div className="grid g3 team-list">
             {team.map((member) => (
               <div className="card person" key={member.name}>
                 <div className="avatar">
