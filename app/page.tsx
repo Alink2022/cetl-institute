@@ -136,16 +136,14 @@ export default function Home() {
                   </li>
                 ))}
               </ul>
-              <div className="mini">
-                <span className="lbl">{rd.usp.hero.formulaLabel}</span>
+              <p className="mini">
                 {rd.usp.hero.formula.map((f, i) => (
                   <Fragment key={f}>
-                    <span className="pill">{f}</span>
-                    <span className="op" aria-hidden="true">{i < rd.usp.hero.formula.length - 1 ? "+" : "="}</span>
+                    {f} <i aria-hidden="true">{i < rd.usp.hero.formula.length - 1 ? "+" : "="}</i>{" "}
                   </Fragment>
                 ))}
-                <span className="pill res">{rd.usp.hero.result}</span>
-              </div>
+                <b>{rd.usp.hero.result}</b>
+              </p>
             </div>
 
             <div className="others">

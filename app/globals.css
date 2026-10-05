@@ -625,11 +625,9 @@ h1, h2, h3, h4, h5, .font-display {
 .rd .elc li svg { width: 20px; height: 20px; margin-top: 3px; fill: var(--brand-300); flex: none; }
 .rd .elc li b { display: block; font-weight: 600; font-size: 1.05rem; color: #fff; }
 .rd .elc li .s { display: block; margin-top: 3px; font-size: 0.92rem; line-height: 1.5; color: rgba(255, 255, 255, 0.84); }
-.rd .elc .mini { margin-top: 34px; padding-top: 22px; border-top: 1px solid rgba(255, 255, 255, 0.24); display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; font-size: 0.84rem; }
-.rd .elc .mini .lbl { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; color: var(--brand-300); margin-right: 6px; }
-.rd .elc .mini .pill { padding: 6px 13px; border-radius: 999px; background: rgba(255, 255, 255, 0.13); color: #fff; }
-.rd .elc .mini .op { color: var(--brand-300); font-weight: 600; }
-.rd .elc .mini .res { background: var(--brand-300); color: var(--ink-900); font-weight: 600; }
+.rd .elc .mini { margin: 30px 0 0; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.24); font-size: 0.95rem; line-height: 1.6; color: rgba(255, 255, 255, 0.85); }
+.rd .elc .mini i { font-style: normal; font-weight: 600; color: var(--brand-300); padding: 0 0.2em; }
+.rd .elc .mini b { color: #fff; font-weight: 600; }
 .rd .others { display: grid; gap: 16px; align-content: start; }
 .rd .others .cap { margin: 0; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; color: rgba(232, 213, 218, 0.55); }
 .rd .oc { border: 1px solid rgba(255, 255, 255, 0.11); border-radius: 16px; padding: 22px 24px; background: rgba(255, 255, 255, 0.025); }

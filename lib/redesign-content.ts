@@ -76,7 +76,7 @@ export interface RedesignContent {
     hero: {
       tag: string; title: string; claim: string;
       points: { title: string; text: string }[];
-      formulaLabel: string; formula: string[]; result: string;
+      formula: string[]; result: string;
     };
     compareLabel: string;
     mobileTabs: string[];
@@ -156,22 +156,21 @@ export const REDESIGN_DE: RedesignContent = {
       title: "Executional Learning",
       claim: "Die Brücke zwischen akademischer Exzellenz und echter Umsetzung, maßgeschneidert auf Ihre Organisation.",
       points: [
-        { title: "Maßgeschneidert", text: "Jeder Lernpfad wird aus Ihrer Strategie, Ihren Rollen, Prozessen und Werkzeugen abgeleitet. Kein Katalog: Grundlagen, Vertiefung und Umsetzung werden pro Organisation neu zusammengestellt." },
-        { title: "Das Beste aus zwei Welten", text: "Zertifizierte Module akademischer Partner liefern Tiefe und Abschlüsse. Praktiker und Embedded Engineers bringen sie direkt an Ihren eigenen Use Cases zur Anwendung." },
-        { title: "Transformationstreiber", text: "Als Service (ELaaS) modular abrufbar: Foundation für alle, Specialization für Rollen, Executional für Projekte. Sie aktivieren, was gerade zählt, im Tempo der KI." },
-        { title: "Breitenwirkung", text: "Basisschulung für alle, Executive-Track für die Führung, Role Tracks für Anwender und Champions. So wird AI Literacy zur Fähigkeit der Organisation, nicht Einzelwissen." },
-        { title: "Begleitung, die bleibt", text: "Mentoring, Use-Case-Bewertung und Projektunterstützung laufen im flexiblen Pool der Executional-Learning-Tage weiter, auch nach dem Programm." },
-        { title: "Ergebnis statt Teilnahme", text: "Jede Lernreise endet in einem Use Case, Prototyp, Business Case oder einer Umsetzungsroadmap, aus Ihrem Arbeitsalltag und mit Ihren Daten." },
+        { title: "Maßgeschneidert", text: "Lernpfade aus Ihren Rollen, Prozessen und Zielen. Kein Katalog." },
+        { title: "Das Beste aus zwei Welten", text: "Akademische Tiefe, angewandt an Ihren Use Cases." },
+        { title: "Transformationstreiber", text: "Als Service (ELaaS) modular abrufbar, im Tempo der KI." },
+        { title: "Breitenwirkung", text: "Vom Vorstand bis zur Fachabteilung: AI Literacy als Fähigkeit der Organisation." },
+        { title: "Begleitung, die bleibt", text: "Mentoring und Projektsupport auch nach dem Programm." },
+        { title: "Ergebnis statt Teilnahme", text: "Jede Lernreise endet in Use Case, Prototyp oder Roadmap." },
       ],
-      formulaLabel: "Das Rezept",
       formula: ["Akademische Partner", "Branchenpraxis", "Community-Umsetzung"],
       result: "Kompetenz, die bleibt",
     },
     compareLabel: "Zum Vergleich: der klassische Weg",
     mobileTabs: ["Executional Learning", "Weiterbildung", "Beratung"],
     others: [
-      { label: "Klassische Aus- und Weiterbildung", title: "Wissen ohne Umsetzung", items: ["Uneinheitliche Standards, Abschlüsse und Schwerpunkte: Qualität und Vergleichbarkeit schwanken je Anbieter", "Kaum Umsetzung: höchstens Capstones oder Konzeptprojekte, selten im echten Arbeitskontext", "Standardformate: gleicher Inhalt für alle Rollen, Ihre Werkzeuge und Prozesse kommen nicht vor", "Keine Begleitung nach dem Kurs: im KI-Tempo veraltet Wissen schnell", "Einmaleffekt zu hohen Kosten: Teilnahme wird bezahlt, Wirkung im Alltag bleibt offen"] },
-      { label: "Klassische Beratung", title: "Umsetzung ohne Befähigung", items: ["Fokus fast nur auf Umsetzung: das Ergebnis kommt, das Wissen dahinter bleibt beim Anbieter", "Training nur als Nachtrag: Schulungen kommen spät und ergänzen, statt zu tragen", "Keine standardisierten Formate oder Zertifikate: Kompetenz bleibt unbelegt", "Maßschneiderung nur auf Projektebene: die Organisation darüber hinaus bleibt unberührt", "Einmaleffekt zu hohen Kosten: mit dem Projektende endet die Wirkung, weil Ihre Organisation nicht befähigt wurde"] },
+      { label: "Klassische Aus- und Weiterbildung", title: "Wissen ohne Umsetzung", items: ["Uneinheitliche Standards und Abschlüsse", "Kaum Umsetzung, höchstens Capstones", "Standardformate statt Maßschneiderung", "Keine Begleitung nach dem Kurs", "Einmaleffekt, hohe Kosten"] },
+      { label: "Klassische Beratung", title: "Umsetzung ohne Befähigung", items: ["Fokus fast nur auf Umsetzung", "Training nur als Nachtrag", "Keine standardisierten Formate oder Zertifikate", "Maßschneiderung nur im Projekt", "Einmaleffekt, hohe Kosten, keine Befähigung"] },
     ],
     ctaPrimary: "Bausteine ansehen",
     ctaSecondary: "So funktioniert es",
@@ -388,22 +387,21 @@ export const REDESIGN_EN: RedesignContent = {
       title: "Executional Learning",
       claim: "The bridge between academic excellence and real execution, tailored to your organisation.",
       points: [
-        { title: "Tailored", text: "Every learning path is derived from your strategy, roles, processes and tools. No catalogue: foundation, specialisation and execution are assembled anew for each organisation." },
-        { title: "The best of two worlds", text: "Certified modules from academic partners provide depth and qualifications. Practitioners and embedded engineers apply them directly to your own use cases." },
-        { title: "A transformation driver", text: "Available as a modular service (ELaaS): Foundation for everyone, Specialization for roles, Executional for projects. You activate what matters now, at the pace of AI." },
-        { title: "Broad impact", text: "Basic training for everyone, an executive track for leadership, role tracks for users and champions. AI literacy becomes a capability of the organisation, not individual knowledge." },
-        { title: "Support that stays", text: "Mentoring, use-case assessment and project support continue in the flexible pool of Executional Learning days, also after the programme." },
-        { title: "Results, not attendance", text: "Every learning journey ends in a use case, prototype, business case or implementation roadmap, drawn from your daily work and using your data." },
+        { title: "Tailored", text: "Learning paths built from your roles, processes and goals. No catalogue." },
+        { title: "The best of two worlds", text: "Academic depth, applied to your use cases." },
+        { title: "A transformation driver", text: "Modular as a service (ELaaS), at the pace of AI." },
+        { title: "Broad impact", text: "From the board to the business unit: AI literacy as an organisational capability." },
+        { title: "Support that stays", text: "Mentoring and project support beyond the programme." },
+        { title: "Results, not attendance", text: "Every journey ends in a use case, prototype or roadmap." },
       ],
-      formulaLabel: "The recipe",
       formula: ["Academic partners", "Industry practice", "Community execution"],
       result: "Capability that stays",
     },
     compareLabel: "For comparison: the classic way",
     mobileTabs: ["Executional Learning", "Training", "Consulting"],
     others: [
-      { label: "Classic education and training", title: "Knowledge without execution", items: ["Inconsistent standards, qualifications and focus: quality and comparability vary by provider", "Little execution: at best capstones or concept projects, rarely in the real work context", "Standard formats: the same content for every role, your tools and processes do not feature", "No support after the course: at the pace of AI, knowledge goes stale quickly", "A one-off effect at high cost: attendance is paid for, impact in daily work stays open"] },
-      { label: "Classic consulting", title: "Execution without enablement", items: ["Focus almost only on execution: the result arrives, the knowledge behind it stays with the provider", "Training only as an afterthought: courses come late and add on instead of carrying", "No standardised formats or certificates: capability stays unproven", "Tailoring only at project level: the organisation beyond it is left untouched", "A one-off effect at high cost: the impact ends with the project, because your organisation was not enabled"] },
+      { label: "Classic education and training", title: "Knowledge without execution", items: ["Inconsistent standards and qualifications", "Little execution, at best capstones", "Standard formats instead of tailoring", "No support after the course", "A one-off effect at high cost"] },
+      { label: "Classic consulting", title: "Execution without enablement", items: ["Focus almost only on execution", "Training only as an afterthought", "No standardised formats or certificates", "Tailoring only within the project", "A one-off effect at high cost, no enablement"] },
     ],
     ctaPrimary: "See the building blocks",
     ctaSecondary: "How it works",
