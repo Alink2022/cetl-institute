@@ -8,23 +8,23 @@ export interface TTCopy {
   landing: {
     meta: { title: string; description: string };
     hero: { eyebrow: string; h1: string; sub: string; ctaRead: string; ctaServices: string; stats: { value: string; label: string }[] };
-    claim: { eyebrow: string; title: string; text: string; standards: { title: string; text: string }[] };
-    audiences: { eyebrow: string; title: string; cards: { id: AudienceId; title: string; questions: string }[]; link: string };
-    fields: { eyebrow: string; title: string; lead: string; link: string; linksLabel: string; count: (n: number) => string };
+    purpose: {
+      eyebrow: string; title: string; lead: string;
+      hero: { tag: string; title: string; claim: string; points: { title: string; text: string }[]; formula: string[]; result: string };
+      compareLabel: string;
+      others: { label: string; title: string; items: string[] }[];
+      mobileTabs: string[];
+    };
+    audiences: { title: string; cards: { id: AudienceId; title: string; questions: string }[]; link: string };
     pubs: {
       eyebrow: string; title: string; lead: string;
-      filterField: string; filterFormat: string; filterAudience: string;
-      all: string; international: string; empty: string; reset: string;
-      formatsSummary: string; open: string; guestBadge: (name: string) => string;
+      fieldsLabel: string; linksLabel: string; count: (n: number) => string;
+      filterFormat: string; filterAudience: string;
+      all: string; international: string; empty: string; reset: string; resetField: string;
+      formatsSummary: string; guestBadge: (name: string) => string;
     };
+    guests: { eyebrow: string; title: string; text: string; chips: string[]; cta: string; ctaPropose: string; ghostTitle: string; ghostText: string };
     services: { eyebrow: string; title: string };
-    authors: {
-      eyebrow: string; title: string; lead: string;
-      team: string; guests: string;
-      guestsTitle: string; guestsText: string; guestsCta: string;
-      editorial: string;
-    };
-    cta: { text: string; button: string };
   };
   card: { by: string; nr: string; read: string };
   article: {
@@ -62,8 +62,7 @@ export const TT_COPY: Record<Lang, TTCopy> = {
     landing: {
       meta: {
         title: "CETL Think Tank: Unabhängige Analysen zu KI, Daten und Tech Leadership",
-        description:
-          "Der CETL Think Tank veröffentlicht unabhängige Analysen zu KI, Daten und Tech Leadership und unterstützt Organisationen mit Executive Briefings, Foresight Labs und laufendem Sparring.",
+        description: "Der CETL Think Tank veröffentlicht unabhängige Analysen zu KI, Daten und Tech Leadership und unterstützt Organisationen mit Executive Briefings, Foresight Labs und laufendem Sparring.",
       },
       hero: {
         eyebrow: "CETL Think Tank",
@@ -78,21 +77,34 @@ export const TT_COPY: Record<Lang, TTCopy> = {
           { value: "0", label: "Reseller- oder Plattformpartnerschaften" },
         ],
       },
-      claim: {
-        eyebrow: "Unser Anspruch",
+      purpose: {
+        eyebrow: "Wozu ein Think Tank?",
         title: "Keine Trendberichte. Positionen, die Entscheidungen tragen.",
-        text: "Der CETL Think Tank veröffentlicht keine Trendberichte. Wir analysieren strukturelle Fragen, an denen KI-Initiativen in Organisationen scheitern oder gelingen, und beziehen dazu Position. Grundlage sind Forschung, Daten und anonymisierte Beobachtungen aus unseren Programmen in Banking, Industrie, Aviation und öffentlichem Sektor.",
-        standards: [
-          { title: "Eine klare These", text: "Jede Publikation bezieht Position und begründet sie, statt Trends zusammenzufassen." },
-          { title: "Belege", text: "Quellen, Daten oder anonymisierte Beobachtungen aus unseren Programmen, am Ende offengelegt." },
-          { title: "Konsequenzen für Entscheider", text: "Jeder Beitrag endet mit konkreten Folgen für Führung, Governance, Architektur oder Kompetenzaufbau." },
-          { title: "Namentliche Autorenschaft", text: "Veröffentlicht unter echten Namen mit Rolle, auch bei externen Fellows und akademischen Co-Autorinnen." },
-          { title: "Redaktionelle Prüfung", text: "Jeder Beitrag wird vor der Veröffentlichung von mindestens einem weiteren Mitglied des Redaktionsboards gelesen." },
+        lead: "KI-Initiativen scheitern selten an der Technologie, sondern an strukturellen Fragen zu Governance, Souveränität, Kompetenz und Urteilsvermögen. Der CETL Think Tank beantwortet sie mit klarer Haltung, herstellerneutral und aus der Praxis, damit Führung, HR und Learning & Development besser entscheiden.",
+        hero: {
+          tag: "Der CETL Think Tank",
+          title: "Positionen statt Trends",
+          claim: "Wir analysieren die strukturellen Fragen, an denen KI-Initiativen scheitern oder gelingen, und beziehen Position.",
+          points: [
+            { title: "Eine klare These", text: "Jede Publikation bezieht Position." },
+            { title: "Belege offengelegt", text: "Quellen, Daten, anonymisierte Praxisbeobachtungen." },
+            { title: "Konsequenzen für Entscheider", text: "Jeder Beitrag endet mit konkreten Folgen." },
+            { title: "Namentliche Autorenschaft", text: "Echte Namen mit Rolle, auch bei Gästen." },
+            { title: "Redaktionell geprüft", text: "Gegengelesen im Redaktionsboard." },
+            { title: "Herstellerneutral", text: "Keine Reseller- oder Plattformpartnerschaften." },
+          ],
+          formula: ["Forschung", "Industriepraxis", "Programmerfahrung"],
+          result: "Analysen, die Entscheidungen vorbereiten",
+        },
+        compareLabel: "Zum Vergleich: gängige Formate",
+        others: [
+          { label: "Trendbericht", title: "Überblick ohne Haltung", items: ["Fasst Trends zusammen, ohne Position", "Quellenlage bleibt vage", "Endet ohne Konsequenzen", "Austauschbare Autorenschaft"] },
+          { label: "Anbieter-Whitepaper", title: "Haltung mit Produktinteresse", items: ["Argumentation folgt dem Produkt", "Selektive Evidenz", "Kaufempfehlung statt Entscheidungshilfe", "Interessenkonflikt bleibt unsichtbar"] },
         ],
+        mobileTabs: ["Think Tank", "Trendbericht", "Whitepaper"],
       },
       audiences: {
-        eyebrow: "Für wen wir denken",
-        title: "Drei Zielgruppen, drei Leitfragen",
+        title: "Für wen wir denken",
         cards: [
           { id: "board", title: "Geschäftsführung und Vorstand", questions: "Wo schafft KI in unserer Organisation tatsächlich Wert, und welche Entscheidungen zu Governance, Architektur und Investitionen stehen jetzt an?" },
           { id: "hr", title: "HR und People", questions: "Wie verändern sich Rollen und Anforderungsprofile, welche Kompetenzen brauchen wir morgen, und wie erfüllen wir die Pflicht zur KI-Kompetenz nach dem EU AI Act?" },
@@ -100,41 +112,31 @@ export const TT_COPY: Record<Lang, TTCopy> = {
         ],
         link: "Passende Publikationen",
       },
-      fields: {
-        eyebrow: "Forschungsfelder",
-        title: "Fünf Felder, jedes mit Anschluss an unser Portfolio",
-        lead: "Die Forschungsfelder spiegeln unsere Leistungen und unsere Zielgruppen. So führt jede Publikation zu etwas, das wir auch liefern können.",
-        link: "Publikationen zum Feld",
-        linksLabel: "Verbunden mit",
-        count: (n) => (n === 0 ? "Erste Publikation in Vorbereitung" : n === 1 ? "1 Publikation" : `${n} Publikationen`),
-      },
       pubs: {
         eyebrow: "Publikationen",
         title: "Aus der Forschung in die Praxis",
-        lead: "Analysen und Frameworks für Entscheider, die über den nächsten Piloten hinausdenken. Neueste zuerst.",
-        filterField: "Forschungsfeld", filterFormat: "Format", filterAudience: "Zielgruppe",
+        lead: "Fünf Forschungsfelder, jedes mit Anschluss an unser Angebot. Wählen Sie ein Feld oder filtern Sie nach Format und Zielgruppe. Neueste zuerst.",
+        fieldsLabel: "Forschungsfeld wählen",
+        linksLabel: "Verbunden mit",
+        count: (n) => (n === 0 ? "In Vorbereitung" : n === 1 ? "1 Publikation" : `${n} Publikationen`),
+        filterFormat: "Format", filterAudience: "Zielgruppe",
         all: "Alle", international: "Internationale Co-Autorenschaft",
         empty: "Zu dieser Auswahl gibt es noch keine Publikation. Weitere Beiträge sind in Vorbereitung.",
-        reset: "Filter zurücksetzen",
-        formatsSummary: "Unsere Formate im Überblick", open: "Publikation lesen",
+        reset: "Filter zurücksetzen", resetField: "Alle Felder",
+        formatsSummary: "Unsere Formate im Überblick",
         guestBadge: (name) => `Co-Autorenschaft mit ${name}`,
       },
+      guests: {
+        eyebrow: "Internationale Stimmen",
+        title: "Gemeinsam mit führenden Köpfen publizieren",
+        text: "Wir laden führende Expertinnen und Experten aus Forschung und Praxis ein, gemeinsam mit unserem Team zu publizieren. Die ersten Beiträge sind in Vorbereitung.",
+        chips: ["Co-Autorenschaft", "Englisch und Deutsch", "Offenlegung bei Anbietern"],
+        cta: "Mehr zu den Gastbeiträgen",
+        ctaPropose: "Beitrag vorschlagen",
+        ghostTitle: "Die erste Stimme folgt",
+        ghostText: "Co-Autorenschaft mit dem CETL-Team, veröffentlicht auf Englisch und Deutsch.",
+      },
       services: { eyebrow: "Think Tank Services", title: "Das Denken in Ihre Organisation holen" },
-      authors: {
-        eyebrow: "Autorinnen, Autoren und Fellows",
-        title: "Die Köpfe hinter den Analysen",
-        lead: "Jede Publikation erscheint unter echten Namen. Das Redaktionsboard besteht aus dem Gründungsteam, ergänzt um Fellows aus Trainer-Pool und Hochschulnetzwerk.",
-        team: "CETL Redaktionsboard",
-        guests: "Gastautorinnen und Gastautoren",
-        guestsTitle: "Internationale Stimmen in Vorbereitung",
-        guestsText: "Wir laden führende Expertinnen und Experten aus Forschung und Praxis ein, gemeinsam mit unserem Team zu publizieren. Die ersten Co-Autorenschaften erscheinen hier, sobald sie redaktionell freigegeben sind.",
-        guestsCta: "Mehr zu den Gastbeiträgen",
-        editorial: "Redaktionsboard",
-      },
-      cta: {
-        text: "Sie möchten die Themen des Think Tanks in Ihre Führungsrunde, Ihr HR-Team oder Ihre Lernorganisation bringen?",
-        button: "Gespräch vereinbaren",
-      },
     },
     card: { by: "von", nr: "Nr.", read: "Lesen" },
     article: {
@@ -209,8 +211,7 @@ export const TT_COPY: Record<Lang, TTCopy> = {
     landing: {
       meta: {
         title: "CETL Think Tank: Independent Analysis on AI, Data and Tech Leadership",
-        description:
-          "The CETL Think Tank publishes independent analysis on AI, data and tech leadership and supports organisations with executive briefings, foresight labs and ongoing sparring.",
+        description: "The CETL Think Tank publishes independent analysis on AI, data and tech leadership and supports organisations with executive briefings, foresight labs and ongoing sparring.",
       },
       hero: {
         eyebrow: "CETL Think Tank",
@@ -225,21 +226,34 @@ export const TT_COPY: Record<Lang, TTCopy> = {
           { value: "0", label: "reseller or platform partnerships" },
         ],
       },
-      claim: {
-        eyebrow: "Our standard",
+      purpose: {
+        eyebrow: "Why a think tank?",
         title: "No trend reports. Positions that carry decisions.",
-        text: "The CETL Think Tank does not publish trend reports. We analyse the structural questions on which AI initiatives in organisations fail or succeed, and we take a position on them. The basis is research, data and anonymised observations from our programmes in banking, industry, aviation and the public sector.",
-        standards: [
-          { title: "A clear thesis", text: "Every publication takes a position and argues it, instead of summarising trends." },
-          { title: "Evidence", text: "Sources, data or anonymised observations from our programmes, disclosed at the end." },
-          { title: "Implications for decision-makers", text: "Every piece ends with concrete consequences for leadership, governance, architecture or capability building." },
-          { title: "Named authors", text: "Published under real names with roles, including external fellows and academic co-authors." },
-          { title: "Editorial review", text: "Every piece is read by at least one other member of the editorial board before publication." },
+        lead: "AI initiatives rarely fail on the technology. They fail on structural questions of governance, sovereignty, capability and judgment. The CETL Think Tank answers them with a clear position, vendor-neutral and drawn from practice, so that leadership, HR and Learning & Development decide better.",
+        hero: {
+          tag: "The CETL Think Tank",
+          title: "Positions, not trends",
+          claim: "We analyse the structural questions on which AI initiatives fail or succeed, and we take a position.",
+          points: [
+            { title: "A clear thesis", text: "Every publication takes a position." },
+            { title: "Evidence disclosed", text: "Sources, data, anonymised practice observations." },
+            { title: "Implications for decision-makers", text: "Every piece ends in concrete consequences." },
+            { title: "Named authors", text: "Real names with roles, guests included." },
+            { title: "Editorially reviewed", text: "Read by the editorial board." },
+            { title: "Vendor-neutral", text: "No reseller or platform partnerships." },
+          ],
+          formula: ["Research", "Industry practice", "Programme experience"],
+          result: "Analysis that prepares decisions",
+        },
+        compareLabel: "For comparison: common formats",
+        others: [
+          { label: "Trend report", title: "Overview without a stance", items: ["Summarises trends, takes no position", "Evidence stays vague", "Ends without consequences", "Interchangeable authorship"] },
+          { label: "Vendor whitepaper", title: "A stance with a product interest", items: ["The argument follows the product", "Selective evidence", "A purchase recommendation, not decision support", "The conflict of interest stays invisible"] },
         ],
+        mobileTabs: ["Think Tank", "Trend report", "Whitepaper"],
       },
       audiences: {
-        eyebrow: "Who we think for",
-        title: "Three audiences, three guiding questions",
+        title: "Who we think for",
         cards: [
           { id: "board", title: "Executive management and boards", questions: "Where does AI actually create value in our organisation, and which decisions on governance, architecture and investment are due now?" },
           { id: "hr", title: "HR and People", questions: "How are roles and requirement profiles changing, which skills do we need tomorrow, and how do we meet the AI literacy obligation under the EU AI Act?" },
@@ -247,41 +261,31 @@ export const TT_COPY: Record<Lang, TTCopy> = {
         ],
         link: "Matching publications",
       },
-      fields: {
-        eyebrow: "Research fields",
-        title: "Five fields, each connected to our portfolio",
-        lead: "The research fields mirror our services and our audiences, so every publication leads to something we can also deliver.",
-        link: "Publications in this field",
-        linksLabel: "Connected to",
-        count: (n) => (n === 0 ? "First publication in preparation" : n === 1 ? "1 publication" : `${n} publications`),
-      },
       pubs: {
         eyebrow: "Publications",
         title: "From research into practice",
-        lead: "Analyses and frameworks for decision-makers thinking beyond the next pilot. Newest first.",
-        filterField: "Research field", filterFormat: "Format", filterAudience: "Audience",
+        lead: "Five research fields, each connected to our services. Pick a field or filter by format and audience. Newest first.",
+        fieldsLabel: "Choose a research field",
+        linksLabel: "Connected to",
+        count: (n) => (n === 0 ? "In preparation" : n === 1 ? "1 publication" : `${n} publications`),
+        filterFormat: "Format", filterAudience: "Audience",
         all: "All", international: "International co-authorship",
         empty: "There is no publication for this selection yet. More pieces are in preparation.",
-        reset: "Reset filters",
-        formatsSummary: "Our formats at a glance", open: "Read publication",
+        reset: "Reset filters", resetField: "All fields",
+        formatsSummary: "Our formats at a glance",
         guestBadge: (name) => `Co-authored with ${name}`,
       },
+      guests: {
+        eyebrow: "International voices",
+        title: "Publishing together with leading minds",
+        text: "We are inviting leading experts from research and practice to publish together with our team. The first pieces are in preparation.",
+        chips: ["Co-authorship", "English and German", "Vendor disclosure"],
+        cta: "More about guest contributions",
+        ctaPropose: "Suggest a contribution",
+        ghostTitle: "The first voice is coming",
+        ghostText: "Co-authored with the CETL team, published in English and German.",
+      },
       services: { eyebrow: "Think Tank Services", title: "Bring the thinking into your organisation" },
-      authors: {
-        eyebrow: "Authors and fellows",
-        title: "The people behind the analyses",
-        lead: "Every publication appears under real names. The editorial board is the founding team, joined by fellows from the trainer pool and the university network.",
-        team: "CETL editorial board",
-        guests: "Guest authors",
-        guestsTitle: "International voices in preparation",
-        guestsText: "We are inviting leading experts from research and practice to publish together with our team. The first co-authored pieces will appear here as soon as they are editorially approved.",
-        guestsCta: "More about guest contributions",
-        editorial: "Editorial board",
-      },
-      cta: {
-        text: "Would you like to bring the Think Tank's topics into your leadership meeting, your HR team or your learning organisation?",
-        button: "Arrange a conversation",
-      },
     },
     card: { by: "by", nr: "No.", read: "Read" },
     article: {
