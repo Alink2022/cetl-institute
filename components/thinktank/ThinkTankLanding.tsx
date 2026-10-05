@@ -83,7 +83,7 @@ export function ThinkTankLanding() {
             <span className="b">{pr.mobileTabs[1]} · {pr.mobileTabs[2]}</span>
           </p>
           <div className="vs2 light">
-            <div className="elc" data-m-hidden={view !== 0}>
+            <div className="elc" data-m-hidden={view !== 0} data-d={Math.abs(view)}>
               <span className="lab" aria-hidden="true">{pr.hero.title}</span>
               <button type="button" className="strip" aria-label={pr.hero.title} aria-expanded={view === 0} onClick={() => setView(0)} />
               <span className="tag">{pr.hero.tag}</span>
@@ -113,7 +113,7 @@ export function ThinkTankLanding() {
             <div className="others">
               <p className="cap">{pr.compareLabel}</p>
               {pr.others.map((o, oi) => (
-                <div className="oc" key={o.label} data-m-hidden={view !== oi + 1}>
+                <div className="oc" key={o.label} data-m-hidden={view !== oi + 1} data-d={Math.abs(view - (oi + 1))}>
                   <span className="lab" aria-hidden="true">{o.label}</span>
                   <button type="button" className="strip" aria-label={o.label} aria-expanded={view === oi + 1} onClick={() => setView(oi + 1)} />
                   <p className="lbl">{o.label}</p>

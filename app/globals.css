@@ -823,9 +823,14 @@ h1, h2, h3, h4, h5, .font-display {
   .rd .others .cap { display: none; }
   .rd .vs2 > .elc, .rd .vs2 .oc { position: relative; flex: 1 1 0; min-width: 0; margin-left: -8px; z-index: 5; }
   .rd .vs2 > :first-child { margin-left: 0; }
-  .rd .vs2 [data-m-hidden="true"] { flex: 0 0 44px; z-index: 1; padding: 0; overflow: visible; cursor: pointer; border-radius: 16px; }
-  .rd .vs2 .oc[data-m-hidden="true"] { background: linear-gradient(180deg, rgba(232, 213, 218, 0.28), rgba(232, 213, 218, 0.13)); border-color: rgba(255, 255, 255, 0.2); }
-  .rd .vs2 .oc[data-m-hidden="true"]:nth-of-type(2) { z-index: 2; }
+  .rd .vs2 [data-m-hidden="true"] { flex: 0 0 44px; z-index: 1; padding: 0; overflow: visible; cursor: pointer; border-radius: 16px; outline: 0; }
+  .rd .vs2 [data-m-hidden="false"] { box-shadow: -10px 0 26px rgba(0, 0, 0, 0.3); }
+  .rd .vs2 .oc[data-m-hidden="false"] { background: #2b1b21; border-color: #4a363e; }
+  /* Hintere Karten: deckend, je Abstand zur aktiven Karte ein eigener Ton und versetzt in der Höhe */
+  .rd .vs2 .oc[data-m-hidden="true"][data-d="1"] { background: #4b373f; border-color: #5d4750; margin-block: 14px; z-index: 3; }
+  .rd .vs2 .oc[data-m-hidden="true"][data-d="2"] { background: #34252b; border-color: #44323a; margin-block: 28px; z-index: 2; }
+  .rd .vs2 .elc[data-m-hidden="true"][data-d="1"] { background: #75203c; margin-block: 14px; z-index: 3; }
+  .rd .vs2 .elc[data-m-hidden="true"][data-d="2"] { background: #561a2f; margin-block: 28px; z-index: 2; }
   .rd .vs2 .elc[data-m-hidden="true"]::after { display: none; }
   .rd .vs2 [data-m-hidden="true"] > :not(.strip):not(.lab) { display: none; }
   .rd .strip { position: absolute; inset: 0; width: 100%; padding: 0; border: 0; background: transparent; cursor: pointer; z-index: 2; }
@@ -894,7 +899,9 @@ h1, h2, h3, h4, h5, .font-display {
 @media (max-width: 680px) {
   .rd .vsrow.light .v { color: var(--ink-900); }
   .rd .vsrow.light .b { color: var(--ink-500); }
-  .rd .vs2.light .oc[data-m-hidden="true"] { background: linear-gradient(180deg, #ece2e5, #f4ecee); border-color: var(--line); }
+  .rd .vs2.light [data-m-hidden="false"] { box-shadow: -10px 0 26px rgba(31, 14, 19, 0.14); }
+  .rd .vs2.light .oc[data-m-hidden="true"][data-d="1"] { background: #ddced3; border-color: #cfbdc4; }
+  .rd .vs2.light .oc[data-m-hidden="true"][data-d="2"] { background: #ebe1e4; border-color: #ddd0d5; }
   .rd .vs2.light .lab { color: var(--ink-700); }
   .rd .vs2.light .elc .lab { color: #fff; }
   .rd .ftiles.swipe { grid-auto-columns: 72%; }

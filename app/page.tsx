@@ -119,7 +119,7 @@ export default function Home() {
             <span className="b">{rd.usp.mobileTabs[1]} · {rd.usp.mobileTabs[2]}</span>
           </p>
           <div className="vs2">
-            <div className="elc" data-m-hidden={uspView !== 0}>
+            <div className="elc" data-m-hidden={uspView !== 0} data-d={Math.abs(uspView)}>
               <span className="lab" aria-hidden="true">{rd.usp.hero.title}</span>
               <button type="button" className="strip" aria-label={rd.usp.hero.title} aria-expanded={uspView === 0} onClick={() => setUspView(0)} />
               <span className="tag">{rd.usp.hero.tag}</span>
@@ -149,7 +149,7 @@ export default function Home() {
             <div className="others">
               <p className="cap">{rd.usp.compareLabel}</p>
               {rd.usp.others.map((o, oi) => (
-                <div className="oc" key={o.label} data-m-hidden={uspView !== oi + 1}>
+                <div className="oc" key={o.label} data-m-hidden={uspView !== oi + 1} data-d={Math.abs(uspView - (oi + 1))}>
                   <span className="lab" aria-hidden="true">{o.label}</span>
                   <button type="button" className="strip" aria-label={o.label} aria-expanded={uspView === oi + 1} onClick={() => setUspView(oi + 1)} />
                   <p className="lbl">{o.label}</p>
