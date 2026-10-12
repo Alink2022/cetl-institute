@@ -410,8 +410,8 @@ export const en: ContentBundle = {
 
   TEAM_MEMBERS: [
     { name: "Alin Kalam", role: "Managing Director & Academic Coordinator", initials: "AK", photo: "/team-alin-v2.png" },
-    { name: "Karl Ivo Sokolov", role: "Co-Founder & Industry Expert", initials: "KS", photo: "/team-ivo-v2.png" },
-    { name: "Stefan Bauer", role: "Community & Academic Expert", initials: "SB", photo: "/team-stefan-v2.png" },
+    { name: "Karl Ivo Sokolov", role: "Co-Founder & Cross-Business Expert", initials: "KS", photo: "/team-ivo-v2.png" },
+    { name: "Stefan Bauer", role: "Community & AI Process Expert", initials: "SB", photo: "/team-stefan-v2.png" },
     { name: "Tobias Zwingmann", role: "Advisor: AI", initials: "TZ", photo: "/team-tobias.jpg", photoPosition: "center 28%", group: "advisory" },
     { name: "Maria Madlberger", role: "Advisor: Academic Research & Relations", initials: "MM", photo: "/team-maria.webp", photoPosition: "center 30%", group: "advisory" },
     { name: "Mario Meir-Huber", role: "Expert: AI Transformation", initials: "MM", photo: "/team-mario.jpg", group: "advisory" },

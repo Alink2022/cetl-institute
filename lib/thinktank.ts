@@ -106,7 +106,7 @@ export const TT_AUTHORS: Record<string, TTAuthor> = {
   ivo: {
     id: "ivo",
     name: "Karl Ivo Sokolov",
-    role: { de: "Co-Founder & Industry Expert", en: "Co-Founder & Industry Expert" },
+    role: { de: "Co-Founder & Cross-Business Expert", en: "Co-Founder & Cross-Business Expert" },
     org: "CETL Institute",
     country: "AT",
     photo: "/team-ivo-v2.png",
@@ -114,7 +114,7 @@ export const TT_AUTHORS: Record<string, TTAuthor> = {
   stefan: {
     id: "stefan",
     name: "Stefan Bauer",
-    role: { de: "Community & Academic Expert", en: "Community & Academic Expert" },
+    role: { de: "Community & AI Process Expert", en: "Community & AI Process Expert" },
     org: "CETL Institute",
     country: "AT",
     photo: "/team-stefan-v2.png",
