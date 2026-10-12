@@ -70,6 +70,7 @@ export interface TeamMember {
   initials: string;
   photo?: string;
   photoPosition?: string;
+  group?: "advisory";
 }
 
 export interface MarketStat {

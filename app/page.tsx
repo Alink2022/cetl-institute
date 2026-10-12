@@ -379,17 +379,22 @@ export default function Home() {
           <p className="eyebrow">{rd.team.eyebrow}</p>
           <h2>{rd.team.title}</h2>
           <p className="lead" style={{ margin: "16px 0 3rem" }}>{rd.team.lead}</p>
-          <div className="grid g3 team-list">
-            {team.map((member) => (
-              <div className="card person" key={member.name}>
-                <div className="avatar">
-                  <img src={member.photo} alt={member.name} style={member.photoPosition ? { objectPosition: member.photoPosition } : undefined} />
-                </div>
-                <h4>{member.name}</h4>
-                <p className="muted" style={{ margin: "6px 0 0" }}>{member.role}</p>
+          {[team.filter((m) => !m.group), team.filter((m) => m.group === "advisory")].map((members, gi) => (
+            <Fragment key={gi}>
+              {gi === 1 && <p className="subhead team-sub">{rd.team.advisoryLabel}</p>}
+              <div className="grid g3 team-list">
+                {members.map((member) => (
+                  <div className="card person" key={member.name}>
+                    <div className="avatar">
+                      <img src={member.photo} alt={member.name} style={member.photoPosition ? { objectPosition: member.photoPosition } : undefined} />
+                    </div>
+                    <h4>{member.name}</h4>
+                    <p className="muted" style={{ margin: "6px 0 0" }}>{member.role}</p>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            </Fragment>
+          ))}
         </div>
       </section>
 

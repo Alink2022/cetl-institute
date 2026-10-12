@@ -110,7 +110,7 @@ export interface RedesignContent {
     addressName: string; addressStreet: string; addressCity: string;
     fields: { name: string; email: string; role: string; rolePlaceholder: string; roles: string[]; topic: string; topicPlaceholder: string; topics: ContactTopic[]; context: string; submit: string; sending: string; success: string; error: string };
   };
-  team: { eyebrow: string; title: string; lead: string };
+  team: { eyebrow: string; title: string; lead: string; advisoryLabel: string };
   footer: { tagline: string; contactLabel: string; legal: string; insuranceNote: string; imprint: string };
 }
 
@@ -334,6 +334,7 @@ export const REDESIGN_DE: RedesignContent = {
     eyebrow: "Das CETL Team",
     title: "Die Köpfe hinter dem Institut",
     lead: "Akademische Exzellenz, Industrieerfahrung und Community-Aufbau in einem Team.",
+    advisoryLabel: "Advisors & Experts",
   },
   footer: {
     tagline: "Technologische Souveränität ist kein Zustand. Sie ist eine Kompetenz.",
@@ -564,6 +565,7 @@ export const REDESIGN_EN: RedesignContent = {
     eyebrow: "The CETL team",
     title: "The people behind the institute",
     lead: "Academic rigour, industry experience and community building in one team.",
+    advisoryLabel: "Advisors & Experts",
   },
   footer: {
     tagline: "Technological sovereignty is not a state. It is a capability.",
