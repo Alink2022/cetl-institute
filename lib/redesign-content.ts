@@ -132,7 +132,7 @@ export const REDESIGN_DE: RedesignContent = {
   },
   beweis: {
     items: [
-      { icon: "graduation-cap", strong: "Hochkarätige akademische Partner", span: "Universitäten und Hochschulen wie BOKU, MedUni Wien, BFI und Lauder Business School, ein Netzwerk aus über 15 im DACH-Raum." },
+      { icon: "graduation-cap", strong: "Hochkarätige akademische Partner", span: "Universitäten und Hochschulen wie BOKU, Paracelsus Medizinische Universität, Webster University, BFI und Lauder Business School, ein Netzwerk aus über 15 im DACH-Raum." },
       { icon: "chats-circle", strong: "Community mit der Stadt Wien", span: "Central Europe Tech Hackathon als Flaggschiffformat." },
       { icon: "briefcase", strong: "Über 50 Lehrende aus der Praxis", span: "Banking, Versicherung, Industrie, Aviation, öffentlicher Sektor." },
     ],
@@ -363,7 +363,7 @@ export const REDESIGN_EN: RedesignContent = {
   },
   beweis: {
     items: [
-      { icon: "graduation-cap", strong: "Top-tier academic partners", span: "Universities and institutions such as BOKU, MedUni Vienna, BFI and Lauder Business School, part of a network of more than 15 across the DACH region." },
+      { icon: "graduation-cap", strong: "Top-tier academic partners", span: "Universities and institutions such as BOKU, Paracelsus Medical University, Webster University, BFI and Lauder Business School, part of a network of more than 15 across the DACH region." },
       { icon: "chats-circle", strong: "Community with the City of Vienna", span: "Central Europe Tech Hackathon as our flagship format." },
       { icon: "briefcase", strong: "More than 50 practitioners teaching", span: "Banking, insurance, industry, aviation, public sector." },
     ],

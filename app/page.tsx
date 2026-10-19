@@ -14,10 +14,10 @@ import { Icon, type IconName } from "@/components/ui/IconSprite";
 const ACADEMIC_LOGOS = [
   { src: "/logos/academy/tuwien.webp", alt: "TU Wien" },
   { src: "/logos/academy/boku.png", alt: "BOKU Wien" },
-  { src: "/logos/academy/meduni.webp", alt: "MedUni Wien" },
+  { src: "/logos/academy/paracelsus.webp", alt: "Paracelsus Medizinische Universität" },
   { src: "/logos/academy/bfi.png", alt: "BFI Wien" },
   { src: "/logos/academy/lauder.png", alt: "Lauder Business School" },
-  { src: "/logos/academy/ima.jpg", alt: "Institute of Management Accountants" },
+  { src: "/logos/academy/webster.webp", alt: "Webster University Vienna" },
 ];
 const COMMUNITY_LOGOS = [
   { src: "/logos/community/stadtwien.svg", alt: "Stadt Wien" },
@@ -30,7 +30,7 @@ const COMMUNITY_LOGOS = [
 const INDUSTRY_LOGOS = [
   { src: "/logos/industry/siemens.webp", alt: "Siemens" },
   { src: "/logos/industry/oebb.webp", alt: "ÖBB" },
-  { src: "/logos/industry/raiffeisen.svg", alt: "Raiffeisen" },
+  { src: "/logos/industry/raiffeisen.webp", alt: "Raiffeisen" },
   { src: "/logos/industry/wienenergie.svg", alt: "Wien Energie" },
   { src: "/logos/industry/caritasstbarbara.png", alt: "Caritas St. Barbara" },
   { src: "/logos/academy/oegig.png", alt: "ÖGIG" },
