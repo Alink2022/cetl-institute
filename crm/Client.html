@@ -9,7 +9,15 @@ const I={
   box:'<svg viewBox="0 0 24 24"><path d="M3 7l9-4 9 4-9 4zM3 7v10l9 4 9-4V7M12 11v10"/></svg>'
 };
 const STAGES=['Idee','Angebot','Verhandlung','Gewonnen'];
-const AREAS=['GenAI & LLMs','AI Governance & AI Act','Responsible AI','Data Strategy','Data Literacy','ML Engineering & MLOps','Analytics & BI','Industrial AI','Change & Adoption','Skills & Zukunft der Arbeit'];
+const VOC={
+  branche:['IT & Software','Finanzwesen / Banken','Versicherungen','Industrie & Produktion','Automotive','Handel & E-Commerce','Gesundheitswesen','Energie & Nachhaltigkeit','Öffentlicher Sektor','Logistik','Beratung / Consulting','Bildung & Forschung','Medien & Marketing','Pharma / Medizin','Sonstige'],
+  hauptfach:['Künstliche Intelligenz (KI)','Machine Learning','Data Science','Datenanalyse','Data Engineering','Big Data','Digitalisierung','Prozessautomatisierung (RPA)','Cloud-Architektur','Cybersecurity','IoT','Robotik','Change Management','Innovation & Zukunftstrends','Leadership & New Work','Sonstige'],
+  sprachen:['Deutsch','Englisch','Deutsch & Englisch','Sonstige'],
+  abrechnung:['Pauschalhonorar','Tagessatz','Halbtagessatz','Stundensatz','Honorar + Spesen','Nach Vereinbarung','Pro-bono'],
+  zahlungsart:['Rechnung nach Veranstaltung','Rechnung nach Vertrag','Vorkasse (100%)','Anzahlung + Restzahlung','Vertrag / Rahmenvereinbarung','Retainer (laufend)','Vermittlung über Agentur','Sonstige'],
+  status:['Verfügbar','Angefragt','Bestätigt','Abgesagt','Nicht verfügbar']
+};
+const SSTAT={'Verfügbar':'ok','Bestätigt':'ok','Angefragt':'lead','Abgesagt':'partner','Nicht verfügbar':'partner'};
 const BRANCHEN=['Banking','Versicherung','Industrie','Energie','Öffentlicher Sektor','Mobilität','Logistik','Handel','Gesundheit','Hochschule','Telekommunikation','Beratung'];
 const ST={lead:'Lead',interessent:'Interessent',kunde:'Kunde'};
 const CT={laufend:['Laufend','ok'],verlaengerung:['Verlängerung fällig','interessent'],angebot:['Angebot offen','lead'],abgelaufen:['Abgelaufen','partner']};
@@ -20,7 +28,7 @@ const SCON={rahmen:['Rahmenvertrag','ok'],angebot:['Angebot offen','interessent'
 
 let CFG={me:'',claude:false};
 let ORGS=[],PEOPLE=[],DEALS=[],ACT=[],MAILS=[],SPEAKERS=[],PRODUCTS=[],SUGG=[];
-let F={q:'',ind:'alle',kst:'alle',ph:'alle',rep:false,type:'alle',con:'alle',area:'alle'};
+let F={q:'',ind:'alle',kst:'alle',ph:'alle',rep:false,type:'alle',con:'alle',area:'alle',stat:'alle'};
 let ROUTE='heute',LOADING=true;
 
 const $=s=>document.querySelector(s);
@@ -50,8 +58,8 @@ const nPer=r=>({id:String(r.id),o:String(r.org_id),n:r.name,fn:r.funktion,area:r
 const dPer=p=>({id:p.id,org_id:p.o,name:p.n,funktion:p.fn,bereich:p.area,rolle:p.role,haltung:p.stance,haupt:p.main?'ja':'nein',email:p.em,einwilligung:p.c,nicht_kontaktieren:p.nc?'ja':'nein',anrede:p.f,letzter_kontakt:p.last});
 const nDeal=r=>({id:String(r.id),o:String(r.org_id),p:String(r.produkt_id),st:+r.phase||0,v:+r.wert||0});
 const dDeal=d=>({id:d.id,org_id:d.o,produkt_id:d.p,phase:d.st,wert:d.v});
-const nSp=r=>({id:String(r.id),n:r.name,type:r.typ||'Lektor',fn:r.funktion,org:r.organisation,con:r.vertrag||'keiner',since:r.vertrag_info,rate:r.stundensatz===''||r.stundensatz==null?null:+r.stundensatz,areas:split(r.gebiete),l:r.sprachen,v:r.verfuegbar,for:split(r.produkte),note:r.freitext,sess:String(r.einsaetze||'').split('|').map(x=>x.trim()).filter(Boolean)});
-const dSp=s=>({id:s.id,name:s.n,typ:s.type,funktion:s.fn,organisation:s.org,vertrag:s.con,vertrag_info:s.since,stundensatz:s.rate==null?'':s.rate,gebiete:s.areas.join(';'),sprachen:s.l,verfuegbar:s.v,produkte:s.for.join(';'),freitext:s.note,einsaetze:s.sess.join('|')});
+const nSp=r=>({id:String(r.id),n:r.name,br:r.branche,org:r.unternehmen,main:r.hauptfach,skills:r.fachgebiete,topics:r.themen,l:r.sprachen,rate:r.honorar===''||r.honorar==null?null:+r.honorar,bill:r.abrechnung,pay:r.zahlungsart,v:r.status,em:r.email,tel:r.telefon,note:r.anmerkungen,type:r.typ||'Lektor',fn:r.funktion,con:r.vertrag||'keiner',since:r.vertrag_info,for:split(r.produkte),sess:String(r.einsaetze||'').split('|').map(x=>x.trim()).filter(Boolean)});
+const dSp=s=>({id:s.id,name:s.n,branche:s.br,unternehmen:s.org,hauptfach:s.main,fachgebiete:s.skills,themen:s.topics,sprachen:s.l,honorar:s.rate==null?'':s.rate,abrechnung:s.bill,zahlungsart:s.pay,status:s.v,email:s.em,telefon:s.tel,anmerkungen:s.note,typ:s.type,funktion:s.fn,vertrag:s.con,vertrag_info:s.since,produkte:s.for.join(';'),einsaetze:s.sess.join('|')});
 const mkey=m=>{const d=pd(m.d);return (d?d.getTime():0)+(+String(m.t||'0:0').replace(':',''))};
 function load(db){
   CFG={me:db.me,claude:db.claude};
@@ -198,17 +206,20 @@ function vOrg(id){
 }
 
 /* ---------- Speaker und Lektoren ---------- */
+const rateUnit=s=>{const b=s.bill||'';return s.rate?(b==='Tagessatz'?'pro Tag':b==='Halbtagessatz'?'pro Halbtag':b==='Pauschalhonorar'?'pauschal':b==='Honorar + Spesen'?'plus Spesen':'pro Stunde'):(b||'offen')};
+const skillTags=s=>{const a=String(s.skills||'').split(',').map(x=>x.trim()).filter(Boolean);return a.slice(0,3).map(x=>'<span class="tag">'+esc(x)+'</span>').join('')+(a.length>3?'<span class="tag">+'+(a.length-3)+'</span>':'')};
 function vLektoren(){
-  const l=SPEAKERS.filter(s=>(F.type==='alle'||s.type===F.type)&&(F.con==='alle'||s.con===F.con)&&(F.area==='alle'||s.areas.includes(F.area))&&(s.n+s.fn+s.org+s.note+s.areas.join(' ')).toLowerCase().includes(F.q.toLowerCase()));
-  const rated=SPEAKERS.filter(s=>s.rate);const avg=rated.length?Math.round(rated.reduce((a,s)=>a+s.rate,0)/rated.length):0;
-  const act=SPEAKERS.filter(s=>s.con==='rahmen').length;
-  const chip=(k,v,lb,on)=>`<button class="chip" data-${k}="${v}" aria-pressed="${on}">${lb}</button>`;
-  return head('Pool','Speaker und Lektoren','Vertragsstatus, Stundensatz und Spezialgebiete in AI & Data auf einen Blick. Jedes Profil hat ein Freitextfeld.',`<button class="btn" data-new="speaker">Neues Profil</button>`)+
-  (SPEAKERS.length?`<div class="band"><div><div class="big">${SPEAKERS.length}</div><div class="small muted" style="margin-top:8px">Profile im Pool</div></div><div><div class="big">${act}</div><div class="small muted" style="margin-top:8px">mit Rahmenvertrag</div></div><div><div class="big">${avg?avg+' €':'—'}</div><div class="small muted" style="margin-top:8px">Ø Stundensatz</div></div></div>`+
-  `<div class="tools"><input type="search" id="q" placeholder="Suchen in Name, Gebiet, Freitext" value="${esc(F.q)}" aria-label="Suchen">${['alle','Lektor','Speaker','Beides'].map(t=>chip('type',t,t==='alle'?'Alle Typen':t,F.type===t)).join('')}</div>`+
-  `<div class="tools">${['alle',...Object.keys(SCON)].map(k=>chip('con',k,k==='alle'?'Alle Verträge':SCON[k][0],F.con===k)).join('')}</div>`+
-  `<div class="tools">${['alle',...AREAS].map(a=>chip('area',a,a==='alle'?'Alle Gebiete':a,F.area===a)).join('')}</div>`+
-  `<div class="tbl" style="--cols:1.5fr 1fr .7fr 1.6fr 1.5fr"><div class="th"><div>Profil</div><div>Vertrag</div><div>Stundensatz</div><div>Spezialgebiete</div><div>Freitext</div></div>${l.length?l.map(s=>`<button class="tr" data-edit="speaker|${s.id}"><div data-l="Profil"><div class="t">${esc(s.n)}</div><div class="s">${esc(s.fn)}</div><div class="s">${esc(s.org)}</div><div class="tags" style="margin-top:6px"><span class="tag">${esc(s.type)}</span>${s.l?`<span class="tag">${esc(s.l)}</span>`:''}</div></div><div data-l="Vertrag"><div class="stack1">${pill(SCON[s.con][0],SCON[s.con][1])}<div class="s">${esc(s.since)}</div><div class="s">${s.v?'Verfügbar: '+esc(s.v):''}</div></div></div><div data-l="Stundensatz"><div class="rate">${s.rate?s.rate+' €':'—'}</div><div class="s">${s.rate?'pro Stunde':'offen'}</div></div><div data-l="Spezialgebiete"><div class="tags">${s.areas.map(a=>`<span class="tag">${esc(a)}</span>`).join('')}</div></div><div data-l="Freitext" class="small muted clamp1">${esc(s.note)}</div></button>`).join(''):'<div class="empty">Keine Treffer.</div>'}</div>`:emptyCard('Noch keine Profile. Legen Sie Speaker und Lektoren an, mit Vertrag, Stundensatz und Spezialgebieten.',`<button class="btn" data-new="speaker">Erstes Profil anlegen</button>`));
+  const q=F.q.toLowerCase();
+  const l=SPEAKERS.filter(s=>(F.type==='alle'||s.type===F.type)&&(F.con==='alle'||s.con===F.con)&&(F.area==='alle'||s.main===F.area)&&(F.stat==='alle'||s.v===F.stat)&&[s.n,s.fn,s.org,s.br,s.main,s.skills,s.topics,s.note].join(' ').toLowerCase().includes(q));
+  const hourly=SPEAKERS.filter(s=>s.rate&&(!s.bill||s.bill==='Stundensatz'));const avg=hourly.length?Math.round(hourly.reduce((a,s)=>a+s.rate,0)/hourly.length):0;
+  const act=SPEAKERS.filter(s=>s.con==='rahmen').length,free=SPEAKERS.filter(s=>s.v==='Verfügbar').length;
+  const chip=(k,v,lb,on)=>'<button class="chip" data-'+k+'="'+v+'" aria-pressed="'+on+'">'+lb+'</button>';
+  const sel=(id,cur,all,list)=>'<select id="'+id+'" aria-label="'+all+'"><option value="alle">'+all+'</option>'+list.map(x=>'<option '+(cur===x?'selected':'')+'>'+esc(x)+'</option>').join('')+'</select>';
+  return head('Pool','Speaker und Lektoren','Die frühere Excel-Liste, jetzt im CRM: Fachgebiete, Honorar, Status und Vertrag auf einen Blick. Jedes Profil hat ein Freitextfeld.',`<button class="btn" data-new="speaker">Neues Profil</button>`)+
+  (SPEAKERS.length?`<div class="band"><div><div class="big">${SPEAKERS.length}</div><div class="small muted" style="margin-top:8px">Profile im Pool</div></div><div><div class="big">${act}</div><div class="small muted" style="margin-top:8px">mit Rahmenvertrag</div></div><div><div class="big">${avg?avg+' €':'—'}</div><div class="small muted" style="margin-top:8px">Ø Stundensatz · ${free} verfügbar</div></div></div>`+
+  `<div class="tools"><input type="search" id="q" placeholder="Suchen in Name, Fachgebiet, Anmerkungen" value="${esc(F.q)}" aria-label="Suchen">${sel('sel-area',F.area,'Alle Fachgebiete',VOC.hauptfach)}${sel('sel-stat',F.stat,'Jeder Status',VOC.status)}</div>`+
+  `<div class="tools">${['alle','Lektor','Speaker','Beides'].map(t=>chip('type',t,t==='alle'?'Alle Typen':t,F.type===t)).join('')}${['alle',...Object.keys(SCON)].map(k=>chip('con',k,k==='alle'?'Alle Verträge':SCON[k][0],F.con===k)).join('')}</div>`+
+  `<div class="tbl" style="--cols:1.5fr 1.1fr .8fr 1.6fr 1.4fr"><div class="th"><div>Profil</div><div>Vertrag und Status</div><div>Honorar</div><div>Fachgebiete</div><div>Anmerkungen</div></div>${l.length?l.map(s=>`<button class="tr" data-edit="speaker|${s.id}"><div data-l="Profil"><div class="t">${esc(s.n)}</div><div class="s">${esc([s.fn,s.org].filter(Boolean).join(' · '))}</div><div class="tags" style="margin-top:6px"><span class="tag">${esc(s.type)}</span>${s.br?`<span class="tag">${esc(s.br)}</span>`:''}${s.l?`<span class="tag">${esc(s.l)}</span>`:''}</div></div><div data-l="Vertrag und Status"><div class="stack1">${pill(SCON[s.con][0],SCON[s.con][1])}${s.v?pill(s.v,SSTAT[s.v]||'partner'):''}<div class="s">${esc(s.since)}</div></div></div><div data-l="Honorar"><div class="rate">${s.rate?s.rate.toLocaleString('de-AT')+' €':'—'}</div><div class="s">${esc(rateUnit(s))}</div><div class="s">${esc(s.pay)}</div></div><div data-l="Fachgebiete"><div class="tags">${s.main?`<span class="tag" style="border-color:var(--brand);color:var(--brand-d)">${esc(s.main)}</span>`:''}${skillTags(s)}</div></div><div data-l="Anmerkungen" class="small muted clamp1">${esc(s.note)}</div></button>`).join(''):'<div class="empty">Keine Treffer.</div>'}</div>`:emptyCard('Noch keine Profile. Legen Sie Speaker und Lektoren an oder importieren Sie die vorbereitete Liste.',`<button class="btn" data-seedlek>Lektoren-Liste importieren</button><button class="btn ghost" data-new="speaker">Profil von Hand anlegen</button>`));
 }
 
 /* ---------- Produkte ---------- */
@@ -301,24 +312,32 @@ async function saveDeal(id,oid){
   rerender();toast('Gespeichert');
 }
 let SPDRAFT=null;
+const vopts=(arr)=>[['','—'],...arr.map(x=>[x,x])];
 function openSpeaker(id){
-  const s=SPDRAFT||(id?JSON.parse(JSON.stringify(SPEAKERS.find(x=>x.id===id))):{id:'',n:'',type:'Lektor',fn:'',org:'',con:'keiner',since:'',rate:null,areas:[],l:'DE',v:'',for:[],note:'',sess:[]});
+  const s=SPDRAFT||(id?JSON.parse(JSON.stringify(SPEAKERS.find(x=>x.id===id))):{id:'',n:'',br:'',org:'',main:'',skills:'',topics:'',l:'',rate:null,bill:'',pay:'',v:'',em:'',tel:'',note:'',type:'Lektor',fn:'',con:'keiner',since:'',for:[],sess:[]});
   SPDRAFT=s;
   $('#sheet').innerHTML=`<button class="x" data-close>Schließen</button><div class="eyebrow">${s.id?s.type:'Neu'}</div><h2>${esc(s.n)||'Neues Profil'}</h2>
-  ${fld('name','Name',s.n)}<div class="two">${fld('funktion','Funktion',s.fn)}${fld('organisation','Organisation',s.org)}</div>
-  <div class="two">${fld('typ','Typ',s.type,{t:'select',opts:['Lektor','Speaker','Beides'].map(x=>[x,x])})}${fld('vertrag','Vertragsstatus',s.con,{t:'select',opts:opts(SCON)})}</div>
-  <div class="two">${fld('rate','Stundensatz in € (netto)',s.rate==null?'':s.rate,{t:'number',ph:'offen'})}${fld('vinfo','Vertrag: seit, bis, Hinweis',s.since)}</div>
-  <div class="two">${fld('v','Verfügbarkeit',s.v)}${fld('l','Sprachen',s.l)}</div>
-  <div class="fld"><span class="l">Spezialgebiete in AI & Data</span><div class="chips">${AREAS.map(a=>`<button type="button" class="chip" data-sarea="${esc(a)}" aria-pressed="${s.areas.includes(a)}">${esc(a)}</button>`).join('')}</div></div>
+  ${fld('name','Name',s.n)}<div class="two">${fld('funktion','Funktion',s.fn)}${fld('organisation','Unternehmen',s.org)}</div>
+  <div class="two">${fld('branche','Branche',s.br,{t:'select',opts:vopts(VOC.branche)})}${fld('typ','Typ',s.type,{t:'select',opts:['Lektor','Speaker','Beides'].map(x=>[x,x])})}</div>
+  <div class="two">${fld('hauptfach','Hauptfachgebiet',s.main,{t:'select',opts:vopts(VOC.hauptfach)})}${fld('sprachen','Sprache(n)',s.l,{t:'select',opts:vopts(VOC.sprachen)})}</div>
+  ${fld('skills','Weitere Fachgebiete / Skills',s.skills,{ph:'durch Komma getrennt'})}
+  ${fld('topics','Themenvorschläge / Keynote-Titel',s.topics,{t:'textarea'})}
+  <div class="fld"><span class="l">Vertrag und Entgelt</span></div>
+  <div class="two">${fld('vertrag','Vertragsstatus',s.con,{t:'select',opts:opts(SCON)})}${fld('vinfo','Vertrag: seit, bis, Hinweis',s.since)}</div>
+  <div class="two">${fld('rate','Honorar in € (netto)',s.rate==null?'':s.rate,{t:'number',ph:'offen'})}${fld('abrechnung','Abrechnungsart',s.bill,{t:'select',opts:vopts(VOC.abrechnung)})}</div>
+  <div class="two">${fld('zahlungsart','Zahlungs-/Vertragsart',s.pay,{t:'select',opts:vopts(VOC.zahlungsart)})}${fld('status','Status',s.v,{t:'select',opts:vopts(VOC.status)})}</div>
+  <div class="two">${fld('email','E-Mail',s.em,{t:'email'})}${fld('telefon','Telefon',s.tel)}</div>
   <div class="fld"><span class="l">Einsetzbar für Produkte</span><div class="chips">${PRODUCTS.map(p=>`<button type="button" class="chip" data-sprod="${p.id}" aria-pressed="${s.for.includes(p.id)}">${esc(p.n)}</button>`).join('')}</div></div>
-  ${fld('note','Freitext',s.note,{t:'textarea',ph:'Eindrücke, Absprachen, Honorarideen, Ausschlüsse'})}
+  ${fld('note','Anmerkungen (Freitext)',s.note,{t:'textarea',ph:'Eindrücke, Absprachen, Honorarideen, Quellen, Ausschlüsse'})}
   ${fld('sess','Bisherige Einsätze (ein Eintrag pro Zeile)',s.sess.join('\n'),{t:'textarea'})}
   <div class="btns"><button class="btn" data-spsave>Speichern</button><button class="btn ghost" data-close>Abbrechen</button>${s.id?delBtn('speaker',s.id):''}</div>`;
   $('#scrim').hidden=false;
 }
 function readSp(){
   const s=SPDRAFT;if(!s||!$('#f-name'))return s;
-  s.n=val('name');s.fn=val('funktion');s.org=val('organisation');s.type=val('typ');s.con=val('vertrag');const r=val('rate');s.rate=r===''?null:+r;s.since=val('vinfo');s.v=val('v');s.l=val('l');s.note=val('note');s.sess=val('sess').split('\n').map(x=>x.trim()).filter(Boolean);return s;
+  s.n=val('name');s.fn=val('funktion');s.org=val('organisation');s.br=val('branche');s.type=val('typ');s.main=val('hauptfach');s.l=val('sprachen');s.skills=val('skills');s.topics=val('topics');
+  s.con=val('vertrag');s.since=val('vinfo');const r=val('rate');s.rate=r===''?null:+r;s.bill=val('abrechnung');s.pay=val('zahlungsart');s.v=val('status');s.em=val('email');s.tel=val('telefon');s.note=val('note');
+  s.sess=val('sess').split('\n').map(x=>x.trim()).filter(Boolean);return s;
 }
 async function saveSp(){
   const s=readSp();if(!s.n){toast('Bitte einen Namen eintragen.');return}
@@ -339,7 +358,7 @@ function rerender(){const y=window.scrollY;draw();window.scrollTo(0,y)}
 function toast(t){const e=$('#toast');e.textContent=t;e.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>e.hidden=true,3200)}
 function closeSheet(){$('#scrim').hidden=true;SPDRAFT=null}
 
-const SEL='[data-go],[data-draft],[data-close],[data-save],[data-claude],[data-take],[data-drop],[data-kst],[data-ph],[data-rep],[data-type],[data-con],[data-area],[data-new],[data-edit],[data-sarea],[data-sprod],[data-spsave],[data-orgsave],[data-personsave],[data-dealsave],[data-del],[data-savenote],[data-sync],[data-demo],[data-undemo],[data-import],[data-doimport]';
+const SEL='[data-go],[data-draft],[data-close],[data-save],[data-claude],[data-take],[data-drop],[data-kst],[data-ph],[data-rep],[data-type],[data-con],[data-area],[data-new],[data-edit],[data-seedlek],[data-sprod],[data-spsave],[data-orgsave],[data-personsave],[data-dealsave],[data-del],[data-savenote],[data-sync],[data-demo],[data-undemo],[data-import],[data-doimport]';
 document.addEventListener('click',async e=>{
   const t=e.target.closest(SEL);
   if(!t){if(e.target.id==='scrim')closeSheet();return}
@@ -370,7 +389,6 @@ document.addEventListener('click',async e=>{
   else if(d.area){F.area=d.area;rerender()}
   else if(d.new){const[k,oid]=d.new.split('|');if(k==='lead')openOrgForm(null,{st:'lead'});else if(k==='kunde')openOrgForm(null,{st:'kunde'});else if(k==='speaker'){SPDRAFT=null;openSpeaker(null)}else if(k==='person')openPersonForm(null,oid);else if(k==='deal')openDealForm(null,oid)}
   else if(d.edit){const[k,id]=d.edit.split('|');if(k==='org')openOrgForm(id);else if(k==='person')openPersonForm(id,per(id).o);else if(k==='deal')openDealForm(id,DEALS.find(x=>x.id===id).o);else if(k==='speaker'){SPDRAFT=null;openSpeaker(id)}}
-  else if(d.sarea){const s=readSp();s.areas=s.areas.includes(d.sarea)?s.areas.filter(x=>x!==d.sarea):[...s.areas,d.sarea];openSpeaker(s.id)}
   else if(d.sprod){const s=readSp();s.for=s.for.includes(d.sprod)?s.for.filter(x=>x!==d.sprod):[...s.for,d.sprod];openSpeaker(s.id)}
   else if('spsave' in d)saveSp();
   else if('orgsave' in d)saveOrg(d.orgsave);
@@ -389,6 +407,7 @@ document.addEventListener('click',async e=>{
   else if('sync' in d){t.disabled=true;t.textContent='Gleiche ab …';try{await srv('api_syncNow');await reload();rerender();toast('Mails abgeglichen')}catch(er){toast('Abgleich fehlgeschlagen: '+(er&&er.message||er));t.disabled=false;t.textContent='Mails jetzt abgleichen'}}
   else if('demo' in d){await srv('api_seedDemo');await reload();rerender();toast('Beispieldaten geladen')}
   else if('undemo' in d){await srv('api_removeDemo');await reload();rerender();toast('Beispieldaten entfernt')}
+  else if('seedlek' in d){t.disabled=true;t.textContent='Importiere …';try{const n=await srv('api_seedLecturers');await reload();rerender();toast(n+' Profile importiert')}catch(er){toast('Import fehlgeschlagen: '+(er&&er.message||er));t.disabled=false}}
   else if('import' in d)openImport();
   else if('doimport' in d){
     try{const arr=JSON.parse($('#imp').value);let n=0;for(const x of arr){const s={id:nid(),n:x.name,ind:x.branche||'',role:x.rolle||'',why:x.grund||'',src:x.quelle||'',prod:x.produkt||'',conf:+x.passung||0};SUGG.push(s);await persist('Vorschlaege',{id:s.id,name:s.n,branche:s.ind,rolle:s.role,grund:s.why,quelle:s.src,produkt:s.prod,passung:s.conf});n++}closeSheet();rerender();toast(n+' Vorschläge eingefügt')}
@@ -398,6 +417,8 @@ document.addEventListener('click',async e=>{
 document.addEventListener('input',e=>{if(e.target.id==='q'){F.q=e.target.value;const pos=e.target.selectionStart;rerender();const q=$('#q');q.focus();q.setSelectionRange(pos,pos)}});
 document.addEventListener('change',e=>{
   if(e.target.id==='ind'){F.ind=e.target.value;rerender()}
+  else if(e.target.id==='sel-area'){F.area=e.target.value;rerender()}
+  else if(e.target.id==='sel-stat'){F.stat=e.target.value;rerender()}
   else if(e.target.id==='f-status')toggleFor();
   else if(e.target.dataset&&e.target.dataset.prodsel){const[oid,pid,kind]=e.target.dataset.prodsel.split('|');const o=org(oid),p=per(pid);const q=queue().find(x=>x.o.id===oid);$('#d-body').innerText=draftText(o,p,kind,prod(e.target.value),q?q.reason:o.sum)}
 });

@@ -28,7 +28,8 @@ ${markup}
 </html>
 `);
 // Vorschau mit Mock-Server
-const mock = fs.readFileSync(path.join(__dirname, 'mock.js'), 'utf8');
+const lect = new Function(fs.readFileSync(path.join(root, 'Lecturers.gs'), 'utf8') + '; return LECTURERS;')();
+const mock = 'window.__LECT = ' + JSON.stringify(lect) + ';\n' + fs.readFileSync(path.join(__dirname, 'mock.js'), 'utf8');
 let html = fs.readFileSync(path.join(root, 'Index.html'), 'utf8')
   .replace("<?!= include('Stylesheet') ?>", fs.readFileSync(path.join(root, 'Stylesheet.html'), 'utf8'))
   .replace("<?!= include('Client') ?>", '<script>' + mock + '</script>\n' + fs.readFileSync(path.join(root, 'Client.html'), 'utf8'));

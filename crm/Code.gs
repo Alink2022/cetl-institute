@@ -14,11 +14,12 @@ const SCHEMA = {
   Deals: ['id','org_id','produkt_id','phase','wert'],
   Aktivitaeten: ['id','org_id','datum','art','text'],
   Mails: ['id','org_id','person_id','richtung','datum','zeit','betreff','text','msg_id'],
-  Speaker: ['id','name','typ','funktion','organisation','vertrag','vertrag_info','stundensatz','gebiete','sprachen','verfuegbar','produkte','freitext','einsaetze'],
+  // Speaker entspricht der bisherigen Excel-Liste (Spalten B bis N), dazu CRM-Felder ab 'typ'
+  Speaker: ['id','name','branche','unternehmen','hauptfach','fachgebiete','themen','sprachen','honorar','abrechnung','zahlungsart','status','email','telefon','anmerkungen','typ','funktion','vertrag','vertrag_info','produkte','einsaetze'],
   Produkte: ['id','gruppe','name','beschreibung'],
   Vorschlaege: ['id','name','branche','rolle','grund','quelle','produkt','passung']
 };
-const NUMERIC = { Organisationen: ['passung'], Deals: ['phase','wert'], Speaker: ['stundensatz'] };
+const NUMERIC = { Organisationen: ['passung'], Deals: ['phase','wert'], Speaker: ['honorar'] };
 
 const PRODUCTS = [
   ['p1','Learning','Foundation','KI- und Datengrundlage mit praktischer Befähigung'],
@@ -34,6 +35,16 @@ const PRODUCTS = [
   ['p11','Think Tank','Auftragsstudie','Position Paper zu Ihrer Frage'],
   ['p12','Think Tank','Markt- und Kompetenzanalyse','Marktforschung für HR, L&D und Geschäftsführung']
 ];
+
+/* Auswahllisten der Lektoren-Tabelle (wie in der bisherigen Excel-Liste) */
+const LISTS = {
+  branche: ['IT & Software','Finanzwesen / Banken','Versicherungen','Industrie & Produktion','Automotive','Handel & E-Commerce','Gesundheitswesen','Energie & Nachhaltigkeit','Öffentlicher Sektor','Logistik','Beratung / Consulting','Bildung & Forschung','Medien & Marketing','Pharma / Medizin','Sonstige'],
+  hauptfach: ['Künstliche Intelligenz (KI)','Machine Learning','Data Science','Datenanalyse','Data Engineering','Big Data','Digitalisierung','Prozessautomatisierung (RPA)','Cloud-Architektur','Cybersecurity','IoT','Robotik','Change Management','Innovation & Zukunftstrends','Leadership & New Work','Sonstige'],
+  sprachen: ['Deutsch','Englisch','Deutsch & Englisch','Sonstige'],
+  abrechnung: ['Pauschalhonorar','Tagessatz','Halbtagessatz','Stundensatz','Honorar + Spesen','Nach Vereinbarung','Pro-bono'],
+  zahlungsart: ['Rechnung nach Veranstaltung','Rechnung nach Vertrag','Vorkasse (100%)','Anzahlung + Restzahlung','Vertrag / Rahmenvereinbarung','Retainer (laufend)','Vermittlung über Agentur','Sonstige'],
+  status: ['Verfügbar','Angefragt','Bestätigt','Abgesagt','Nicht verfügbar']
+};
 
 /* ---------- Einrichtung ---------- */
 
@@ -59,6 +70,13 @@ function setup() {
     cols.forEach(function (c, i) {
       sh.getRange(2, i + 1, Math.max(sh.getMaxRows() - 1, 1), 1).setNumberFormat(num.indexOf(c) >= 0 ? '0' : '@');
     });
+    if (name === 'Speaker') {
+      Object.keys(LISTS).forEach(function (k) {
+        const col = cols.indexOf(k) + 1;
+        sh.getRange(2, col, 500, 1).setDataValidation(SpreadsheetApp.newDataValidation().requireValueInList(LISTS[k], true).setAllowInvalid(true).build());
+      });
+      sh.getRange(1, 1, 1, cols.length).setWrap(false);
+    }
     if (name === 'Produkte' && sh.getLastRow() < 2) {
       sh.getRange(2, 1, PRODUCTS.length, 4).setValues(PRODUCTS);
     }
@@ -73,7 +91,17 @@ function setup() {
 function installTriggers() {
   ScriptApp.getProjectTriggers().forEach(function (t) { ScriptApp.deleteTrigger(t); });
   ScriptApp.newTrigger('syncAll').timeBased().everyMinutes(15).create();
+  ScriptApp.newTrigger('monthlyBackup').timeBased().onMonthDay(1).atHour(3).create();
   Logger.log('Trigger installiert.');
+}
+
+/** Monatliche Sicherung: Kopie des gesamten CRM-Sheets im Drive-Ordner "CETL CRM Backups". */
+function monthlyBackup() {
+  const name = 'CETL CRM Backups';
+  const it = DriveApp.getFoldersByName(name);
+  const folder = it.hasNext() ? it.next() : DriveApp.createFolder(name);
+  DriveApp.getFileById(PropertiesService.getScriptProperties().getProperty('SHEET_ID'))
+    .makeCopy('CETL CRM Backup ' + Utilities.formatDate(new Date(), TZ, 'yyyy-MM'), folder);
 }
 
 function syncAll() {
@@ -310,7 +338,7 @@ function api_seedDemo() {
   api_upsert('Personen', { id: 'demo-p3', org_id: 'demo-o2', name: 'Sabine Hofer', funktion: 'Head of Learning & Development', bereich: 'Personal', rolle: 'champion', haltung: 'pro', haupt: 'ja', email: 's.hofer@donau.example', einwilligung: 'offen', nicht_kontaktieren: 'nein', anrede: 'f' });
   api_upsert('Deals', { id: 'demo-d1', org_id: 'demo-o1', produkt_id: 'p1', phase: 3, wert: 48000 });
   api_upsert('Mails', { id: 'demo-m1', org_id: 'demo-o1', person_id: 'demo-p1', richtung: 'in', datum: t, zeit: '09:12', betreff: 'Re: Vertiefung', text: 'Gerne im November, schicken Sie uns bitte einen Terminvorschlag.', msg_id: 'demo-m1' });
-  api_upsert('Speaker', { id: 'demo-s1', name: 'Dr. Anna Weiss (Beispiel)', typ: 'Lektor', funktion: 'Professorin für Wirtschaftsinformatik', organisation: 'Hochschule', vertrag: 'rahmen', vertrag_info: 'seit 03/2025', stundensatz: 220, gebiete: 'AI Governance & AI Act;Data Literacy', sprachen: 'DE, EN', verfuegbar: 'Auf Anfrage', produkte: 'p1;p2', freitext: 'Sehr gute Rückmeldungen im Pilot.', einsaetze: '' });
+  api_upsert('Speaker', { id: 'demo-s1', name: 'Dr. Anna Weiss (Beispiel)', branche: 'Bildung & Forschung', unternehmen: 'Hochschule', hauptfach: 'Künstliche Intelligenz (KI)', fachgebiete: 'AI Governance, Data Literacy', themen: 'KI-Kompetenz im Unternehmen', sprachen: 'Deutsch & Englisch', honorar: 220, abrechnung: 'Stundensatz', zahlungsart: 'Vertrag / Rahmenvereinbarung', status: 'Verfügbar', typ: 'Lektor', funktion: 'Professorin für Wirtschaftsinformatik', vertrag: 'rahmen', vertrag_info: 'seit 03/2025', produkte: 'p1;p2', anmerkungen: 'Sehr gute Rückmeldungen im Pilot.' });
   return true;
 }
 
@@ -322,4 +350,22 @@ function api_removeDemo() {
     for (let i = v.length - 1; i > 0; i--) if (String(v[i][0]).indexOf('demo-') === 0) sh.deleteRow(i + 1);
   });
   return true;
+}
+
+/** Importiert die vorbereitete Lektoren-Liste (siehe Lecturers.gs). Vorhandene Namen werden nicht überschrieben. */
+function api_seedLecturers() {
+  assertAllowed_();
+  const have = {};
+  readTable_('Speaker').forEach(function (r) { have[String(r.name).trim().toLowerCase()] = true; });
+  let n = 0;
+  LECTURERS.forEach(function (l, i) {
+    if (have[l.name.trim().toLowerCase()]) return;
+    api_upsert('Speaker', {
+      id: 'l-' + ('000' + (i + 1)).slice(-3), name: l.name, branche: l.branche, unternehmen: l.unternehmen, hauptfach: l.hauptfach,
+      fachgebiete: l.fachgebiete, themen: l.themen, sprachen: l.sprachen, honorar: '', abrechnung: l.abrechnung, zahlungsart: l.zahlungsart,
+      status: l.status, email: l.email, telefon: l.telefon, anmerkungen: l.anmerkungen, typ: 'Lektor', funktion: '', vertrag: 'keiner', vertrag_info: '', produkte: '', einsaetze: ''
+    });
+    n++;
+  });
+  return n;
 }
