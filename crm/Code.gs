@@ -149,8 +149,25 @@ function readTable_(name) {
   });
 }
 
+/** Richtet bei Bedarf alles selbst ein: Sheet anlegen und Abgleich-Trigger installieren. */
+function ensureReady_() {
+  if (!PropertiesService.getScriptProperties().getProperty('SHEET_ID')) setup();
+  if (ScriptApp.getProjectTriggers().length === 0) installTriggers();
+}
+
+/** Der Update-Button: richtet ein, was fehlt, gleicht Gmail und Website-Anfragen ab und meldet, was neu ist. */
+function api_update() {
+  assertAllowed_();
+  ensureReady_();
+  const before = { mails: readTable_('Mails').length, orgs: readTable_('Organisationen').length };
+  syncAll();
+  const after = { mails: readTable_('Mails').length, orgs: readTable_('Organisationen').length };
+  return { mails: after.mails - before.mails, leads: after.orgs - before.orgs, time: Utilities.formatDate(new Date(), TZ, 'HH:mm') };
+}
+
 function api_bootstrap() {
   assertAllowed_();
+  ensureReady_();
   const out = { me: Session.getEffectiveUser().getEmail(), claude: !!PropertiesService.getScriptProperties().getProperty('ANTHROPIC_API_KEY') };
   Object.keys(SCHEMA).forEach(function (n) { out[n] = readTable_(n); });
   return out;

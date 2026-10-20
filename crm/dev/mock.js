@@ -19,6 +19,7 @@
     api_remove: function (t, id) { T[t] = T[t].filter(function (x) { return String(x.id) !== String(id); }); return true; },
     api_removeOrg: function (id) { ['Personen', 'Deals', 'Aktivitaeten', 'Mails'].forEach(function (t) { T[t] = T[t].filter(function (x) { return String(x.org_id) !== String(id); }); }); T.Organisationen = T.Organisationen.filter(function (x) { return String(x.id) !== String(id); }); return true; },
     api_createDraft: function () { return true; },
+    api_update: function () { return { mails: 1, leads: 0, time: new Date().toLocaleTimeString('de-AT', { hour: '2-digit', minute: '2-digit' }) }; },
     api_syncNow: function () { return true; },
     api_claudeDraft: function (o, p, k, prod) { return 'Guten Tag,\n\n(Entwurf von Claude für ' + prod + ')\n\nHerzliche Grüße\nAlin Kalam'; },
     api_seedDemo: function () {

@@ -127,7 +127,7 @@ function vHeute(){
   const g=k=>q.filter(x=>x.kind===k);
   const block=(t,k,hint)=>g(k).length?`<div class="sec"><h2>${t}</h2><span class="muted small">${hint}</span></div><div class="list">${g(k).map(rowQ).join('')}</div>`:'';
   const demo=ORGS.some(o=>o.id.indexOf('demo-')===0);
-  const sync=`<button class="btn ghost sm" data-sync>Mails jetzt abgleichen</button>`;
+  const sync='';
   let body;
   if(!ORGS.length)body=emptyCard('Noch ist alles leer. Legen Sie Ihren ersten Lead an, übernehmen Sie einen Vorschlag oder schauen Sie sich das CRM mit Beispieldaten an.',`<button class="btn" data-new="lead">Ersten Lead anlegen</button><button class="btn ghost" data-demo>Beispieldaten laden</button>`);
   else if(!q.length)body=emptyCard('Heute ist nichts fällig. Neue Leads erscheinen hier, sobald sie angelegt sind oder jemand antwortet.');
@@ -365,7 +365,7 @@ function rerender(){const y=window.scrollY;draw();window.scrollTo(0,y)}
 function toast(t){const e=$('#toast');e.textContent=t;e.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>e.hidden=true,3200)}
 function closeSheet(){$('#scrim').hidden=true;SPDRAFT=null}
 
-const SEL='[data-go],[data-draft],[data-close],[data-save],[data-claude],[data-take],[data-drop],[data-kst],[data-ph],[data-rep],[data-type],[data-con],[data-area],[data-new],[data-edit],[data-seedlek],[data-sprod],[data-spsave],[data-orgsave],[data-personsave],[data-dealsave],[data-del],[data-savenote],[data-sync],[data-demo],[data-undemo],[data-import],[data-doimport]';
+const SEL='[data-go],[data-draft],[data-close],[data-save],[data-claude],[data-take],[data-drop],[data-kst],[data-ph],[data-rep],[data-type],[data-con],[data-area],[data-new],[data-edit],[data-seedlek],[data-sprod],[data-spsave],[data-orgsave],[data-personsave],[data-dealsave],[data-del],[data-savenote],[data-update],[data-sync],[data-demo],[data-undemo],[data-import],[data-doimport]';
 document.addEventListener('click',async e=>{
   const t=e.target.closest(SEL);
   if(!t){if(e.target.id==='scrim')closeSheet();return}
@@ -412,6 +412,15 @@ document.addEventListener('click',async e=>{
   }
   else if(d.savenote){const o=org(d.savenote);o.notes=$('#note').value;await persist('Organisationen',dOrg(o));toast('Notiz gespeichert')}
   else if('sync' in d){t.disabled=true;t.textContent='Gleiche ab …';try{await srv('api_syncNow');await reload();rerender();toast('Mails abgeglichen')}catch(er){toast('Abgleich fehlgeschlagen: '+(er&&er.message||er));t.disabled=false;t.textContent='Mails jetzt abgleichen'}}
+  else if('update' in d){
+    t.disabled=true;const old=t.textContent;t.textContent='Update läuft …';
+    try{
+      const r=await srv('api_update');await reload();rerender();
+      const el=$('#lastup');if(el)el.textContent='Letztes Update: '+r.time;
+      toast('Update fertig: '+(r.mails||0)+' neue Mails, '+(r.leads||0)+' neue Anfragen');
+    }catch(er){toast('Update fehlgeschlagen: '+(er&&er.message||er))}
+    t.disabled=false;t.textContent=old;
+  }
   else if('demo' in d){await srv('api_seedDemo');await reload();rerender();toast('Beispieldaten geladen')}
   else if('undemo' in d){await srv('api_removeDemo');await reload();rerender();toast('Beispieldaten entfernt')}
   else if('seedlek' in d){t.disabled=true;t.textContent='Importiere …';try{const n=await srv('api_seedLecturers');await reload();rerender();toast(n+' Profile importiert')}catch(er){toast('Import fehlgeschlagen: '+(er&&er.message||er));t.disabled=false}}
