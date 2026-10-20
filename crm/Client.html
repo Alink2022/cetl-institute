@@ -1,0 +1,411 @@
+<script>
+/* CETL CRM: Oberfläche. Daten kommen aus dem Google Sheet über google.script.run. */
+const I={
+  today:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6 7 7M17 17l1.4 1.4M5.6 18.4 7 17M17 7l1.4-1.4"/></svg>',
+  spark:'<svg viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg>',
+  lead:'<svg viewBox="0 0 24 24"><path d="M3 5h18l-7 8v6l-4 2v-8z"/></svg>',
+  org:'<svg viewBox="0 0 24 24"><path d="M4 21V5l8-2v18M12 9h8v12M4 21h16M8 8h.01M8 12h.01M8 16h.01M16 13h.01M16 17h.01"/></svg>',
+  mic:'<svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>',
+  box:'<svg viewBox="0 0 24 24"><path d="M3 7l9-4 9 4-9 4zM3 7v10l9 4 9-4V7M12 11v10"/></svg>'
+};
+const STAGES=['Idee','Angebot','Verhandlung','Gewonnen'];
+const AREAS=['GenAI & LLMs','AI Governance & AI Act','Responsible AI','Data Strategy','Data Literacy','ML Engineering & MLOps','Analytics & BI','Industrial AI','Change & Adoption','Skills & Zukunft der Arbeit'];
+const BRANCHEN=['Banking','Versicherung','Industrie','Energie','Öffentlicher Sektor','Mobilität','Logistik','Handel','Gesundheit','Hochschule','Telekommunikation','Beratung'];
+const ST={lead:'Lead',interessent:'Interessent',kunde:'Kunde'};
+const CT={laufend:['Laufend','ok'],verlaengerung:['Verlängerung fällig','interessent'],angebot:['Angebot offen','lead'],abgelaufen:['Abgelaufen','partner']};
+const PH={neu:'Neu',kontaktiert:'Kontaktiert',antwort:'Antwort erhalten',gespraech:'Im Gespräch',angebot:'Angebot gesendet'};
+const ROLES={entscheider:'Entscheider',budget:'Budget',fachlich:'Fachlich',champion:'Champion',anwender:'Anwender'};
+const STANCE={pro:'Befürworter',neutral:'Neutral',skeptisch:'Skeptisch'};
+const SCON={rahmen:['Rahmenvertrag','ok'],angebot:['Angebot offen','interessent'],anfrage:['Anfrage','lead'],keiner:['Kein Vertrag','partner']};
+
+let CFG={me:'',claude:false};
+let ORGS=[],PEOPLE=[],DEALS=[],ACT=[],MAILS=[],SPEAKERS=[],PRODUCTS=[],SUGG=[];
+let F={q:'',ind:'alle',kst:'alle',ph:'alle',rep:false,type:'alle',con:'alle',area:'alle'};
+let ROUTE='heute',LOADING=true;
+
+const $=s=>document.querySelector(s);
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const srv=(fn,...a)=>new Promise((ok,no)=>google.script.run.withSuccessHandler(ok).withFailureHandler(no)[fn](...a));
+const nid=()=>Math.random().toString(36).slice(2,8)+Date.now().toString(36).slice(-4);
+const eur=v=>Number(v).toLocaleString('de-AT')+' €';
+const pill=(l,c)=>`<span class="pill ${c}">${esc(l)}</span>`;
+const ini=n=>String(n||'?').replace(/^(Dr\.|Prof\.|Mag\.)\s*/,'').split(' ').map(w=>w[0]).slice(0,2).join('');
+const pd=s=>{const m=String(s||'').match(/(\d+)\.(\d+)\.(\d+)/);return m?new Date(+m[3],+m[2]-1,+m[1]):null};
+const todayStr=()=>new Date().toLocaleDateString('de-AT',{day:'2-digit',month:'2-digit',year:'numeric'});
+const daysSince=s=>{const d=pd(s);return d?Math.floor((Date.now()-d.getTime())/864e5):null};
+const split=s=>String(s||'').split(';').map(x=>x.trim()).filter(Boolean);
+const isCust=o=>o.st==='kunde';
+const prod=id=>PRODUCTS.find(p=>p.id===id)||{id:'',n:'(Produkt)',s:'',g:''};
+const org=id=>ORGS.find(o=>o.id===String(id));
+const per=id=>PEOPLE.find(p=>p.id===String(id));
+const mainP=o=>PEOPLE.find(p=>p.o===o&&p.main)||PEOPLE.find(p=>p.o===o);
+const lastMail=o=>MAILS.find(m=>m.o===o);
+const leads=()=>ORGS.filter(o=>!isCust(o));
+const kunden=()=>ORGS.filter(isCust);
+
+/* ---------- Abbildung Sheet <-> Oberfläche ---------- */
+const nOrg=r=>({id:String(r.id),n:r.name,ind:r.branche,st:r.status||'lead',size:r.groesse,land:r.land,ph:r.phase||'neu',fit:+r.passung||0,next:r.naechster_schritt,due:r.faellig,sum:r.stand,notes:r.notiz,created:r.erstellt,ct:{s:r.v_status||'laufend',type:r.v_art,since:r.v_seit,until:r.v_bis,val:r.v_volumen}});
+const dOrg=o=>({id:o.id,name:o.n,branche:o.ind,status:o.st,groesse:o.size,land:o.land,phase:o.ph,passung:o.fit,naechster_schritt:o.next,faellig:o.due,stand:o.sum,notiz:o.notes,erstellt:o.created||'',v_status:o.ct.s,v_art:o.ct.type,v_seit:o.ct.since,v_bis:o.ct.until,v_volumen:o.ct.val});
+const nPer=r=>({id:String(r.id),o:String(r.org_id),n:r.name,fn:r.funktion,area:r.bereich,role:r.rolle||'fachlich',stance:r.haltung||'neutral',main:r.haupt==='ja',em:r.email,c:r.einwilligung||'offen',nc:r.nicht_kontaktieren==='ja',f:r.anrede,last:r.letzter_kontakt});
+const dPer=p=>({id:p.id,org_id:p.o,name:p.n,funktion:p.fn,bereich:p.area,rolle:p.role,haltung:p.stance,haupt:p.main?'ja':'nein',email:p.em,einwilligung:p.c,nicht_kontaktieren:p.nc?'ja':'nein',anrede:p.f,letzter_kontakt:p.last});
+const nDeal=r=>({id:String(r.id),o:String(r.org_id),p:String(r.produkt_id),st:+r.phase||0,v:+r.wert||0});
+const dDeal=d=>({id:d.id,org_id:d.o,produkt_id:d.p,phase:d.st,wert:d.v});
+const nSp=r=>({id:String(r.id),n:r.name,type:r.typ||'Lektor',fn:r.funktion,org:r.organisation,con:r.vertrag||'keiner',since:r.vertrag_info,rate:r.stundensatz===''||r.stundensatz==null?null:+r.stundensatz,areas:split(r.gebiete),l:r.sprachen,v:r.verfuegbar,for:split(r.produkte),note:r.freitext,sess:String(r.einsaetze||'').split('|').map(x=>x.trim()).filter(Boolean)});
+const dSp=s=>({id:s.id,name:s.n,typ:s.type,funktion:s.fn,organisation:s.org,vertrag:s.con,vertrag_info:s.since,stundensatz:s.rate==null?'':s.rate,gebiete:s.areas.join(';'),sprachen:s.l,verfuegbar:s.v,produkte:s.for.join(';'),freitext:s.note,einsaetze:s.sess.join('|')});
+const mkey=m=>{const d=pd(m.d);return (d?d.getTime():0)+(+String(m.t||'0:0').replace(':',''))};
+function load(db){
+  CFG={me:db.me,claude:db.claude};
+  ORGS=db.Organisationen.map(nOrg);PEOPLE=db.Personen.map(nPer);DEALS=db.Deals.map(nDeal);
+  ACT=db.Aktivitaeten.map(r=>({id:String(r.id),o:String(r.org_id),d:r.datum,t:r.art,x:r.text})).reverse();
+  MAILS=db.Mails.map(r=>({id:String(r.id),o:String(r.org_id),p:String(r.person_id),dir:r.richtung,d:r.datum,t:r.zeit,s:r.betreff,x:r.text})).sort((a,b)=>mkey(b)-mkey(a));
+  SPEAKERS=db.Speaker.map(nSp);PRODUCTS=db.Produkte.map(r=>({id:String(r.id),g:r.gruppe,n:r.name,s:r.beschreibung}));
+  SUGG=db.Vorschlaege.map(r=>({id:String(r.id),n:r.name,ind:r.branche,role:r.rolle,why:r.grund,src:r.quelle,prod:r.produkt,conf:+r.passung||0}));
+}
+async function reload(){const db=await srv('api_bootstrap');load(db)}
+async function persist(table,obj){try{await srv('api_upsert',table,obj)}catch(e){toast('Speichern fehlgeschlagen: '+(e&&e.message||e))}}
+async function removeRow(table,id){try{await srv('api_remove',table,id)}catch(e){toast('Löschen fehlgeschlagen: '+(e&&e.message||e))}}
+async function logAct(o,t,x){const a={id:nid(),o,d:todayStr(),t,x};ACT.unshift(a);await persist('Aktivitaeten',{id:a.id,org_id:o,datum:a.d,art:t,text:x})}
+
+/* ---------- Navigation ---------- */
+const VIEWS=[['heute','Heute',I.today],['vorschlaege','Vorschläge',I.spark],['leads','Leads',I.lead],['kunden','Kunden',I.org],['lektoren','Speaker & Lektoren',I.mic],['produkte','Produkte',I.box]];
+const TABLBL={lektoren:'Lektoren'};
+function route(){const m=ROUTE.match(/^org-(.+)$/);return m?{v:'org',id:m[1]}:{v:VIEWS.some(x=>x[0]===ROUTE)?ROUTE:'heute'}}
+function counts(){return{heute:queue().filter(q=>!q.done&&!q.blocked).length,vorschlaege:SUGG.length,leads:leads().length,kunden:kunden().length}}
+function renderNav(){
+  const r=route();let cur=r.v;if(r.v==='org'){const o=org(r.id);cur=o&&isCust(o)?'kunden':'leads'}
+  const c=counts();
+  $('#nav').innerHTML=VIEWS.map(([k,l,ic])=>`<button data-go="${k}" ${k===cur?'aria-current="page"':''}>${ic}<span>${l}</span>${c[k]!==undefined?`<span class="n">${c[k]}</span>`:''}</button>`).join('');
+  $('#tabs').innerHTML=VIEWS.map(([k,l,ic])=>`<button data-go="${k}" ${k===cur?'aria-current="page"':''}>${ic}<span>${TABLBL[k]||l}</span></button>`).join('');
+}
+function head(eb,t,sub,btn=''){return`<div class="head"><div><div class="eyebrow">${eb}</div><h1>${t}</h1>${sub?`<p class="sub">${sub}</p>`:''}</div><div class="hbtn">${btn}</div></div>`}
+
+/* ---------- Bausteine ---------- */
+function mailCell(oid){
+  const m=lastMail(oid);if(!m)return'<span class="muted small">Noch kein Mailverkehr</span>';
+  return`<div class="mc"><span class="mdir ${m.dir}">${m.dir==='in'?'← Antwort':'→ Gesendet'}</span> <span class="muted small">${esc(String(m.d).slice(0,6))}</span> ${m.dir==='in'?'<span class="pill lead" style="margin-left:4px">wartet auf Sie</span>':''}<div class="mt">${esc(m.x)}</div></div>`;
+}
+function contactCell(oid){
+  const p=mainP(oid);if(!p)return'<span class="muted small">Keine Ansprechperson</span>';
+  return`<div class="stack1"><div><div class="t">${esc(p.n)}</div><div class="s">${esc(p.fn)}${p.area?' · '+esc(p.area):''}</div></div><span class="rl ${p.role}">${ROLES[p.role]||''}</span></div>`;
+}
+function filt(list,extra){return list.filter(o=>(F.ind==='alle'||o.ind===F.ind)&&(o.n+' '+o.ind).toLowerCase().includes(F.q.toLowerCase())&&extra(o))}
+function indSelect(list){const inds=[...new Set(list.map(o=>o.ind).filter(Boolean))].sort();return`<select id="ind" aria-label="Branche"><option value="alle">Alle Branchen</option>${inds.map(i=>`<option ${F.ind===i?'selected':''}>${esc(i)}</option>`).join('')}</select>`}
+const emptyCard=(t,btn)=>`<div class="card empty"><p>${t}</p>${btn?`<div class="btns" style="justify-content:center">${btn}</div>`:''}</div>`;
+
+/* ---------- Heute ---------- */
+function queue(){
+  const out=[];
+  ORGS.forEach(o=>{
+    const p=mainP(o.id);if(!p)return;
+    const lm=lastMail(o.id),age=lm?daysSince(lm.d):null;
+    const done=ACT.some(a=>a.o===o.id&&a.t==='Entwurf'&&a.d===todayStr());
+    let kind=null,reason='';
+    if(lm&&lm.dir==='in'){kind='reply';reason='Antwort eingegangen: „'+String(lm.x).slice(0,110)+'“'}
+    else if(lm&&lm.dir==='out'&&age>=7){kind='follow';reason='Keine Antwort seit '+age+' Tagen.'}
+    else if(!lm&&!isCust(o)&&o.ph==='neu'){kind='due';reason=o.sum||'Noch nicht kontaktiert.'}
+    if(kind)out.push({o,p,kind,reason,done,blocked:p.nc});
+  });
+  return out;
+}
+function rowQ(q){
+  const pd2=dealProduct(q.o);
+  const act=q.done?`<span class="done">✓ Entwurf in Gmail</span>`:q.blocked?`<span class="pill partner">nicht kontaktieren</span>`:!q.p.em?`<span class="pill partner">keine E-Mail</span>`:`<button class="btn sm" data-draft="${q.o.id}">Entwurf ansehen</button>`;
+  return`<div class="row"><div><div class="t"><a href="#" data-go="org-${q.o.id}" style="color:inherit">${esc(q.p.n)}</a> <span class="muted small">· ${esc(q.o.n)}</span></div><div class="s">${esc(q.p.fn)}</div></div><div class="mid"><div class="small">${esc(q.reason)}</div><div class="tags" style="margin-top:6px"><span class="tag">${esc(pd2.n)}</span></div></div><div class="acts">${act}</div></div>`;
+}
+function dealProduct(o){const d=DEALS.find(x=>x.o===o.id);return d?prod(d.p):(PRODUCTS[0]||prod(''))}
+function vHeute(){
+  const q=queue(),total=20,done=q.filter(x=>x.done).length,open=q.filter(x=>!x.done&&!x.blocked).length;
+  const d=new Date().toLocaleDateString('de-AT',{weekday:'long',day:'numeric',month:'long'});
+  const g=k=>q.filter(x=>x.kind===k);
+  const block=(t,k,hint)=>g(k).length?`<div class="sec"><h2>${t}</h2><span class="muted small">${hint}</span></div><div class="list">${g(k).map(rowQ).join('')}</div>`:'';
+  const demo=ORGS.some(o=>o.id.indexOf('demo-')===0);
+  const sync=`<button class="btn ghost sm" data-sync>Mails jetzt abgleichen</button>`;
+  let body;
+  if(!ORGS.length)body=emptyCard('Noch ist alles leer. Legen Sie Ihren ersten Lead an, übernehmen Sie einen Vorschlag oder schauen Sie sich das CRM mit Beispieldaten an.',`<button class="btn" data-new="lead">Ersten Lead anlegen</button><button class="btn ghost" data-demo>Beispieldaten laden</button>`);
+  else if(!q.length)body=emptyCard('Heute ist nichts fällig. Neue Leads erscheinen hier, sobald sie angelegt sind oder jemand antwortet.');
+  else body=`<div class="band"><div><div class="big">${done} <span class="muted" style="font-size:1.1rem;font-weight:500">von ${total} Entwürfen</span></div><div class="bar"><i style="width:${Math.min(100,done/total*100)}%"></i></div><div class="small muted" style="margin-top:10px">${open} Personen sind offen, ${Math.max(0,total-done-open)} Plätze sind frei.</div></div><div><div class="big">${g('follow').length}</div><div class="small muted" style="margin-top:8px">Follow-ups fällig</div></div><div><div class="big">${g('reply').length}</div><div class="small muted" style="margin-top:8px">neue Antworten</div></div></div>`+
+    block('Heute fällig','due','noch nicht kontaktiert')+block('Follow-ups','follow','keine Antwort nach 7 Tagen')+block('Antworten','reply','aus Gmail erkannt');
+  return head(d,'Heute','Ihre persönliche Liste. Entwürfe landen in Ihrem Gmail, gesendet wird von Ihnen.',sync)+(demo?`<div class="state" style="margin-bottom:20px"><div><div class="lab">Beispieldaten</div><p>Diese Einträge dienen nur zum Ausprobieren.</p></div><button class="btn ghost sm" data-undemo>Beispieldaten entfernen</button></div>`:'')+body;
+}
+function draftText(o,p,kind,pr,reason){
+  const anrede=p.f==='f'?'Sehr geehrte Frau':p.f==='m'?'Sehr geehrter Herr':'Guten Tag';
+  const last=p.f?p.n.split(' ').slice(-1)[0]:p.n;
+  if(kind==='reply')return`${anrede} ${last},\n\nvielen Dank für Ihre Antwort. Ich schlage Ihnen gern zwei Termine vor: [Termin 1] oder [Termin 2] (jeweils 45 Minuten, gern bei Ihnen vor Ort).\n\nZum Gespräch bringe ich eine Einschätzung mit, wo ${o.n} heute bei der KI-Kompetenz steht und wie „${pr.n}“ daran anschließen würde.\n\nHerzliche Grüße\nAlin Kalam`;
+  return`${anrede} ${last},\n\n${String(reason||'').replace(/^Keine Antwort seit \d+ Tagen\.?\s*/,'')} Deshalb melde ich mich.\n\nBei CETL entwickeln wir Executional Learning: Lernprogramme, die sich an den Rollen und Prozessen Ihres Hauses ausrichten und mit einem konkreten Anwendungsfall enden. Für ${o.n} würde ich mit „${pr.n}“ beginnen: ${pr.s}.\n\nHätten Sie in den nächsten zwei Wochen 20 Minuten für ein Gespräch?\n\nHerzliche Grüße\nAlin Kalam\nCETL Institute`;
+}
+function openDraft(oid){
+  const o=org(oid),q=queue().find(x=>x.o.id===oid);if(!o)return;
+  const p=q?q.p:mainP(oid),kind=q?q.kind:'due',reason=q?q.reason:(o.sum||'');
+  const pr=dealProduct(o);
+  const subj=kind==='reply'?'Terminvorschlag':'KI-Kompetenz entlang Ihrer Rollen';
+  $('#sheet').innerHTML=`<button class="x" data-close>Schließen</button><div class="eyebrow">Entwurf</div><h2>${esc(p.n)}</h2><p class="muted small" style="margin-top:4px">${esc(p.fn)} · ${esc(o.n)}</p>
+  <div class="fld"><label for="d-prod">Produkt-Idee</label><select id="d-prod" data-prodsel="${o.id}|${p.id}|${kind}">${PRODUCTS.map(x=>`<option value="${x.id}" ${x.id===pr.id?'selected':''}>${esc(x.n)}</option>`).join('')}</select></div>
+  <div class="mail"><div class="mh">An: <b>${esc(p.em)}</b><br>Von: <b>${esc(CFG.me)}</b><br>Betreff: <b id="d-subj">${esc(o.n)}: ${subj}</b></div><div class="mb" id="d-body" contenteditable="true" aria-label="Mailtext, direkt bearbeitbar">${esc(draftText(o,p,kind,pr,reason))}</div></div>
+  <div class="basis"><b>Grundlage dieses Entwurfs</b>${esc(reason)} Letzter Kontakt: ${esc(p.last||'—')}. Einwilligung: ${esc(p.c)}.</div>
+  <div class="btns"><button class="btn" data-save="${o.id}|${p.id}">In Gmail-Entwürfe legen</button>${CFG.claude?`<button class="btn ghost" data-claude="${o.id}|${p.id}|${kind}">Mit Claude schreiben</button>`:''}<button class="btn ghost" data-close>Abbrechen</button></div>`;
+  $('#scrim').hidden=false;
+}
+
+/* ---------- Vorschläge ---------- */
+function vSugg(){
+  return head('Recherche durch Claude','Vorschläge','Neue Organisationen, die zu CETL passen. Übernehmen macht daraus einen Lead mit Notiz, Branche und Produkt-Idee.',`<button class="btn ghost sm" data-import>Vorschläge einfügen</button>`)+
+  (SUGG.length?`<div class="sugg">${SUGG.map(s=>`<div class="card sg"><div><h3>${esc(s.n)}</h3><div class="tags"><span class="tag">${esc(s.ind)}</span><span class="tag">Ansprechrolle: ${esc(s.role)}</span></div><div class="why"><p>${esc(s.why)}</p><p class="muted small">Quelle: ${esc(s.src)} · Produkt-Idee: <b>${esc(s.prod)}</b></p></div><div class="conf"><span>Passung ${s.conf} %</span><div class="bar"><i style="width:${s.conf}%"></i></div></div></div><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn sm" data-take="${s.id}">Übernehmen</button><button class="btn sm ghost" data-drop="${s.id}">Verwerfen</button></div></div>`).join('')}</div>`:emptyCard('Keine offenen Vorschläge. Sagen Sie mir im Chat, wen ich suchen soll, und fügen Sie mein Ergebnis hier ein.'));
+}
+function openImport(){
+  $('#sheet').innerHTML=`<button class="x" data-close>Schließen</button><div class="eyebrow">Vorschläge</div><h2>Recherche einfügen</h2><p class="muted small" style="margin-top:6px">Fügen Sie die Liste ein, die ich im Chat erstelle (JSON).</p><div class="fld"><textarea id="imp" style="min-height:220px" placeholder='[{"name":"…","branche":"Banking","rolle":"Leitung Personal","grund":"…","quelle":"…","produkt":"Customized","passung":75}]'></textarea></div><div class="btns"><button class="btn" data-doimport>Einfügen</button><button class="btn ghost" data-close>Abbrechen</button></div>`;
+  $('#scrim').hidden=false;
+}
+
+/* ---------- Kunden und Leads ---------- */
+function vKunden(){
+  const l=filt(kunden(),o=>F.kst==='alle'||o.ct.s===F.kst);
+  const chips=['alle',...Object.keys(CT)].map(k=>`<button class="chip" data-kst="${k}" aria-pressed="${F.kst===k}">${k==='alle'?'Alle':CT[k][0]}</button>`).join('');
+  return head('Bestandskunden','Kunden',`${kunden().length} Kunden mit Vertragsstatus, Hauptansprechperson und letzter Mail.`,`<button class="btn" data-new="kunde">Neuer Kunde</button>`)+
+  (kunden().length?`<div class="tools"><input type="search" id="q" placeholder="Suchen nach Name oder Branche" value="${esc(F.q)}" aria-label="Suchen">${indSelect(kunden())}${chips}</div>`+
+  `<div class="tbl" style="--cols:1.25fr 1.05fr 1.5fr 1fr 1.7fr"><div class="th"><div>Organisation</div><div>Vertrag</div><div>Hauptansprechperson</div><div>Produkte</div><div>Letzte Mail</div></div>${l.length?l.map(o=>{const ds=DEALS.filter(d=>d.o===o.id);return`<a class="tr" href="#" data-go="org-${o.id}"><div data-l="Organisation"><div class="t">${esc(o.n)}</div><div class="s">${esc(o.ind)}${o.size?' · '+esc(o.size):''}</div></div><div data-l="Vertrag"><div class="stack1">${pill(CT[o.ct.s][0],CT[o.ct.s][1])}<div class="s">${esc(o.ct.type)}${o.ct.until?' bis '+esc(o.ct.until):''}</div><div class="s">${esc(o.ct.val)}</div></div></div><div data-l="Hauptansprechperson">${contactCell(o.id)}</div><div data-l="Produkte"><div class="tags">${ds.map(d=>`<span class="tag">${esc(prod(d.p).n)}</span>`).join('')||'—'}</div></div><div data-l="Letzte Mail">${mailCell(o.id)}</div></a>`}).join(''):'<div class="empty">Keine Treffer.</div>'}</div>`:emptyCard('Noch keine Kunden. Ein Lead wird zum Kunden, sobald Sie seinen Status auf „Kunde“ setzen.',`<button class="btn" data-new="kunde">Ersten Kunden anlegen</button>`));
+}
+function vLeads(){
+  const l=filt(leads(),o=>(F.ph==='alle'||o.ph===F.ph)&&(!F.rep||(lastMail(o.id)&&lastMail(o.id).dir==='in')));
+  const chips=['alle',...Object.keys(PH)].map(k=>`<button class="chip" data-ph="${k}" aria-pressed="${F.ph===k}">${k==='alle'?'Alle':PH[k]}</button>`).join('');
+  return head('Neue Chancen','Leads',`${leads().length} Leads mit Phase, Hauptansprechperson, nächstem Schritt und letzter Mail.`,`<button class="btn" data-new="lead">Neuer Lead</button>`)+
+  (leads().length?`<div class="tools"><input type="search" id="q" placeholder="Suchen nach Name oder Branche" value="${esc(F.q)}" aria-label="Suchen">${indSelect(leads())}${chips}<button class="chip" data-rep aria-pressed="${F.rep}">Antwort wartet</button></div>`+
+  `<div class="tbl" style="--cols:1.25fr 1fr 1.5fr 1.2fr 1.7fr"><div class="th"><div>Organisation</div><div>Phase</div><div>Hauptansprechperson</div><div>Nächster Schritt</div><div>Letzte Mail</div></div>${l.length?l.map(o=>`<a class="tr" href="#" data-go="org-${o.id}"><div data-l="Organisation"><div class="t">${esc(o.n)}</div><div class="s">${esc(o.ind)}${o.size?' · '+esc(o.size):''}</div></div><div data-l="Phase"><div class="stack1">${pill(PH[o.ph],'lead')}<div class="s">Passung ${o.fit} %</div><div class="mini"><i style="width:${o.fit}%"></i></div></div></div><div data-l="Hauptansprechperson">${contactCell(o.id)}</div><div data-l="Nächster Schritt"><div class="t">${esc(o.next)||'—'}</div><div class="s">${o.due?'Fällig: '+esc(o.due):''}</div></div><div data-l="Letzte Mail">${mailCell(o.id)}</div></a>`).join(''):'<div class="empty">Keine Treffer.</div>'}</div>`:emptyCard('Noch keine Leads. Legen Sie einen an, übernehmen Sie einen Vorschlag oder warten Sie auf die nächste Anfrage über die Website.',`<button class="btn" data-new="lead">Ersten Lead anlegen</button>`));
+}
+
+/* ---------- Organisation ---------- */
+function vOrg(id){
+  const o=org(id);if(!o)return vLeads();
+  const ps=PEOPLE.filter(p=>p.o===id).sort((a,b)=>b.main-a.main),ds=DEALS.filter(d=>d.o===id),ac=ACT.filter(a=>a.o===id);
+  const ml=MAILS.filter(m=>m.o===id).slice(0,3).reverse();const lm=lastMail(id);
+  const total=ds.filter(d=>d.st===3).reduce((s,d)=>s+d.v,0);
+  const status=isCust(o)?pill(CT[o.ct.s][0],CT[o.ct.s][1]):pill(PH[o.ph],'lead');
+  const back=isCust(o)?'<a href="#" data-go="kunden">← Kunden</a>':'<a href="#" data-go="leads">← Leads</a>';
+  const msgs=ml.length?ml.map((m,i)=>{const p=per(m.p)||{n:'Unbekannt'};const wait=m.dir==='in'&&i===ml.length-1;return`<div class="msg ${wait?'wait':''}"><span class="av">${m.dir==='in'?ini(p.n):'AK'}</span><div><div class="mh1"><b>${m.dir==='in'?esc(p.n):'Sie'}</b><span>${m.dir==='in'?'an Sie':'an '+esc(p.n)}</span><span>${esc(m.d)}, ${esc(m.t)}</span>${wait?'<span class="pill lead">wartet auf Sie</span>':''}</div><div class="sj">${esc(m.s)}</div><div class="bd">${esc(m.x)}</div></div></div>`}).join('')+`<div class="sync">Aus Gmail abgeglichen. Gezeigt werden die letzten drei Mails, der volle Verlauf bleibt in Gmail.</div>`:'<p class="muted">Noch kein Mailverkehr. Sobald Sie mit einer Kontaktperson mailen, erscheint er hier.</p>';
+  const vertrag=isCust(o)?`<div class="card"><h3>Vertrag</h3><dl class="vtr"><dt>Status</dt><dd>${pill(CT[o.ct.s][0],CT[o.ct.s][1])}</dd><dt>Art</dt><dd>${esc(o.ct.type)||'—'}</dd><dt>Seit</dt><dd>${esc(o.ct.since)||'—'}</dd><dt>Laufzeit bis</dt><dd>${esc(o.ct.until)||'—'}</dd><dt>Volumen</dt><dd>${esc(o.ct.val)||'—'}</dd></dl></div>`:`<div class="card"><h3>Chance</h3><dl class="vtr"><dt>Phase</dt><dd>${pill(PH[o.ph],'lead')}</dd><dt>Passung</dt><dd>${o.fit} %<div class="mini"><i style="width:${o.fit}%"></i></div></dd><dt>Branche</dt><dd>${esc(o.ind)||'—'}</dd><dt>Größe</dt><dd>${esc(o.size)||'—'}</dd></dl></div>`;
+  const mp=mainP(id);
+  return`<div class="crumb">${back}</div>`+head(esc(o.ind||'Organisation'),esc(o.n),`${esc(o.size)}${o.size&&o.land?' · ':''}${esc(o.land)}`,`${status} <button class="btn ghost sm" data-edit="org|${id}">Bearbeiten</button>`)+
+  `<div class="state"><div><div class="lab">Stand der Dinge</div><p>${esc(o.sum)||'Noch kein Stand eingetragen.'}</p><div class="nx">Nächster Schritt: <b style="color:var(--ink);font-weight:500">${esc(o.next)||'—'}</b>${o.due?' · fällig '+esc(o.due):''}</div></div>${mp&&mp.em&&!mp.nc?`<button class="btn" data-draft="${id}">${lm&&lm.dir==='in'?'Antwort entwerfen':'Entwurf schreiben'}</button>`:''}</div>`+
+  `<div class="cols"><div class="stack">
+   <div class="card"><h3>Letzte Konversation</h3>${msgs}</div>
+   <div class="card"><h3>Produkte und Deals</h3>${ds.length?ds.map(d=>`<button class="deal dbtn" data-edit="deal|${d.id}"><div><b style="font-weight:500">${esc(prod(d.p).n)}</b><div class="steps" title="${STAGES[d.st]}">${STAGES.map((s,i)=>`<i class="${i<=d.st?'on':''}"></i>`).join('')}</div></div><div style="text-align:right"><div>${d.v?eur(d.v):'—'}</div><div class="muted small">${STAGES[d.st]}</div></div></button>`).join(''):'<p class="muted">Noch kein Produkt verknüpft.</p>'}
+    <div class="btns" style="margin-top:14px"><button class="btn sm" data-new="deal|${id}">Produkt verknüpfen</button></div>${total?`<p class="muted small" style="margin-top:12px">Gewonnen: ${eur(total)}</p>`:''}</div>
+   <div class="card"><h3>Verlauf</h3>${ac.length?`<div class="tl">${ac.slice(0,12).map(a=>`<div><b>${esc(a.t)}</b> <span class="muted small">· ${esc(a.d)}</span><p class="small muted">${esc(a.x)}</p></div>`).join('')}</div>`:'<p class="muted">Noch keine Einträge.</p>'}</div>
+  </div><div class="stack">
+   <div class="card"><h3>Ansprechpersonen und Entscheider</h3>${ps.length?ps.map(p=>`<div class="ppl"><span class="av">${ini(p.n)}</span><div style="min-width:0"><div style="font-weight:500">${esc(p.n)}${p.main?'<span class="star" title="Hauptansprechperson">★</span>':''} <button class="lnk" data-edit="person|${p.id}">Bearbeiten</button></div><div class="muted small">${esc(p.fn)}${p.area?' · '+esc(p.area):''}</div><div style="display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;margin-top:6px"><span class="rl ${p.role}">${ROLES[p.role]}</span><span class="small muted"><span class="dot ${p.stance}"></span>${STANCE[p.stance]}</span>${p.nc?'<span class="pill partner">nicht kontaktieren</span>':''}</div><div class="muted small" style="overflow-wrap:anywhere;margin-top:6px">${esc(p.em)}</div></div></div>`).join(''):'<p class="muted">Noch keine Kontakte.</p>'}<div class="btns" style="margin-top:14px"><button class="btn sm" data-new="person|${id}">Kontakt hinzufügen</button></div></div>
+   ${vertrag}
+   <div class="card"><h3>Notiz</h3><textarea id="note" aria-label="Notiz">${esc(o.notes)}</textarea><div class="btns" style="margin-top:12px"><button class="btn sm ghost" data-savenote="${id}">Notiz speichern</button></div></div>
+  </div></div>`;
+}
+
+/* ---------- Speaker und Lektoren ---------- */
+function vLektoren(){
+  const l=SPEAKERS.filter(s=>(F.type==='alle'||s.type===F.type)&&(F.con==='alle'||s.con===F.con)&&(F.area==='alle'||s.areas.includes(F.area))&&(s.n+s.fn+s.org+s.note+s.areas.join(' ')).toLowerCase().includes(F.q.toLowerCase()));
+  const rated=SPEAKERS.filter(s=>s.rate);const avg=rated.length?Math.round(rated.reduce((a,s)=>a+s.rate,0)/rated.length):0;
+  const act=SPEAKERS.filter(s=>s.con==='rahmen').length;
+  const chip=(k,v,lb,on)=>`<button class="chip" data-${k}="${v}" aria-pressed="${on}">${lb}</button>`;
+  return head('Pool','Speaker und Lektoren','Vertragsstatus, Stundensatz und Spezialgebiete in AI & Data auf einen Blick. Jedes Profil hat ein Freitextfeld.',`<button class="btn" data-new="speaker">Neues Profil</button>`)+
+  (SPEAKERS.length?`<div class="band"><div><div class="big">${SPEAKERS.length}</div><div class="small muted" style="margin-top:8px">Profile im Pool</div></div><div><div class="big">${act}</div><div class="small muted" style="margin-top:8px">mit Rahmenvertrag</div></div><div><div class="big">${avg?avg+' €':'—'}</div><div class="small muted" style="margin-top:8px">Ø Stundensatz</div></div></div>`+
+  `<div class="tools"><input type="search" id="q" placeholder="Suchen in Name, Gebiet, Freitext" value="${esc(F.q)}" aria-label="Suchen">${['alle','Lektor','Speaker','Beides'].map(t=>chip('type',t,t==='alle'?'Alle Typen':t,F.type===t)).join('')}</div>`+
+  `<div class="tools">${['alle',...Object.keys(SCON)].map(k=>chip('con',k,k==='alle'?'Alle Verträge':SCON[k][0],F.con===k)).join('')}</div>`+
+  `<div class="tools">${['alle',...AREAS].map(a=>chip('area',a,a==='alle'?'Alle Gebiete':a,F.area===a)).join('')}</div>`+
+  `<div class="tbl" style="--cols:1.5fr 1fr .7fr 1.6fr 1.5fr"><div class="th"><div>Profil</div><div>Vertrag</div><div>Stundensatz</div><div>Spezialgebiete</div><div>Freitext</div></div>${l.length?l.map(s=>`<button class="tr" data-edit="speaker|${s.id}"><div data-l="Profil"><div class="t">${esc(s.n)}</div><div class="s">${esc(s.fn)}</div><div class="s">${esc(s.org)}</div><div class="tags" style="margin-top:6px"><span class="tag">${esc(s.type)}</span>${s.l?`<span class="tag">${esc(s.l)}</span>`:''}</div></div><div data-l="Vertrag"><div class="stack1">${pill(SCON[s.con][0],SCON[s.con][1])}<div class="s">${esc(s.since)}</div><div class="s">${s.v?'Verfügbar: '+esc(s.v):''}</div></div></div><div data-l="Stundensatz"><div class="rate">${s.rate?s.rate+' €':'—'}</div><div class="s">${s.rate?'pro Stunde':'offen'}</div></div><div data-l="Spezialgebiete"><div class="tags">${s.areas.map(a=>`<span class="tag">${esc(a)}</span>`).join('')}</div></div><div data-l="Freitext" class="small muted clamp1">${esc(s.note)}</div></button>`).join(''):'<div class="empty">Keine Treffer.</div>'}</div>`:emptyCard('Noch keine Profile. Legen Sie Speaker und Lektoren an, mit Vertrag, Stundensatz und Spezialgebieten.',`<button class="btn" data-new="speaker">Erstes Profil anlegen</button>`));
+}
+
+/* ---------- Produkte ---------- */
+function vProdukte(){
+  return head('Katalog','Produkte','Welche Kunden welches Produkt haben und welche Lektoren dafür einsetzbar sind.')+
+  ['Learning','Assessment','Think Tank'].map(g=>`<div class="pg"><h2>${g}</h2><div class="list">${PRODUCTS.filter(p=>p.g===g).map(p=>{
+    const ds=DEALS.filter(d=>d.p===p.id),sp=SPEAKERS.filter(s=>s.for.includes(p.id));
+    return`<div class="pr pr2"><div><h4>${esc(p.n)}</h4><div class="muted small">${esc(p.s)}</div></div><div style="display:grid;gap:8px">${ds.length?`<div class="tags">${ds.map(d=>org(d.o)?`<a class="tag" href="#" data-go="org-${d.o}">${esc(org(d.o).n)}</a>`:'').join('')}</div>`:'<span class="muted small">Noch bei keinem Kunden</span>'}${sp.length?`<div class="small muted">Lektoren: ${sp.map(s=>esc(s.n)).join(', ')}</div>`:''}</div></div>`}).join('')}</div></div>`).join('');
+}
+
+/* ---------- Formulare ---------- */
+const fld=(k,l,v,o={})=>{
+  const id='f-'+k,t=o.t||'text';
+  let c;
+  if(t==='select')c=`<select id="${id}" data-f="${k}">${o.opts.map(([a,b])=>`<option value="${esc(a)}" ${String(v)===String(a)?'selected':''}>${esc(b)}</option>`).join('')}</select>`;
+  else if(t==='textarea')c=`<textarea id="${id}" data-f="${k}" placeholder="${esc(o.ph||'')}">${esc(v)}</textarea>`;
+  else if(t==='check')return`<div class="fld"><label class="ck"><input type="checkbox" id="${id}" data-f="${k}" ${v?'checked':''}> ${esc(l)}</label></div>`;
+  else c=`<input type="${t}" id="${id}" data-f="${k}" value="${esc(v)}" placeholder="${esc(o.ph||'')}" ${o.list?`list="${o.list}"`:''} ${t==='number'?'min="0" step="1"':''}>`;
+  return`<div class="fld"><label for="${id}">${esc(l)}</label>${c}</div>`;
+};
+const opts=m=>Object.keys(m).map(k=>[k,Array.isArray(m[k])?m[k][0]:m[k]]);
+const val=k=>{const e=document.querySelector('[data-f="'+k+'"]');return e?(e.type==='checkbox'?e.checked:e.value.trim()):''};
+const delBtn=(t,id)=>`<button class="btn ghost" data-del="${t}|${id}">Löschen</button>`;
+
+function openOrgForm(id,pre){
+  const o=id?org(id):Object.assign({n:'',ind:'',st:'lead',size:'',land:'AT',ph:'neu',fit:60,next:'',due:'',sum:'',notes:'',ct:{s:'laufend',type:'Rahmenvertrag',since:'',until:'',val:''}},pre||{});
+  const isNew=!id;
+  $('#sheet').innerHTML=`<button class="x" data-close>Schließen</button><div class="eyebrow">${isNew?'Neu':'Bearbeiten'}</div><h2>${isNew?(o.st==='kunde'?'Neuer Kunde':'Neuer Lead'):esc(o.n)}</h2>
+  <datalist id="dl-br">${BRANCHEN.map(b=>`<option>${b}</option>`).join('')}</datalist>
+  ${fld('name','Name der Organisation',o.n)}
+  <div class="two">${fld('branche','Branche',o.ind,{list:'dl-br'})}${fld('status','Status',o.st,{t:'select',opts:opts(ST)})}</div>
+  <div class="two">${fld('groesse','Größe',o.size,{ph:'z. B. 1.200 Mitarbeitende'})}${fld('land','Land',o.land)}</div>
+  <div data-for="lead interessent"><div class="two">${fld('phase','Phase',o.ph,{t:'select',opts:opts(PH)})}${fld('passung','Passung in %',o.fit,{t:'number'})}</div></div>
+  <div data-for="kunde"><div class="two">${fld('v_status','Vertragsstatus',o.ct.s,{t:'select',opts:opts(CT)})}${fld('v_art','Vertragsart',o.ct.type)}</div><div class="two">${fld('v_seit','Seit',o.ct.since,{ph:'z. B. 09.2026'})}${fld('v_bis','Laufzeit bis',o.ct.until,{ph:'z. B. 31.12.2027'})}</div>${fld('v_volumen','Volumen',o.ct.val,{ph:'z. B. 48.000 € p. a.'})}</div>
+  ${fld('sum','Stand der Dinge',o.sum,{t:'textarea',ph:'Zwei Sätze: wo stehen wir?'})}
+  <div class="two">${fld('next','Nächster Schritt',o.next)}${fld('due','Fällig',o.due,{ph:'z. B. heute, 25.10.'})}</div>
+  ${isNew?`<div class="fld"><span class="l">Hauptansprechperson (optional)</span></div><div class="two">${fld('p_name','Name','')}${fld('p_email','E-Mail','',{t:'email'})}</div><div class="two">${fld('p_fn','Funktion','')}${fld('p_area','Bereich','')}</div>${fld('p_role','Rolle im Entscheidungsprozess','entscheider',{t:'select',opts:opts(ROLES)})}`:''}
+  <div class="btns"><button class="btn" data-orgsave="${id||''}">Speichern</button><button class="btn ghost" data-close>Abbrechen</button>${id?delBtn('org',id):''}</div>`;
+  $('#scrim').hidden=false;toggleFor();
+}
+function toggleFor(){const st=$('#f-status');if(!st)return;document.querySelectorAll('[data-for]').forEach(e=>{e.hidden=e.dataset.for.split(' ').indexOf(st.value)<0})}
+async function saveOrg(id){
+  const name=val('name');if(!name){toast('Bitte einen Namen eintragen.');return}
+  const st=val('status');const old=id?org(id):null;
+  const o=Object.assign({id:id||nid(),created:old?old.created:todayStr(),notes:old?old.notes:''},{
+    n:name,ind:val('branche'),st,size:val('groesse'),land:val('land'),ph:val('phase')||'neu',fit:+val('passung')||0,next:val('next'),due:val('due'),sum:val('sum'),
+    ct:{s:val('v_status')||'laufend',type:val('v_art'),since:val('v_seit'),until:val('v_bis'),val:val('v_volumen')}});
+  if(old)Object.assign(old,o);else ORGS.push(o);
+  closeSheet();rerender();
+  await persist('Organisationen',dOrg(o));
+  if(!old&&val('p_name')){
+    const p={id:nid(),o:o.id,n:val('p_name'),fn:val('p_fn'),area:val('p_area'),role:val('p_role')||'entscheider',stance:'neutral',main:true,em:val('p_email'),c:'offen',nc:false,f:'',last:''};
+    PEOPLE.push(p);await persist('Personen',dPer(p));rerender();
+  }
+  toast(old?'Gespeichert':'Angelegt');
+  if(!old){ROUTE='org-'+o.id;render()}
+}
+function openPersonForm(id,oid){
+  const p=id?per(id):{n:'',fn:'',area:'',role:'fachlich',stance:'neutral',main:!PEOPLE.some(x=>x.o===oid),em:'',c:'offen',nc:false,f:''};
+  $('#sheet').innerHTML=`<button class="x" data-close>Schließen</button><div class="eyebrow">${id?'Bearbeiten':'Neu'}</div><h2>${id?esc(p.n):'Kontakt hinzufügen'}</h2>
+  ${fld('name','Name',p.n)}<div class="two">${fld('funktion','Funktion',p.fn)}${fld('bereich','Bereich',p.area)}</div>
+  <div class="two">${fld('rolle','Rolle im Entscheidungsprozess',p.role,{t:'select',opts:opts(ROLES)})}${fld('haltung','Haltung',p.stance,{t:'select',opts:opts(STANCE)})}</div>
+  <div class="two">${fld('email','E-Mail',p.em,{t:'email'})}${fld('anrede','Anrede',p.f||'',{t:'select',opts:[['','neutral (Guten Tag)'],['f','Frau'],['m','Herr']]})}</div>
+  ${fld('einwilligung','Einwilligung für Mails',p.c,{t:'select',opts:[['ja','liegt vor'],['offen','offen'],['nein','abgelehnt']]})}
+  ${fld('haupt','Hauptansprechperson',p.main,{t:'check'})}${fld('nc','Nicht kontaktieren',p.nc,{t:'check'})}
+  <div class="btns"><button class="btn" data-personsave="${id||''}|${oid}">Speichern</button><button class="btn ghost" data-close>Abbrechen</button>${id?delBtn('person',id):''}</div>`;
+  $('#scrim').hidden=false;
+}
+async function savePerson(id,oid){
+  const name=val('name');if(!name){toast('Bitte einen Namen eintragen.');return}
+  const old=id?per(id):null;
+  const p={id:id||nid(),o:old?old.o:oid,n:name,fn:val('funktion'),area:val('bereich'),role:val('rolle'),stance:val('haltung'),main:val('haupt'),em:val('email'),c:val('einwilligung'),nc:val('nc'),f:val('anrede'),last:old?old.last:''};
+  if(p.main)PEOPLE.filter(x=>x.o===p.o&&x.id!==p.id&&x.main).forEach(x=>{x.main=false;persist('Personen',dPer(x))});
+  if(old)Object.assign(old,p);else PEOPLE.push(p);
+  closeSheet();rerender();await persist('Personen',dPer(p));toast('Gespeichert');
+}
+function openDealForm(id,oid){
+  const d=id?DEALS.find(x=>x.id===id):{p:PRODUCTS[0]&&PRODUCTS[0].id,st:0,v:0};
+  $('#sheet').innerHTML=`<button class="x" data-close>Schließen</button><div class="eyebrow">${id?'Bearbeiten':'Neu'}</div><h2>Produkt und Deal</h2>
+  ${fld('produkt','Produkt',d.p,{t:'select',opts:PRODUCTS.map(p=>[p.id,p.n])})}<div class="two">${fld('phase','Phase',d.st,{t:'select',opts:STAGES.map((s,i)=>[i,s])})}${fld('wert','Wert in €',d.v,{t:'number'})}</div>
+  <div class="btns"><button class="btn" data-dealsave="${id||''}|${oid||(d.o||'')}">Speichern</button><button class="btn ghost" data-close>Abbrechen</button>${id?delBtn('deal',id):''}</div>`;
+  $('#scrim').hidden=false;
+}
+async function saveDeal(id,oid){
+  const old=id?DEALS.find(x=>x.id===id):null;
+  const d={id:id||nid(),o:old?old.o:oid,p:val('produkt'),st:+val('phase'),v:+val('wert')||0};
+  if(old)Object.assign(old,d);else DEALS.push(d);
+  closeSheet();rerender();await persist('Deals',dDeal(d));
+  if(!old)await logAct(d.o,'Deal',prod(d.p).n+' verknüpft.');
+  rerender();toast('Gespeichert');
+}
+let SPDRAFT=null;
+function openSpeaker(id){
+  const s=SPDRAFT||(id?JSON.parse(JSON.stringify(SPEAKERS.find(x=>x.id===id))):{id:'',n:'',type:'Lektor',fn:'',org:'',con:'keiner',since:'',rate:null,areas:[],l:'DE',v:'',for:[],note:'',sess:[]});
+  SPDRAFT=s;
+  $('#sheet').innerHTML=`<button class="x" data-close>Schließen</button><div class="eyebrow">${s.id?s.type:'Neu'}</div><h2>${esc(s.n)||'Neues Profil'}</h2>
+  ${fld('name','Name',s.n)}<div class="two">${fld('funktion','Funktion',s.fn)}${fld('organisation','Organisation',s.org)}</div>
+  <div class="two">${fld('typ','Typ',s.type,{t:'select',opts:['Lektor','Speaker','Beides'].map(x=>[x,x])})}${fld('vertrag','Vertragsstatus',s.con,{t:'select',opts:opts(SCON)})}</div>
+  <div class="two">${fld('rate','Stundensatz in € (netto)',s.rate==null?'':s.rate,{t:'number',ph:'offen'})}${fld('vinfo','Vertrag: seit, bis, Hinweis',s.since)}</div>
+  <div class="two">${fld('v','Verfügbarkeit',s.v)}${fld('l','Sprachen',s.l)}</div>
+  <div class="fld"><span class="l">Spezialgebiete in AI & Data</span><div class="chips">${AREAS.map(a=>`<button type="button" class="chip" data-sarea="${esc(a)}" aria-pressed="${s.areas.includes(a)}">${esc(a)}</button>`).join('')}</div></div>
+  <div class="fld"><span class="l">Einsetzbar für Produkte</span><div class="chips">${PRODUCTS.map(p=>`<button type="button" class="chip" data-sprod="${p.id}" aria-pressed="${s.for.includes(p.id)}">${esc(p.n)}</button>`).join('')}</div></div>
+  ${fld('note','Freitext',s.note,{t:'textarea',ph:'Eindrücke, Absprachen, Honorarideen, Ausschlüsse'})}
+  ${fld('sess','Bisherige Einsätze (ein Eintrag pro Zeile)',s.sess.join('\n'),{t:'textarea'})}
+  <div class="btns"><button class="btn" data-spsave>Speichern</button><button class="btn ghost" data-close>Abbrechen</button>${s.id?delBtn('speaker',s.id):''}</div>`;
+  $('#scrim').hidden=false;
+}
+function readSp(){
+  const s=SPDRAFT;if(!s||!$('#f-name'))return s;
+  s.n=val('name');s.fn=val('funktion');s.org=val('organisation');s.type=val('typ');s.con=val('vertrag');const r=val('rate');s.rate=r===''?null:+r;s.since=val('vinfo');s.v=val('v');s.l=val('l');s.note=val('note');s.sess=val('sess').split('\n').map(x=>x.trim()).filter(Boolean);return s;
+}
+async function saveSp(){
+  const s=readSp();if(!s.n){toast('Bitte einen Namen eintragen.');return}
+  const old=s.id?SPEAKERS.find(x=>x.id===s.id):null;
+  if(old)Object.assign(old,s);else{s.id=nid();SPEAKERS.push(s)}
+  SPDRAFT=null;closeSheet();rerender();await persist('Speaker',dSp(s));toast('Profil gespeichert');
+}
+
+/* ---------- Rendern ---------- */
+function draw(){
+  renderNav();
+  if(LOADING){$('#view').innerHTML='<div class="empty">Lade Daten aus Ihrem Google Sheet …</div>';return}
+  const r=route();
+  $('#view').innerHTML=r.v==='heute'?vHeute():r.v==='vorschlaege'?vSugg():r.v==='leads'?vLeads():r.v==='kunden'?vKunden():r.v==='org'?vOrg(r.id):r.v==='lektoren'?vLektoren():vProdukte();
+}
+function render(){F.q='';draw();window.scrollTo(0,0)}
+function rerender(){const y=window.scrollY;draw();window.scrollTo(0,y)}
+function toast(t){const e=$('#toast');e.textContent=t;e.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>e.hidden=true,3200)}
+function closeSheet(){$('#scrim').hidden=true;SPDRAFT=null}
+
+const SEL='[data-go],[data-draft],[data-close],[data-save],[data-claude],[data-take],[data-drop],[data-kst],[data-ph],[data-rep],[data-type],[data-con],[data-area],[data-new],[data-edit],[data-sarea],[data-sprod],[data-spsave],[data-orgsave],[data-personsave],[data-dealsave],[data-del],[data-savenote],[data-sync],[data-demo],[data-undemo],[data-import],[data-doimport]';
+document.addEventListener('click',async e=>{
+  const t=e.target.closest(SEL);
+  if(!t){if(e.target.id==='scrim')closeSheet();return}
+  const d=t.dataset;
+  if(t.tagName==='A')e.preventDefault();
+  if(d.go){ROUTE=d.go;render()}
+  else if(d.draft)openDraft(d.draft);
+  else if('close' in d)closeSheet();
+  else if(d.save){
+    const[oid,pid]=d.save.split('|');const subj=$('#d-subj').textContent,body=$('#d-body').innerText;
+    t.disabled=true;
+    try{await srv('api_createDraft',oid,pid,subj,body);ACT.unshift({id:nid(),o:oid,d:todayStr(),t:'Entwurf',x:'Gmail-Entwurf: '+subj});closeSheet();rerender();toast('Entwurf liegt in Ihren Gmail-Entwürfen')}
+    catch(err){t.disabled=false;toast('Fehler: '+(err&&err.message||err))}
+  }
+  else if(d.claude){
+    const[oid,pid,kind]=d.claude.split('|');t.disabled=true;t.textContent='Claude schreibt …';
+    try{const txt=await srv('api_claudeDraft',oid,pid,kind,prod($('#d-prod').value).n);$('#d-body').innerText=txt}
+    catch(err){toast('Claude: '+(err&&err.message||err))}
+    t.disabled=false;t.textContent='Mit Claude schreiben';
+  }
+  else if(d.take){const s=SUGG.find(x=>x.id===d.take);const o={id:nid(),n:s.n.replace(/\s*\(Beispiel\)/,''),ind:s.ind,st:'lead',size:'',land:'AT',ph:'neu',fit:s.conf,next:'Erstansprache vorbereiten',due:'diese Woche',sum:s.why,notes:'Quelle: '+s.src,created:todayStr(),ct:{s:'laufend',type:'',since:'',until:'',val:''}};ORGS.push(o);const pr=PRODUCTS.find(x=>x.n===s.prod);SUGG=SUGG.filter(x=>x.id!==s.id);rerender();await persist('Organisationen',dOrg(o));await removeRow('Vorschlaege',s.id);if(pr){const dl={id:nid(),o:o.id,p:pr.id,st:0,v:0};DEALS.push(dl);await persist('Deals',dDeal(dl))}toast('Als Lead übernommen')}
+  else if(d.drop){SUGG=SUGG.filter(x=>x.id!==d.drop);rerender();await removeRow('Vorschlaege',d.drop);toast('Vorschlag verworfen')}
+  else if(d.kst){F.kst=d.kst;rerender()}
+  else if(d.ph){F.ph=d.ph;rerender()}
+  else if('rep' in d){F.rep=!F.rep;rerender()}
+  else if(d.type){F.type=d.type;rerender()}
+  else if(d.con){F.con=d.con;rerender()}
+  else if(d.area){F.area=d.area;rerender()}
+  else if(d.new){const[k,oid]=d.new.split('|');if(k==='lead')openOrgForm(null,{st:'lead'});else if(k==='kunde')openOrgForm(null,{st:'kunde'});else if(k==='speaker'){SPDRAFT=null;openSpeaker(null)}else if(k==='person')openPersonForm(null,oid);else if(k==='deal')openDealForm(null,oid)}
+  else if(d.edit){const[k,id]=d.edit.split('|');if(k==='org')openOrgForm(id);else if(k==='person')openPersonForm(id,per(id).o);else if(k==='deal')openDealForm(id,DEALS.find(x=>x.id===id).o);else if(k==='speaker'){SPDRAFT=null;openSpeaker(id)}}
+  else if(d.sarea){const s=readSp();s.areas=s.areas.includes(d.sarea)?s.areas.filter(x=>x!==d.sarea):[...s.areas,d.sarea];openSpeaker(s.id)}
+  else if(d.sprod){const s=readSp();s.for=s.for.includes(d.sprod)?s.for.filter(x=>x!==d.sprod):[...s.for,d.sprod];openSpeaker(s.id)}
+  else if('spsave' in d)saveSp();
+  else if('orgsave' in d)saveOrg(d.orgsave);
+  else if(d.personsave!==undefined){const[id,oid]=d.personsave.split('|');savePerson(id,oid)}
+  else if(d.dealsave!==undefined){const[id,oid]=d.dealsave.split('|');saveDeal(id,oid)}
+  else if(d.del){
+    if(!t.dataset.armed){t.dataset.armed='1';t.textContent='Wirklich löschen?';setTimeout(()=>{if(t.isConnected){delete t.dataset.armed;t.textContent='Löschen'}},4000);return}
+    const[k,id]=d.del.split('|');closeSheet();
+    if(k==='org'){ORGS=ORGS.filter(o=>o.id!==id);PEOPLE=PEOPLE.filter(p=>p.o!==id);DEALS=DEALS.filter(x=>x.o!==id);MAILS=MAILS.filter(m=>m.o!==id);ACT=ACT.filter(a=>a.o!==id);ROUTE='leads';render();try{await srv('api_removeOrg',id)}catch(er){toast('Löschen fehlgeschlagen')}}
+    else if(k==='person'){PEOPLE=PEOPLE.filter(p=>p.id!==id);rerender();await removeRow('Personen',id)}
+    else if(k==='deal'){DEALS=DEALS.filter(x=>x.id!==id);rerender();await removeRow('Deals',id)}
+    else if(k==='speaker'){SPEAKERS=SPEAKERS.filter(x=>x.id!==id);rerender();await removeRow('Speaker',id)}
+    toast('Gelöscht');
+  }
+  else if(d.savenote){const o=org(d.savenote);o.notes=$('#note').value;await persist('Organisationen',dOrg(o));toast('Notiz gespeichert')}
+  else if('sync' in d){t.disabled=true;t.textContent='Gleiche ab …';try{await srv('api_syncNow');await reload();rerender();toast('Mails abgeglichen')}catch(er){toast('Abgleich fehlgeschlagen: '+(er&&er.message||er));t.disabled=false;t.textContent='Mails jetzt abgleichen'}}
+  else if('demo' in d){await srv('api_seedDemo');await reload();rerender();toast('Beispieldaten geladen')}
+  else if('undemo' in d){await srv('api_removeDemo');await reload();rerender();toast('Beispieldaten entfernt')}
+  else if('import' in d)openImport();
+  else if('doimport' in d){
+    try{const arr=JSON.parse($('#imp').value);let n=0;for(const x of arr){const s={id:nid(),n:x.name,ind:x.branche||'',role:x.rolle||'',why:x.grund||'',src:x.quelle||'',prod:x.produkt||'',conf:+x.passung||0};SUGG.push(s);await persist('Vorschlaege',{id:s.id,name:s.n,branche:s.ind,rolle:s.role,grund:s.why,quelle:s.src,produkt:s.prod,passung:s.conf});n++}closeSheet();rerender();toast(n+' Vorschläge eingefügt')}
+    catch(er){toast('Das war kein gültiges JSON.')}
+  }
+});
+document.addEventListener('input',e=>{if(e.target.id==='q'){F.q=e.target.value;const pos=e.target.selectionStart;rerender();const q=$('#q');q.focus();q.setSelectionRange(pos,pos)}});
+document.addEventListener('change',e=>{
+  if(e.target.id==='ind'){F.ind=e.target.value;rerender()}
+  else if(e.target.id==='f-status')toggleFor();
+  else if(e.target.dataset&&e.target.dataset.prodsel){const[oid,pid,kind]=e.target.dataset.prodsel.split('|');const o=org(oid),p=per(pid);const q=queue().find(x=>x.o.id===oid);$('#d-body').innerText=draftText(o,p,kind,prod(e.target.value),q?q.reason:o.sum)}
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeSheet()});
+
+(async function init(){
+  draw();
+  try{const db=await srv('api_bootstrap');load(db);LOADING=false;draw()}
+  catch(e){LOADING=false;$('#view').innerHTML=emptyCard('Die Daten konnten nicht geladen werden: '+esc(e&&e.message||e)+'. Wurde setup() ausgeführt?')}
+})();
+</script>
