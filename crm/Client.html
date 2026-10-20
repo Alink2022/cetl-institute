@@ -28,7 +28,7 @@ const SCON={rahmen:['Rahmenvertrag','ok'],angebot:['Angebot offen','interessent'
 
 let CFG={me:'',claude:false};
 let ORGS=[],PEOPLE=[],DEALS=[],ACT=[],MAILS=[],SPEAKERS=[],PRODUCTS=[],SUGG=[];
-let F={q:'',ind:'alle',kst:'alle',ph:'alle',rep:false,type:'alle',con:'alle',area:'alle',stat:'alle'};
+let F={q:'',ind:'alle',kst:'alle',ph:'alle',rep:false,type:'alle',con:'alle',area:'alle',stat:'alle',prio:'alle',list:'alle'};
 let ROUTE='heute',LOADING=true;
 
 const $=s=>document.querySelector(s);
@@ -58,8 +58,8 @@ const nPer=r=>({id:String(r.id),o:String(r.org_id),n:r.name,fn:r.funktion,area:r
 const dPer=p=>({id:p.id,org_id:p.o,name:p.n,funktion:p.fn,bereich:p.area,rolle:p.role,haltung:p.stance,haupt:p.main?'ja':'nein',email:p.em,einwilligung:p.c,nicht_kontaktieren:p.nc?'ja':'nein',anrede:p.f,letzter_kontakt:p.last});
 const nDeal=r=>({id:String(r.id),o:String(r.org_id),p:String(r.produkt_id),st:+r.phase||0,v:+r.wert||0});
 const dDeal=d=>({id:d.id,org_id:d.o,produkt_id:d.p,phase:d.st,wert:d.v});
-const nSp=r=>({id:String(r.id),n:r.name,br:r.branche,org:r.unternehmen,main:r.hauptfach,skills:r.fachgebiete,topics:r.themen,l:r.sprachen,rate:r.honorar===''||r.honorar==null?null:+r.honorar,bill:r.abrechnung,pay:r.zahlungsart,v:r.status,em:r.email,tel:r.telefon,note:r.anmerkungen,type:r.typ||'Lektor',fn:r.funktion,con:r.vertrag||'keiner',since:r.vertrag_info,for:split(r.produkte),sess:String(r.einsaetze||'').split('|').map(x=>x.trim()).filter(Boolean)});
-const dSp=s=>({id:s.id,name:s.n,branche:s.br,unternehmen:s.org,hauptfach:s.main,fachgebiete:s.skills,themen:s.topics,sprachen:s.l,honorar:s.rate==null?'':s.rate,abrechnung:s.bill,zahlungsart:s.pay,status:s.v,email:s.em,telefon:s.tel,anmerkungen:s.note,typ:s.type,funktion:s.fn,vertrag:s.con,vertrag_info:s.since,produkte:s.for.join(';'),einsaetze:s.sess.join('|')});
+const nSp=r=>({id:String(r.id),n:r.name,br:r.branche,org:r.unternehmen,main:r.hauptfach,skills:r.fachgebiete,topics:r.themen,l:r.sprachen,rate:r.honorar===''||r.honorar==null?null:+r.honorar,bill:r.abrechnung,pay:r.zahlungsart,v:r.status,em:r.email,tel:r.telefon,note:r.anmerkungen,type:r.typ||'Lektor',fn:r.funktion,con:r.vertrag||'keiner',since:r.vertrag_info,for:split(r.produkte),sess:String(r.einsaetze||'').split('|').map(x=>x.trim()).filter(Boolean),list:r.liste,city:r.stadt,prio:r.prioritaet,conf:r.konflikt,proof:r.nachweis,li:r.linkedin,web:r.website,next:r.naechster_schritt,src:r.quellen,checked:r.geprueft,model:r.modell,cid:r.kontakt_id});
+const dSp=s=>({id:s.id,name:s.n,branche:s.br,unternehmen:s.org,hauptfach:s.main,fachgebiete:s.skills,themen:s.topics,sprachen:s.l,honorar:s.rate==null?'':s.rate,abrechnung:s.bill,zahlungsart:s.pay,status:s.v,email:s.em,telefon:s.tel,anmerkungen:s.note,typ:s.type,funktion:s.fn,vertrag:s.con,vertrag_info:s.since,produkte:s.for.join(';'),einsaetze:s.sess.join('|'),liste:s.list,stadt:s.city,prioritaet:s.prio,konflikt:s.conf,nachweis:s.proof,linkedin:s.li,website:s.web,naechster_schritt:s.next,quellen:s.src,geprueft:s.checked,modell:s.model,kontakt_id:s.cid});
 const mkey=m=>{const d=pd(m.d);return (d?d.getTime():0)+(+String(m.t||'0:0').replace(':',''))};
 function load(db){
   CFG={me:db.me,claude:db.claude};
@@ -210,16 +210,16 @@ const rateUnit=s=>{const b=s.bill||'';return s.rate?(b==='Tagessatz'?'pro Tag':b
 const skillTags=s=>{const a=String(s.skills||'').split(',').map(x=>x.trim()).filter(Boolean);return a.slice(0,3).map(x=>'<span class="tag">'+esc(x)+'</span>').join('')+(a.length>3?'<span class="tag">+'+(a.length-3)+'</span>':'')};
 function vLektoren(){
   const q=F.q.toLowerCase();
-  const l=SPEAKERS.filter(s=>(F.type==='alle'||s.type===F.type)&&(F.con==='alle'||s.con===F.con)&&(F.area==='alle'||s.main===F.area)&&(F.stat==='alle'||s.v===F.stat)&&[s.n,s.fn,s.org,s.br,s.main,s.skills,s.topics,s.note].join(' ').toLowerCase().includes(q));
+  const l=SPEAKERS.filter(s=>(F.prio==='alle'||String(s.prio||'').charAt(0)===F.prio)&&(F.list==='alle'||s.list===F.list)&&(F.type==='alle'||s.type===F.type)&&(F.con==='alle'||s.con===F.con)&&(F.area==='alle'||s.main===F.area)&&(F.stat==='alle'||s.v===F.stat)&&[s.n,s.fn,s.org,s.br,s.main,s.skills,s.topics,s.note,s.city,s.next].join(' ').toLowerCase().includes(q));
   const hourly=SPEAKERS.filter(s=>s.rate&&(!s.bill||s.bill==='Stundensatz'));const avg=hourly.length?Math.round(hourly.reduce((a,s)=>a+s.rate,0)/hourly.length):0;
   const act=SPEAKERS.filter(s=>s.con==='rahmen').length,free=SPEAKERS.filter(s=>s.v==='Verfügbar').length;
   const chip=(k,v,lb,on)=>'<button class="chip" data-'+k+'="'+v+'" aria-pressed="'+on+'">'+lb+'</button>';
   const sel=(id,cur,all,list)=>'<select id="'+id+'" aria-label="'+all+'"><option value="alle">'+all+'</option>'+list.map(x=>'<option '+(cur===x?'selected':'')+'>'+esc(x)+'</option>').join('')+'</select>';
   return head('Pool','Speaker und Lektoren','Die frühere Excel-Liste, jetzt im CRM: Fachgebiete, Honorar, Status und Vertrag auf einen Blick. Jedes Profil hat ein Freitextfeld.',`<button class="btn" data-new="speaker">Neues Profil</button>`)+
   (SPEAKERS.length?`<div class="band"><div><div class="big">${SPEAKERS.length}</div><div class="small muted" style="margin-top:8px">Profile im Pool</div></div><div><div class="big">${act}</div><div class="small muted" style="margin-top:8px">mit Rahmenvertrag</div></div><div><div class="big">${avg?avg+' €':'—'}</div><div class="small muted" style="margin-top:8px">Ø Stundensatz · ${free} verfügbar</div></div></div>`+
-  `<div class="tools"><input type="search" id="q" placeholder="Suchen in Name, Fachgebiet, Anmerkungen" value="${esc(F.q)}" aria-label="Suchen">${sel('sel-area',F.area,'Alle Fachgebiete',VOC.hauptfach)}${sel('sel-stat',F.stat,'Jeder Status',VOC.status)}</div>`+
+  `<div class="tools"><input type="search" id="q" placeholder="Suchen in Name, Fachgebiet, Anmerkungen" value="${esc(F.q)}" aria-label="Suchen">${sel('sel-area',F.area,'Alle Fachgebiete',VOC.hauptfach)}${sel('sel-stat',F.stat,'Jeder Status',VOC.status)}${sel('sel-prio',F.prio,'Jede Priorität',['A','B','C'])}${sel('sel-list',F.list,'Alle Listen',[...new Set(SPEAKERS.map(x=>x.list).filter(Boolean))])}</div>`+
   `<div class="tools">${['alle','Lektor','Speaker','Beides'].map(t=>chip('type',t,t==='alle'?'Alle Typen':t,F.type===t)).join('')}${['alle',...Object.keys(SCON)].map(k=>chip('con',k,k==='alle'?'Alle Verträge':SCON[k][0],F.con===k)).join('')}</div>`+
-  `<div class="tbl" style="--cols:1.5fr 1.1fr .8fr 1.6fr 1.4fr"><div class="th"><div>Profil</div><div>Vertrag und Status</div><div>Honorar</div><div>Fachgebiete</div><div>Anmerkungen</div></div>${l.length?l.map(s=>`<button class="tr" data-edit="speaker|${s.id}"><div data-l="Profil"><div class="t">${esc(s.n)}</div><div class="s">${esc([s.fn,s.org].filter(Boolean).join(' · '))}</div><div class="tags" style="margin-top:6px"><span class="tag">${esc(s.type)}</span>${s.br?`<span class="tag">${esc(s.br)}</span>`:''}${s.l?`<span class="tag">${esc(s.l)}</span>`:''}</div></div><div data-l="Vertrag und Status"><div class="stack1">${pill(SCON[s.con][0],SCON[s.con][1])}${s.v?pill(s.v,SSTAT[s.v]||'partner'):''}<div class="s">${esc(s.since)}</div></div></div><div data-l="Honorar"><div class="rate">${s.rate?s.rate.toLocaleString('de-AT')+' €':'—'}</div><div class="s">${esc(rateUnit(s))}</div><div class="s">${esc(s.pay)}</div></div><div data-l="Fachgebiete"><div class="tags">${s.main?`<span class="tag" style="border-color:var(--brand);color:var(--brand-d)">${esc(s.main)}</span>`:''}${skillTags(s)}</div></div><div data-l="Anmerkungen" class="small muted clamp1">${esc(s.note)}</div></button>`).join(''):'<div class="empty">Keine Treffer.</div>'}</div>`:emptyCard('Noch keine Profile. Legen Sie Speaker und Lektoren an oder importieren Sie die vorbereitete Liste.',`<button class="btn" data-seedlek>Lektoren-Liste importieren</button><button class="btn ghost" data-new="speaker">Profil von Hand anlegen</button>`));
+  `<div class="tbl" style="--cols:1.5fr 1.1fr .8fr 1.6fr 1.4fr"><div class="th"><div>Profil</div><div>Vertrag und Status</div><div>Honorar</div><div>Fachgebiete</div><div>Nächster Schritt</div></div>${l.length?l.map(s=>`<button class="tr" data-edit="speaker|${s.id}"><div data-l="Profil"><div class="t">${esc(s.n)}</div><div class="s">${esc([s.fn,s.org].filter(Boolean).join(' · '))}</div><div class="tags" style="margin-top:6px">${s.prio?`<span class="pill ${s.prio.charAt(0)==='A'?'kunde':'lead'}">Prio ${esc(s.prio)}</span>`:''}<span class="tag">${esc(s.type)}</span>${s.city?`<span class="tag">${esc(s.city)}</span>`:''}${s.br?`<span class="tag">${esc(s.br)}</span>`:''}${s.l?`<span class="tag">${esc(s.l)}</span>`:''}</div></div><div data-l="Vertrag und Status"><div class="stack1">${pill(SCON[s.con][0],SCON[s.con][1])}${s.v?pill(s.v,SSTAT[s.v]||'partner'):''}<div class="s">${esc(s.since)}</div></div></div><div data-l="Honorar"><div class="rate">${s.rate?s.rate.toLocaleString('de-AT')+' €':'—'}</div><div class="s">${esc(rateUnit(s))}</div><div class="s">${esc(s.pay)}</div></div><div data-l="Fachgebiete"><div class="tags">${s.main?`<span class="tag" style="border-color:var(--brand);color:var(--brand-d)">${esc(s.main)}</span>`:''}${skillTags(s)}</div></div><div data-l="Nächster Schritt" class="small clamp1">${s.next?`<b style="font-weight:500">${esc(s.next)}</b>`:`<span class="muted">${esc(s.note)}</span>`}</div></button>`).join(''):'<div class="empty">Keine Treffer.</div>'}</div>`:emptyCard('Noch keine Profile. Legen Sie Speaker und Lektoren an oder importieren Sie die vorbereitete Liste.',`<button class="btn" data-seedlek>Lektoren-Liste importieren</button><button class="btn ghost" data-new="speaker">Profil von Hand anlegen</button>`));
 }
 
 /* ---------- Produkte ---------- */
@@ -234,6 +234,7 @@ function vProdukte(){
 const fld=(k,l,v,o={})=>{
   const id='f-'+k,t=o.t||'text';
   let c;
+  if(t==='select'){if(v!==''&&v!=null&&!o.opts.some(x=>String(x[0])===String(v)))o={...o,opts:[...o.opts,[v,v]]};}
   if(t==='select')c=`<select id="${id}" data-f="${k}">${o.opts.map(([a,b])=>`<option value="${esc(a)}" ${String(v)===String(a)?'selected':''}>${esc(b)}</option>`).join('')}</select>`;
   else if(t==='textarea')c=`<textarea id="${id}" data-f="${k}" placeholder="${esc(o.ph||'')}">${esc(v)}</textarea>`;
   else if(t==='check')return`<div class="fld"><label class="ck"><input type="checkbox" id="${id}" data-f="${k}" ${v?'checked':''}> ${esc(l)}</label></div>`;
@@ -314,7 +315,7 @@ async function saveDeal(id,oid){
 let SPDRAFT=null;
 const vopts=(arr)=>[['','—'],...arr.map(x=>[x,x])];
 function openSpeaker(id){
-  const s=SPDRAFT||(id?JSON.parse(JSON.stringify(SPEAKERS.find(x=>x.id===id))):{id:'',n:'',br:'',org:'',main:'',skills:'',topics:'',l:'',rate:null,bill:'',pay:'',v:'',em:'',tel:'',note:'',type:'Lektor',fn:'',con:'keiner',since:'',for:[],sess:[]});
+  const s=SPDRAFT||(id?JSON.parse(JSON.stringify(SPEAKERS.find(x=>x.id===id))):{id:'',n:'',br:'',org:'',main:'',skills:'',topics:'',l:'',rate:null,bill:'',pay:'',v:'',em:'',tel:'',note:'',type:'Lektor',fn:'',con:'keiner',since:'',for:[],sess:[],list:'Eigene Eingabe',city:'',prio:'',conf:'',proof:'',li:'',web:'',next:'',src:'',checked:'',model:'',cid:''});
   SPDRAFT=s;
   $('#sheet').innerHTML=`<button class="x" data-close>Schließen</button><div class="eyebrow">${s.id?s.type:'Neu'}</div><h2>${esc(s.n)||'Neues Profil'}</h2>
   ${fld('name','Name',s.n)}<div class="two">${fld('funktion','Funktion',s.fn)}${fld('organisation','Unternehmen',s.org)}</div>
@@ -322,6 +323,10 @@ function openSpeaker(id){
   <div class="two">${fld('hauptfach','Hauptfachgebiet',s.main,{t:'select',opts:vopts(VOC.hauptfach)})}${fld('sprachen','Sprache(n)',s.l,{t:'select',opts:vopts(VOC.sprachen)})}</div>
   ${fld('skills','Weitere Fachgebiete / Skills',s.skills,{ph:'durch Komma getrennt'})}
   ${fld('topics','Themenvorschläge / Keynote-Titel',s.topics,{t:'textarea'})}
+  <div class="two">${fld('prio','Priorität (A, B, C)',s.prio||'')}${fld('stadt','Stadt / Region',s.city||'')}</div>
+  <div class="two">${fld('konflikt','Kundenkonflikt',s.conf||'')}${fld('nachweis','Lehr- und Speaker-Nachweis',s.proof||'')}</div>
+  <div class="two">${fld('linkedin','LinkedIn',s.li||'')}${fld('website','Website',s.web||'')}</div>
+  ${fld('next','Nächster Schritt',s.next||'')}
   <div class="fld"><span class="l">Vertrag und Entgelt</span></div>
   <div class="two">${fld('vertrag','Vertragsstatus',s.con,{t:'select',opts:opts(SCON)})}${fld('vinfo','Vertrag: seit, bis, Hinweis',s.since)}</div>
   <div class="two">${fld('rate','Honorar in € (netto)',s.rate==null?'':s.rate,{t:'number',ph:'offen'})}${fld('abrechnung','Abrechnungsart',s.bill,{t:'select',opts:vopts(VOC.abrechnung)})}</div>
@@ -330,6 +335,7 @@ function openSpeaker(id){
   <div class="fld"><span class="l">Einsetzbar für Produkte</span><div class="chips">${PRODUCTS.map(p=>`<button type="button" class="chip" data-sprod="${p.id}" aria-pressed="${s.for.includes(p.id)}">${esc(p.n)}</button>`).join('')}</div></div>
   ${fld('note','Anmerkungen (Freitext)',s.note,{t:'textarea',ph:'Eindrücke, Absprachen, Honorarideen, Quellen, Ausschlüsse'})}
   ${fld('sess','Bisherige Einsätze (ein Eintrag pro Zeile)',s.sess.join('\n'),{t:'textarea'})}
+  ${s.src?`<div class="fld"><span class="l">Quellen</span><div class="small muted" style="overflow-wrap:anywhere">${esc(s.src)}</div></div>`:''}
   <div class="btns"><button class="btn" data-spsave>Speichern</button><button class="btn ghost" data-close>Abbrechen</button>${s.id?delBtn('speaker',s.id):''}</div>`;
   $('#scrim').hidden=false;
 }
@@ -337,6 +343,7 @@ function readSp(){
   const s=SPDRAFT;if(!s||!$('#f-name'))return s;
   s.n=val('name');s.fn=val('funktion');s.org=val('organisation');s.br=val('branche');s.type=val('typ');s.main=val('hauptfach');s.l=val('sprachen');s.skills=val('skills');s.topics=val('topics');
   s.con=val('vertrag');s.since=val('vinfo');const r=val('rate');s.rate=r===''?null:+r;s.bill=val('abrechnung');s.pay=val('zahlungsart');s.v=val('status');s.em=val('email');s.tel=val('telefon');s.note=val('note');
+  s.prio=val('prio');s.city=val('stadt');s.conf=val('konflikt');s.proof=val('nachweis');s.li=val('linkedin');s.web=val('website');s.next=val('next');
   s.sess=val('sess').split('\n').map(x=>x.trim()).filter(Boolean);return s;
 }
 async function saveSp(){
@@ -419,6 +426,8 @@ document.addEventListener('change',e=>{
   if(e.target.id==='ind'){F.ind=e.target.value;rerender()}
   else if(e.target.id==='sel-area'){F.area=e.target.value;rerender()}
   else if(e.target.id==='sel-stat'){F.stat=e.target.value;rerender()}
+  else if(e.target.id==='sel-prio'){F.prio=e.target.value;rerender()}
+  else if(e.target.id==='sel-list'){F.list=e.target.value;rerender()}
   else if(e.target.id==='f-status')toggleFor();
   else if(e.target.dataset&&e.target.dataset.prodsel){const[oid,pid,kind]=e.target.dataset.prodsel.split('|');const o=org(oid),p=per(pid);const q=queue().find(x=>x.o.id===oid);$('#d-body').innerText=draftText(o,p,kind,prod(e.target.value),q?q.reason:o.sum)}
 });

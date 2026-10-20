@@ -15,7 +15,7 @@ const SCHEMA = {
   Aktivitaeten: ['id','org_id','datum','art','text'],
   Mails: ['id','org_id','person_id','richtung','datum','zeit','betreff','text','msg_id'],
   // Speaker entspricht der bisherigen Excel-Liste (Spalten B bis N), dazu CRM-Felder ab 'typ'
-  Speaker: ['id','name','branche','unternehmen','hauptfach','fachgebiete','themen','sprachen','honorar','abrechnung','zahlungsart','status','email','telefon','anmerkungen','typ','funktion','vertrag','vertrag_info','produkte','einsaetze'],
+  Speaker: ['id','name','branche','unternehmen','hauptfach','fachgebiete','themen','sprachen','honorar','abrechnung','zahlungsart','status','email','telefon','anmerkungen','typ','funktion','vertrag','vertrag_info','produkte','einsaetze','liste','stadt','prioritaet','konflikt','nachweis','linkedin','website','naechster_schritt','quellen','geprueft','modell','kontakt_id'],
   Produkte: ['id','gruppe','name','beschreibung'],
   Vorschlaege: ['id','name','branche','rolle','grund','quelle','produkt','passung']
 };
@@ -357,14 +357,15 @@ function api_seedLecturers() {
   assertAllowed_();
   const have = {};
   readTable_('Speaker').forEach(function (r) { have[String(r.name).trim().toLowerCase()] = true; });
+  const cols = SCHEMA.Speaker;
   let n = 0;
   LECTURERS.forEach(function (l, i) {
-    if (have[l.name.trim().toLowerCase()]) return;
-    api_upsert('Speaker', {
-      id: 'l-' + ('000' + (i + 1)).slice(-3), name: l.name, branche: l.branche, unternehmen: l.unternehmen, hauptfach: l.hauptfach,
-      fachgebiete: l.fachgebiete, themen: l.themen, sprachen: l.sprachen, honorar: '', abrechnung: l.abrechnung, zahlungsart: l.zahlungsart,
-      status: l.status, email: l.email, telefon: l.telefon, anmerkungen: l.anmerkungen, typ: 'Lektor', funktion: '', vertrag: 'keiner', vertrag_info: '', produkte: '', einsaetze: ''
-    });
+    const key = l.name.trim().toLowerCase();
+    if (have[key]) return;
+    have[key] = true;
+    const row = { id: 'l-' + ('000' + (i + 1)).slice(-3), typ: 'Lektor', vertrag: 'keiner', honorar: '' };
+    cols.forEach(function (k) { if (l[k] !== undefined && k !== 'id') row[k] = l[k]; });
+    api_upsert('Speaker', row);
     n++;
   });
   return n;
