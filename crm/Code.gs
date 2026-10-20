@@ -369,21 +369,27 @@ function api_removeDemo() {
   return true;
 }
 
-/** Importiert die vorbereitete Lektoren-Liste (siehe Lecturers.gs). Vorhandene Namen werden nicht überschrieben. */
+/** Importiert die vorbereitete Lektoren-Liste (siehe Lecturers.gs) in einem Schritt. Vorhandene Namen werden nicht überschrieben. */
 function api_seedLecturers() {
   assertAllowed_();
-  const have = {};
-  readTable_('Speaker').forEach(function (r) { have[String(r.name).trim().toLowerCase()] = true; });
-  const cols = SCHEMA.Speaker;
-  let n = 0;
-  LECTURERS.forEach(function (l, i) {
-    const key = l.name.trim().toLowerCase();
-    if (have[key]) return;
-    have[key] = true;
-    const row = { id: 'l-' + ('000' + (i + 1)).slice(-3), typ: 'Lektor', vertrag: 'keiner', honorar: '' };
-    cols.forEach(function (k) { if (l[k] !== undefined && k !== 'id') row[k] = l[k]; });
-    api_upsert('Speaker', row);
-    n++;
-  });
-  return n;
+  ensureReady_();
+  const lock = LockService.getScriptLock();
+  lock.waitLock(30000);
+  try {
+    const sh = sheet_('Speaker');
+    const cols = SCHEMA.Speaker;
+    const have = {};
+    readTable_('Speaker').forEach(function (r) { have[String(r.name).trim().toLowerCase()] = true; });
+    const rows = [];
+    LECTURERS.forEach(function (l, i) {
+      const key = l.name.trim().toLowerCase();
+      if (have[key]) return;
+      have[key] = true;
+      const row = { id: 'l-' + ('000' + (i + 1)).slice(-3), typ: 'Lektor', vertrag: 'keiner', honorar: '' };
+      cols.forEach(function (k) { if (l[k] !== undefined && k !== 'id') row[k] = l[k]; });
+      rows.push(cols.map(function (k) { return row[k] === undefined || row[k] === null ? '' : row[k]; }));
+    });
+    if (rows.length) sh.getRange(sh.getLastRow() + 1, 1, rows.length, cols.length).setValues(rows);
+    return rows.length;
+  } finally { lock.releaseLock(); }
 }
