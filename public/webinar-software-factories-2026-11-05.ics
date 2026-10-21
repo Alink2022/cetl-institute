@@ -1,0 +1,17 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//CETL Institute//Webinar//DE
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:webinar-software-factories-2026-11-05@cetl.institute
+DTSTAMP:20261022T080000Z
+DTSTART:20261105T150000Z
+DTEND:20261105T160000Z
+SUMMARY:CETL Webinar: Software Factories: What Comes After Vibe Coding
+DESCRIPTION:LinkedIn Live mit Mario Meir-Huber. Moderation: Karl Ivo Sokolov. Details: https://www.cetl.institute/think-tank/webinare/software-factories
+LOCATION:LinkedIn Live
+URL:https://www.cetl.institute/think-tank/webinare/software-factories
+STATUS:CONFIRMED
+END:VEVENT
+END:VCALENDAR

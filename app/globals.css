@@ -915,3 +915,41 @@ h1, h2, h3, h4, h5, .font-display {
 @media (max-width: 680px) {
   .rd .btn { white-space: normal; text-align: left; }
 }
+
+/* ==========================================================================
+   Webinar: Ankündigung auf der Think-Tank-Seite, Startseite und Detailseite
+   ========================================================================== */
+.rd .wb-announce { padding: 2.5rem 0; border-top: 0; background: var(--surface); }
+.rd .wb-card { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 28px; align-items: center; padding: 28px 32px; background: #fff; border: 1px solid var(--line); border-radius: 22px; color: inherit; transition: transform 0.15s ease, border-color 0.15s ease; }
+.rd .wb-card:hover { transform: translateY(-2px); border-color: var(--brand-300); }
+.rd .wb-date { display: grid; place-items: center; width: 92px; height: 92px; border-radius: 18px; background: linear-gradient(150deg, var(--brand-600), var(--brand-700)); color: #fff; line-height: 1; text-align: center; }
+.rd .wb-date .d { font-size: 2.4rem; font-weight: 600; letter-spacing: -0.03em; }
+.rd .wb-date .m { margin-top: -14px; font-size: 0.82rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--brand-300); font-weight: 600; }
+.rd .wb-body h2 { font-size: clamp(1.35rem, 2.4vw, 1.85rem); }
+.rd .wb-body .eyebrow { margin-bottom: 8px; }
+.rd .wb-body .muted { margin: 8px 0 0; }
+.rd .wb-line { display: flex; flex-wrap: wrap; gap: 6px 22px; margin: 12px 0 0; font-size: 0.9rem; color: var(--ink-500); }
+.rd .wb-line span:first-child { color: var(--ink-900); font-weight: 500; }
+.rd .wb-strip { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; margin: 0 0 2rem; padding: 14px 22px; border: 1px solid rgba(255, 255, 255, 0.22); border-radius: 999px; background: rgba(255, 255, 255, 0.06); color: #fff; }
+.rd .wb-strip .when { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; background: var(--brand-300); color: var(--ink-900); border-radius: 999px; padding: 5px 12px; white-space: nowrap; }
+.rd .wb-strip .t { flex: 1 1 260px; min-width: 0; }
+.rd .wb-strip .go { font-weight: 500; color: var(--brand-300); white-space: nowrap; }
+.rd .wb-strip:hover { border-color: #fff; }
+.rd .wb-facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 4.5rem; border-top: 1px solid rgba(255, 255, 255, 0.18); }
+.rd .wb-facts > div { display: grid; gap: 4px; padding: 26px 24px 0 0; align-content: start; }
+.rd .wb-facts > div + div { padding-left: 24px; border-left: 1px solid rgba(255, 255, 255, 0.14); }
+.rd .wb-facts .k { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; color: var(--brand-300); }
+.rd .wb-facts .v { font-size: var(--step-1); font-weight: 600; letter-spacing: -0.01em; color: #fff; }
+.rd .wb-facts .v2 { font-size: 0.95rem; color: #E8D5DA; }
+.rd .wb-person { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 22px; align-items: start; }
+.rd .wb-person img { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; background: var(--brand-100); }
+@media (max-width: 820px) {
+  .rd .wb-card { grid-template-columns: auto minmax(0, 1fr); padding: 22px; gap: 18px; }
+  .rd .wb-card > .btn { grid-column: 1 / -1; justify-self: start; }
+  .rd .wb-date { width: 72px; height: 72px; border-radius: 16px; }
+  .rd .wb-date .d { font-size: 1.9rem; }
+  .rd .wb-facts { grid-template-columns: 1fr; margin-top: 3rem; }
+  .rd .wb-facts > div, .rd .wb-facts > div + div { padding: 18px 0; border-left: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.14); }
+}
+@media (max-width: 560px) { .rd .wb-person { grid-template-columns: 72px minmax(0, 1fr); gap: 16px; } .rd .wb-person img { width: 72px; height: 72px; } }
+@media (max-width: 560px) { .rd .wb-body .muted, .rd .wb-line span:nth-child(3) { display: none; } }

@@ -12,6 +12,7 @@ import { TT_COPY } from "@/lib/thinktank-copy";
 import { Icon, type IconName } from "@/components/ui/IconSprite";
 import { PortfolioCard } from "@/components/redesign/PortfolioCard";
 import { PubCard } from "./PubCard";
+import { nextWebinar, webinarWhen } from "@/lib/webinars";
 
 const AUDIENCE_ICON: Record<AudienceId, IconName> = { board: "briefcase", hr: "chats-circle", ld: "graduation-cap" };
 
@@ -38,6 +39,8 @@ export function ThinkTankLanding() {
       (audience === "all" || p.audiences.includes(audience)) &&
       (!international || p.guest),
   );
+  const wb = nextWebinar();
+  const wbWhen = wb ? webinarWhen(wb, lang) : null;
   const filtered = field !== "all" || format !== "all" || audience !== "all" || international;
   const reset = () => {
     setField("all");
@@ -69,6 +72,31 @@ export function ThinkTankLanding() {
           </div>
         </div>
       </section>
+
+      {/* WEBINAR */}
+      {wb && wbWhen && (
+        <section id="webinare" className="wb-announce">
+          <div className="wrap">
+            <Link className="wb-card" href={`/think-tank/webinare/${wb.slug}`}>
+              <div className="wb-date" aria-hidden="true">
+                <span className="d">{wbWhen.day}</span>
+                <span className="m">{wbWhen.month}</span>
+              </div>
+              <div className="wb-body">
+                <p className="eyebrow">{lang === "de" ? "Nächstes Webinar" : "Next webinar"} · {wb.platform}</p>
+                <h2>{wb.title}</h2>
+                <p className="muted">{wb.copy[lang].short}</p>
+                <p className="wb-line">
+                  <span>{wbWhen.date}, {wbWhen.time} {wbWhen.tz}</span>
+                  <span>{lang === "de" ? "Mit" : "With"} {wb.speaker.name}</span>
+                  <span>{lang === "de" ? "Moderation" : "Moderated by"} {wb.moderator.name}</span>
+                </p>
+              </div>
+              <span className="btn btn-primary">{lang === "de" ? "Details ansehen" : "See details"} →</span>
+            </Link>
+          </div>
+        </section>
+      )}
 
       {/* WOZU: Differenzierung + Zielgruppen */}
       <section id="anspruch" className="usp">

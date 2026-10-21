@@ -36,7 +36,7 @@ export type PortfolioIcon = "certificate" | "path" | "gear" | "chats-circle" | "
 
 export type ContactTopicId =
   | "executional-learning" | "executional-assessments" | "executive-education" | "thinktank"
-  | "market-analysis" | "fde" | "hackathon" | "partner" | "guest" | "other";
+  | "market-analysis" | "fde" | "hackathon" | "partner" | "guest" | "webinar" | "other";
 
 export interface ContactTopic { id: ContactTopicId; label: string }
 
@@ -323,7 +323,7 @@ export const REDESIGN_DE: RedesignContent = {
       role: "Ihre Funktion (optional)", rolePlaceholder: "Funktion auswählen", roles: ["Geschäftsführung", "HR / People", "Learning & Development", "IT / Data", "Fachbereich"],
       topic: "Themenbereich",
       topicPlaceholder: "Bereich auswählen",
-      topics: [{ id: "executional-learning", label: "Executional Learning" }, { id: "executional-assessments", label: "Executional Assessments" }, { id: "executive-education", label: "Executive Education" }, { id: "thinktank", label: "Think Tank Services" }, { id: "market-analysis", label: "Markt- und Kompetenzanalyse" }, { id: "fde", label: "Forward Deployed Engineering" }, { id: "hackathon", label: "CETL Hackathon Teilnahme" }, { id: "partner", label: "CETL Partner werden" }, { id: "other", label: "Sonstiges" }],
+      topics: [{ id: "executional-learning", label: "Executional Learning" }, { id: "executional-assessments", label: "Executional Assessments" }, { id: "executive-education", label: "Executive Education" }, { id: "thinktank", label: "Think Tank Services" }, { id: "market-analysis", label: "Markt- und Kompetenzanalyse" }, { id: "fde", label: "Forward Deployed Engineering" }, { id: "webinar", label: "Webinar „Software Factories“ (5. November)" }, { id: "hackathon", label: "CETL Hackathon Teilnahme" }, { id: "partner", label: "CETL Partner werden" }, { id: "other", label: "Sonstiges" }],
       context: "Organisatorischer Kontext", submit: "Anfrage übermitteln",
       sending: "Wird gesendet…",
       success: "Danke! Ihre Anfrage ist angekommen, wir melden uns zeitnah.",
@@ -554,7 +554,7 @@ export const REDESIGN_EN: RedesignContent = {
       role: "Your role (optional)", rolePlaceholder: "Select a role", roles: ["Executive management", "HR / People", "Learning & Development", "IT / Data", "Business unit"],
       topic: "Topic",
       topicPlaceholder: "Select a topic",
-      topics: [{ id: "executional-learning", label: "Executional Learning" }, { id: "executional-assessments", label: "Executional Assessments" }, { id: "executive-education", label: "Executive Education" }, { id: "thinktank", label: "Think Tank Services" }, { id: "market-analysis", label: "Market and skills analysis" }, { id: "fde", label: "Forward Deployed Engineering" }, { id: "hackathon", label: "CETL hackathon participation" }, { id: "partner", label: "Becoming a CETL partner" }, { id: "other", label: "Something else" }],
+      topics: [{ id: "executional-learning", label: "Executional Learning" }, { id: "executional-assessments", label: "Executional Assessments" }, { id: "executive-education", label: "Executive Education" }, { id: "thinktank", label: "Think Tank Services" }, { id: "market-analysis", label: "Market and skills analysis" }, { id: "fde", label: "Forward Deployed Engineering" }, { id: "webinar", label: "Webinar “Software Factories” (5 November)" }, { id: "hackathon", label: "CETL hackathon participation" }, { id: "partner", label: "Becoming a CETL partner" }, { id: "other", label: "Something else" }],
       context: "Organisational context", submit: "Send enquiry",
       sending: "Sending…",
       success: "Thank you! Your enquiry has reached us — we'll be in touch shortly.",

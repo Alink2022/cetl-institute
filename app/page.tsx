@@ -9,6 +9,7 @@ import { PageShell } from "@/components/redesign/PageShell";
 import { PortfolioTabs } from "@/components/redesign/PortfolioTabs";
 import { ContactForm } from "@/components/redesign/ContactForm";
 import { PubCard } from "@/components/thinktank/PubCard";
+import { nextWebinar, webinarWhen } from "@/lib/webinars";
 import { Icon, type IconName } from "@/components/ui/IconSprite";
 
 const ACADEMIC_LOGOS = [
@@ -363,6 +364,18 @@ export default function Home() {
           <p className="eyebrow">{rd.thinkTank.eyebrow}</p>
           <h2>{rd.thinkTank.title}</h2>
           <p className="lead" style={{ margin: "16px 0 3rem", maxWidth: "70ch" }}>{rd.thinkTank.lead}</p>
+          {(() => {
+            const wb = nextWebinar();
+            if (!wb) return null;
+            const wh = webinarWhen(wb, lang);
+            return (
+              <Link className="wb-strip" href={`/think-tank/webinare/${wb.slug}`}>
+                <span className="when">{wh.day}. {wh.month} · {wh.time.split("–")[0]}</span>
+                <span className="t"><b>{lang === "de" ? "Webinar" : "Webinar"}:</b> {wb.title}</span>
+                <span className="go">{lang === "de" ? "Details" : "Details"} →</span>
+              </Link>
+            );
+          })()}
           <div className="grid g3 swipe">
             {latest.map((pub) => <PubCard key={pub.slug} pub={pub} lang={lang} />)}
           </div>
