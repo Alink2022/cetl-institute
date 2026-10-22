@@ -953,3 +953,12 @@ h1, h2, h3, h4, h5, .font-display {
 }
 @media (max-width: 560px) { .rd .wb-person { grid-template-columns: 72px minmax(0, 1fr); gap: 16px; } .rd .wb-person img { width: 72px; height: 72px; } }
 @media (max-width: 560px) { .rd .wb-body .muted, .rd .wb-line span:nth-child(3) { display: none; } }
+
+/* Impressum im aktuellen Design */
+.rd .legal { padding: 9rem 0 6rem; border-top: 0; }
+.rd .legal h1 { font-size: clamp(2.2rem, 4.4vw, 3.2rem); }
+.rd .legal-row { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 10px 32px; padding: 24px 0; border-top: 1px solid var(--line); }
+.rd .legal-row:last-child { border-bottom: 1px solid var(--line); }
+.rd .legal-row .l { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; color: var(--brand-700); padding-top: 3px; }
+.rd .legal-row .v p { margin: 0 0 4px; }
+@media (max-width: 680px) { .rd .legal { padding: 7rem 0 4rem; } .rd .legal-row { grid-template-columns: 1fr; } }
