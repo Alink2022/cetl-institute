@@ -95,7 +95,6 @@ export const de: ContentBundle = {
         { name: "MedUni Wien", sub: "Akademischer Partner", logo: "/logos/academy/meduni.webp" },
         { name: "BFI Wien", sub: "Akademischer Partner", logo: "/logos/academy/bfi.png" },
         { name: "Lauder Business School", sub: "Akademischer Partner", logo: "/logos/academy/lauder.png" },
-        { name: "The Institute of Management Accountants", sub: "Akademischer Partner", logo: "/logos/academy/ima.jpg" },
       ],
     },
     {
