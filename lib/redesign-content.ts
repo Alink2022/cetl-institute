@@ -150,8 +150,8 @@ export const REDESIGN_DE: RedesignContent = {
   usp: {
     eyebrow: "Unser Ansatz",
     title: "KI ist kein Wettbewerbsvorteil mehr. Selbstbefähigte Umsetzung ist es.",
-    lead: "Technologien und Märkte drehen sich schneller denn je. Der Großteil der Unternehmen scheitert dabei nicht an der Technologie, sondern an Umsetzung, Skalierung und einem wirtschaftlich wertschaffenden Einsatz von KI: Weiterbildung bleibt oft Theorie, Beratung bleibt Projekt. Jedes Quartal ohne Umsetzung kostet Vorsprung. Unsere einzigartige Antwort ist Executional Learning: Es verbindet Wissenschaft, Industrieumsetzung und Community und baut Kompetenz auf, die Ihre Organisation nachhaltig transformiert und zukunftsfest macht.",
-    lead2: "Genau dort arbeitet das CETL Institute: mit maßgeschneiderten Programmen gemeinsam mit hochkarätigen akademischen Partnern, geliefert von einem Pool aus über 120 Industrieexpert:innen, Forscher:innen und Community-Expert:innen. Und wenn die zertifizierte Ausbildung endet, beginnt die eigentliche Arbeit: Der Executional Learning Pool begleitet Ihre Teams mit Mentoring und fachlicher Begleitung, bis die Umsetzung sitzt.",
+    lead: "Die Technik dreht sich schneller denn je, und die meisten Unternehmen scheitern nicht an ihr, sondern an der Umsetzung. Weiterbildung bleibt oft Theorie, Beratung bleibt Projekt. Jedes Quartal ohne Umsetzung kostet Vorsprung.",
+    lead2: "Executional Learning verbindet Wissenschaft, Industrie und Community: maßgeschneiderte Programme mit akademischen Partnern, geliefert von über 120 Expert:innen. Nach der zertifizierten Ausbildung begleiten wir Ihre Teams mit Mentoring, bis die Umsetzung sitzt.",
     hero: {
       tag: "Der CETL-Unterschied",
       title: "Executional Learning",
@@ -382,8 +382,8 @@ export const REDESIGN_EN: RedesignContent = {
   usp: {
     eyebrow: "Our approach",
     title: "AI is no longer a competitive advantage. Self-enabled execution is.",
-    lead: "Technologies and markets are moving faster than ever. Most companies fail not on the technology but on execution, scaling and an economically valuable use of AI: training too often stays theory, consulting stays a project. Every quarter without execution costs you ground. Our unique answer is Executional Learning: it combines science, industry execution and community, and builds capability that transforms your organisation for good and makes it future-ready.",
-    lead2: "That is exactly where CETL Institute works: with tailored programmes built together with leading academic partners and delivered by a pool of more than 120 industry experts, researchers and community experts. And when the certified training ends, the real work begins: the Executional Learning Pool accompanies your teams with mentoring and expert support until execution sticks.",
+    lead: "Technology moves faster than ever, and most companies fail not on the technology but on execution. Training stays theory, consulting stays a project. Every quarter without execution costs you ground.",
+    lead2: "Executional Learning connects science, industry and community: tailored programmes with academic partners, delivered by more than 120 experts. After the certified training, we accompany your teams with mentoring until execution sticks.",
     hero: {
       tag: "The CETL difference",
       title: "Executional Learning",
