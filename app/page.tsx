@@ -19,6 +19,7 @@ const ACADEMIC_LOGOS = [
   { src: "/logos/academy/bfi.png", alt: "BFI Wien" },
   { src: "/logos/academy/lauder.png", alt: "Lauder Business School" },
   { src: "/logos/academy/webster.webp", alt: "Webster University Vienna" },
+  { src: "/logos/academy/ima.jpg", alt: "Institute of Management Accountants" },
 ];
 const COMMUNITY_LOGOS = [
   { src: "/logos/community/stadtwien.svg", alt: "Stadt Wien" },

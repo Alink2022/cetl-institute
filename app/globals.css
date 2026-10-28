@@ -281,7 +281,7 @@ h1, h2, h3, h4, h5, .font-display {
 .rd .hero-wide { position: relative; width: min(1400px, calc(100% - 10rem)); margin: 0 auto; padding: 8rem 0; }
 .rd .hero h1 { margin: 0; line-height: 1.5; }
 .rd .hero .hl { background: var(--brand-600); color: #fff; border-radius: 0; padding: 0.1em 0.3em 0.16em; display: inline; white-space: nowrap; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
-.rd .hero-lead { font-size: var(--step--1); line-height: 1.8; letter-spacing: 0.01em; color: var(--ink-900); max-width: 86ch; margin: 2rem 0 0; }
+.rd .hero-lead { font-size: clamp(1.05rem, 1.55vw, 1.35rem); line-height: 1.6; letter-spacing: 0; color: var(--ink-900); max-width: 62ch; margin: 2rem 0 0; }
 .rd .hero .cta { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 2.5rem; }
 @media (max-width: 940px) { .rd .hero { min-height: 0; } .rd .hero-wide { padding: 5rem 0; width: calc(100% - 3rem); } .rd .hero h1 { font-size: clamp(1.953rem, 7vw, 2.441rem); } .rd .hero .hl { white-space: normal; } .rd .hero-scrim { background: linear-gradient(180deg, rgba(255,255,255,0.94) 0%, rgba(255,255,255,0.88) 60%, rgba(255,255,255,0.8) 100%); } }
 .rd .hero-badges { position: absolute; left: 50%; transform: translateX(-50%); bottom: 0; z-index: 2; display: flex; align-items: center; gap: 0.6rem; background: #fff; border: 1px solid var(--line); border-bottom: 0; border-radius: 16px 16px 0 0; padding: 0.5rem 2.25rem 1.1rem; }
