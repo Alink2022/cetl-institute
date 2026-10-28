@@ -67,11 +67,11 @@ export const TT_COPY: Record<Lang, TTCopy> = {
       hero: {
         eyebrow: "CETL Think Tank",
         h1: "Unabhängige Analysen zu KI, Daten und Tech Leadership",
-        sub: "Für Geschäftsführung, HR und Learning & Development. Herstellerneutral, evidenzbasiert und aus der Praxis von über 50 Lehrenden und 15 Hochschulpartnern im DACH-Raum.",
+        sub: "Für Geschäftsführung, HR und Learning & Development. Herstellerneutral, evidenzbasiert und aus der Praxis von über 120 Lehrenden und 15 Hochschulpartnern im DACH-Raum.",
         ctaRead: "Publikationen lesen",
         ctaServices: "Think Tank Services",
         stats: [
-          { value: "50+", label: "Lehrende aus der Praxis" },
+          { value: "120+", label: "Lehrende aus der Praxis" },
           { value: "15+", label: "Hochschulpartner im DACH-Raum" },
           { value: "5", label: "Forschungsfelder" },
           { value: "0", label: "Reseller- oder Plattformpartnerschaften" },
@@ -216,11 +216,11 @@ export const TT_COPY: Record<Lang, TTCopy> = {
       hero: {
         eyebrow: "CETL Think Tank",
         h1: "Independent analysis on AI, data and tech leadership",
-        sub: "For executive management, HR and Learning & Development. Vendor-neutral, evidence-based and drawn from the practice of more than 50 lecturers and 15 university partners across the DACH region.",
+        sub: "For executive management, HR and Learning & Development. Vendor-neutral, evidence-based and drawn from the practice of more than 120 lecturers and 15 university partners across the DACH region.",
         ctaRead: "Read publications",
         ctaServices: "Think Tank Services",
         stats: [
-          { value: "50+", label: "practitioners teaching" },
+          { value: "120+", label: "practitioners teaching" },
           { value: "15+", label: "university partners across DACH" },
           { value: "5", label: "research fields" },
           { value: "0", label: "reseller or platform partnerships" },

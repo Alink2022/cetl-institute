@@ -134,7 +134,7 @@ export const REDESIGN_DE: RedesignContent = {
     items: [
       { icon: "graduation-cap", strong: "Hochkarätige akademische Partner", span: "Universitäten und Hochschulen wie BOKU, Paracelsus Medizinische Universität, Webster University, BFI und Lauder Business School, ein Netzwerk aus über 15 im DACH-Raum." },
       { icon: "chats-circle", strong: "Community mit der Stadt Wien", span: "Central Europe Tech Hackathon als Flaggschiffformat." },
-      { icon: "briefcase", strong: "Über 50 Lehrende aus der Praxis", span: "Banking, Versicherung, Industrie, Aviation, öffentlicher Sektor." },
+      { icon: "briefcase", strong: "Über 120 Lehrende aus der Praxis", span: "Banking, Versicherung, Industrie, Aviation, öffentlicher Sektor." },
     ],
   },
   zahlen: {
@@ -142,7 +142,7 @@ export const REDESIGN_DE: RedesignContent = {
     title: "Was hinter CETL steht",
     stats: [
       { kpi: "20+", text: "Jahre branchenübergreifende Industrieerfahrung" },
-      { kpi: "50+", text: "Trainerinnen, Trainer und Lehrende im Pool" },
+      { kpi: "120+", text: "Trainerinnen, Trainer und Lehrende im Pool" },
       { kpi: "12+", text: "umgesetzte akademische Projekte" },
       { kpi: "18+", text: "Partnerorganisationen aus Hochschule, Industrie und Community" },
     ],
@@ -365,7 +365,7 @@ export const REDESIGN_EN: RedesignContent = {
     items: [
       { icon: "graduation-cap", strong: "Top-tier academic partners", span: "Universities and institutions such as BOKU, Paracelsus Medical University, Webster University, BFI and Lauder Business School, part of a network of more than 15 across the DACH region." },
       { icon: "chats-circle", strong: "Community with the City of Vienna", span: "Central Europe Tech Hackathon as our flagship format." },
-      { icon: "briefcase", strong: "More than 50 practitioners teaching", span: "Banking, insurance, industry, aviation, public sector." },
+      { icon: "briefcase", strong: "More than 120 practitioners teaching", span: "Banking, insurance, industry, aviation, public sector." },
     ],
   },
   zahlen: {
@@ -373,7 +373,7 @@ export const REDESIGN_EN: RedesignContent = {
     title: "What CETL is built on",
     stats: [
       { kpi: "20+", text: "years of cross-sector industry experience" },
-      { kpi: "50+", text: "trainers and lecturers in the pool" },
+      { kpi: "120+", text: "trainers and lecturers in the pool" },
       { kpi: "12+", text: "academic projects delivered" },
       { kpi: "18+", text: "partner organisations from academia, industry and community" },
     ],

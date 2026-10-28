@@ -907,7 +907,7 @@ export const de: ContentBundle = {
     { value: "20+", label: "Jahre Industrieerfahrung", sub: "Cross-business Industrieerfahrung" },
     { value: "ELaaS", label: "Executional Learning as a Service", sub: "Verbindung namhafter akademischer Partnerschaften, Industriezweige & Community für die umsetzungsorientierte Weiterbildung" },
     { value: "Eigene Community", label: "Flagship Community Format", sub: "\"Central Europe Tech Hackathon\" mit der Stadt Wien und zahlreichen Partnern" },
-    { value: "50+", label: "Trainer & Lektor:innen", sub: "Industrieübergreifender Trainer- & Lektorenpool" },
+    { value: "120+", label: "Trainer & Lektor:innen", sub: "Industrieübergreifender Trainer- & Lektorenpool" },
     { value: "12+", label: "Akademische Projekte", sub: "Umgesetzte akademische Projekte" },
     { value: "18+", label: "Partnerorganisationen", sub: "Akademische, Industrie- & Community-Partner" },
   ],
