@@ -149,9 +149,9 @@ export const REDESIGN_DE: RedesignContent = {
   },
   usp: {
     eyebrow: "Unser Ansatz",
-    title: "KI ist kein Wettbewerbsvorteil mehr. Selbstbefähigte Umsetzung ist es.",
-    lead: "Technologien und Märkte drehen sich schneller denn je. Der Großteil der Unternehmen **scheitert nicht an der Technologie, sondern an Umsetzung**, Skalierung und einem gezielten, wirtschaftlich wertschaffenden Einsatz von KI. Denn echte KI-Transformation findet an der Schnittstelle von Wissenschaft, Industrieumsetzung und Community statt.",
-    lead2: "**Genau dort arbeitet das CETL Institute, einzigartig am Markt: mit Executional Learning**, maßgeschneiderten Programmen gemeinsam mit Partnern wie der TU Wien, geliefert von **über 120 Expert:innen**. Nach der zertifizierten Ausbildung begleitet der Executional Learning Pool Ihre Teams mit Mentoring und fachlicher Begleitung, **bis die Umsetzung sitzt**.",
+    title: "KI ist kein Wettbewerbsvorteil mehr. Selbstbefähigte Umsetzung ist es!",
+    lead: "Der Großteil der Unternehmen **scheitert nicht an der Technologie, sondern an Umsetzung**, Skalierung und einem gezielten, wirtschaftlich wertschaffenden Einsatz von KI. Denn echte KI-Transformation findet an der Schnittstelle von Wissenschaft, Industrieumsetzung und Community statt.",
+    lead2: "**Genau dort arbeitet das CETL Institute, einzigartig am Markt: mit Executional Learning**, maßgeschneiderten Programmen gemeinsam mit akademischen Partnern wie der TU Wien, geliefert von **über 120 Expert:innen**. Und wenn die zertifizierte Ausbildung endet, **beginnt die eigentliche Arbeit**: Der Executional Learning Pool begleitet Ihre Teams mit Mentoring und fachlicher Begleitung, bis die Umsetzung erfolgreich ist.",
     hero: {
       tag: "Der CETL-Unterschied",
       title: "Executional Learning",
@@ -381,9 +381,9 @@ export const REDESIGN_EN: RedesignContent = {
   },
   usp: {
     eyebrow: "Our approach",
-    title: "AI is no longer a competitive advantage. Self-enabled execution is.",
-    lead: "Technologies and markets are moving faster than ever. Most companies **fail not because of the technology but because of execution**, scaling and a focused, economically valuable use of AI. Real AI transformation happens at the intersection of science, industry execution and community.",
-    lead2: "**That is exactly where CETL Institute works, unique in the market: with Executional Learning**, tailored programmes built together with partners such as TU Wien, delivered by **more than 120 experts**. After the certified training, the Executional Learning Pool accompanies your teams with mentoring and expert support **until execution sticks**.",
+    title: "AI is no longer a competitive advantage. Self-enabled execution is!",
+    lead: "Most companies **fail not because of the technology but because of execution**, scaling and a focused, economically valuable use of AI. Real AI transformation happens at the intersection of science, industry execution and community.",
+    lead2: "**That is exactly where CETL Institute works, unique in the market: with Executional Learning**, tailored programmes built together with academic partners such as TU Wien, delivered by **more than 120 experts**. And when the certified training ends, **the real work begins**: the Executional Learning Pool accompanies your teams with mentoring and expert support until execution succeeds.",
     hero: {
       tag: "The CETL difference",
       title: "Executional Learning",
