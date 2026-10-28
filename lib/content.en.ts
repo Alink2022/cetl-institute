@@ -440,7 +440,7 @@ export const en: ContentBundle = {
       title: "Academic Credibility",
       subtitle: "Founders' Networks & Academic Partners",
       copy: "Academic depth, curriculum quality, research access and collaboration potential through university, institute and founder networks.",
-      logoPlaceholders: ["TU Wien", "Lauder Business School"],
+      logoPlaceholders: ["TU Wien", "Institute of Management Accountants", "Lauder Business School"],
       outcome: "Content quality, applied rigor and innovation depth.",
     },
   ],
@@ -488,6 +488,7 @@ export const en: ContentBundle = {
         { name: "MedUni Vienna", sub: "Academic Partner", logo: "/logos/academy/meduni.webp" },
         { name: "BFI Vienna", sub: "Academic Partner", logo: "/logos/academy/bfi.png" },
         { name: "Lauder Business School", sub: "Academic Partner", logo: "/logos/academy/lauder.png" },
+        { name: "The Institute of Management Accountants", sub: "Academic Partner", logo: "/logos/academy/ima.jpg" },
       ],
     },
     {
@@ -660,7 +661,7 @@ export const en: ContentBundle = {
   ],
 
   INTERSECTION_CATEGORIES: [
-    { label: "Academic & Professional", partners: [{ name: "TU Wien", desc: "Technical University of Vienna" }, { name: "Lauder Business School", desc: "Business school" }] },
+    { label: "Academic & Professional", partners: [{ name: "TU Wien", desc: "Technical University of Vienna" }, { name: "Institute of Management Accountants", desc: "Professional institution" }, { name: "Lauder Business School", desc: "Business school" }] },
     { label: "Community & Public Ecosystem", partners: [{ name: "City of Vienna", desc: "Municipal partner" }, { name: "Vienna Business Agency", desc: "Innovation ecosystem" }, { name: "ÖBB", desc: "Rail infrastructure" }, { name: "AIT", desc: "Austrian Institute of Technology" }, { name: "Europe Tech Hackathon", desc: "Flagship community platform" }] },
     { label: "Corporate Access Network", partners: [{ name: "Raiffeisen Bank International", desc: "Banking" }, { name: "Erste Group", desc: "Financial services" }, { name: "OMV", desc: "Energy" }, { name: "Palfinger", desc: "Industrial" }, { name: "Specific-Group", desc: "Technology delivery" }] },
   ],
