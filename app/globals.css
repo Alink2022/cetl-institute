@@ -615,6 +615,8 @@ h1, h2, h3, h4, h5, .font-display {
 .rd .usp h2 { font-size: clamp(2rem, 4.2vw, 3.1rem); max-width: 24ch; }
 .rd .usp .lead { max-width: 68ch; margin: 1.5rem 0 0; }
 .rd .usp .lead2 { margin-top: 1rem; }
+.rd .usp .lead strong { color: #fff; font-weight: 600; }
+.rd .usp .lead2 strong:first-child { color: var(--brand-300); }
 @media (max-width: 680px) { .rd .usp h2 { font-size: 1.85rem; } .rd .usp .lead { font-size: 1.02rem; line-height: 1.6; } }
 .rd .vs2 { display: grid; grid-template-columns: 1.75fr 1fr; gap: 24px; margin-top: 3.5rem; align-items: stretch; }
 .rd .elc { position: relative; overflow: hidden; isolation: isolate; border-radius: 22px; padding: 44px; color: #fff; background: linear-gradient(150deg, var(--brand-600) 0%, var(--brand-700) 62%, #5a1128 100%); outline: 1px solid rgba(255, 255, 255, 0.22); outline-offset: -1px; }

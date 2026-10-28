@@ -12,6 +12,15 @@ import { PubCard } from "@/components/thinktank/PubCard";
 import { nextWebinar, webinarWhen } from "@/lib/webinars";
 import { Icon, type IconName } from "@/components/ui/IconSprite";
 
+// Fett markierte Passagen: **Text** im Copy-Text wird zu <strong>.
+function Rich({ text }: { text: string }) {
+  return (
+    <>
+      {text.split("**").map((part, i) => (i % 2 === 1 ? <strong key={i}>{part}</strong> : <Fragment key={i}>{part}</Fragment>))}
+    </>
+  );
+}
+
 const ACADEMIC_LOGOS = [
   { src: "/logos/academy/tuwien.webp", alt: "TU Wien" },
   { src: "/logos/academy/boku.png", alt: "BOKU Wien" },
@@ -113,8 +122,8 @@ export default function Home() {
         <div className="wrap">
           <p className="eyebrow">{rd.usp.eyebrow}</p>
           <h2>{rd.usp.title}</h2>
-          <p className="lead">{rd.usp.lead}</p>
-          <p className="lead lead2">{rd.usp.lead2}</p>
+          <p className="lead"><Rich text={rd.usp.lead} /></p>
+          <p className="lead lead2"><Rich text={rd.usp.lead2} /></p>
 
           <p className="vsrow" aria-hidden="true">
             <span className="a">{rd.usp.mobileTabs[0]}</span>
