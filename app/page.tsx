@@ -114,6 +114,7 @@ export default function Home() {
           <p className="eyebrow">{rd.usp.eyebrow}</p>
           <h2>{rd.usp.title}</h2>
           <p className="lead">{rd.usp.lead}</p>
+          <p className="lead lead2">{rd.usp.lead2}</p>
 
           <p className="vsrow" aria-hidden="true">
             <span className="a">{rd.usp.mobileTabs[0]}</span>
