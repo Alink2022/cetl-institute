@@ -688,9 +688,13 @@ h1, h2, h3, h4, h5, .font-display {
 .rd .eco .top .muted { margin-top: 8px; }
 .rd .eco .partners { margin-top: auto; padding: 22px 28px 28px; border-top: 1px solid var(--line); background: var(--surface); }
 .rd .eco .cap { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; color: var(--brand-700); margin: 0 0 16px; }
-.rd .eco .lg { display: flex; flex-wrap: wrap; gap: 18px 28px; align-items: center; justify-content: flex-start; }
-.rd .eco .lg img { height: 2.2rem; max-width: min(100%, 9.25rem); flex: none; object-fit: contain; object-position: left center; width: auto; object-fit: contain; mix-blend-mode: multiply; filter: grayscale(1); opacity: 0.75; transition: opacity 0.15s ease, filter 0.15s ease; }
-.rd .eco .lg img:hover { filter: none; opacity: 1; }
+.rd .eco .lg { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; align-content: start; min-height: calc(4 * 4rem + 3 * 10px); }
+.rd .eco .lt { display: flex; align-items: center; justify-content: center; height: 4rem; padding: 0 8px; background: #fff; border: 1px solid var(--line); border-radius: 12px; transition: border-color 0.15s ease; }
+.rd .eco .lt.wide { grid-column: 1 / -1; }
+.rd .eco .lt.wide img { max-height: 1.7rem; }
+.rd .eco .lt:hover { border-color: var(--brand-300); }
+.rd .eco .lt img { display: block; width: auto; height: auto; max-width: 100%; max-height: 2.35rem; flex: none; object-fit: contain; mix-blend-mode: multiply; filter: grayscale(1); opacity: 0.8; transition: opacity 0.15s ease, filter 0.15s ease; }
+.rd .eco .lt:hover img { filter: none; opacity: 1; }
 @media (max-width: 760px) { .rd .eco { grid-template-columns: 1fr; } }
 
 

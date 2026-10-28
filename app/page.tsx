@@ -21,7 +21,9 @@ function Rich({ text }: { text: string }) {
   );
 }
 
-const ACADEMIC_LOGOS = [
+type Logo = { src: string; alt: string; wide?: boolean };
+
+const ACADEMIC_LOGOS: Logo[] = [
   { src: "/logos/academy/tuwien.webp", alt: "TU Wien" },
   { src: "/logos/academy/boku.png", alt: "BOKU Wien" },
   { src: "/logos/academy/paracelsus.webp", alt: "Paracelsus Medizinische Universität" },
@@ -30,19 +32,19 @@ const ACADEMIC_LOGOS = [
   { src: "/logos/academy/webster.webp", alt: "Webster University Vienna" },
   { src: "/logos/academy/ima.jpg", alt: "Institute of Management Accountants" },
 ];
-const COMMUNITY_LOGOS = [
+const COMMUNITY_LOGOS: Logo[] = [
   { src: "/logos/community/stadtwien.svg", alt: "Stadt Wien" },
   { src: "/logos/community/waa.png", alt: "Vienna Business Agency" },
   { src: "/logos/community/edic.png", alt: "Europe Direct" },
   { src: "/logos/community/eit.jpg", alt: "EIT" },
   { src: "/logos/community/tec.png", alt: "Tech Execution Community" },
-  { src: "/logos/community/sustainista.png", alt: "Sustainista" },
+  { src: "/logos/community/sustainista.png", alt: "Sustainista", wide: true },
 ];
-const INDUSTRY_LOGOS = [
-  { src: "/logos/industry/siemens.webp", alt: "Siemens" },
+const INDUSTRY_LOGOS: Logo[] = [
+  { src: "/logos/industry/siemens.webp", alt: "Siemens", wide: true },
   { src: "/logos/industry/oebb.webp", alt: "ÖBB" },
   { src: "/logos/industry/raiffeisen.webp", alt: "Raiffeisen" },
-  { src: "/logos/industry/wienenergie.svg", alt: "Wien Energie" },
+  { src: "/logos/industry/wienenergie.svg", alt: "Wien Energie", wide: true },
   { src: "/logos/industry/caritasstbarbara.png", alt: "Caritas St. Barbara" },
   { src: "/logos/academy/oegig.png", alt: "ÖGIG" },
 ];
@@ -287,7 +289,7 @@ export default function Home() {
                 <div className="partners">
                   <p className="cap">{ecoCaptions[i]}</p>
                   <div className="lg">
-                    {ECO_LOGOS[i].map((l) => <img key={l.src} src={l.src} alt={l.alt} loading="lazy" />)}
+                    {ECO_LOGOS[i].map((l) => <span className={l.wide ? "lt wide" : "lt"} key={l.src}><img src={l.src} alt={l.alt} loading="lazy" /></span>)}
                   </div>
                 </div>
               </div>
