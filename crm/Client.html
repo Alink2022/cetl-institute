@@ -28,7 +28,7 @@ const SCON={rahmen:['Rahmenvertrag','ok'],angebot:['Angebot offen','interessent'
 
 let CFG={me:'',claude:false};
 let ORGS=[],PEOPLE=[],DEALS=[],ACT=[],MAILS=[],SPEAKERS=[],PRODUCTS=[],SUGG=[];
-let F={q:'',ind:'alle',kst:'alle',ph:'alle',rep:false,type:'alle',con:'alle',area:'alle',stat:'alle',prio:'alle',list:'alle'};
+let F={q:'',ind:'alle',kst:'alle',ph:'alle',rep:false,type:'alle',con:'alle',area:'alle',stat:'alle',prio:'alle',list:'alle',zak:'alle',zb2b:'alle'};
 let ROUTE='heute',LOADING=true;
 
 const $=s=>document.querySelector(s);
@@ -85,6 +85,9 @@ const PRIO_OPTS=O(['A','B','C']);
 /* g = Gruppe im Profil (1 Stammdaten, 2 Ausbildung und Expertise, 3 Wünsche zu Honorar und Verfügbarkeit, 4 Vertrag und Status), w = Spaltenbreite im Raster */
 const SF=[
   {k:'n',l:'Name',g:1,w:200,req:true},
+  {k:'zak',l:'Akademia',g:0,w:210},
+  {k:'zb2b',l:'B2B Kunden',g:0,w:210},
+  {k:'zcom',l:'Community Kunden',g:0,w:210},
   {k:'type',l:'Typ',g:1,w:90,o:O(['Lektor','Speaker','Beides'])},
   {k:'org',l:'Unternehmen',g:1,w:180},
   {k:'fn',l:'Rolle',g:1,w:180},
@@ -103,7 +106,6 @@ const SF=[
   {k:'bill',l:'Abrechnung',g:4,w:150,o:O(VOC.abrechnung)},
   {k:'pay',l:'Zahlungsart',g:4,w:190,o:O(VOC.zahlungsart)},
   {k:'wbill',l:'Wunsch Abrechnung',g:3,w:160,o:O(VOC.abrechnung)},
-  {k:'wrate',l:'Wunsch €',g:3,w:100,t:'num'},
   {k:'conf',l:'Kundenkonflikt',g:3,w:240,long:true},
   {k:'avail',l:'Verfügbarkeit',g:3,w:240,long:true},
   {k:'prio',l:'Prio',g:4,w:90},
@@ -120,7 +122,13 @@ const SF=[
   {k:'via',l:'Abrechnung über',g:3,o:VIA_OPTS},{k:'uid',l:'UID-Nummer',g:3},{k:'side',l:'Nebentätigkeit, Freigabe',g:3,o:SIDE_OPTS},{k:'deliv',l:'Einsatzformate',g:3},
   {k:'since',l:'Vertrag: seit, bis, Hinweis',g:4},{k:'proof',l:'Lehr-Nachweis',g:4},{k:'recv',l:'Eingegangen am',g:4}
 ];
-const SPMAP=[['n','name'],['br','branche'],['org','unternehmen'],['main','hauptfach'],['skills','fachgebiete'],['topics','themen'],['l','sprachen'],['rate','honorar','num'],['bill','abrechnung'],['pay','zahlungsart'],['v','status'],['em','email'],['tel','telefon'],['note','anmerkungen'],['type','typ'],['fn','funktion'],['con','vertrag'],['since','vertrag_info'],['list','liste'],['city','stadt'],['prio','prioritaet'],['conf','konflikt'],['proof','nachweis'],['li','linkedin'],['web','website'],['next','naechster_schritt'],['src','quellen'],['checked','geprueft'],['model','modell'],['cid','kontakt_id'],['fname','vorname'],['lname','nachname'],['ttl','titel'],['sal','anrede'],['birth','geburtsdatum'],['edu','ausbildung'],['school','bildungsstaette'],['study','studienrichtung'],['certs','zertifizierungen'],['tools','toolstack'],['exp','erfahrung'],['teach','lehrerfahrung'],['refs','referenzen'],['bio','kurzbio'],['wbill','wunsch_abrechnung'],['wrate','wunsch_honorar','num'],['via','abrechnung_ueber'],['uid','uid'],['side','nebentaetigkeit'],['deliv','einsatzformat'],['avail','verfuegbarkeit'],['origin','erfassung'],['recv','eingang_am']];
+const ZU_AK=['BFI - KI Generalist','BFI - PBI','BFI - Crashkurs','IMH - Data','TU - ACE AI Literacy'];
+const ZU_B2B=['RLB OÖ','ÖGIG','VOLKSWAGEN VERSICHERUNGSDIENST','Verlagsgruppe News'];
+function zuCol(k,label,opts){
+  const sel=opts?'<select data-zu="'+k+'" aria-label="'+label+' hinzufügen"><option value="">+ Auswahl</option>'+opts.map(o=>'<option>'+esc(o)+'</option>').join('')+'</select>':'';
+  return '<div class="zu-col"><label for="f-sf-'+k+'">'+label+'</label>'+sel+'<input type="text" id="f-sf-'+k+'" data-zuin="'+k+'" placeholder="'+(opts?'oder Freitext, mit Komma getrennt':'Freitext, mit Komma getrennt')+'"></div>';
+}
+const SPMAP=[['n','name'],['br','branche'],['org','unternehmen'],['main','hauptfach'],['skills','fachgebiete'],['topics','themen'],['l','sprachen'],['rate','honorar','num'],['bill','abrechnung'],['pay','zahlungsart'],['v','status'],['em','email'],['tel','telefon'],['note','anmerkungen'],['type','typ'],['fn','funktion'],['con','vertrag'],['since','vertrag_info'],['list','liste'],['city','stadt'],['prio','prioritaet'],['conf','konflikt'],['proof','nachweis'],['li','linkedin'],['web','website'],['next','naechster_schritt'],['src','quellen'],['checked','geprueft'],['model','modell'],['cid','kontakt_id'],['fname','vorname'],['lname','nachname'],['ttl','titel'],['sal','anrede'],['birth','geburtsdatum'],['edu','ausbildung'],['school','bildungsstaette'],['study','studienrichtung'],['certs','zertifizierungen'],['tools','toolstack'],['exp','erfahrung'],['teach','lehrerfahrung'],['refs','referenzen'],['bio','kurzbio'],['wbill','wunsch_abrechnung'],['via','abrechnung_ueber'],['uid','uid'],['side','nebentaetigkeit'],['deliv','einsatzformat'],['avail','verfuegbarkeit'],['zak','zu_akademia'],['zb2b','zu_b2b'],['zcom','zu_community'],['origin','erfassung'],['recv','eingang_am']];
 const nSp=r=>{const o={id:String(r.id)};SPMAP.forEach(([c,s,t])=>{const v=r[s];o[c]=t==='num'?(v===''||v==null?null:+v):(v==null?'':String(v))});if(!o.type)o.type='Lektor';if(!o.con)o.con='keiner';o.for=split(r.produkte);o.sess=String(r.einsaetze||'').split('|').map(x=>x.trim()).filter(Boolean);return o};
 const dSp=s=>{const r={id:s.id};SPMAP.forEach(([c,k,t])=>{r[k]=t==='num'?(s[c]==null?'':s[c]):(s[c]==null?'':s[c])});r.produkte=(s.for||[]).join(';');r.einsaetze=(s.sess||[]).join('|');return r};
 
@@ -272,7 +280,7 @@ function cellHtml(s,f){
 function sortVal(s,k){const f=SF.find(x=>x.k===k);const v=s[k];if(f&&f.t==='num')return v==null?-Infinity:v;return String(v==null?'':v).toLowerCase()}
 function vLektoren(){
   const q=F.q.toLowerCase();
-  let l=SPEAKERS.filter(s=>(F.prio==='alle'||String(s.prio||'').charAt(0)===F.prio)&&(F.list==='alle'||s.list===F.list)&&(F.type==='alle'||s.type===F.type)&&(F.con==='alle'||s.con===F.con)&&(F.area==='alle'||s.main===F.area)&&(F.stat==='alle'||s.v===F.stat)&&SF.map(f=>s[f.k]).join(' ').toLowerCase().includes(q));
+  let l=SPEAKERS.filter(s=>(F.zak==='alle'||String(s.zak||'').toLowerCase().includes(F.zak.toLowerCase()))&&(F.zb2b==='alle'||String(s.zb2b||'').toLowerCase().includes(F.zb2b.toLowerCase()))&&(F.prio==='alle'||String(s.prio||'').charAt(0)===F.prio)&&(F.list==='alle'||s.list===F.list)&&(F.type==='alle'||s.type===F.type)&&(F.con==='alle'||s.con===F.con)&&(F.area==='alle'||s.main===F.area)&&(F.stat==='alle'||s.v===F.stat)&&SF.map(f=>s[f.k]).join(' ').toLowerCase().includes(q));
   const k=XL.sort.k,d=XL.sort.dir;
   l=[...l].sort((a,b)=>{const x=sortVal(a,k),y=sortVal(b,k);return (x<y?-1:x>y?1:0)*d});
   const hourly=SPEAKERS.filter(s=>s.rate&&(!s.bill||s.bill==='Stundensatz'));const avg=hourly.length?Math.round(hourly.reduce((a,s)=>a+s.rate,0)/hourly.length):0;
@@ -285,7 +293,7 @@ function vLektoren(){
   const menu=XL.menu?`<div class="colmenu">${SF.filter(f=>f.w).map(f=>`<label><input type="checkbox" data-colk="${f.k}" ${XL.hidden.includes(f.k)?'':'checked'}> ${esc(f.l)}</label>`).join('')}</div>`:'';
   if(!SPEAKERS.length)return head('Pool','Speaker und Lektoren','',btns)+emptyCard('Noch keine Profile. Importieren Sie die vorbereitete Liste, lassen Sie Lektor:innen das Onboarding-Formular ausfüllen oder legen Sie ein Profil von Hand an.',`<button class="btn" data-seedlek>Lektoren-Liste importieren</button><button class="btn ghost" data-new="speaker">Profil von Hand anlegen</button>`);
   return head('Pool','Speaker und Lektoren',`${SPEAKERS.length} Profile · ${act} mit Rahmenvertrag · ${free} verfügbar${avg?' · Ø Stundensatz '+avg+' €':''}${self?' · '+self+' per Selbstauskunft':''}`,btns)+menu+
-  `<div class="tools"><input type="search" id="q" placeholder="Suchen in allen Feldern" value="${esc(F.q)}" aria-label="Suchen">${sel('sel-area',F.area,'Alle Fachgebiete',VOC.hauptfach)}${sel('sel-stat',F.stat,'Jeder Status',VOC.status)}${sel('sel-prio',F.prio,'Jede Prio',['A','B','C'])}${selKv('sel-type',F.type,'Alle Typen',O(['Lektor','Speaker','Beides']))}${selKv('sel-con',F.con,'Jeder Vertrag',CON_OPTS)}${sel('sel-list',F.list,'Alle Listen',lists)}<span class="muted small" style="align-self:center">${l.length} von ${SPEAKERS.length} · Zelle anklicken zum Bearbeiten</span></div>`+
+  `<div class="tools"><input type="search" id="q" placeholder="Suchen in allen Feldern" value="${esc(F.q)}" aria-label="Suchen">${sel('sel-area',F.area,'Alle Fachgebiete',VOC.hauptfach)}${sel('sel-stat',F.stat,'Jeder Status',VOC.status)}${sel('sel-prio',F.prio,'Jede Prio',['A','B','C'])}${selKv('sel-type',F.type,'Alle Typen',O(['Lektor','Speaker','Beides']))}${selKv('sel-con',F.con,'Jeder Vertrag',CON_OPTS)}${sel('sel-list',F.list,'Alle Listen',lists)}${sel('sel-zak',F.zak,'Alle Akademia-Programme',ZU_AK)}${sel('sel-zb2b',F.zb2b,'Alle B2B Kunden',ZU_B2B)}<span class="muted small" style="align-self:center">${l.length} von ${SPEAKERS.length} · Zelle anklicken zum Bearbeiten</span></div>`+
   `<div class="xlwrap"><table class="xl"><colgroup><col style="width:42px">${cols.map(c=>`<col style="width:${c.w}px">`).join('')}</colgroup><thead><tr><th class="c0">↗</th>${cols.map((c,i)=>`<th class="${i===0?'c1':''}" data-sort="${c.k}" title="Sortieren">${esc(c.l)}${k===c.k?(d>0?' ▲':' ▼'):''}</th>`).join('')}</tr></thead><tbody>${l.map(s=>`<tr data-id="${s.id}"><td class="c0"><button class="xo" data-xopen="${s.id}" title="Profil öffnen" aria-label="Profil von ${esc(s.n)} öffnen">↗</button></td>${cols.map((c,i)=>`<td class="${i===0?'c1':''}${c.t==='num'?' num':''}" data-k="${c.k}" title="${esc(s[c.k]==null?'':s[c.k])}">${cellHtml(s,c)}</td>`).join('')}</tr>`).join('')||`<tr><td colspan="${cols.length+1}" class="empty">Keine Treffer.</td></tr>`}</tbody></table></div>`;
 }
 
@@ -424,6 +432,7 @@ function openSpeaker(id){
   const s=SPDRAFT||(id?JSON.parse(JSON.stringify(SPEAKERS.find(x=>x.id===id))):{id:'',type:'Lektor',con:'keiner',for:[],sess:[],list:'Eigene Eingabe',origin:'Manuell'});
   SPDRAFT=s;
   let html=`<button class="x" data-close>Schließen</button><div class="eyebrow">${s.id?esc(s.type||'Profil'):'Neu'}</div><h2>${esc(s.n)||'Neues Profil'}</h2>`;
+  html+=`<div class="zu"><div class="zu-h"><b>Interne Zuordnung</b><span>nur im CRM sichtbar</span></div><div class="zu-grid">${zuCol('zak','Akademia',ZU_AK)}${zuCol('zb2b','B2B Kunden',ZU_B2B)}${zuCol('zcom','Community Kunden',null)}</div></div>`;
   [1,2,3,4].forEach(g=>{
     const fs=SF.filter(f=>f.g===g);
     html+=`<div class="fld"><span class="l" style="margin-top:14px;color:var(--brand-d)">${SGROUPS[g]}</span></div>`;
@@ -436,6 +445,7 @@ function openSpeaker(id){
   });
   html+=`<div class="btns"><button class="btn" data-spsave>Speichern</button><button class="btn ghost" data-close>Abbrechen</button>${s.id?delBtn('speaker',s.id):''}</div>`;
   $('#sheet').innerHTML=html;
+  ['zak','zb2b','zcom'].forEach(k=>{const e=document.getElementById('f-sf-'+k);if(e)e.value=s[k]||''});
   $('#scrim').hidden=false;
 }
 function readSp(){
@@ -455,7 +465,7 @@ async function saveSp(){
 const AI={msgs:[],busy:false};
 const AI_HINTS=['Max Mustermann: E-Mail …, Telefon …, bitte updaten','Neues Profil: Name, Unternehmen, Rolle, Fachexpertise …','Alle mit Prio A auf Status Angefragt setzen'];
 const FIELD_LABEL=(()=>{const m={};SF.forEach(f=>{m[f.k]=f.l});return m})();
-const SERVER_LABEL={name:'Name',email:'E-Mail',telefon:'Telefon',unternehmen:'Unternehmen',funktion:'Rolle',stadt:'Wohnort',linkedin:'LinkedIn',website:'Website',hauptfach:'Hauptfach',fachgebiete:'Fachexpertise',toolstack:'Toolstack',sprachen:'Sprachen',honorar:'Honorar',abrechnung:'Abrechnung',zahlungsart:'Zahlungsart',status:'Status',vertrag:'Vertrag',anmerkungen:'Anmerkungen',prioritaet:'Prio',naechster_schritt:'Nächster Schritt',konflikt:'Kundenkonflikt',verfuegbarkeit:'Verfügbarkeit',ausbildung:'Ausbildung',bildungsstaette:'Bildungsstätte',branche:'Branche',typ:'Typ',themen:'Themen',kurzbio:'Kurzprofil',wunsch_honorar:'Wunsch €',wunsch_abrechnung:'Wunsch Abrechnung'};
+const SERVER_LABEL={name:'Name',email:'E-Mail',telefon:'Telefon',unternehmen:'Unternehmen',funktion:'Rolle',stadt:'Wohnort',linkedin:'LinkedIn',website:'Website',hauptfach:'Hauptfach',fachgebiete:'Fachexpertise',toolstack:'Toolstack',sprachen:'Sprachen',honorar:'Honorar',abrechnung:'Abrechnung',zahlungsart:'Zahlungsart',status:'Status',vertrag:'Vertrag',anmerkungen:'Anmerkungen',prioritaet:'Prio',naechster_schritt:'Nächster Schritt',konflikt:'Kundenkonflikt',verfuegbarkeit:'Verfügbarkeit',ausbildung:'Ausbildung',bildungsstaette:'Bildungsstätte',branche:'Branche',typ:'Typ',themen:'Themen',kurzbio:'Kurzprofil',wunsch_abrechnung:'Wunsch Abrechnung',zu_akademia:'Akademia',zu_b2b:'B2B Kunden',zu_community:'Community Kunden'};
 function renderAi(){
   const body=$('#ai-body');if(!body)return;
   if(!CFG.claude){
@@ -584,6 +594,9 @@ document.addEventListener('change',e=>{
   else if(e.target.id==='sel-prio'){F.prio=e.target.value;rerender()}
   else if(e.target.id==='sel-type'){F.type=e.target.value;rerender()}
   else if(e.target.id==='sel-con'){F.con=e.target.value;rerender()}
+  else if(e.target.id==='sel-zak'){F.zak=e.target.value;rerender()}
+  else if(e.target.id==='sel-zb2b'){F.zb2b=e.target.value;rerender()}
+  else if(e.target.dataset&&e.target.dataset.zu){const k=e.target.dataset.zu,v=e.target.value;if(v){const inp=document.getElementById('f-sf-'+k);const cur=inp.value.split(',').map(x=>x.trim()).filter(Boolean);if(!cur.some(x=>x.toLowerCase()===v.toLowerCase()))cur.push(v);inp.value=cur.join(', ');e.target.value=''}}
   else if(e.target.id==='sel-list'){F.list=e.target.value;rerender()}
   else if(e.target.id==='f-status')toggleFor();
   else if(e.target.dataset&&e.target.dataset.prodsel){const[oid,pid,kind]=e.target.dataset.prodsel.split('|');const o=org(oid),p=per(pid);const q=queue().find(x=>x.o.id===oid);$('#d-body').innerText=draftText(o,p,kind,prod(e.target.value),q?q.reason:o.sum)}

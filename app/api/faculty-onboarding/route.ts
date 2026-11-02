@@ -38,7 +38,7 @@ function over(map: Map<string, number[]>, key: string, limit: number, windowMs: 
 const FIELDS = [
   "role", "salutation", "title", "first", "last", "company", "position", "email", "phone", "city", "linkedin", "website", "languages", "bio",
   "education", "school", "field", "certs", "expertise", "tools", "years", "teaching", "topics", "refs",
-  "billing", "rate", "via", "uid", "sideJob", "delivery", "availability", "conflict",
+  "billing", "via", "uid", "sideJob", "delivery", "availability", "conflict",
 ] as const;
 const LONG = new Set(["bio", "expertise", "tools", "certs", "topics", "refs", "availability", "conflict"]);
 const EMAIL_RE = /^[A-Za-z0-9._%+'-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}$/;
@@ -99,7 +99,7 @@ export async function POST(request: Request) {
     `Ausbildung: ${data.education}${data.school ? ", " + data.school : ""}`,
     `Fachexpertise: ${data.expertise || "—"}`,
     `Toolstack: ${data.tools || "—"}`,
-    `Abrechnung: ${data.billing}${data.rate ? ", " + data.rate + " Euro netto" : ""}`,
+    `Abrechnung: ${data.billing}`,
     `Kundenkonflikte: ${data.conflict || "—"}`,
     ``,
     `Maschinenlesbar für das CRM (nicht ändern):`,

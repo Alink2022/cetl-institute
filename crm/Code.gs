@@ -17,7 +17,7 @@ const SCHEMA = {
   // Speaker entspricht der bisherigen Excel-Liste (Spalten B bis N), dazu CRM-Felder ab 'typ'
   Speaker: ['id','name','branche','unternehmen','hauptfach','fachgebiete','themen','sprachen','honorar','abrechnung','zahlungsart','status','email','telefon','anmerkungen','typ','funktion','vertrag','vertrag_info','produkte','einsaetze','liste','stadt','prioritaet','konflikt','nachweis','linkedin','website','naechster_schritt','quellen','geprueft','modell','kontakt_id',
            'vorname','nachname','titel','anrede','geburtsdatum','ausbildung','bildungsstaette','studienrichtung','zertifizierungen','toolstack','erfahrung','lehrerfahrung','referenzen','kurzbio',
-           'wunsch_abrechnung','wunsch_honorar','abrechnung_ueber','uid','nebentaetigkeit','einsatzformat','verfuegbarkeit','erfassung','eingang_am'],
+           'wunsch_abrechnung','wunsch_honorar','abrechnung_ueber','uid','nebentaetigkeit','einsatzformat','verfuegbarkeit','erfassung','eingang_am','zu_akademia','zu_b2b','zu_community'],
   Produkte: ['id','gruppe','name','beschreibung'],
   Vorschlaege: ['id','name','branche','rolle','grund','quelle','produkt','passung']
 };
@@ -260,7 +260,7 @@ function upsertFaculty_(d) {
   put('ausbildung', d.education); put('bildungsstaette', d.school); put('studienrichtung', d.field); put('zertifizierungen', d.certs);
   put('fachgebiete', d.expertise); put('toolstack', d.tools); put('erfahrung', d.years); put('lehrerfahrung', d.teaching);
   put('themen', d.topics); put('referenzen', d.refs);
-  put('wunsch_abrechnung', d.billing); put('wunsch_honorar', d.rate === '' ? '' : Number(d.rate) || ''); put('abrechnung_ueber', d.via);
+  put('wunsch_abrechnung', d.billing); put('abrechnung_ueber', d.via);
   put('uid', d.uid); put('nebentaetigkeit', d.sideJob); put('einsatzformat', d.delivery); put('verfuegbarkeit', d.availability); put('konflikt', d.conflict);
   if (!ex) put('typ', d.role);
   row.eingang_am = today_();

@@ -117,3 +117,14 @@ a.tr:hover,button.tr:hover{background:var(--soft)}
 .ai-form textarea{flex:1;border-radius:12px;min-height:46px;resize:none}
 .hbtn .btn{white-space:nowrap}
 @media (max-width:900px){.xlwrap{max-height:none}}
+
+/* Interne Zuordnung ganz oben im Profil */
+.zu{margin:6px 0 4px;padding:16px 18px 6px;border:1px solid var(--line);border-radius:14px;background:var(--soft)}
+.zu-h{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:12px}
+.zu-h b{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--brand-d)}
+.zu-h span{font-size:.78rem;color:var(--ink2)}
+.zu-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 14px}
+.zu-col{display:grid;gap:6px;align-content:start;margin-bottom:12px}
+.zu-col label{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2)}
+.zu-col select,.zu-col input{width:100%;font:inherit;font-size:.86rem;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+@media (max-width:760px){.zu-grid{grid-template-columns:minmax(0,1fr)}}
