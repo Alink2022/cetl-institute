@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState, type FormEvent, type ReactNode } from "react";
+import { useEffect, useMemo, useRef, useState, type FormEvent, type ReactNode } from "react";
 import { useLanguage } from "@/lib/i18n";
 import {
   BILLING, BILLING_VIA, CERTIFICATIONS, COPY, DELIVERY, EDUCATION, EXPERIENCE_YEARS, EXPERTISE, FACULTY_ROLES, LANGUAGES, SALUTATIONS, SIDE_JOB, TEACHING_EXPERIENCE, TOOLS,
@@ -43,13 +43,30 @@ export function FacultyForm() {
   const { lang } = useLanguage();
   const c = COPY[lang];
   const [f, setF] = useState({
-    role: "Lektor", salutation: "", title: "", first: "", last: "", company: "", position: "", email: "", phone: "", city: "", linkedin: "", website: "", birth: "", languages: "", bio: "",
+    role: "Lektor", salutation: "", title: "", first: "", last: "", company: "", position: "", email: "", phone: "", city: "", linkedin: "", website: "", languages: "", bio: "",
     education: "", school: "", field: "", certs: "", expertise: "", tools: "", years: "", teaching: "", topics: "", refs: "",
     billing: "", rate: "", via: "", uid: "", sideJob: "", delivery: "", availability: "", conflict: "", consent: false, hp: "",
   });
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [error, setError] = useState("");
   const [tk, setTk] = useState("");
+  const formRef = useRef<HTMLFormElement>(null);
+  const [captcha, setCaptcha] = useState<"idle" | "verifying" | "verified" | "error">("idle");
+  // Spamschutz (ALTCHA) erst im Browser laden, er braucht Web Components.
+  useEffect(() => {
+    let alive = true;
+    (async () => {
+      await import("altcha");
+      await import("altcha/i18n/de").catch(() => undefined);
+      if (!alive) return;
+      const w = formRef.current?.querySelector("altcha-widget");
+      w?.addEventListener("statechange", (ev) => {
+        const st = (ev as CustomEvent<{ state: string }>).detail?.state;
+        setCaptcha(st === "verified" ? "verified" : st === "verifying" ? "verifying" : st === "error" || st === "expired" ? "error" : "idle");
+      });
+    })();
+    return () => { alive = false; };
+  }, []);
   useEffect(() => {
     fetch("/api/faculty-onboarding", { cache: "no-store" }).then((r) => r.json()).then((d) => setTk(d.tk || "")).catch(() => setTk(""));
   }, []);
@@ -66,9 +83,11 @@ export function FacultyForm() {
     if (!f.first.trim() || !f.last.trim() || !f.company.trim() || !f.position.trim() || !f.email.trim() || !f.education || !f.billing) { setError(c.errors.fields); return; }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email.trim())) { setError(c.errors.email); return; }
     if (!f.consent) { setError(c.errors.consent); return; }
+    const altcha = String((formRef.current?.querySelector('input[name="altcha"]') as HTMLInputElement | null)?.value || "");
+    if (!altcha) { setError(c.errors.captcha); return; }
     setStatus("sending");
     try {
-      const res = await fetch("/api/faculty-onboarding", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...f, lang, tk }) });
+      const res = await fetch("/api/faculty-onboarding", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...f, lang, tk, altcha }) });
       if (!res.ok) throw new Error("failed");
       setStatus("sent");
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -88,7 +107,7 @@ export function FacultyForm() {
   }
 
   return (
-    <form className="fc-form" onSubmit={submit} noValidate>
+    <form className="fc-form" ref={formRef} onSubmit={submit} noValidate>
       <nav className="fc-steps" aria-label="Schritte">
         {c.steps.map((s, i) => <a key={s} href={`#fc-${i + 1}`}><b>{i + 1}</b> {s}</a>)}
       </nav>
@@ -110,7 +129,6 @@ export function FacultyForm() {
           <Field label={c.s1.email} required><input type="email" autoComplete="email" {...text("email")} /></Field>
           <Field label={c.s1.phone}><input type="tel" autoComplete="tel" {...text("phone")} /></Field>
           <Field label={c.s1.city}><input type="text" {...text("city")} /></Field>
-          <Field label={c.s1.birth} hint={c.s1.birthHint}><input type="date" {...text("birth")} /></Field>
           <Field label={c.s1.linkedin}><input type="url" placeholder="https://www.linkedin.com/in/…" {...text("linkedin")} /></Field>
           <Field label={c.s1.website}><input type="url" placeholder="https://" {...text("website")} /></Field>
         </div>
@@ -197,6 +215,9 @@ export function FacultyForm() {
         </label>
         {/* Honeypot gegen Bots: für Menschen unsichtbar */}
         <input type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" className="fc-hp" value={f.hp} onChange={(e) => set("hp")(e.target.value)} />
+        <div className="fc-captcha" data-state={captcha}>
+          <altcha-widget challenge="/api/altcha" auto="onfocus" language={lang === "de" ? "de" : "en"} name="altcha" type="checkbox"></altcha-widget>
+        </div>
         {error && <p role="alert" className="fc-error">{error}</p>}
         <button className="btn btn-primary" type="submit" disabled={status === "sending"}>{status === "sending" ? c.sending : c.submit}</button>
       </div>

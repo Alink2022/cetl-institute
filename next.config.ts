@@ -7,6 +7,7 @@ const CSP = [
   "font-src 'self' https://fonts.gstatic.com",
   "img-src 'self' data: blob:",
   "connect-src 'self' https://vitals.vercel-insights.com https://vercel.live https://va.vercel-scripts.com",
+  "worker-src 'self' blob:",
   "frame-ancestors 'none'",
   "base-uri 'self'",
   "form-action 'self' mailto:",

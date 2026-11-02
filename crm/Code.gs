@@ -256,7 +256,7 @@ function upsertFaculty_(d) {
   };
   put('name', full); put('vorname', d.first); put('nachname', d.last); put('titel', d.title); put('anrede', d.salutation);
   put('unternehmen', d.company); put('funktion', d.position); put('email', d.email); put('telefon', d.phone); put('stadt', d.city);
-  put('linkedin', d.linkedin); put('website', d.website); put('geburtsdatum', d.birth); put('sprachen', d.languages); put('kurzbio', d.bio);
+  put('linkedin', d.linkedin); put('website', d.website); put('sprachen', d.languages); put('kurzbio', d.bio);
   put('ausbildung', d.education); put('bildungsstaette', d.school); put('studienrichtung', d.field); put('zertifizierungen', d.certs);
   put('fachgebiete', d.expertise); put('toolstack', d.tools); put('erfahrung', d.years); put('lehrerfahrung', d.teaching);
   put('themen', d.topics); put('referenzen', d.refs);

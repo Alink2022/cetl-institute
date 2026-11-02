@@ -1012,3 +1012,5 @@ h1, h2, h3, h4, h5, .font-display {
   .rd .fc-grid { grid-template-columns: 1fr; }
   .rd .fc-wrap { padding: 2.5rem 0 4rem; }
 }
+
+.rd .fc-captcha { margin: 22px 0 8px; max-width: 360px; --altcha-color-active: var(--brand-600); --altcha-color-border: var(--line); --altcha-border-radius: 12px; font-family: var(--sans); }

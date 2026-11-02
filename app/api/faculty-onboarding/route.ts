@@ -1,6 +1,8 @@
 import { createHmac, timingSafeEqual } from "crypto";
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import { altchaSecret, altchaStore, deriveKey } from "@/lib/altcha";
+import { verify } from "altcha-lib/frameworks/shared";
 
 const TO_ADDRESS = "alinkalam@cetl.institute";
 const FROM_ADDRESS = "CETL Faculty <onboarding@resend.dev>";
@@ -34,7 +36,7 @@ function over(map: Map<string, number[]>, key: string, limit: number, windowMs: 
 }
 
 const FIELDS = [
-  "role", "salutation", "title", "first", "last", "company", "position", "email", "phone", "city", "linkedin", "website", "birth", "languages", "bio",
+  "role", "salutation", "title", "first", "last", "company", "position", "email", "phone", "city", "linkedin", "website", "languages", "bio",
   "education", "school", "field", "certs", "expertise", "tools", "years", "teaching", "topics", "refs",
   "billing", "rate", "via", "uid", "sideJob", "delivery", "availability", "conflict",
 ] as const;
@@ -67,6 +69,9 @@ export async function POST(request: Request) {
   // Honeypot: Bots füllen das versteckte Feld aus, wir tun so, als wäre alles gut.
   if (typeof body.hp === "string" && body.hp.trim()) return NextResponse.json({ ok: true });
   if (!validToken(body.tk)) return NextResponse.json({ error: "invalid_token" }, { status: 400 });
+  // Spamschutz (ALTCHA): gültige, frische und noch nicht benutzte Lösung nötig.
+  const captcha = await verify(body.altcha, deriveKey, altchaSecret, undefined, altchaStore);
+  if (captcha.error || !captcha.verification?.verified) return NextResponse.json({ error: "captcha_failed" }, { status: 400 });
 
   // Steuerzeichen und die Marker des CRM-Imports aus allen Feldern entfernen.
   const strip = (s: string) => s.replace(/<<<|>>>|CETL-FACULTY-JSON/g, "").replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, "");

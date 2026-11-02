@@ -100,7 +100,7 @@ export const COPY = {
     steps: ["Stammdaten", "Ausbildung und Fachexpertise", "Honorar und Verfügbarkeit"],
     s1: {
       role: "Ich möchte mitwirken als", salutation: "Anrede", title: "Titel", first: "Vorname", last: "Nachname", company: "Unternehmen", position: "Rolle im Unternehmen",
-      email: "E-Mail", phone: "Telefon", city: "Wohnort und Land", linkedin: "LinkedIn-Profil", website: "Website", birth: "Geburtsdatum", birthHint: "freiwillig",
+      email: "E-Mail", phone: "Telefon", city: "Wohnort und Land", linkedin: "LinkedIn-Profil", website: "Website",
       languages: "Sprachen, in denen Sie unterrichten", languagesMore: "Weitere Sprachen", bio: "Kurzprofil", bioHint: "Zwei bis vier Sätze, die wir in Programmunterlagen verwenden dürfen.",
     },
     s2: {
@@ -122,10 +122,11 @@ export const COPY = {
       "Verantwortlich ist die CETL Institute GmbH, Wipplinger Straße 4/2. OG, 1010 Wien, alinkalam@cetl.institute.",
       "Wir verarbeiten Ihre Angaben, um Sie für Lehr- und Speaker-Einsätze zu planen und Ihnen Anfragen zu senden. Rechtsgrundlage ist Ihre Einwilligung (Art. 6 Abs. 1 lit. a DSGVO) beziehungsweise die Anbahnung eines Vertrags.",
       "Die Daten liegen in einem Google-Workspace-Konto der CETL Institute GmbH und werden nicht an Dritte verkauft. Wir geben sie nur an Kundenorganisationen weiter, wenn Sie vorab zugestimmt haben.",
+      "Der Spamschutz (ALTCHA) läuft auf unserer eigenen Seite. Er setzt keine Cookies und gibt keine Daten an Dritte weiter.",
       "Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung, Übertragbarkeit und Widerruf, sowie auf Beschwerde bei der Datenschutzbehörde. Schreiben Sie uns dazu an alinkalam@cetl.institute.",
     ],
     submit: "Angaben absenden", sending: "Wird gesendet …", required: "Pflichtfeld",
-    errors: { fields: "Bitte füllen Sie alle Pflichtfelder aus.", email: "Bitte geben Sie eine gültige E-Mail-Adresse an.", consent: "Bitte stimmen Sie dem Datenschutzhinweis zu.", send: "Das Senden hat nicht geklappt. Bitte versuchen Sie es erneut oder schreiben Sie an alinkalam@cetl.institute." },
+    errors: { fields: "Bitte füllen Sie alle Pflichtfelder aus.", email: "Bitte geben Sie eine gültige E-Mail-Adresse an.", consent: "Bitte stimmen Sie dem Datenschutzhinweis zu.", send: "Das Senden hat nicht geklappt. Bitte versuchen Sie es erneut oder schreiben Sie an alinkalam@cetl.institute.", captcha: "Der Spamschutz prüft noch. Bitte warten Sie einen Moment und senden Sie dann erneut." },
     thanks: { title: "Vielen Dank", text: "Ihre Angaben sind bei uns angekommen. Wir melden uns persönlich, sobald es einen passenden Einsatz gibt. Wenn sich etwas ändert, schreiben Sie uns einfach an alinkalam@cetl.institute." },
     choose: "Bitte wählen",
   },
@@ -136,7 +137,7 @@ export const COPY = {
     steps: ["Personal details", "Education and expertise", "Fees and availability"],
     s1: {
       role: "I would like to contribute as", salutation: "Salutation", title: "Title", first: "First name", last: "Last name", company: "Company", position: "Role in the company",
-      email: "Email", phone: "Phone", city: "City and country", linkedin: "LinkedIn profile", website: "Website", birth: "Date of birth", birthHint: "optional",
+      email: "Email", phone: "Phone", city: "City and country", linkedin: "LinkedIn profile", website: "Website",
       languages: "Languages you teach in", languagesMore: "Other languages", bio: "Short profile", bioHint: "Two to four sentences we may use in programme materials.",
     },
     s2: {
@@ -158,10 +159,11 @@ export const COPY = {
       "The controller is CETL Institute GmbH, Wipplinger Straße 4/2nd floor, 1010 Vienna, alinkalam@cetl.institute.",
       "We process your details to plan you for teaching and speaking engagements and to send you requests. The legal basis is your consent (Art. 6(1)(a) GDPR) or the initiation of a contract.",
       "The data is stored in a Google Workspace account of CETL Institute GmbH and is not sold to third parties. We share it with client organisations only if you agreed beforehand.",
+      "The spam protection (ALTCHA) runs on our own site. It sets no cookies and shares no data with third parties.",
       "You have the right of access, rectification, erasure, restriction, portability and withdrawal, and to lodge a complaint with the data protection authority. Write to alinkalam@cetl.institute.",
     ],
     submit: "Send details", sending: "Sending …", required: "Required",
-    errors: { fields: "Please fill in all required fields.", email: "Please enter a valid email address.", consent: "Please accept the privacy notice.", send: "Sending did not work. Please try again or write to alinkalam@cetl.institute." },
+    errors: { fields: "Please fill in all required fields.", email: "Please enter a valid email address.", consent: "Please accept the privacy notice.", send: "Sending did not work. Please try again or write to alinkalam@cetl.institute.", captcha: "The spam protection is still checking. Please wait a moment and send again." },
     thanks: { title: "Thank you", text: "We have received your details and will get in touch personally when a suitable engagement comes up. If anything changes, simply write to alinkalam@cetl.institute." },
     choose: "Please choose",
   },
