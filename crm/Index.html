@@ -17,11 +17,16 @@
     <nav class="nav" id="nav" aria-label="Hauptmenü"></nav>
     <div class="me"><span class="av">AK</span><span><b>Alin Kalam</b>alinkalam@cetl.institute</span></div>
   </aside>
-  <main class="main"><div class="topbar"><span id="lastup" class="muted small"></span><button class="btn ghost sm" data-update>Update</button></div><div id="view"></div></main>
+  <main class="main"><div class="topbar"><span id="lastup" class="muted small"></span><button class="btn sm" data-ai>Claude</button><button class="btn ghost sm" data-update>Update</button></div><div id="view"></div></main>
 </div>
 <nav class="tabs" id="tabs" aria-label="Hauptmenü mobil"></nav>
 <div class="scrim" id="scrim" hidden><div class="sheet" id="sheet" role="dialog" aria-modal="true"></div></div>
 <div class="toast" id="toast" hidden></div>
+<aside class="ai" id="ai" hidden aria-label="Claude Assistent">
+  <div class="ai-head"><div><b>Claude</b> <span class="muted small">Sonnet 5.5, nur für Sie</span></div><button class="x" style="float:none" data-ai>Schließen</button></div>
+  <div class="ai-body" id="ai-body"></div>
+  <div class="ai-form" id="ai-form"><textarea id="ai-in" rows="2" placeholder="Was soll sich ändern? Zum Beispiel: Moritz Philipp Haaf, E-Mail …, Telefon …"></textarea><button type="button" class="btn sm" data-sendai>Senden</button></div>
+</aside>
 
 
 <?!= include('Client') ?>

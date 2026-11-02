@@ -970,3 +970,45 @@ h1, h2, h3, h4, h5, .font-display {
 .rd .legal-row .l { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; color: var(--brand-700); padding-top: 3px; }
 .rd .legal-row .v p { margin: 0 0 4px; }
 @media (max-width: 680px) { .rd .legal { padding: 7rem 0 4rem; } .rd .legal-row { grid-template-columns: 1fr; } }
+
+/* ==========================================================================
+   Faculty-Onboarding (öffentliches Formular für Lektor:innen und Speaker:innen)
+   ========================================================================== */
+.rd .fc-wrap { padding: 4rem 0 6rem; }
+.rd .fc-steps { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 1.75rem; }
+.rd .fc-steps a { display: inline-flex; align-items: center; gap: 10px; padding: 8px 16px 8px 8px; border: 1px solid var(--line); border-radius: 999px; background: #fff; color: var(--ink-900); font-weight: 500; font-size: 0.92rem; }
+.rd .fc-steps a b { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--brand-600); color: #fff; font-size: 0.8rem; }
+.rd .fc-steps a:hover { border-color: var(--brand-600); }
+.rd .fc-section { margin-bottom: 24px; padding: 32px; scroll-margin-top: 110px; }
+.rd .fc-section:hover { transform: none; border-color: var(--line); }
+.rd .fc-head { display: flex; align-items: center; gap: 14px; margin-bottom: 26px; }
+.rd .fc-head h2 { font-size: var(--step-2); }
+.rd .fc-n { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(150deg, var(--brand-600), var(--brand-700)); color: #fff; font-weight: 600; flex: none; }
+.rd .fc-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 22px; }
+.rd .fc-lab { display: block; width: 100%; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; color: var(--ink-500); margin-bottom: 10px; }
+.rd .fc-roles { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 26px; }
+.rd .fc-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 2px 0 12px; }
+.rd .fc-chip { border: 1px solid var(--line); background: #fff; color: var(--ink-700); border-radius: 999px; padding: 7px 14px; font: inherit; font-size: 0.88rem; font-weight: 500; cursor: pointer; transition: border-color 0.15s ease, background-color 0.15s ease; }
+.rd .fc-chip:hover { border-color: var(--brand-600); }
+.rd .fc-chip[aria-pressed="true"] { background: var(--brand-600); border-color: var(--brand-600); color: #fff; }
+.rd .fc-chip.lg { padding: 11px 20px; font-size: 0.95rem; }
+.rd .fc-chip:focus-visible, .rd .fc-check input:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; }
+.rd .fc-group { margin: 14px 0 4px; }
+.rd .fc-group > b { display: block; margin-bottom: 8px; font-size: 0.86rem; font-weight: 600; color: var(--ink-900); }
+.rd .fc-hint { display: block; margin: 0 0 10px; font-size: 0.84rem; color: var(--ink-500); line-height: 1.5; text-transform: none; letter-spacing: 0; font-weight: 400; }
+.rd .field .fc-hint { margin: 6px 0 0; }
+.rd .fc-more { margin-top: 2px; }
+.rd .fc-consent h3 { font-size: var(--step-1); margin-bottom: 12px; }
+.rd .fc-consent p { font-size: 0.9rem; color: var(--ink-500); margin: 0 0 8px; max-width: 78ch; }
+.rd .fc-check { display: flex; gap: 12px; align-items: flex-start; margin: 20px 0; cursor: pointer; }
+.rd .fc-check input { width: 20px; height: 20px; margin-top: 3px; accent-color: var(--brand-600); flex: none; }
+.rd .fc-check span { font-size: 0.95rem; color: var(--ink-900); }
+.rd .fc-hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.rd .fc-error { color: var(--brand-700); font-weight: 500; margin: 0 0 16px; }
+.rd .fc-thanks { padding: 48px 40px; text-align: left; }
+.rd .fc-thanks h2 { margin-bottom: 12px; }
+@media (max-width: 760px) {
+  .rd .fc-section { padding: 22px 18px; }
+  .rd .fc-grid { grid-template-columns: 1fr; }
+  .rd .fc-wrap { padding: 2.5rem 0 4rem; }
+}

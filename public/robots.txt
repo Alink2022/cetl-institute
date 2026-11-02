@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /crm
+Disallow: /faculty
 
 Sitemap: https://www.cetl.institute/sitemap.xml

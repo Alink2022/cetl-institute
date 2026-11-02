@@ -15,11 +15,13 @@ const SCHEMA = {
   Aktivitaeten: ['id','org_id','datum','art','text'],
   Mails: ['id','org_id','person_id','richtung','datum','zeit','betreff','text','msg_id'],
   // Speaker entspricht der bisherigen Excel-Liste (Spalten B bis N), dazu CRM-Felder ab 'typ'
-  Speaker: ['id','name','branche','unternehmen','hauptfach','fachgebiete','themen','sprachen','honorar','abrechnung','zahlungsart','status','email','telefon','anmerkungen','typ','funktion','vertrag','vertrag_info','produkte','einsaetze','liste','stadt','prioritaet','konflikt','nachweis','linkedin','website','naechster_schritt','quellen','geprueft','modell','kontakt_id'],
+  Speaker: ['id','name','branche','unternehmen','hauptfach','fachgebiete','themen','sprachen','honorar','abrechnung','zahlungsart','status','email','telefon','anmerkungen','typ','funktion','vertrag','vertrag_info','produkte','einsaetze','liste','stadt','prioritaet','konflikt','nachweis','linkedin','website','naechster_schritt','quellen','geprueft','modell','kontakt_id',
+           'vorname','nachname','titel','anrede','geburtsdatum','ausbildung','bildungsstaette','studienrichtung','zertifizierungen','toolstack','erfahrung','lehrerfahrung','referenzen','kurzbio',
+           'wunsch_abrechnung','wunsch_honorar','abrechnung_ueber','uid','nebentaetigkeit','einsatzformat','verfuegbarkeit','erfassung','eingang_am'],
   Produkte: ['id','gruppe','name','beschreibung'],
   Vorschlaege: ['id','name','branche','rolle','grund','quelle','produkt','passung']
 };
-const NUMERIC = { Organisationen: ['passung'], Deals: ['phase','wert'], Speaker: ['honorar'] };
+const NUMERIC = { Organisationen: ['passung'], Deals: ['phase','wert'], Speaker: ['honorar','wunsch_honorar'] };
 
 const PRODUCTS = [
   ['p1','Learning','Foundation','KI- und Datengrundlage mit praktischer Befähigung'],
@@ -106,6 +108,7 @@ function monthlyBackup() {
 
 function syncAll() {
   importWebsiteLeads_();
+  importFacultyOnboarding_();
   syncMails_();
 }
 
@@ -151,8 +154,105 @@ function readTable_(name) {
 
 /** Richtet bei Bedarf alles selbst ein: Sheet anlegen und Abgleich-Trigger installieren. */
 function ensureReady_() {
-  if (!PropertiesService.getScriptProperties().getProperty('SHEET_ID')) setup();
+  const props = PropertiesService.getScriptProperties();
+  if (!props.getProperty('SHEET_ID')) setup();
   if (ScriptApp.getProjectTriggers().length === 0) installTriggers();
+  ensureColumns_();
+}
+
+/** Ergänzt fehlende Spalten am Ende jeder Tabelle, wenn das Schema gewachsen ist. Läuft nur bei Änderungen. */
+function ensureColumns_() {
+  const props = PropertiesService.getScriptProperties();
+  const sig = Utilities.base64Encode(Utilities.computeDigest(Utilities.DigestAlgorithm.MD5, JSON.stringify(SCHEMA)));
+  if (props.getProperty('SCHEMA_SIG') === sig) return;
+  const ss = ss_();
+  Object.keys(SCHEMA).forEach(function (name) {
+    const cols = SCHEMA[name];
+    const sh = ss.getSheetByName(name);
+    if (!sh) return;
+    const have = sh.getRange(1, 1, 1, Math.max(sh.getLastColumn(), 1)).getValues()[0].map(String);
+    cols.forEach(function (k) {
+      if (have.indexOf(k) >= 0) return;
+      const col = have.filter(String).length + 1;
+      sh.getRange(1, col).setValue(k).setFontWeight('bold').setBackground('#9B2242').setFontColor('#FFFFFF');
+      sh.getRange(2, col, Math.max(sh.getMaxRows() - 1, 1), 1).setNumberFormat((NUMERIC[name] || []).indexOf(k) >= 0 ? '0' : '@');
+      have.push(k);
+    });
+  });
+  props.setProperty('SCHEMA_SIG', sig);
+}
+
+/** Legt den Drive-Ordner für das Faculty-Onboarding samt Eingangs-Sheet an. */
+function onboardingFolder_() {
+  const props = PropertiesService.getScriptProperties();
+  let folder = null;
+  const fid = props.getProperty('ONBOARDING_FOLDER_ID');
+  if (fid) { try { folder = DriveApp.getFolderById(fid); } catch (e) { folder = null; } }
+  if (!folder) {
+    const it = DriveApp.getFoldersByName('CETL Lektoren und Speaker Onboarding');
+    folder = it.hasNext() ? it.next() : DriveApp.createFolder('CETL Lektoren und Speaker Onboarding');
+    props.setProperty('ONBOARDING_FOLDER_ID', folder.getId());
+  }
+  let sid = props.getProperty('ONBOARDING_SHEET_ID');
+  let sheetFile = null;
+  if (sid) { try { sheetFile = DriveApp.getFileById(sid); } catch (e) { sheetFile = null; } }
+  if (!sheetFile) {
+    const ns = SpreadsheetApp.create('Eingänge Faculty-Onboarding');
+    ns.getSheets()[0].setName('Eingänge').getRange(1, 1, 1, 7).setValues([['Eingang', 'Name', 'E-Mail', 'Mitwirkung', 'Unternehmen', 'Rolle', 'Rohdaten (JSON)']])
+      .setFontWeight('bold').setBackground('#9B2242').setFontColor('#FFFFFF');
+    ns.setFrozenRows(1);
+    sheetFile = DriveApp.getFileById(ns.getId());
+    folder.addFile(sheetFile);
+    try { DriveApp.getRootFolder().removeFile(sheetFile); } catch (e) { /* bleibt im Ordner */ }
+    props.setProperty('ONBOARDING_SHEET_ID', ns.getId());
+  }
+  return { folder: folder, sheetId: sheetFile.getId() };
+}
+
+function logOnboarding_(d) {
+  const o = onboardingFolder_();
+  SpreadsheetApp.openById(o.sheetId).getSheetByName('Eingänge').appendRow([
+    Utilities.formatDate(new Date(), TZ, 'dd.MM.yyyy HH:mm'), (d.first + ' ' + d.last).trim(), d.email, d.role, d.company, d.position, JSON.stringify(d)
+  ]);
+}
+
+/** Liest Selbstauskünfte aus dem Faculty-Formular (Mails "Faculty-Onboarding: ...") und pflegt die Lektoren-Tabelle. */
+function importFacultyOnboarding_() {
+  const label = GmailApp.getUserLabelByName('CRM-importiert') || GmailApp.createLabel('CRM-importiert');
+  const threads = GmailApp.search('subject:"Faculty-Onboarding" -label:CRM-importiert newer_than:120d', 0, 30);
+  threads.forEach(function (t) {
+    t.getMessages().forEach(function (m) {
+      const hit = m.getPlainBody().match(/<<<CETL-FACULTY-JSON\s*([\s\S]*?)\s*CETL-FACULTY-JSON>>>/);
+      if (!hit) return;
+      let d;
+      try { d = JSON.parse(hit[1]); } catch (e) { return; }
+      if (!d.first || !d.last) return;
+      upsertFaculty_(d);
+      logOnboarding_(d);
+    });
+    t.addLabel(label);
+  });
+}
+
+function upsertFaculty_(d) {
+  const rows = readTable_('Speaker');
+  const em = String(d.email || '').trim().toLowerCase();
+  const full = (d.first + ' ' + d.last).trim();
+  const ex = (em && rows.filter(function (r) { return String(r.email).trim().toLowerCase() === em; })[0]) ||
+             rows.filter(function (r) { return String(r.name).trim().toLowerCase() === full.toLowerCase(); })[0];
+  const row = ex ? Object.assign({}, ex) : { id: 'sa-' + uid_(), vertrag: 'keiner', liste: 'Selbstauskunft' };
+  const put = function (k, v) { if (v !== undefined && v !== null && String(v).trim() !== '') row[k] = v; };
+  put('name', full); put('vorname', d.first); put('nachname', d.last); put('titel', d.title); put('anrede', d.salutation);
+  put('unternehmen', d.company); put('funktion', d.position); put('email', d.email); put('telefon', d.phone); put('stadt', d.city);
+  put('linkedin', d.linkedin); put('website', d.website); put('geburtsdatum', d.birth); put('sprachen', d.languages); put('kurzbio', d.bio);
+  put('ausbildung', d.education); put('bildungsstaette', d.school); put('studienrichtung', d.field); put('zertifizierungen', d.certs);
+  put('fachgebiete', d.expertise); put('toolstack', d.tools); put('erfahrung', d.years); put('lehrerfahrung', d.teaching);
+  put('themen', d.topics); put('referenzen', d.refs);
+  put('wunsch_abrechnung', d.billing); put('wunsch_honorar', d.rate === '' ? '' : Number(d.rate) || ''); put('abrechnung_ueber', d.via);
+  put('uid', d.uid); put('nebentaetigkeit', d.sideJob); put('einsatzformat', d.delivery); put('verfuegbarkeit', d.availability); put('konflikt', d.conflict);
+  put('typ', d.role); row.erfassung = 'Selbstauskunft'; row.eingang_am = today_();
+  row.anmerkungen = (row.anmerkungen ? row.anmerkungen + ' | ' : '') + 'Selbstauskunft vom ' + today_();
+  api_upsert('Speaker', row);
 }
 
 /** Der Update-Button: richtet ein, was fehlt, gleicht Gmail und Website-Anfragen ab und meldet, was neu ist. */
@@ -168,7 +268,10 @@ function api_update() {
 function api_bootstrap() {
   assertAllowed_();
   ensureReady_();
-  const out = { me: Session.getEffectiveUser().getEmail(), claude: !!PropertiesService.getScriptProperties().getProperty('ANTHROPIC_API_KEY') };
+  const props = PropertiesService.getScriptProperties();
+  let folderUrl = '';
+  try { folderUrl = onboardingFolder_().folder.getUrl(); } catch (e) { folderUrl = ''; }
+  const out = { me: Session.getEffectiveUser().getEmail(), claude: !!props.getProperty('ANTHROPIC_API_KEY'), sheetUrl: ss_().getUrl(), folderUrl: folderUrl, onboardingUrl: 'https://www.cetl.institute/faculty' };
   Object.keys(SCHEMA).forEach(function (n) { out[n] = readTable_(n); });
   return out;
 }
@@ -392,4 +495,97 @@ function api_seedLecturers() {
     if (rows.length) sh.getRange(sh.getLastRow() + 1, 1, rows.length, cols.length).setValues(rows);
     return rows.length;
   } finally { lock.releaseLock(); }
+}
+
+/* ---------- Assistent im CRM (Claude Sonnet 5.5) ---------- */
+
+function api_setKey(key) {
+  assertAllowed_();
+  key = String(key || '').trim();
+  if (!/^sk-ant-/.test(key)) throw new Error('Das sieht nicht wie ein Anthropic-Schlüssel aus (sk-ant-…).');
+  PropertiesService.getScriptProperties().setProperty('ANTHROPIC_API_KEY', key);
+  return true;
+}
+
+const ASSIST_TABLES = ['Speaker', 'Organisationen', 'Personen'];
+
+/**
+ * Nimmt einen Satz des Admins entgegen ("Moritz Haaf: E-Mail xyz, Telefon abc, bitte updaten"),
+ * lässt Claude daraus Änderungen ableiten und führt sie aus. Alle Änderungen werden zurückgegeben, damit sie rückgängig gemacht werden können.
+ */
+function api_assistant(text, history) {
+  assertAllowed_();
+  const key = PropertiesService.getScriptProperties().getProperty('ANTHROPIC_API_KEY');
+  if (!key) throw new Error('NO_KEY');
+  const speakers = readTable_('Speaker').map(function (r) { return r.id + ' | ' + r.name + (r.unternehmen ? ' | ' + r.unternehmen : '') + (r.email ? ' | ' + r.email : ''); });
+  const orgs = readTable_('Organisationen').map(function (r) { return r.id + ' | ' + r.name + ' | ' + r.status; });
+  const people = readTable_('Personen').map(function (r) { return r.id + ' | ' + r.name + ' | org ' + r.org_id; });
+  const cols = {};
+  ASSIST_TABLES.forEach(function (t) { cols[t] = SCHEMA[t].filter(function (k) { return k !== 'id'; }); });
+  const system = 'Du bist der Assistent im CETL CRM und arbeitest nur für den Admin Alin Kalam. Du änderst Daten in den Tabellen Speaker (Lektor:innen und Speaker:innen), Organisationen und Personen. ' +
+    'Der Admin schreibt kurze Anweisungen auf Deutsch. Leite daraus konkrete Änderungen ab und rufe immer das Werkzeug apply_changes auf. ' +
+    'Regeln: Verwende nur Felder, die in der Spaltenliste der jeweiligen Tabelle stehen. Ordne Personen anhand der Listen der vorhandenen Einträge zu und gib deren id an (op update). Ist niemand passend, lege mit op create an. ' +
+    'Erfinde keine Werte. Ändere nur, was der Admin nennt. Honorar ist eine Zahl in Euro. Status nimmt nur: Verfügbar, Angefragt, Bestätigt, Abgesagt, Nicht verfügbar. vertrag nimmt nur: rahmen, angebot, anfrage, keiner. ' +
+    'Ist die Anweisung unklar oder nicht umsetzbar, gib changes leer zurück und erkläre es in reply. reply ist ein kurzer deutscher Satz, der sagt, was du getan hast.\n\n' +
+    'Spalten je Tabelle: ' + JSON.stringify(cols) + '\n\nSpeaker (id | Name | Unternehmen | E-Mail):\n' + speakers.join('\n') +
+    '\n\nOrganisationen (id | Name | Status):\n' + orgs.join('\n') + '\n\nPersonen (id | Name | Organisation):\n' + people.join('\n');
+  const msgs = (history || []).slice(-6).map(function (m) { return { role: m.role, content: String(m.text) }; });
+  msgs.push({ role: 'user', content: String(text) });
+  const tool = {
+    name: 'apply_changes',
+    description: 'Führt Änderungen am CRM aus und meldet kurz, was gemacht wurde.',
+    input_schema: {
+      type: 'object',
+      properties: {
+        reply: { type: 'string' },
+        changes: { type: 'array', items: { type: 'object', properties: {
+          table: { type: 'string', enum: ASSIST_TABLES }, op: { type: 'string', enum: ['update', 'create'] },
+          id: { type: 'string' }, fields: { type: 'object' } }, required: ['table', 'op', 'fields'] } }
+      },
+      required: ['reply', 'changes']
+    }
+  };
+  const res = UrlFetchApp.fetch('https://api.anthropic.com/v1/messages', {
+    method: 'post', contentType: 'application/json', muteHttpExceptions: true,
+    headers: { 'x-api-key': key, 'anthropic-version': '2023-06-01' },
+    payload: JSON.stringify({ model: 'claude-sonnet-5-5', max_tokens: 1500, system: system, tools: [tool], tool_choice: { type: 'tool', name: 'apply_changes' }, messages: msgs })
+  });
+  const j = JSON.parse(res.getContentText());
+  if (!j.content) throw new Error((j.error && j.error.message) || 'Claude hat nicht geantwortet.');
+  const use = j.content.filter(function (b) { return b.type === 'tool_use'; })[0];
+  if (!use) throw new Error('Keine Antwort verstanden.');
+  const input = use.input || {};
+  const applied = [];
+  (input.changes || []).forEach(function (ch) {
+    if (ASSIST_TABLES.indexOf(ch.table) < 0) return;
+    const allowed = SCHEMA[ch.table].filter(function (k) { return k !== 'id'; });
+    const fields = {};
+    Object.keys(ch.fields || {}).forEach(function (k) { if (allowed.indexOf(k) >= 0) fields[k] = ch.fields[k]; });
+    if (!Object.keys(fields).length) return;
+    const all = readTable_(ch.table);
+    if (ch.op === 'update') {
+      const old = all.filter(function (r) { return String(r.id) === String(ch.id); })[0];
+      if (!old) return;
+      const next = Object.assign({}, old, fields);
+      api_upsert(ch.table, next);
+      applied.push({ table: ch.table, op: 'update', id: old.id, label: old.name, before: old, fields: fields });
+    } else {
+      const row = Object.assign({ id: (ch.table === 'Speaker' ? 'sp-' : 'x-') + uid_() }, fields);
+      if (ch.table === 'Speaker' && !row.vertrag) row.vertrag = 'keiner';
+      api_upsert(ch.table, row);
+      applied.push({ table: ch.table, op: 'create', id: row.id, label: row.name, fields: fields });
+    }
+  });
+  return { reply: String(input.reply || ''), applied: applied };
+}
+
+/** Macht die Änderungen eines Assistenten-Laufs rückgängig. */
+function api_undo(applied) {
+  assertAllowed_();
+  (applied || []).slice().reverse().forEach(function (a) {
+    if (ASSIST_TABLES.indexOf(a.table) < 0) return;
+    if (a.op === 'update' && a.before) api_upsert(a.table, a.before);
+    else if (a.op === 'create') api_remove(a.table, a.id);
+  });
+  return true;
 }

@@ -14,7 +14,7 @@
   };
   const today = new Date().toLocaleDateString('de-AT', { day: '2-digit', month: '2-digit', year: 'numeric' });
   const api = {
-    api_bootstrap: function () { return Object.assign({ me: 'alinkalam@cetl.institute', claude: true }, JSON.parse(JSON.stringify(T))); },
+    api_bootstrap: function () { return Object.assign({ me: 'alinkalam@cetl.institute', claude: true, sheetUrl: 'https://docs.google.com/spreadsheets/d/demo', folderUrl: 'https://drive.google.com/drive/folders/demo', onboardingUrl: 'https://www.cetl.institute/faculty' }, JSON.parse(JSON.stringify(T))); },
     api_upsert: function (t, o) { const a = T[t]; const i = a.findIndex(function (x) { return String(x.id) === String(o.id); }); if (i >= 0) a[i] = o; else a.push(o); return o; },
     api_remove: function (t, id) { T[t] = T[t].filter(function (x) { return String(x.id) !== String(id); }); return true; },
     api_removeOrg: function (id) { ['Personen', 'Deals', 'Aktivitaeten', 'Mails'].forEach(function (t) { T[t] = T[t].filter(function (x) { return String(x.org_id) !== String(id); }); }); T.Organisationen = T.Organisationen.filter(function (x) { return String(x.id) !== String(id); }); return true; },
@@ -35,6 +35,17 @@
       return true;
     },
     api_seedLecturers: function () { var n = 0; (window.__LECT || []).forEach(function (l, i) { if (T.Speaker.some(function (x) { return x.name.toLowerCase() === l.name.toLowerCase(); })) return; var row = { id: 'l-' + (i + 1), typ: 'Lektor', vertrag: 'keiner', honorar: '' }; Object.keys(l).forEach(function (k) { row[k] = l[k]; }); row.name = l.name; T.Speaker.push(row); n++; }); return n; },
+    api_setKey: function () { return true; },
+    api_assistant: function (text) {
+      var hit = T.Speaker.filter(function (s) { return text.toLowerCase().indexOf(String(s.name).toLowerCase().split(' (')[0]) >= 0; })[0];
+      var em = (text.match(/e-?mail[: ]+([^\s,]+)/i) || [])[1], tel = (text.match(/telefon[: ]+([+\d][\d ]+)/i) || [])[1];
+      if (!hit) return { reply: 'Ich habe niemanden mit diesem Namen gefunden.', applied: [] };
+      var before = JSON.parse(JSON.stringify(hit)), fields = {};
+      if (em) fields.email = em; if (tel) fields.telefon = tel.trim();
+      Object.assign(hit, fields);
+      return { reply: hit.name + ' ist aktualisiert.', applied: [{ table: 'Speaker', op: 'update', id: hit.id, label: hit.name, before: before, fields: fields }] };
+    },
+    api_undo: function (applied) { (applied || []).forEach(function (a) { var i = T[a.table].findIndex(function (x) { return x.id === a.id; }); if (a.op === 'update' && i >= 0) T[a.table][i] = a.before; }); return true; },
     api_removeDemo: function () { Object.keys(T).forEach(function (k) { T[k] = T[k].filter(function (x) { return String(x.id).indexOf('demo-') !== 0; }); }); return true; }
   };
   function runner(ok, no) {
