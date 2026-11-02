@@ -453,7 +453,7 @@ async function saveSp(){
 
 /* ---------- Claude-Assistent im CRM ---------- */
 const AI={msgs:[],busy:false};
-const AI_HINTS=['Moritz Philipp Haaf: E-Mail …, Telefon …, bitte updaten','Neues Profil: Name, Unternehmen, Rolle, Fachexpertise …','Alle mit Prio A auf Status Angefragt setzen'];
+const AI_HINTS=['Max Mustermann: E-Mail …, Telefon …, bitte updaten','Neues Profil: Name, Unternehmen, Rolle, Fachexpertise …','Alle mit Prio A auf Status Angefragt setzen'];
 const FIELD_LABEL=(()=>{const m={};SF.forEach(f=>{m[f.k]=f.l});return m})();
 const SERVER_LABEL={name:'Name',email:'E-Mail',telefon:'Telefon',unternehmen:'Unternehmen',funktion:'Rolle',stadt:'Wohnort',linkedin:'LinkedIn',website:'Website',hauptfach:'Hauptfach',fachgebiete:'Fachexpertise',toolstack:'Toolstack',sprachen:'Sprachen',honorar:'Honorar',abrechnung:'Abrechnung',zahlungsart:'Zahlungsart',status:'Status',vertrag:'Vertrag',anmerkungen:'Anmerkungen',prioritaet:'Prio',naechster_schritt:'Nächster Schritt',konflikt:'Kundenkonflikt',verfuegbarkeit:'Verfügbarkeit',ausbildung:'Ausbildung',bildungsstaette:'Bildungsstätte',branche:'Branche',typ:'Typ',themen:'Themen',kurzbio:'Kurzprofil',wunsch_honorar:'Wunsch €',wunsch_abrechnung:'Wunsch Abrechnung'};
 function renderAi(){

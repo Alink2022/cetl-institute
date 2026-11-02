@@ -510,7 +510,7 @@ function api_setKey(key) {
 const ASSIST_TABLES = ['Speaker', 'Organisationen', 'Personen'];
 
 /**
- * Nimmt einen Satz des Admins entgegen ("Moritz Haaf: E-Mail xyz, Telefon abc, bitte updaten"),
+ * Nimmt einen Satz des Admins entgegen ("Max Mustermann: E-Mail xyz, Telefon abc, bitte updaten"),
  * lässt Claude daraus Änderungen ableiten und führt sie aus. Alle Änderungen werden zurückgegeben, damit sie rückgängig gemacht werden können.
  */
 function api_assistant(text, history) {
