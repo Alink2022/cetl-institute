@@ -38,7 +38,7 @@ function over(map: Map<string, number[]>, key: string, limit: number, windowMs: 
 const FIELDS = [
   "role", "salutation", "title", "first", "last", "company", "position", "email", "phone", "city", "linkedin", "website", "languages", "bio",
   "education", "school", "field", "certs", "expertise", "tools", "years", "teaching", "topics", "refs",
-  "billing", "via", "uid", "sideJob", "delivery", "availability", "conflict",
+  "delivery", "availability", "conflict",
 ] as const;
 const LONG = new Set(["bio", "expertise", "tools", "certs", "topics", "refs", "availability", "conflict"]);
 const EMAIL_RE = /^[A-Za-z0-9._%+'-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}$/;
@@ -79,7 +79,7 @@ export async function POST(request: Request) {
   const data: Record<string, string> = {};
   for (const k of FIELDS) data[k] = LONG.has(k) ? clean(body[k], 2500) : clean(body[k], 300).replace(/[\r\n]+/g, " ");
 
-  if (!data.first || !data.last || !data.company || !data.position || !data.education || !data.billing) {
+  if (!data.first || !data.last || !data.company || !data.position || !data.education) {
     return NextResponse.json({ error: "invalid_fields" }, { status: 400 });
   }
   if (!EMAIL_RE.test(data.email)) return NextResponse.json({ error: "invalid_email" }, { status: 400 });
@@ -99,7 +99,6 @@ export async function POST(request: Request) {
     `Ausbildung: ${data.education}${data.school ? ", " + data.school : ""}`,
     `Fachexpertise: ${data.expertise || "—"}`,
     `Toolstack: ${data.tools || "—"}`,
-    `Abrechnung: ${data.billing}`,
     `Kundenkonflikte: ${data.conflict || "—"}`,
     ``,
     `Maschinenlesbar für das CRM (nicht ändern):`,

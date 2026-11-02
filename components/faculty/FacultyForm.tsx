@@ -4,30 +4,23 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef, useState, type FormEvent, type ReactNode } from "react";
 import { useLanguage } from "@/lib/i18n";
 import {
-  BILLING, BILLING_VIA, CERTIFICATIONS, COPY, DELIVERY, EDUCATION, EXPERIENCE_YEARS, EXPERTISE, FACULTY_ROLES, LANGUAGES, SALUTATIONS, SIDE_JOB, TEACHING_EXPERIENCE, TOOLS,
+  CERTIFICATIONS, COPY, DELIVERY, EDUCATION, EXPERIENCE_YEARS, EXPERTISE, FACULTY_ROLES, LANGUAGES, SALUTATIONS, TEACHING_EXPERIENCE, TOOLS,
 } from "@/lib/faculty-onboarding";
-import { Icon } from "@/components/ui/IconSprite";
 
 const INITIAL = {
   role: "Lektor", salutation: "", title: "", first: "", last: "", company: "", position: "", email: "", phone: "", city: "", linkedin: "", website: "", languages: "", bio: "",
   education: "", school: "", field: "", certs: "", expertise: "", tools: "", years: "", teaching: "", topics: "", refs: "",
-  billing: "", via: "", uid: "", sideJob: "", delivery: "", availability: "", conflict: "", consent: false, hp: "",
+  delivery: "", availability: "", conflict: "", consent: false, hp: "",
 };
 type F = typeof INITIAL;
 type Errors = Partial<Record<keyof F, string>>;
 
-const TOTAL = 4;
-const REQUIRED: Record<number, (keyof F)[]> = {
-  1: ["first", "last", "company", "position", "email"],
-  2: ["education"],
-  3: ["billing"],
-  4: [],
-};
+const REQUIRED: (keyof F)[] = ["first", "last", "company", "position", "email", "education"];
 const EMAIL_RE = /^[A-Za-z0-9._%+'-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}$/;
 const WEIGHTS: [keyof F, number][] = [
   ["first", 2], ["last", 2], ["company", 1], ["position", 1], ["email", 2], ["phone", 1], ["city", 1], ["linkedin", 1], ["bio", 2], ["languages", 1],
   ["education", 2], ["school", 1], ["field", 1], ["expertise", 3], ["tools", 2], ["certs", 1], ["years", 1], ["teaching", 1], ["topics", 1], ["refs", 1],
-  ["billing", 2], ["via", 1], ["availability", 1], ["delivery", 1], ["conflict", 0.5],
+  ["availability", 1], ["delivery", 1], ["conflict", 0.5],
 ];
 
 const tokens = (v: string) => v.split(/\s*[,;\n]\s*/).map((t) => t.trim()).filter(Boolean);
@@ -70,22 +63,34 @@ function Accordion({ title, items, value, onChange, open, onToggle, selectedLabe
   );
 }
 
+function Section({ n, title, sub, children }: { n: number; title: string; sub: string; children: ReactNode }) {
+  return (
+    <section className="fc-sec" aria-labelledby={`fc-s${n}`}>
+      <header className="fc-sec-h">
+        <span className="fc-num" aria-hidden="true">{n}</span>
+        <div>
+          <h2 id={`fc-s${n}`}>{title}</h2>
+          <p>{sub}</p>
+        </div>
+      </header>
+      <div className="fc-panel">{children}</div>
+    </section>
+  );
+}
+
 export function FacultyForm() {
   const { lang } = useLanguage();
   const c = COPY[lang];
   const ui = c.ui;
   const [f, setF] = useState<F>(INITIAL);
-  const [step, setStep] = useState(1);
-  const [reached, setReached] = useState(1);
   const [errors, setErrors] = useState<Errors>({});
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [error, setError] = useState("");
   const [tk, setTk] = useState("");
-  const [open, setOpen] = useState<Record<string, boolean>>({ e0: true, t0: true });
+  const [open, setOpen] = useState<Record<string, boolean>>({});
   const [toolQuery, setToolQuery] = useState("");
   const [captcha, setCaptcha] = useState<"idle" | "verifying" | "verified" | "error">("idle");
   const formRef = useRef<HTMLFormElement>(null);
-  const cardRef = useRef<HTMLDivElement>(null);
 
   const set = <K extends keyof F>(k: K) => (v: F[K]) => setF((p) => ({ ...p, [k]: v }));
   const text = (k: keyof F) => ({
@@ -98,9 +103,8 @@ export function FacultyForm() {
     fetch("/api/faculty-onboarding", { cache: "no-store" }).then((r) => r.json()).then((d) => setTk(d.tk || "")).catch(() => setTk(""));
   }, []);
 
-  // Spamschutz laden und im letzten Schritt automatisch lösen lassen
+  // Spamschutz laden. Er löst sich im Hintergrund, während das Formular ausgefüllt wird.
   useEffect(() => {
-    if (step !== TOTAL) return;
     let alive = true;
     let detach: (() => void) | undefined;
     (async () => {
@@ -117,7 +121,7 @@ export function FacultyForm() {
       detach = () => w.removeEventListener("statechange", onState);
     })();
     return () => { alive = false; detach?.(); };
-  }, [step]);
+  }, []);
 
   const pct = useMemo(() => {
     let got = 0, total = 0;
@@ -130,33 +134,22 @@ export function FacultyForm() {
   const roleLabel = FACULTY_ROLES.find((r) => r.value === f.role)?.label[lang].split(" (")[0] ?? "";
   const subLine = [f.position.trim(), f.company.trim()].filter(Boolean).join(" · ");
 
-  function validate(n: number): Errors {
+  function validate(): Errors {
     const e: Errors = {};
-    for (const k of REQUIRED[n] ?? []) if (!String(f[k]).trim()) e[k] = c.required;
-    if (n === 1 && f.email.trim() && !EMAIL_RE.test(f.email.trim())) e.email = c.errors.email;
+    for (const k of REQUIRED) if (!String(f[k]).trim()) e[k] = c.required;
+    if (f.email.trim() && !EMAIL_RE.test(f.email.trim())) e.email = c.errors.email;
     return e;
-  }
-
-  function go(to: number) {
-    setStep(to);
-    setReached((r) => Math.max(r, to));
-    setError("");
-    requestAnimationFrame(() => cardRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }));
-  }
-  function next() {
-    const e = validate(step);
-    setErrors(e);
-    if (Object.keys(e).length) { setError(c.errors.fields); return; }
-    go(Math.min(TOTAL, step + 1));
   }
 
   async function submit(e: FormEvent) {
     e.preventDefault();
-    if (step < TOTAL) { next(); return; }
     setError("");
-    for (let s = 1; s < TOTAL; s++) {
-      const er = validate(s);
-      if (Object.keys(er).length) { setErrors(er); setError(c.errors.fields); go(s); return; }
+    const er = validate();
+    setErrors(er);
+    if (Object.keys(er).length) {
+      setError(c.errors.fields);
+      requestAnimationFrame(() => (formRef.current?.querySelector(".fc-invalid") as HTMLElement | null)?.scrollIntoView({ behavior: "smooth", block: "center" }));
+      return;
     }
     if (!f.consent) { setError(c.errors.consent); return; }
     const altcha = String((formRef.current?.querySelector('input[name="altcha"]') as HTMLInputElement | null)?.value || "");
@@ -190,189 +183,117 @@ export function FacultyForm() {
     );
   }
 
-  const summaryRows: { k: string; v: string; step: number }[] = [
-    { k: ui.labels.who, v: [fullName, roleLabel].filter(Boolean).join(", "), step: 1 },
-    { k: ui.labels.contact, v: [subLine, f.email, f.phone].filter(Boolean).join(" · "), step: 1 },
-    { k: ui.labels.education, v: [EDUCATION.find((x) => x.value === f.education)?.label[lang], f.school].filter(Boolean).join(", "), step: 2 },
-    { k: ui.labels.expertise, v: tokens(f.expertise).join(", "), step: 2 },
-    { k: ui.labels.tools, v: tokens(f.tools).join(", "), step: 2 },
-    { k: ui.labels.billing, v: [BILLING.find((x) => x.value === f.billing)?.label[lang], BILLING_VIA.find((x) => x.value === f.via)?.label[lang]].filter(Boolean).join(", "), step: 3 },
-    { k: ui.labels.delivery, v: tokens(f.delivery).map((d) => deliveryLabels[d] ?? d).join(", "), step: 3 },
-  ];
-
   return (
     <form className="fc-form" ref={formRef} onSubmit={submit} noValidate>
       <div className="fc-mini" aria-hidden="true">
-        <span>{ui.stepOf(step, TOTAL)}</span>
+        <span>{ui.complete}</span>
         <div className="fc-bar"><i style={{ width: `${pct}%` }} /></div>
         <b>{pct} %</b>
       </div>
 
       <div className="fc-layout">
-        <div className="fc-card" ref={cardRef}>
-          <ol className="fc-stepper" aria-label={ui.stepOf(step, TOTAL)}>
-            {c.steps.map((s, i) => {
-              const n = i + 1;
-              const state = n < step ? "done" : n === step ? "current" : "todo";
-              return (
-                <li key={s} className={`fc-st ${state}`}>
-                  <button type="button" disabled={n > reached} aria-current={n === step ? "step" : undefined} onClick={() => go(n)}>
-                    <span className="fc-node">{state === "done" ? <Icon name="check" /> : n}</span>
-                    <span className="fc-st-l">{s}</span>
-                  </button>
-                </li>
-              );
-            })}
-          </ol>
-          <div className="fc-track"><i style={{ width: `${((step - 1) / (TOTAL - 1)) * 100}%` }} /></div>
+        <div className="fc-card">
+          <Section n={1} title={c.steps[0]} sub={c.stepSub[0]}>
+            <div className="fc-roles" role="radiogroup" aria-label={c.s1.role}>
+              <span className="fc-lab">{c.s1.role}</span>
+              {FACULTY_ROLES.map((r) => (
+                <button type="button" role="radio" aria-checked={f.role === r.value} key={r.value} className="fc-chip lg" aria-pressed={f.role === r.value} onClick={() => set("role")(r.value)}>{r.label[lang]}</button>
+              ))}
+            </div>
+            <div className="fc-grid">
+              <Field label={c.s1.salutation}><select {...text("salutation")}>{SALUTATIONS.map((s) => <option key={s.value} value={s.value}>{s.label[lang]}</option>)}</select></Field>
+              <Field label={c.s1.title}><input type="text" placeholder="Dr., DI, Mag." {...text("title")} /></Field>
+              <Field label={c.s1.first} required error={errors.first}><input type="text" autoComplete="given-name" {...text("first")} /></Field>
+              <Field label={c.s1.last} required error={errors.last}><input type="text" autoComplete="family-name" {...text("last")} /></Field>
+              <Field label={c.s1.company} required error={errors.company}><input type="text" autoComplete="organization" {...text("company")} /></Field>
+              <Field label={c.s1.position} required error={errors.position}><input type="text" autoComplete="organization-title" {...text("position")} /></Field>
+              <Field label={c.s1.email} required error={errors.email}><input type="email" autoComplete="email" {...text("email")} /></Field>
+              <Field label={c.s1.phone}><input type="tel" autoComplete="tel" {...text("phone")} /></Field>
+              <Field label={c.s1.city}><input type="text" {...text("city")} /></Field>
+              <Field label={c.s1.linkedin}><input type="url" placeholder="https://www.linkedin.com/in/…" {...text("linkedin")} /></Field>
+            </div>
+            <Field label={c.s1.website}><input type="url" placeholder="https://" {...text("website")} /></Field>
+            <div className="field">
+              <span>{c.s1.languages}</span>
+              <Chips items={LANGUAGES} value={f.languages} onChange={set("languages")} />
+              <input type="text" className="fc-more" aria-label={c.s1.languagesMore} placeholder={c.s1.languagesMore} value={f.languages} onChange={(e) => set("languages")(e.target.value)} />
+            </div>
+            <Field label={c.s1.bio} hint={c.s1.bioHint}><textarea rows={4} maxLength={900} {...text("bio")} /></Field>
+          </Section>
 
-          <div className="fc-body" key={step}>
-            <header className="fc-title">
-              <p className="eyebrow">{ui.stepOf(step, TOTAL)}</p>
-              <h2>{c.steps[step - 1]}</h2>
-              <p>{c.stepSub[step - 1]}</p>
-            </header>
+          <Section n={2} title={c.steps[1]} sub={c.stepSub[1]}>
+            <div className="fc-grid">
+              <Field label={c.s2.education} required error={errors.education}>
+                <select {...text("education")}><option value="">{c.choose}</option>{EDUCATION.map((e) => <option key={e.value} value={e.value}>{e.label[lang]}</option>)}</select>
+              </Field>
+              <Field label={c.s2.school}><input type="text" {...text("school")} /></Field>
+              <Field label={c.s2.field}><input type="text" {...text("field")} /></Field>
+              <Field label={c.s2.years}>
+                <select {...text("years")}><option value="">{c.choose}</option>{EXPERIENCE_YEARS.map((y) => <option key={y}>{y}</option>)}</select>
+              </Field>
+            </div>
+            <Field label={c.s2.teaching}>
+              <select {...text("teaching")}><option value="">{c.choose}</option>{TEACHING_EXPERIENCE.map((t) => <option key={t.value} value={t.value}>{t.label[lang]}</option>)}</select>
+            </Field>
 
-            {step === 1 && (
-              <div className="fc-panel">
-                <div className="fc-roles" role="radiogroup" aria-label={c.s1.role}>
-                  <span className="fc-lab">{c.s1.role}</span>
-                  {FACULTY_ROLES.map((r) => (
-                    <button type="button" role="radio" aria-checked={f.role === r.value} key={r.value} className="fc-chip lg" aria-pressed={f.role === r.value} onClick={() => set("role")(r.value)}>{r.label[lang]}</button>
-                  ))}
-                </div>
-                <div className="fc-grid">
-                  <Field label={c.s1.salutation}><select {...text("salutation")}>{SALUTATIONS.map((s) => <option key={s.value} value={s.value}>{s.label[lang]}</option>)}</select></Field>
-                  <Field label={c.s1.title}><input type="text" placeholder="Dr., DI, Mag." {...text("title")} /></Field>
-                  <Field label={c.s1.first} required error={errors.first}><input type="text" autoComplete="given-name" {...text("first")} /></Field>
-                  <Field label={c.s1.last} required error={errors.last}><input type="text" autoComplete="family-name" {...text("last")} /></Field>
-                  <Field label={c.s1.company} required error={errors.company}><input type="text" autoComplete="organization" {...text("company")} /></Field>
-                  <Field label={c.s1.position} required error={errors.position}><input type="text" autoComplete="organization-title" {...text("position")} /></Field>
-                  <Field label={c.s1.email} required error={errors.email}><input type="email" autoComplete="email" {...text("email")} /></Field>
-                  <Field label={c.s1.phone}><input type="tel" autoComplete="tel" {...text("phone")} /></Field>
-                  <Field label={c.s1.city}><input type="text" {...text("city")} /></Field>
-                  <Field label={c.s1.linkedin}><input type="url" placeholder="https://www.linkedin.com/in/…" {...text("linkedin")} /></Field>
-                </div>
-                <Field label={c.s1.website}><input type="url" placeholder="https://" {...text("website")} /></Field>
-                <div className="field">
-                  <span>{c.s1.languages}</span>
-                  <Chips items={LANGUAGES} value={f.languages} onChange={set("languages")} />
-                  <input type="text" className="fc-more" aria-label={c.s1.languagesMore} placeholder={c.s1.languagesMore} value={f.languages} onChange={(e) => set("languages")(e.target.value)} />
-                </div>
-                <Field label={c.s1.bio} hint={c.s1.bioHint}><textarea rows={4} maxLength={900} {...text("bio")} /></Field>
+            <div className="field fc-block">
+              <span>{c.s2.expertise}</span>
+              <small className="fc-hint">{c.s2.expertiseHint}</small>
+              {EXPERTISE.map((g, i) => (
+                <Accordion key={g.title.en} title={g.title[lang]} items={g.items} value={f.expertise} onChange={set("expertise")} open={!!open[`e${i}`]} onToggle={() => setOpen((o) => ({ ...o, [`e${i}`]: !o[`e${i}`] }))} selectedLabel={ui.selected} />
+              ))}
+              <textarea rows={3} aria-label={c.s2.expertise} value={f.expertise} onChange={(e) => set("expertise")(e.target.value)} />
+            </div>
+
+            <div className="field fc-block">
+              <span>{c.s2.tools}</span>
+              <small className="fc-hint">{c.s2.toolsHint}</small>
+              <input type="search" className="fc-more" placeholder={ui.search} aria-label={ui.search} value={toolQuery} onChange={(e) => setToolQuery(e.target.value)} />
+              {TOOLS.map((g, i) => {
+                const items = toolMatches(g.items);
+                if (!items.length) return null;
+                return <Accordion key={g.title.en} title={g.title[lang]} items={items} value={f.tools} onChange={set("tools")} open={!!toolQuery.trim() || !!open[`t${i}`]} onToggle={() => setOpen((o) => ({ ...o, [`t${i}`]: !o[`t${i}`] }))} selectedLabel={ui.selected} />;
+              })}
+              <textarea rows={3} aria-label={c.s2.tools} value={f.tools} onChange={(e) => set("tools")(e.target.value)} />
+            </div>
+
+            <div className="field fc-block">
+              <span>{c.s2.certs}</span>
+              <small className="fc-hint">{c.s2.certsHint}</small>
+              <Chips items={CERTIFICATIONS} value={f.certs} onChange={set("certs")} />
+              <textarea rows={2} aria-label={c.s2.certs} value={f.certs} onChange={(e) => set("certs")(e.target.value)} />
+            </div>
+
+            <Field label={c.s2.topics}><textarea rows={3} {...text("topics")} /></Field>
+            <Field label={c.s2.refs}><textarea rows={3} {...text("refs")} /></Field>
+          </Section>
+
+          <Section n={3} title={c.steps[2]} sub={c.stepSub[2]}>
+            <div className="field">
+              <span>{c.s3.delivery}</span>
+              <Chips items={DELIVERY.map((d) => d.value)} labels={deliveryLabels} value={f.delivery} onChange={set("delivery")} />
+            </div>
+            <Field label={c.s3.availability} hint={c.s3.availabilityHint}><textarea rows={3} {...text("availability")} /></Field>
+            <Field label={c.s3.conflict} hint={c.s3.conflictHint}><textarea rows={3} {...text("conflict")} /></Field>
+          </Section>
+
+          <div className="fc-final">
+            <div className="fc-consent">
+              <h3 className="fc-h3">{c.privacyTitle}</h3>
+              {c.privacy.map((p) => <p key={p}>{p}</p>)}
+              <p><Link href="/impressum" target="_blank" className="fc-link">{ui.imprint} →</Link></p>
+              <label className="fc-check">
+                <input type="checkbox" checked={f.consent} onChange={(e) => set("consent")(e.target.checked)} />
+                <span>{c.consent}</span>
+              </label>
+              <input type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" className="fc-hp" value={f.hp} onChange={(e) => set("hp")(e.target.value)} />
+              <div className="fc-captcha" data-state={captcha}>
+                <altcha-widget challenge="/api/altcha" configuration={JSON.stringify({ hideLogo: true, hideFooter: true })} auto="onload" language={lang === "de" ? "de" : "en"} name="altcha" type="checkbox"></altcha-widget>
               </div>
-            )}
-
-            {step === 2 && (
-              <div className="fc-panel">
-                <div className="fc-grid">
-                  <Field label={c.s2.education} required error={errors.education}>
-                    <select {...text("education")}><option value="">{c.choose}</option>{EDUCATION.map((e) => <option key={e.value} value={e.value}>{e.label[lang]}</option>)}</select>
-                  </Field>
-                  <Field label={c.s2.school}><input type="text" {...text("school")} /></Field>
-                  <Field label={c.s2.field}><input type="text" {...text("field")} /></Field>
-                  <Field label={c.s2.years}>
-                    <select {...text("years")}><option value="">{c.choose}</option>{EXPERIENCE_YEARS.map((y) => <option key={y}>{y}</option>)}</select>
-                  </Field>
-                </div>
-                <Field label={c.s2.teaching}>
-                  <select {...text("teaching")}><option value="">{c.choose}</option>{TEACHING_EXPERIENCE.map((t) => <option key={t.value} value={t.value}>{t.label[lang]}</option>)}</select>
-                </Field>
-
-                <div className="field fc-block">
-                  <span>{c.s2.expertise}</span>
-                  <small className="fc-hint">{c.s2.expertiseHint}</small>
-                  {EXPERTISE.map((g, i) => (
-                    <Accordion key={g.title.en} title={g.title[lang]} items={g.items} value={f.expertise} onChange={set("expertise")} open={!!open[`e${i}`]} onToggle={() => setOpen((o) => ({ ...o, [`e${i}`]: !o[`e${i}`] }))} selectedLabel={ui.selected} />
-                  ))}
-                  <textarea rows={3} aria-label={c.s2.expertise} value={f.expertise} onChange={(e) => set("expertise")(e.target.value)} />
-                </div>
-
-                <div className="field fc-block">
-                  <span>{c.s2.tools}</span>
-                  <small className="fc-hint">{c.s2.toolsHint}</small>
-                  <input type="search" className="fc-more" placeholder={ui.search} aria-label={ui.search} value={toolQuery} onChange={(e) => setToolQuery(e.target.value)} />
-                  {TOOLS.map((g, i) => {
-                    const items = toolMatches(g.items);
-                    if (!items.length) return null;
-                    return <Accordion key={g.title.en} title={g.title[lang]} items={items} value={f.tools} onChange={set("tools")} open={!!toolQuery.trim() || !!open[`t${i}`]} onToggle={() => setOpen((o) => ({ ...o, [`t${i}`]: !o[`t${i}`] }))} selectedLabel={ui.selected} />;
-                  })}
-                  <textarea rows={3} aria-label={c.s2.tools} value={f.tools} onChange={(e) => set("tools")(e.target.value)} />
-                </div>
-
-                <div className="field fc-block">
-                  <span>{c.s2.certs}</span>
-                  <small className="fc-hint">{c.s2.certsHint}</small>
-                  <Chips items={CERTIFICATIONS} value={f.certs} onChange={set("certs")} />
-                  <textarea rows={2} aria-label={c.s2.certs} value={f.certs} onChange={(e) => set("certs")(e.target.value)} />
-                </div>
-
-                <Field label={c.s2.topics}><textarea rows={3} {...text("topics")} /></Field>
-                <Field label={c.s2.refs}><textarea rows={3} {...text("refs")} /></Field>
-              </div>
-            )}
-
-            {step === 3 && (
-              <div className="fc-panel">
-                <div className="fc-grid">
-                  <Field label={c.s3.billing} required error={errors.billing} hint={c.s3.billingHint}>
-                    <select {...text("billing")}><option value="">{c.choose}</option>{BILLING.map((b) => <option key={b.value} value={b.value}>{b.label[lang]}</option>)}</select>
-                  </Field>
-                  <Field label={c.s3.via}>
-                    <select {...text("via")}><option value="">{c.choose}</option>{BILLING_VIA.map((b) => <option key={b.value} value={b.value}>{b.label[lang]}</option>)}</select>
-                  </Field>
-                  <Field label={c.s3.uid}><input type="text" placeholder="ATU…" {...text("uid")} /></Field>
-                  <Field label={c.s3.sideJob}>
-                    <select {...text("sideJob")}><option value="">{c.choose}</option>{SIDE_JOB.map((b) => <option key={b.value} value={b.value}>{b.label[lang]}</option>)}</select>
-                  </Field>
-                </div>
-                <div className="field">
-                  <span>{c.s3.delivery}</span>
-                  <Chips items={DELIVERY.map((d) => d.value)} labels={deliveryLabels} value={f.delivery} onChange={set("delivery")} />
-                </div>
-                <Field label={c.s3.availability} hint={c.s3.availabilityHint}><textarea rows={3} {...text("availability")} /></Field>
-                <Field label={c.s3.conflict} hint={c.s3.conflictHint}><textarea rows={3} {...text("conflict")} /></Field>
-              </div>
-            )}
-
-            {step === 4 && (
-              <div className="fc-panel">
-                <h3 className="fc-h3">{ui.summary}</h3>
-                <dl className="fc-sum">
-                  {summaryRows.map((r) => (
-                    <div key={r.k}>
-                      <dt>{r.k}</dt>
-                      <dd>{r.v || <em>{ui.noValue}</em>}</dd>
-                      <button type="button" className="fc-link" onClick={() => go(r.step)}>{ui.edit}</button>
-                    </div>
-                  ))}
-                </dl>
-
-                <div className="fc-consent">
-                  <h3 className="fc-h3">{c.privacyTitle}</h3>
-                  {c.privacy.map((p) => <p key={p}>{p}</p>)}
-                  <p><Link href="/impressum" target="_blank" className="fc-link">{ui.imprint} →</Link></p>
-                  <label className="fc-check">
-                    <input type="checkbox" checked={f.consent} onChange={(e) => set("consent")(e.target.checked)} />
-                    <span>{c.consent}</span>
-                  </label>
-                  <input type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" className="fc-hp" value={f.hp} onChange={(e) => set("hp")(e.target.value)} />
-                  <div className="fc-captcha" data-state={captcha}>
-                    <altcha-widget challenge="/api/altcha" configuration={JSON.stringify({ hideLogo: true, hideFooter: true })} auto="onload" language={lang === "de" ? "de" : "en"} name="altcha" type="checkbox"></altcha-widget>
-                  </div>
-                </div>
-              </div>
-            )}
-
+            </div>
             {error && <p role="alert" className="fc-error">{error}</p>}
+            <button type="submit" className="btn btn-primary fc-submit" disabled={status === "sending"}>{status === "sending" ? c.sending : c.submit}</button>
           </div>
-
-          <footer className="fc-foot">
-            {step > 1 ? <button type="button" className="btn btn-ghost" onClick={() => go(step - 1)}>← {ui.back}</button> : <span />}
-            {step < TOTAL
-              ? <button type="button" className="btn btn-primary" onClick={next}>{ui.next} →</button>
-              : <button type="submit" className="btn btn-primary" disabled={status === "sending"}>{status === "sending" ? c.sending : c.submit}</button>}
-          </footer>
         </div>
 
         <aside className="fc-aside" aria-label={ui.previewTitle}>

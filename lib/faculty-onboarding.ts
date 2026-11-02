@@ -50,30 +50,6 @@ export const TOOLS: { title: L; items: string[] }[] = [
   { title: { de: "Entwicklung und Betrieb", en: "Engineering and ops" }, items: ["Python", "SQL", "R", "Docker und Kubernetes", "Terraform", "MLflow", "Git und GitHub", "Azure DevOps"] },
 ];
 
-export const BILLING: { value: string; label: L }[] = [
-  { value: "Stundensatz", label: { de: "Stundensatz", en: "Hourly rate" } },
-  { value: "Halbtagessatz", label: { de: "Halbtagessatz", en: "Half-day rate" } },
-  { value: "Tagessatz", label: { de: "Tagessatz", en: "Day rate" } },
-  { value: "Pauschalhonorar", label: { de: "Pauschalhonorar pro Veranstaltung", en: "Flat fee per event" } },
-  { value: "Honorar + Spesen", label: { de: "Honorar plus Spesen", en: "Fee plus expenses" } },
-  { value: "Nach Vereinbarung", label: { de: "Nach Vereinbarung", en: "By arrangement" } },
-  { value: "Pro-bono", label: { de: "Pro bono", en: "Pro bono" } },
-];
-
-export const BILLING_VIA: { value: string; label: L }[] = [
-  { value: "Einzelunternehmen", label: { de: "Eigenes Einzelunternehmen oder Freiberuf", en: "Own sole proprietorship or freelance" } },
-  { value: "Eigene Gesellschaft", label: { de: "Eigene Gesellschaft (zum Beispiel GmbH)", en: "Own company (for example GmbH)" } },
-  { value: "Arbeitgeber", label: { de: "Über meinen Arbeitgeber", en: "Via my employer" } },
-  { value: "Agentur", label: { de: "Über eine Agentur oder Vermittlung", en: "Via an agency or broker" } },
-  { value: "Offen", label: { de: "Noch offen", en: "Not decided yet" } },
-];
-
-export const SIDE_JOB: { value: string; label: L }[] = [
-  { value: "Nicht erforderlich", label: { de: "Nicht erforderlich", en: "Not required" } },
-  { value: "Liegt vor", label: { de: "Freigabe liegt vor", en: "Approval available" } },
-  { value: "In Klärung", label: { de: "In Klärung", en: "Being clarified" } },
-];
-
 export const DELIVERY: { value: string; label: L }[] = [
   { value: "Online", label: { de: "Online", en: "Online" } },
   { value: "Vor Ort Wien", label: { de: "Vor Ort in Wien", en: "On site in Vienna" } },
@@ -103,22 +79,16 @@ export const COPY = {
       { v: "8 Min.", l: "bis zum fertigen Profil" },
       { v: "1×", l: "ausfüllen, danach nur bei Änderungen" },
     ],
-    steps: ["Über Sie", "Expertise", "Honorar und Verfügbarkeit", "Prüfen und absenden"],
+    steps: ["Über Sie", "Expertise", "Verfügbarkeit"],
     stepSub: [
       "Wer sind Sie, und wie erreichen wir Sie?",
       "Was können Sie, und womit arbeiten Sie?",
       "Wie arbeiten Sie am liebsten mit uns?",
-      "Ein letzter Blick, dann ist Ihr Profil bei uns.",
     ],
     ui: {
-      stepOf: (n: number, t: number) => `Schritt ${n} von ${t}`,
-      next: "Weiter", back: "Zurück", edit: "Bearbeiten",
       complete: "Profil vollständig", previewTitle: "So sehen wir Ihr Profil", previewName: "Ihr Name", previewRole: "Rolle und Unternehmen",
       expertise: "Expertise", tools: "Toolstack", languages: "Sprachen", empty: "Wird beim Ausfüllen sichtbar",
       search: "Tool suchen", selected: (n: number) => `${n} gewählt`,
-      summary: "Ihre Angaben im Überblick", noValue: "nicht angegeben",
-      labels: { who: "Person", contact: "Kontakt", education: "Ausbildung", expertise: "Fachexpertise", tools: "Toolstack", billing: "Abrechnung", delivery: "Einsatzformate" },
-      nextTitle: "Wie es weitergeht",
       next1: "Wir prüfen Ihre Angaben sorgfältig.",
       next2: "Sobald ein passender Einsatz ansteht, melden wir uns persönlich bei Ihnen.",
       next3: "Wenn sich bei Ihnen etwas ändert, sprechen Sie uns jederzeit an. Die Kontaktdaten stehen im Impressum.",
@@ -137,8 +107,7 @@ export const COPY = {
       years: "Berufserfahrung", teaching: "Erfahrung als Lektor:in oder Speaker:in", topics: "Themenvorschläge oder Keynote-Titel", refs: "Referenzen, Auftritte, Veröffentlichungen",
     },
     s3: {
-      billing: "Gewünschte Abrechnungsart", billingHint: "Nur die Art der Abrechnung. Konditionen besprechen wir danach persönlich.",
-      via: "Abrechnung über", uid: "UID-Nummer", sideJob: "Freigabe des Arbeitgebers für Nebentätigkeit", delivery: "Einsatzformate",
+      delivery: "Einsatzformate",
       availability: "Verfügbarkeit und Präferenzen", availabilityHint: "Zum Beispiel Wochentage, Zeiträume, Vorlaufzeit, maximale Einsätze pro Monat.",
       conflict: "Kundenkonflikte", conflictHint: "Bei diesen Kunden oder Branchen möchten Sie nicht eingesetzt werden, etwa wegen Wettbewerb, Interessenkonflikt oder Vertraulichkeit.",
     },
@@ -167,22 +136,16 @@ export const COPY = {
       { v: "8 min", l: "to a finished profile" },
       { v: "1×", l: "fill in once, then only for changes" },
     ],
-    steps: ["About you", "Expertise", "Fees and availability", "Review and send"],
+    steps: ["About you", "Expertise", "Availability"],
     stepSub: [
       "Who are you, and how do we reach you?",
       "What can you do, and what do you work with?",
       "How do you prefer to work with us?",
-      "One last look, then your profile is with us.",
     ],
     ui: {
-      stepOf: (n: number, t: number) => `Step ${n} of ${t}`,
-      next: "Continue", back: "Back", edit: "Edit",
       complete: "Profile complete", previewTitle: "How we see your profile", previewName: "Your name", previewRole: "Role and company",
       expertise: "Expertise", tools: "Tool stack", languages: "Languages", empty: "Appears as you fill in",
       search: "Search tools", selected: (n: number) => `${n} selected`,
-      summary: "Your details at a glance", noValue: "not provided",
-      labels: { who: "Person", contact: "Contact", education: "Education", expertise: "Expertise", tools: "Tool stack", billing: "Billing", delivery: "Delivery formats" },
-      nextTitle: "What happens next",
       next1: "We review your details carefully.",
       next2: "As soon as a suitable engagement comes up, we will get in touch personally.",
       next3: "If anything changes, talk to us at any time. The contact details are in the legal notice.",
@@ -201,8 +164,7 @@ export const COPY = {
       years: "Professional experience", teaching: "Experience as lecturer or speaker", topics: "Topic ideas or keynote titles", refs: "References, talks, publications",
     },
     s3: {
-      billing: "Preferred billing type", billingHint: "Only the type of billing. We discuss terms with you personally afterwards.",
-      via: "Invoicing via", uid: "VAT ID", sideJob: "Employer approval for side activity", delivery: "Delivery formats",
+      delivery: "Delivery formats",
       availability: "Availability and preferences", availabilityHint: "For example weekdays, periods, lead time, maximum engagements per month.",
       conflict: "Client conflicts", conflictHint: "Clients or industries where you do not want to be assigned, for example due to competition, conflict of interest or confidentiality.",
     },
