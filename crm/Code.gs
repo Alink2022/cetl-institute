@@ -211,9 +211,11 @@ function onboardingFolder_() {
 
 function logOnboarding_(d) {
   const o = onboardingFolder_();
-  SpreadsheetApp.openById(o.sheetId).getSheetByName('Eingänge').appendRow([
-    Utilities.formatDate(new Date(), TZ, 'dd.MM.yyyy HH:mm'), (d.first + ' ' + d.last).trim(), d.email, d.role, d.company, d.position, JSON.stringify(d)
-  ]);
+  const sh = SpreadsheetApp.openById(o.sheetId).getSheetByName('Eingänge');
+  const row = sh.getLastRow() + 1;
+  sh.getRange(row, 1, 1, 7).setNumberFormat('@').setValues([[
+    Utilities.formatDate(new Date(), TZ, 'dd.MM.yyyy HH:mm'), safeCell_((d.first + ' ' + d.last).trim()), safeCell_(d.email), safeCell_(d.role), safeCell_(d.company), safeCell_(d.position), safeCell_(JSON.stringify(d))
+  ]]);
 }
 
 /** Liest Selbstauskünfte aus dem Faculty-Formular (Mails "Faculty-Onboarding: ...") und pflegt die Lektoren-Tabelle. */
@@ -222,8 +224,12 @@ function importFacultyOnboarding_() {
   const threads = GmailApp.search('subject:"Faculty-Onboarding" -label:CRM-importiert newer_than:120d', 0, 30);
   threads.forEach(function (t) {
     t.getMessages().forEach(function (m) {
-      const hit = m.getPlainBody().match(/<<<CETL-FACULTY-JSON\s*([\s\S]*?)\s*CETL-FACULTY-JSON>>>/);
-      if (!hit) return;
+      // Nur der LETZTE Marker zählt: Er wird vom Server ans Ende gesetzt, eingeschleuste Marker in Freitexten stehen davor.
+      const all = m.getPlainBody().match(/<<<CETL-FACULTY-JSON\s*([\s\S]*?)\s*CETL-FACULTY-JSON>>>/g);
+      if (!all) return;
+      const hit = all[all.length - 1].match(/<<<CETL-FACULTY-JSON\s*([\s\S]*?)\s*CETL-FACULTY-JSON>>>/);
+      // Nur Mails, die über das Formular der Website kamen (Absender onboarding@resend.dev)
+      if (String(m.getFrom()).toLowerCase().indexOf('onboarding@resend.dev') < 0) return;
       let d;
       try { d = JSON.parse(hit[1]); } catch (e) { return; }
       if (!d.first || !d.last) return;
@@ -241,7 +247,13 @@ function upsertFaculty_(d) {
   const ex = (em && rows.filter(function (r) { return String(r.email).trim().toLowerCase() === em; })[0]) ||
              rows.filter(function (r) { return String(r.name).trim().toLowerCase() === full.toLowerCase(); })[0];
   const row = ex ? Object.assign({}, ex) : { id: 'sa-' + uid_(), vertrag: 'keiner', liste: 'Selbstauskunft' };
-  const put = function (k, v) { if (v !== undefined && v !== null && String(v).trim() !== '') row[k] = v; };
+  // Neue Profile werden vollständig gefüllt. Bei bestehenden Profilen werden nur leere Felder ergänzt, damit niemand per Formular
+  // die Daten eines vorhandenen Eintrags überschreiben kann. Abweichungen sehen Sie im Eingangs-Sheet.
+  const put = function (k, v) {
+    if (v === undefined || v === null || String(v).trim() === '') return;
+    if (ex && String(row[k] === undefined || row[k] === null ? '' : row[k]).trim() !== '') return;
+    row[k] = safeCell_(typeof v === 'string' ? v.slice(0, 2500) : v);
+  };
   put('name', full); put('vorname', d.first); put('nachname', d.last); put('titel', d.title); put('anrede', d.salutation);
   put('unternehmen', d.company); put('funktion', d.position); put('email', d.email); put('telefon', d.phone); put('stadt', d.city);
   put('linkedin', d.linkedin); put('website', d.website); put('geburtsdatum', d.birth); put('sprachen', d.languages); put('kurzbio', d.bio);
@@ -250,8 +262,10 @@ function upsertFaculty_(d) {
   put('themen', d.topics); put('referenzen', d.refs);
   put('wunsch_abrechnung', d.billing); put('wunsch_honorar', d.rate === '' ? '' : Number(d.rate) || ''); put('abrechnung_ueber', d.via);
   put('uid', d.uid); put('nebentaetigkeit', d.sideJob); put('einsatzformat', d.delivery); put('verfuegbarkeit', d.availability); put('konflikt', d.conflict);
-  put('typ', d.role); row.erfassung = 'Selbstauskunft'; row.eingang_am = today_();
-  row.anmerkungen = (row.anmerkungen ? row.anmerkungen + ' | ' : '') + 'Selbstauskunft vom ' + today_();
+  if (!ex) put('typ', d.role);
+  row.eingang_am = today_();
+  if (!ex) row.erfassung = 'Selbstauskunft';
+  row.anmerkungen = (row.anmerkungen ? row.anmerkungen + ' | ' : '') + (ex ? 'Neue Selbstauskunft vom ' + today_() + ' (bestehende Angaben nicht überschrieben, siehe Eingänge)' : 'Selbstauskunft vom ' + today_());
   api_upsert('Speaker', row);
 }
 
@@ -315,6 +329,12 @@ function api_removeOrg(orgId) {
     for (let i = v.length - 1; i > 0; i--) if (String(v[i][1]) === String(orgId)) sh.deleteRow(i + 1);
   });
   return api_remove('Organisationen', orgId);
+}
+
+/** Entschärft Texte, die ein Tabellenblatt als Formel auslesen würde. */
+function safeCell_(v) {
+  if (typeof v !== 'string') return v;
+  return /^[=+\-@\t\r]/.test(v) ? "'" + v : v;
 }
 
 function uid_() { return Utilities.getUuid().replace(/-/g, '').slice(0, 10); }
@@ -383,6 +403,7 @@ function importWebsiteLeads_() {
   const threads = GmailApp.search('subject:"Neue Kontaktanfrage" -label:CRM-importiert newer_than:60d', 0, 20);
   threads.forEach(function (t) {
     t.getMessages().forEach(function (m) {
+      if (String(m.getFrom()).toLowerCase().indexOf('onboarding@resend.dev') < 0) return;
       const body = m.getPlainBody();
       const get = function (key) {
         const r = new RegExp(key + ':\\s*(.*)');

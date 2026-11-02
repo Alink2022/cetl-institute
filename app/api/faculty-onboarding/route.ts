@@ -1,17 +1,36 @@
+import { createHmac, timingSafeEqual } from "crypto";
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
 const TO_ADDRESS = "alinkalam@cetl.institute";
 const FROM_ADDRESS = "CETL Faculty <onboarding@resend.dev>";
+const MAX_BODY = 60_000;
+const MIN_FILL_MS = 6_000;
+const MAX_AGE_MS = 2 * 60 * 60_000;
 
-// Einfache Bremse pro IP, damit das öffentliche Formular nicht geflutet wird.
-const hits = new Map<string, number[]>();
-function tooMany(ip: string) {
+// Schlüssel für das Formular-Token. Ohne eigene Variable wird vom Resend-Schlüssel abgeleitet.
+const secret = () => `faculty:${process.env.FACULTY_SECRET || process.env.RESEND_API_KEY || ""}`;
+const sign = (t: string) => createHmac("sha256", secret()).update(t).digest("hex");
+
+function validToken(tk: unknown) {
+  if (typeof tk !== "string") return false;
+  const [t, sig] = tk.split(".");
+  if (!t || !sig || !/^\d+$/.test(t)) return false;
+  const expected = sign(t);
+  if (sig.length !== expected.length || !timingSafeEqual(Buffer.from(sig), Buffer.from(expected))) return false;
+  const age = Date.now() - Number(t);
+  return age >= MIN_FILL_MS && age <= MAX_AGE_MS;
+}
+
+// Bremsen pro IP und pro E-Mail-Adresse. Zusammen mit dem Token reicht das gegen einfache Bots.
+const ipHits = new Map<string, number[]>();
+const mailHits = new Map<string, number[]>();
+function over(map: Map<string, number[]>, key: string, limit: number, windowMs: number) {
   const now = Date.now();
-  const recent = (hits.get(ip) ?? []).filter((t) => now - t < 10 * 60_000);
+  const recent = (map.get(key) ?? []).filter((t) => now - t < windowMs);
   recent.push(now);
-  hits.set(ip, recent);
-  return recent.length > 5;
+  map.set(key, recent);
+  return recent.length > limit;
 }
 
 const FIELDS = [
@@ -20,29 +39,47 @@ const FIELDS = [
   "billing", "rate", "via", "uid", "sideJob", "delivery", "availability", "conflict",
 ] as const;
 const LONG = new Set(["bio", "expertise", "tools", "certs", "topics", "refs", "availability", "conflict"]);
+const EMAIL_RE = /^[A-Za-z0-9._%+'-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}$/;
+
+// Das Formular holt sich beim Öffnen ein signiertes Token. Ohne Token oder bei zu schneller Abgabe wird nichts angenommen.
+export async function GET() {
+  const t = String(Date.now());
+  return NextResponse.json({ tk: `${t}.${sign(t)}` }, { headers: { "Cache-Control": "no-store" } });
+}
 
 export async function POST(request: Request) {
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) return NextResponse.json({ error: "server_not_configured" }, { status: 500 });
 
+  const len = Number(request.headers.get("content-length") ?? 0);
+  if (len > MAX_BODY) return NextResponse.json({ error: "too_large" }, { status: 413 });
+
   const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
-  if (tooMany(ip)) return NextResponse.json({ error: "rate_limited" }, { status: 429 });
+  if (over(ipHits, ip, 5, 10 * 60_000)) return NextResponse.json({ error: "rate_limited" }, { status: 429 });
 
   let body: Record<string, unknown>;
-  try { body = await request.json(); } catch { return NextResponse.json({ error: "invalid_body" }, { status: 400 }); }
+  try {
+    const raw = await request.text();
+    if (raw.length > MAX_BODY) return NextResponse.json({ error: "too_large" }, { status: 413 });
+    body = JSON.parse(raw);
+  } catch { return NextResponse.json({ error: "invalid_body" }, { status: 400 }); }
 
   // Honeypot: Bots füllen das versteckte Feld aus, wir tun so, als wäre alles gut.
   if (typeof body.hp === "string" && body.hp.trim()) return NextResponse.json({ ok: true });
+  if (!validToken(body.tk)) return NextResponse.json({ error: "invalid_token" }, { status: 400 });
 
-  const clean = (v: unknown, max: number) => (typeof v === "string" ? v.trim().slice(0, max) : "");
+  // Steuerzeichen und die Marker des CRM-Imports aus allen Feldern entfernen.
+  const strip = (s: string) => s.replace(/<<<|>>>|CETL-FACULTY-JSON/g, "").replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, "");
+  const clean = (v: unknown, max: number) => (typeof v === "string" ? strip(v.trim().slice(0, max)) : "");
   const data: Record<string, string> = {};
   for (const k of FIELDS) data[k] = LONG.has(k) ? clean(body[k], 2500) : clean(body[k], 300).replace(/[\r\n]+/g, " ");
 
   if (!data.first || !data.last || !data.company || !data.position || !data.education || !data.billing) {
     return NextResponse.json({ error: "invalid_fields" }, { status: 400 });
   }
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) return NextResponse.json({ error: "invalid_email" }, { status: 400 });
+  if (!EMAIL_RE.test(data.email)) return NextResponse.json({ error: "invalid_email" }, { status: 400 });
   if (body.consent !== true) return NextResponse.json({ error: "no_consent" }, { status: 400 });
+  if (over(mailHits, data.email.toLowerCase(), 3, 60 * 60_000)) return NextResponse.json({ error: "rate_limited" }, { status: 429 });
 
   const fullName = `${data.first} ${data.last}`;
   const lines = [

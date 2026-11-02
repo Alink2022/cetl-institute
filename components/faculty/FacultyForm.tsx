@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, type FormEvent, type ReactNode } from "react";
+import { useEffect, useMemo, useState, type FormEvent, type ReactNode } from "react";
 import { useLanguage } from "@/lib/i18n";
 import {
   BILLING, BILLING_VIA, CERTIFICATIONS, COPY, DELIVERY, EDUCATION, EXPERIENCE_YEARS, EXPERTISE, FACULTY_ROLES, LANGUAGES, SALUTATIONS, SIDE_JOB, TEACHING_EXPERIENCE, TOOLS,
@@ -49,6 +49,10 @@ export function FacultyForm() {
   });
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [error, setError] = useState("");
+  const [tk, setTk] = useState("");
+  useEffect(() => {
+    fetch("/api/faculty-onboarding", { cache: "no-store" }).then((r) => r.json()).then((d) => setTk(d.tk || "")).catch(() => setTk(""));
+  }, []);
   const set = (k: keyof typeof f) => (v: string | boolean) => setF((p) => ({ ...p, [k]: v }));
   const text = (k: keyof typeof f) => ({ value: String(f[k]), onChange: (e: { target: { value: string } }) => set(k)(e.target.value) });
   const unit = useMemo(() => {
@@ -64,7 +68,7 @@ export function FacultyForm() {
     if (!f.consent) { setError(c.errors.consent); return; }
     setStatus("sending");
     try {
-      const res = await fetch("/api/faculty-onboarding", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...f, lang }) });
+      const res = await fetch("/api/faculty-onboarding", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...f, lang, tk }) });
       if (!res.ok) throw new Error("failed");
       setStatus("sent");
       window.scrollTo({ top: 0, behavior: "smooth" });
