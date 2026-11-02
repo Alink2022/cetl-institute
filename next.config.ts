@@ -42,6 +42,8 @@ const nextConfig: NextConfig = {
       // Insights wurde zum CETL Think Tank: alte URLs behalten ihre Rankings.
       { source: "/insights", destination: "/think-tank", permanent: true },
       { source: "/insights/:slug", destination: "/think-tank/:slug", permanent: true },
+      // Kurzlink zum internen CRM (Zugriff nur für das Google-Konto des Besitzers).
+      { source: "/crm", destination: "https://script.google.com/macros/s/AKfycbzinpFERjVfRcg5O9mSrT5p9MFcxBqz1DDvLWXpW8t6p_K9PdLL04Ctm36X5Mroz0lLTA/exec", permanent: false },
       {
         source: "/:path*",
         has: [{ type: "host", value: "cetl-institute.vercel.app" }],
