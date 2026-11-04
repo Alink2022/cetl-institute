@@ -22,6 +22,14 @@ Die Antworten der Umfrage (`/survey`) liegen in einer SQLite-Datenbank. In Produ
 curl -H "Authorization: Bearer $SURVEY_ADMIN_TOKEN" https://www.cetl.institute/api/survey/export -o pulse.csv
 ```
 
+## Löschen ohne SQL (Art. 17 DSGVO, nur mit Token)
+```bash
+# eine Teilnahme anhand ihrer ID (Spalte "id" im Export)
+curl -X DELETE -H "Authorization: Bearer $SURVEY_ADMIN_TOKEN" "https://www.cetl.institute/api/survey/export?id=ABCD1234"
+# alle Teilnahmen einer E-Mail-Adresse
+curl -X DELETE -H "Authorization: Bearer $SURVEY_ADMIN_TOKEN" "https://www.cetl.institute/api/survey/export?email=name@example.com"
+```
+
 ## Auswertung und Löschung per SQL (Turso-Konsole oder `turso db shell cetl-pulse`)
 ```sql
 SELECT question_id, option_id, n FROM v_option_counts ORDER BY question_id, n DESC;

@@ -1,10 +1,10 @@
 import { createHash, timingSafeEqual } from "crypto";
 import { NextResponse } from "next/server";
-import { dbConfigured, exportRows } from "@/lib/db";
+import { dbConfigured, deleteResponses, exportRows } from "@/lib/db";
 
 export const dynamic = "force-dynamic";
 
-// Export aller Antworten inklusive Freitext und E-Mail. Nur mit Admin-Token im Header:
+// Export (GET) und Löschung (DELETE ?id=… oder ?email=…) aller Antworten inklusive Freitext und E-Mail. Nur mit Admin-Token im Header:
 //   curl -H "Authorization: Bearer <SURVEY_ADMIN_TOKEN>" https://www.cetl.institute/api/survey/export -o pulse.csv
 const TOKEN = process.env.SURVEY_ADMIN_TOKEN || "";
 const sha = (s: string) => createHash("sha256").update(s).digest();
@@ -46,5 +46,26 @@ export async function GET(request: Request) {
     console.error("Pulse-Export fehlgeschlagen:", err);
     // Nur mit gültigem Admin-Token erreichbar, daher darf die Ursache mit ausgegeben werden.
     return NextResponse.json({ error: "export_failed", detail: String((err as Error)?.message ?? err).slice(0, 300) }, { status: 502 });
+  }
+}
+
+// Löschung einer Teilnahme (per ID) oder aller Teilnahmen einer E-Mail-Adresse. Antwort: Zahl der gelöschten Teilnahmen.
+export async function DELETE(request: Request) {
+  if (TOKEN.length < 24 || !dbConfigured) return NextResponse.json({ error: "not_available" }, { status: 404 });
+  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+  if (limited(ip)) return NextResponse.json({ error: "rate_limited" }, { status: 429 });
+  const given = (request.headers.get("authorization") || "").replace(/^Bearer\s+/i, "");
+  if (!given || !timingSafeEqual(sha(given), sha(TOKEN))) return NextResponse.json({ error: "forbidden" }, { status: 403 });
+  const q = new URL(request.url).searchParams;
+  const id = (q.get("id") || "").trim();
+  const email = (q.get("email") || "").trim();
+  if ((id ? 1 : 0) + (email ? 1 : 0) !== 1) return NextResponse.json({ error: "give_exactly_one_of_id_or_email" }, { status: 400 });
+  if (id && !/^[A-Za-z0-9_-]{4,32}$/.test(id)) return NextResponse.json({ error: "bad_id" }, { status: 400 });
+  try {
+    const deleted = await deleteResponses(id ? { id } : { email });
+    return NextResponse.json({ ok: true, deleted }, { headers: { "Cache-Control": "no-store" } });
+  } catch (err) {
+    console.error("Pulse-Löschung fehlgeschlagen:", err);
+    return NextResponse.json({ error: "delete_failed" }, { status: 502 });
   }
 }

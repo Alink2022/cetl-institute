@@ -139,3 +139,20 @@ export async function exportRows(): Promise<Record<string, string | number | nul
     return row;
   });
 }
+
+/** Löscht Antworten nach ID oder E-Mail-Adresse (Art. 17 DSGVO). Gibt die Zahl der gelöschten Teilnahmen zurück. */
+export async function deleteResponses(by: { id?: string; email?: string }): Promise<number> {
+  await ensureSchema();
+  const c = await db();
+  const col = by.id ? "public_id" : "email";
+  const val = by.id ?? by.email ?? "";
+  if (!val) return 0;
+  const found = await c.execute({ sql: `SELECT COUNT(*) AS n FROM responses WHERE ${col} = ?`, args: [val] });
+  const n = Number(found.rows[0]?.n ?? 0);
+  if (!n) return 0;
+  await c.batch([
+    { sql: `DELETE FROM answers WHERE response_id IN (SELECT id FROM responses WHERE ${col} = ?)`, args: [val] },
+    { sql: `DELETE FROM responses WHERE ${col} = ?`, args: [val] },
+  ], "write");
+  return n;
+}
