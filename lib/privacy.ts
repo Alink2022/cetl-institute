@@ -15,7 +15,7 @@ const T = {
     },
     recipients: {
       h: "Empfänger und Auftragsverarbeiter",
-      p: ["Personenbezogene Daten werden nur an Empfänger weitergegeben, soweit dies für den jeweiligen Zweck erforderlich ist. Zur technischen Bereitstellung setzen wir sorgfältig ausgewählte Dienstleister als Auftragsverarbeiter im Sinne des Art. 28 DSGVO ein (Hosting, Cloud-Speicher und Bürodienste, E-Mail-Versand und E-Mail-Empfang). Mit diesen bestehen die erforderlichen Auftragsverarbeitungsverträge. Eine Weitergabe an sonstige Dritte erfolgt nicht, es sei denn, wir sind gesetzlich dazu verpflichtet."],
+      p: ["Personenbezogene Daten werden nur an Empfänger weitergegeben, soweit dies für den jeweiligen Zweck erforderlich ist. Zur technischen Bereitstellung setzen wir sorgfältig ausgewählte Dienstleister als Auftragsverarbeiter im Sinne des Art. 28 DSGVO ein (Hosting, Datenbank- und Cloud-Speicherdienste, Bürodienste, E-Mail-Versand und E-Mail-Empfang). Mit diesen bestehen die erforderlichen Auftragsverarbeitungsverträge. Eine Weitergabe an sonstige Dritte erfolgt nicht, es sei denn, wir sind gesetzlich dazu verpflichtet."],
     },
     third: {
       h: "Übermittlung in Drittländer",
@@ -98,7 +98,7 @@ const T = {
     },
     recipients: {
       h: "Recipients and processors",
-      p: ["Personal data is passed on to recipients only to the extent necessary for the respective purpose. For technical provision we use carefully selected service providers as processors within the meaning of Art. 28 GDPR (hosting, cloud storage and office services, sending and receiving email). The required data processing agreements are in place. Data is not passed on to other third parties unless we are legally obliged to do so."],
+      p: ["Personal data is passed on to recipients only to the extent necessary for the respective purpose. For technical provision we use carefully selected service providers as processors within the meaning of Art. 28 GDPR (hosting, database and cloud storage services, office services, sending and receiving email). The required data processing agreements are in place. Data is not passed on to other third parties unless we are legally obliged to do so."],
     },
     third: {
       h: "Transfers to third countries",

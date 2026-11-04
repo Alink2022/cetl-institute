@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import { altchaConfigured, altchaSecret, altchaStore, deriveKey } from "@/lib/altcha";
 import { verify } from "altcha-lib/frameworks/shared";
 import { GEO, SURVEY, allQuestions } from "@/lib/survey";
-import { sinkAdd, sinkAvailable } from "@/lib/survey-sink";
+import { dbConfigured, saveResponse } from "@/lib/db";
 
 const MAX_BODY = 32_000;
 const MIN_FILL_MS = 20_000;
@@ -11,7 +11,7 @@ const MAX_AGE_MS = 4 * 60 * 60_000;
 const RATE_PER_HOUR = 30;
 
 // Schlüssel für das Formular-Token. Ohne eigene Variable wird vom Resend-Schlüssel abgeleitet.
-const BASE = process.env.SURVEY_SECRET || process.env.SURVEY_SINK_SECRET || process.env.RESEND_API_KEY || "";
+const BASE = process.env.SURVEY_SECRET || process.env.TURSO_AUTH_TOKEN || process.env.RESEND_API_KEY || "";
 // Ohne ausreichend langes Geheimnis (nur in Produktion) wird nichts angenommen, damit Tokens nicht fälschbar sind.
 const keyed = BASE.length >= 16 || process.env.NODE_ENV !== "production";
 const secret = () => `survey:${BASE}`;
@@ -54,7 +54,7 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
-  if (!sinkAvailable || !keyed || !altchaConfigured) return NextResponse.json({ error: "server_not_configured" }, { status: 503 });
+  if (!dbConfigured || !keyed || !altchaConfigured) return NextResponse.json({ error: "server_not_configured" }, { status: 503 });
   if (Number(request.headers.get("content-length") ?? 0) > MAX_BODY) return NextResponse.json({ error: "too_large" }, { status: 413 });
 
   const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
@@ -82,7 +82,7 @@ export async function POST(request: Request) {
   const countrySrc = typeof body.country_src === "string" && COUNTRY_SRC.has(body.country_src) ? body.country_src : "";
 
   const input = body.answers && typeof body.answers === "object" ? (body.answers as Record<string, unknown>) : {};
-  const answers: Record<string, string> = {};
+  const answers: Record<string, string[]> = {};
   for (const qid of Object.keys(input)) if (!CATALOGUE.has(qid)) return NextResponse.json({ error: `unknown:${qid}` }, { status: 422 });
   for (const [qid, spec] of CATALOGUE) {
     const v = input[qid];
@@ -94,7 +94,7 @@ export async function POST(request: Request) {
     if (spec.type !== "multi" && vals.length !== 1) return NextResponse.json({ error: `single:${qid}` }, { status: 422 });
     if (vals.length > spec.max || new Set(vals).size !== vals.length) return NextResponse.json({ error: `max:${qid}` }, { status: 422 });
     for (const o of vals) if (typeof o !== "string" || !spec.options.has(o)) return NextResponse.json({ error: `option:${qid}` }, { status: 422 });
-    answers[qid] = (vals as string[]).join("|");
+    answers[qid] = vals as string[];
   }
 
   const texts: Record<string, string> = {};
@@ -110,13 +110,12 @@ export async function POST(request: Request) {
   const geoHeader = (request.headers.get("x-vercel-ip-country") || "").toUpperCase();
 
   try {
-    await sinkAdd({
+    await saveResponse({
       id: randomBytes(6).toString("base64url"),
-      ts: new Date().toISOString(),
-      lang, country, country_src: countrySrc,
+      surveyId: SURVEY.id, version: SURVEY.version,
+      lang, country, countrySrc,
       geo: COUNTRY_CODES.has(geoHeader) ? geoHeader : "",
-      duration_s: dur === null ? null : Math.round(dur / 1000),
-      version: SURVEY.version,
+      durationS: dur === null ? null : Math.round(dur / 1000),
       answers, elephant: texts.elephant ?? "", unasked: texts.unasked ?? "", email,
     });
     return NextResponse.json({ ok: true });
