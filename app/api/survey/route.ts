@@ -105,7 +105,7 @@ export async function POST(request: Request) {
   }
   const email = typeof body.email === "string" ? body.email.trim() : "";
   if (email && (email.length > 200 || !EMAIL_RE.test(email))) return NextResponse.json({ error: "bad_email" }, { status: 422 });
-  if (email && body.consent !== true) return NextResponse.json({ error: "no_consent" }, { status: 400 });
+  if (body.agree !== true || (email && body.consent !== true)) return NextResponse.json({ error: "no_consent" }, { status: 400 });
   const dur = typeof body.duration_ms === "number" && Number.isFinite(body.duration_ms) ? Math.max(0, Math.min(86_400_000, Math.round(body.duration_ms))) : null;
   const geoHeader = (request.headers.get("x-vercel-ip-country") || "").toUpperCase();
 

@@ -75,7 +75,8 @@ export function SurveyResults({ onBack }: { onBack: () => void }) {
             {SECTIONS.map(({ q, title }) => {
               const data = stats.questions[q.id];
               if (!data || !data.n) return null;
-              const rows = q.options.map((o) => ({ key: o.id, label: o.label[lang], n: data.counts[o.id] || 0 }));
+              let rows = q.options.map((o) => ({ key: o.id, label: o.label[lang], n: data.counts[o.id] || 0 }));
+              if (q.id === SURVEY.card.sector.id) rows = rows.filter((x) => x.n > 0).sort((x, y) => y.n - x.n);
               const heading = q.text?.[lang] ?? (q.id === SURVEY.card.sector.id ? c.sector : c.size);
               return (
                 <section className="sv-block" key={q.id}>

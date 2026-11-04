@@ -2,12 +2,15 @@
 
 import { useEffect, useState, type FormEvent } from "react";
 import type { RedesignContent } from "@/lib/redesign-content";
+import { useLanguage } from "@/lib/i18n";
+import { PrivacyBlock } from "@/components/legal/PrivacyBlock";
 
 type Fields = RedesignContent["kontakt"]["fields"];
 
 // Unterseiten verlinken per /?topic=<id>#kontakt auf das Formular und
 // wählen so das passende Thema vor.
 export function ContactForm({ fields }: { fields: Fields }) {
+  const { lang } = useLanguage();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("");
@@ -78,6 +81,10 @@ export function ContactForm({ fields }: { fields: Fields }) {
         <span>{fields.context}</span>
         <textarea rows={4} value={context} onChange={(e) => setContext(e.target.value)} />
       </label>
+      <details className="fc-priv-det">
+        <summary>{lang === "de" ? "Datenschutzhinweis (Art. 13 DSGVO)" : "Privacy notice (Art. 13 GDPR)"}</summary>
+        <PrivacyBlock kind="contact" lang={lang} title={lang === "de" ? "Datenschutzhinweis" : "Privacy notice"} />
+      </details>
       {status === "error" && (
         <p style={{ color: "var(--brand-700)", fontSize: "0.9rem", marginBottom: 16 }}>{fields.error}</p>
       )}

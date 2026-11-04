@@ -32,7 +32,7 @@ export function RedesignFooter() {
           <div className="legal">
             <span className="muted">{rd.footer.legal}</span>
             <span className="muted">
-              <Link href="/impressum">{rd.footer.imprint}</Link> · {rd.footer.insuranceNote}
+              <Link href="/impressum">{rd.footer.imprint}</Link> · <Link href="/datenschutz">{rd.footer.privacy}</Link> · {rd.footer.insuranceNote}
             </span>
           </div>
         </div>

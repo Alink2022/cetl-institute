@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState, type FormEvent, type ReactNode } from "react";
 import { useLanguage } from "@/lib/i18n";
+import { PrivacyBlock } from "@/components/legal/PrivacyBlock";
 import {
   CERTIFICATIONS, COPY, DELIVERY, EDUCATION, EXPERIENCE_YEARS, EXPERTISE, FACULTY_ROLES, LANGUAGES, SALUTATIONS, TEACHING_EXPERIENCE, TOOLS,
 } from "@/lib/faculty-onboarding";
@@ -279,9 +280,7 @@ export function FacultyForm() {
 
           <div className="fc-final">
             <div className="fc-consent">
-              <h3 className="fc-h3">{c.privacyTitle}</h3>
-              {c.privacy.map((p) => <p key={p}>{p}</p>)}
-              <p><Link href="/impressum" target="_blank" className="fc-link">{ui.imprint} →</Link></p>
+              <PrivacyBlock kind="faculty" lang={lang} title={c.privacyTitle} />
               <label className="fc-check">
                 <input type="checkbox" checked={f.consent} onChange={(e) => set("consent")(e.target.checked)} />
                 <span>{c.consent}</span>

@@ -1,10 +1,10 @@
 "use client";
 
-import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useLanguage } from "@/lib/i18n";
 import { GEO, SURVEY, type L, type Q } from "@/lib/survey";
 import { COPY } from "@/lib/survey-copy";
+import { PrivacyBlock } from "@/components/legal/PrivacyBlock";
 import { SurveyResults } from "./SurveyResults";
 
 type Step = { q: Q; part: L | null; n: number };
@@ -91,6 +91,7 @@ function SurveyFlow({ onResults }: { onResults: () => void }) {
   const [card, setCard] = useState({ sector: "", size: "" });
   const [email, setEmail] = useState("");
   const [consent, setConsent] = useState(false);
+  const [agree, setAgree] = useState(false);
   const [hp, setHp] = useState("");
   const [tk, setTk] = useState("");
   const [geo, setGeo] = useState<string | null>(null);
@@ -190,6 +191,7 @@ function SurveyFlow({ onResults }: { onResults: () => void }) {
 
   async function submit() {
     setError("");
+    if (!agree) { setError(c.errors.agree); return; }
     if (email.trim() && !EMAIL_RE.test(email.trim())) { setError(c.errors.email); return; }
     if (email.trim() && !consent) { setError(c.errors.consent); return; }
     const altcha = String((root.current?.querySelector('input[name="altcha"]') as HTMLInputElement | null)?.value || "");
@@ -205,7 +207,7 @@ function SurveyFlow({ onResults }: { onResults: () => void }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           survey: SURVEY.id, version: SURVEY.version, lang, country: country.code, country_src: country.src,
-          answers: answersOut, texts, email: email.trim(), consent, hp, tk, altcha,
+          answers: answersOut, texts, email: email.trim(), consent, agree, hp, tk, altcha,
           duration_ms: started.current ? Date.now() - started.current : null,
         }),
       });
@@ -320,7 +322,7 @@ function SurveyFlow({ onResults }: { onResults: () => void }) {
               <span>{c.sector}</span>
               <select value={card.sector} onChange={(e) => setCard((v) => ({ ...v, sector: e.target.value }))}>
                 <option value="">{c.choose}</option>
-                {SURVEY.card.sector.options.map((o) => <option key={o.id} value={o.id}>{o.label[lang]}</option>)}
+                {[...SURVEY.card.sector.options].sort((x, y) => (x.id === "other" ? 1 : y.id === "other" ? -1 : x.label[lang].localeCompare(y.label[lang], lang))).map((o) => <option key={o.id} value={o.id}>{o.label[lang]}</option>)}
               </select>
             </label>
             <label className="field">
@@ -342,9 +344,11 @@ function SurveyFlow({ onResults }: { onResults: () => void }) {
             </label>
           )}
           <div className="fc-consent">
-            <h3 className="fc-h3">{c.privacyTitle}</h3>
-            {c.privacy.map((p) => <p key={p}>{p}</p>)}
-            <p><Link href="/impressum" target="_blank" className="fc-link">{c.imprint} →</Link></p>
+            <PrivacyBlock kind="survey" lang={lang} title={c.privacyTitle} />
+            <label className="fc-check">
+              <input type="checkbox" checked={agree} onChange={(e) => setAgree(e.target.checked)} />
+              <span>{c.agree}</span>
+            </label>
             <input type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" className="fc-hp" value={hp} onChange={(e) => setHp(e.target.value)} />
             <div className="fc-captcha" data-state={captcha}>
               <altcha-widget challenge="/api/altcha" configuration={JSON.stringify({ hideLogo: true, hideFooter: true })} auto="onload" language={lang === "de" ? "de" : "en"} name="altcha" type="checkbox"></altcha-widget>
