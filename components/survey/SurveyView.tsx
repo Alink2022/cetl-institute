@@ -75,14 +75,14 @@ export function SurveyView() {
       </section>
       <section className="fc-wrap">
         <div className="wrap">
-          {view === "results" ? <SurveyResults onBack={() => show("survey")} /> : <SurveyFlow onResults={() => show("results")} />}
+          {view === "results" ? <SurveyResults onBack={() => show("survey")} /> : <SurveyFlow />}
         </div>
       </section>
     </>
   );
 }
 
-function SurveyFlow({ onResults }: { onResults: () => void }) {
+function SurveyFlow() {
   const { lang } = useLanguage();
   const c = COPY[lang];
   const [step, setStep] = useState(0);
@@ -100,7 +100,6 @@ function SurveyFlow({ onResults }: { onResults: () => void }) {
   const [tipOpen, setTipOpen] = useState(false);
   const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
   const [error, setError] = useState("");
-  const [copied, setCopied] = useState(false);
   const [captcha, setCaptcha] = useState<"idle" | "verifying" | "verified" | "error">("idle");
   const started = useRef<number | null>(null);
   const root = useRef<HTMLDivElement>(null);
@@ -220,25 +219,12 @@ function SurveyFlow({ onResults }: { onResults: () => void }) {
     }
   }
 
-  async function share() {
-    const url = `${location.origin}/survey`;
-    try {
-      if (navigator.share) await navigator.share({ title: c.title, url });
-      else { await navigator.clipboard.writeText(url); setCopied(true); setTimeout(() => setCopied(false), 2200); }
-    } catch { /* abgebrochen */ }
-  }
-
   if (status === "sent") {
     return (
       <div className="fc-card fc-done sv-done" role="status">
         <svg className="fc-check" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="24" /><path d="M15 27l8 8 15-17" /></svg>
         <h2>{c.thanksTitle}</h2>
         <p className="lead">{c.thanksText}</p>
-        <p className="fc-hint">{c.shareHint}</p>
-        <div className="sv-actions">
-          <button type="button" className="btn btn-primary" onClick={onResults}>{c.seeResults}</button>
-          <button type="button" className="btn btn-ghost" onClick={share}>{copied ? c.copied : c.copyLink}</button>
-        </div>
       </div>
     );
   }

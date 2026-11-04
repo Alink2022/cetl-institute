@@ -39,8 +39,6 @@ export const COPY = {
     },
     thanksTitle: "Vielen Dank",
     thanksText: "Ihre Antworten sind bei uns angekommen. Der Elefant ist protokolliert.",
-    seeResults: "Ergebnisse ansehen", copyLink: "Link teilen", copied: "Link kopiert",
-    shareHint: "Leiten Sie die Umfrage an Kolleg:innen weiter. Je mehr Antworten, desto aussagekräftiger der Pulse.",
     results: {
       title: "Ergebnisse", back: "Zur Umfrage",
       responses: "Antworten", allCountries: "Alle Länder", byCountry: "Nach Land", country: "Land",
@@ -87,8 +85,6 @@ export const COPY = {
     },
     thanksTitle: "Thank you",
     thanksText: "Your answers have reached us. The elephant has been logged.",
-    seeResults: "See results", copyLink: "Share link", copied: "Link copied",
-    shareHint: "Pass the survey on to colleagues. The more answers, the more meaningful the pulse.",
     results: {
       title: "Results", back: "Back to the survey",
       responses: "responses", allCountries: "All countries", byCountry: "By country", country: "Country",
