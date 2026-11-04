@@ -1,6 +1,6 @@
 import { createHmac, randomBytes, timingSafeEqual } from "crypto";
 import { NextResponse } from "next/server";
-import { altchaSecret, altchaStore, deriveKey } from "@/lib/altcha";
+import { altchaConfigured, altchaSecret, altchaStore, deriveKey } from "@/lib/altcha";
 import { verify } from "altcha-lib/frameworks/shared";
 import { GEO, SURVEY, allQuestions } from "@/lib/survey";
 import { sinkAdd, sinkAvailable } from "@/lib/survey-sink";
@@ -11,7 +11,10 @@ const MAX_AGE_MS = 4 * 60 * 60_000;
 const RATE_PER_HOUR = 30;
 
 // Schlüssel für das Formular-Token. Ohne eigene Variable wird vom Resend-Schlüssel abgeleitet.
-const secret = () => `survey:${process.env.SURVEY_SECRET || process.env.SURVEY_SINK_SECRET || process.env.RESEND_API_KEY || ""}`;
+const BASE = process.env.SURVEY_SECRET || process.env.SURVEY_SINK_SECRET || process.env.RESEND_API_KEY || "";
+// Ohne ausreichend langes Geheimnis (nur in Produktion) wird nichts angenommen, damit Tokens nicht fälschbar sind.
+const keyed = BASE.length >= 16 || process.env.NODE_ENV !== "production";
+const secret = () => `survey:${BASE}`;
 const sign = (t: string) => createHmac("sha256", secret()).update(t).digest("hex");
 
 function validToken(tk: unknown) {
@@ -44,13 +47,14 @@ const strip = (s: string) => s.replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]
 
 // Das Formular holt sich beim Öffnen ein signiertes Token und die Länderangabe des Netzwerks (falls vorhanden).
 export async function GET(request: Request) {
+  if (!keyed) return NextResponse.json({ error: "server_not_configured" }, { status: 503 });
   const t = String(Date.now());
   const geo = (request.headers.get("x-vercel-ip-country") || "").toUpperCase();
   return NextResponse.json({ tk: `${t}.${sign(t)}`, geo: COUNTRY_CODES.has(geo) ? geo : null }, { headers: { "Cache-Control": "no-store" } });
 }
 
 export async function POST(request: Request) {
-  if (!sinkAvailable) return NextResponse.json({ error: "server_not_configured" }, { status: 503 });
+  if (!sinkAvailable || !keyed || !altchaConfigured) return NextResponse.json({ error: "server_not_configured" }, { status: 503 });
   if (Number(request.headers.get("content-length") ?? 0) > MAX_BODY) return NextResponse.json({ error: "too_large" }, { status: 413 });
 
   const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";

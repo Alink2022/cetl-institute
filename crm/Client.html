@@ -32,7 +32,7 @@ let F={q:'',ind:'alle',kst:'alle',ph:'alle',rep:false,type:'alle',con:'alle',are
 let ROUTE='heute',LOADING=true;
 
 const $=s=>document.querySelector(s);
-const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const srv=(fn,...a)=>new Promise((ok,no)=>google.script.run.withSuccessHandler(ok).withFailureHandler(no)[fn](...a));
 const nid=()=>Math.random().toString(36).slice(2,8)+Date.now().toString(36).slice(-4);
 const eur=v=>Number(v).toLocaleString('de-AT')+' €';

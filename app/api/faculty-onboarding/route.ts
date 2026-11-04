@@ -1,7 +1,7 @@
 import { createHmac, timingSafeEqual } from "crypto";
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
-import { altchaSecret, altchaStore, deriveKey } from "@/lib/altcha";
+import { altchaConfigured, altchaSecret, altchaStore, deriveKey } from "@/lib/altcha";
 import { verify } from "altcha-lib/frameworks/shared";
 
 const TO_ADDRESS = "alinkalam@cetl.institute";
@@ -11,7 +11,9 @@ const MIN_FILL_MS = 6_000;
 const MAX_AGE_MS = 2 * 60 * 60_000;
 
 // Schlüssel für das Formular-Token. Ohne eigene Variable wird vom Resend-Schlüssel abgeleitet.
-const secret = () => `faculty:${process.env.FACULTY_SECRET || process.env.RESEND_API_KEY || ""}`;
+const BASE = process.env.FACULTY_SECRET || process.env.RESEND_API_KEY || "";
+const keyed = BASE.length >= 16 || process.env.NODE_ENV !== "production";
+const secret = () => `faculty:${BASE}`;
 const sign = (t: string) => createHmac("sha256", secret()).update(t).digest("hex");
 
 function validToken(tk: unknown) {
@@ -32,6 +34,7 @@ function over(map: Map<string, number[]>, key: string, limit: number, windowMs: 
   const recent = (map.get(key) ?? []).filter((t) => now - t < windowMs);
   recent.push(now);
   map.set(key, recent);
+  if (map.size > 5000) for (const [k, v] of map) if (!v.some((t) => now - t < windowMs)) map.delete(k);
   return recent.length > limit;
 }
 
@@ -45,13 +48,14 @@ const EMAIL_RE = /^[A-Za-z0-9._%+'-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*\.[A-Za-z]{
 
 // Das Formular holt sich beim Öffnen ein signiertes Token. Ohne Token oder bei zu schneller Abgabe wird nichts angenommen.
 export async function GET() {
+  if (!keyed) return NextResponse.json({ error: "server_not_configured" }, { status: 503 });
   const t = String(Date.now());
   return NextResponse.json({ tk: `${t}.${sign(t)}` }, { headers: { "Cache-Control": "no-store" } });
 }
 
 export async function POST(request: Request) {
   const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) return NextResponse.json({ error: "server_not_configured" }, { status: 500 });
+  if (!apiKey || !keyed || !altchaConfigured) return NextResponse.json({ error: "server_not_configured" }, { status: 500 });
 
   const len = Number(request.headers.get("content-length") ?? 0);
   if (len > MAX_BODY) return NextResponse.json({ error: "too_large" }, { status: 413 });

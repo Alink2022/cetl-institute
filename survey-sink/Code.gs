@@ -14,8 +14,10 @@ function doGet() { return out_({ ok: true, service: 'cetl-pulse' }); }
 
 function doPost(e) {
   try {
-    const req = JSON.parse((e && e.postData && e.postData.contents) || '{}');
-    if (typeof SINK_SECRET === 'undefined' || !SINK_SECRET || req.secret !== SINK_SECRET) return out_({ ok: false, error: 'forbidden' });
+    const raw = (e && e.postData && e.postData.contents) || '{}';
+    if (raw.length > 60000) return out_({ ok: false, error: 'too_large' });
+    const req = JSON.parse(raw);
+    if (typeof SINK_SECRET === 'undefined' || !SINK_SECRET || SINK_SECRET.length < 24 || !safeEqual_(String(req.secret || ''), SINK_SECRET)) return out_({ ok: false, error: 'forbidden' });
     if (req.action === 'add') return out_(add_(req.row));
     if (req.action === 'rows') return out_(rows_());
     if (req.action === 'info') return out_(info_());
@@ -24,6 +26,25 @@ function doPost(e) {
   } catch (err) {
     return out_({ ok: false, error: String(err && err.message || err).slice(0, 200) });
   }
+}
+
+/** Vergleich in konstanter Zeit, damit das Geheimnis nicht über Antwortzeiten erraten werden kann. */
+function safeEqual_(a, b) {
+  let d = a.length ^ b.length;
+  for (let i = 0; i < Math.max(a.length, b.length); i++) d |= (a.charCodeAt(i) || 0) ^ (b.charCodeAt(i) || 0);
+  return d === 0;
+}
+
+const MAX_ROWS = 50000;
+const MAX_PER_MINUTE = 120;
+
+/** Bremse gegen Überflutung: höchstens MAX_PER_MINUTE neue Antworten pro Minute. */
+function tooBusy_() {
+  const cache = CacheService.getScriptCache();
+  const key = 'adds_' + Math.floor(Date.now() / 60000);
+  const n = Number(cache.get(key) || 0) + 1;
+  cache.put(key, String(n), 120);
+  return n > MAX_PER_MINUTE;
 }
 
 function out_(o) { return ContentService.createTextOutput(JSON.stringify(o)).setMimeType(ContentService.MimeType.JSON); }
@@ -67,18 +88,22 @@ function headers_(sh, keys) {
 }
 
 function add_(row) {
-  if (!row || typeof row !== 'object' || !row.id) return { ok: false, error: 'bad_row' };
+  if (!row || typeof row !== 'object' || !/^[A-Za-z0-9_-]{4,32}$/.test(String(row.id || ''))) return { ok: false, error: 'bad_row' };
+  const keys = Object.keys(row.answers || {});
+  if (keys.length > 40 || keys.some(function (k) { return !/^[a-z0-9_]{1,40}$/.test(k); })) return { ok: false, error: 'bad_answers' };
+  if (tooBusy_()) return { ok: false, error: 'busy' };
   const lock = LockService.getScriptLock();
   lock.waitLock(20000);
   try {
     const sh = ensureReady_().getSheetByName(TAB);
+    if (sh.getLastRow() > MAX_ROWS) return { ok: false, error: 'full' };
     const answers = row.answers || {};
     const have = headers_(sh, Object.keys(answers));
     const vals = {
       id: row.id, eingang: row.ts, sprache: row.lang, land: row.country, land_quelle: row.country_src, geo_header: row.geo,
       dauer_s: row.duration_s, version: row.version, elephant: row.elephant, unasked: row.unasked, email: row.email,
     };
-    Object.keys(answers).forEach(function (k) { vals[k] = answers[k]; });
+    Object.keys(answers).forEach(function (k) { vals[k] = String(answers[k]).slice(0, 200); });
     const line = have.map(function (h) { return safeCell_(vals[h]); });
     sh.getRange(sh.getLastRow() + 1, 1, 1, line.length).setValues([line]);
     return { ok: true };
