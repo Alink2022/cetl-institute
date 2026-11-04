@@ -54,7 +54,7 @@ async function db(): Promise<Client> {
       client = (await import("@libsql/client")).createClient({ url });
     } else {
       // Pro Anfrage über HTTPS statt dauerhafter WebSocket-Verbindung, das passt zu Serverless.
-      const httpUrl = url.replace(/^libsql:///, "https://").trim();
+      const httpUrl = url.trim().replace(/^libsql:\/\//, "https://");
       client = (await import("@libsql/client/web")).createClient({ url: httpUrl, authToken: (process.env.TURSO_AUTH_TOKEN || "").trim() });
     }
   }
