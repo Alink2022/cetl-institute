@@ -44,6 +44,7 @@ export async function GET(request: Request) {
     });
   } catch (err) {
     console.error("Pulse-Export fehlgeschlagen:", err);
-    return NextResponse.json({ error: "export_failed" }, { status: 502 });
+    // Nur mit gültigem Admin-Token erreichbar, daher darf die Ursache mit ausgegeben werden.
+    return NextResponse.json({ error: "export_failed", detail: String((err as Error)?.message ?? err).slice(0, 300) }, { status: 502 });
   }
 }

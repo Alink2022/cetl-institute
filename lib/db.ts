@@ -53,7 +53,9 @@ async function db(): Promise<Client> {
       fs.mkdirSync("data", { recursive: true });
       client = (await import("@libsql/client")).createClient({ url });
     } else {
-      client = (await import("@libsql/client/web")).createClient({ url, authToken: process.env.TURSO_AUTH_TOKEN });
+      // Pro Anfrage über HTTPS statt dauerhafter WebSocket-Verbindung, das passt zu Serverless.
+      const httpUrl = url.replace(/^libsql:///, "https://").trim();
+      client = (await import("@libsql/client/web")).createClient({ url: httpUrl, authToken: (process.env.TURSO_AUTH_TOKEN || "").trim() });
     }
   }
   return client;
