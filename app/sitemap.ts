@@ -10,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/think-tank`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
     { url: `${BASE}/think-tank/gastbeitraege`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.5 },
     { url: `${BASE}/datenschutz`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
+    { url: `${BASE}/pulse`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.5 },
     { url: `${BASE}/survey`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
     ...WEBINARS.map((w) => ({
       url: `${BASE}/think-tank/webinare/${w.slug}`,

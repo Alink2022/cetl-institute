@@ -43,6 +43,14 @@ export function SurveyView() {
   const c = COPY[lang];
   const [view, setView] = useState<"survey" | "results">("survey");
 
+  // Wer von LinkedIn kommt (oder ?v=8bit), bekommt die spielerische 8-Bit-Version. Mit ?v=classic bleibt man hier.
+  useEffect(() => {
+    const q = new URLSearchParams(location.search);
+    if (q.get("v") === "classic" || location.hash) return;
+    const fromLinkedIn = /linkedin\.com|lnkd\.in/i.test(document.referrer) || (q.get("utm_source") || "").toLowerCase().includes("linkedin") || q.get("v") === "8bit";
+    if (fromLinkedIn) location.replace(`/pulse?lang=${lang}`);
+  }, [lang]);
+
   useEffect(() => {
     const sync = () => setView(location.hash === "#results" ? "results" : "survey");
     sync();
@@ -205,7 +213,7 @@ function SurveyFlow() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          survey: SURVEY.id, version: SURVEY.version, lang, country: country.code, country_src: country.src,
+          survey: SURVEY.id, version: SURVEY.version, variant: "classic", lang, country: country.code, country_src: country.src,
           answers: answersOut, texts, email: email.trim(), consent, agree, hp, tk, altcha,
           duration_ms: started.current ? Date.now() - started.current : null,
         }),
@@ -240,6 +248,7 @@ function SurveyFlow() {
         <div className="sv-prog" role="progressbar" aria-valuemin={0} aria-valuemax={TOTAL} aria-valuenow={step + 1}><i style={{ width: `${Math.max(pct, 4)}%` }} /></div>
         <div className="sv-meta">
           <span>{cur ? c.questionOf(cur.n, STEPS.length) : c.finalTitle}</span>
+          <a className="fc-link" href="/pulse">{c.playful}</a>
           {country.code && !pick && (
             <span className="sv-region">{c.region}: <b>{cname(country.code)}</b> <button type="button" className="fc-link" onClick={() => setPick(true)}>{c.change}</button></span>
           )}

@@ -30,6 +30,9 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  async rewrites() {
+    return [{ source: "/pulse", destination: "/pulse/index.html" }];
+  },
   async headers() {
     return [
       {

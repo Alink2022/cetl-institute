@@ -23,7 +23,8 @@ CREATE TABLE IF NOT EXISTS responses (
   elephant       TEXT,
   unasked        TEXT,
   email          TEXT,
-  duration_s     INTEGER
+  duration_s     INTEGER,
+  variant        TEXT
 );
 CREATE TABLE IF NOT EXISTS answers (
   response_id    INTEGER NOT NULL REFERENCES responses(id) ON DELETE CASCADE,
@@ -62,22 +63,29 @@ async function db(): Promise<Client> {
 }
 
 async function ensureSchema() {
-  ready ??= db().then((c) => c.executeMultiple(SCHEMA)).catch((e) => { ready = null; throw e; });
+  ready ??= db()
+    .then(async (c) => {
+      await c.executeMultiple(SCHEMA);
+      // Bestehende Datenbanken ohne Spalte "variant" nachrüsten
+      const cols = await c.execute("PRAGMA table_info(responses)");
+      if (!cols.rows.some((r) => String(r.name) === "variant")) await c.execute("ALTER TABLE responses ADD COLUMN variant TEXT");
+    })
+    .catch((e) => { ready = null; throw e; });
   await ready;
 }
 
 export type SaveRow = {
   id: string; lang: string; country: string; countrySrc: string; geo: string; durationS: number | null; version: string; surveyId: string;
-  answers: Record<string, string[]>; elephant: string; unasked: string; email: string;
+  answers: Record<string, string[]>; elephant: string; unasked: string; email: string; variant: string;
 };
 
 /** Speichert eine Antwort samt Auswahl in einer Transaktion. */
 export async function saveResponse(r: SaveRow) {
   await ensureSchema();
   const stmts = [{
-    sql: `INSERT INTO responses (public_id, survey_id, survey_version, lang, country, country_src, country_geo, elephant, unasked, email, duration_s)
-          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-    args: [r.id, r.surveyId, r.version, r.lang, r.country, r.countrySrc || null, r.geo || null, r.elephant || null, r.unasked || null, r.email || null, r.durationS],
+    sql: `INSERT INTO responses (public_id, survey_id, survey_version, lang, country, country_src, country_geo, elephant, unasked, email, duration_s, variant)
+          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    args: [r.id, r.surveyId, r.version, r.lang, r.country, r.countrySrc || null, r.geo || null, r.elephant || null, r.unasked || null, r.email || null, r.durationS, r.variant || null],
   }];
   for (const [q, vals] of Object.entries(r.answers)) {
     for (const o of vals) stmts.push({ sql: "INSERT INTO answers (response_id, question_id, option_id) SELECT id, ?, ? FROM responses WHERE public_id = ?", args: [q, o, r.id] });
@@ -129,7 +137,7 @@ export async function exportRows(): Promise<Record<string, string | number | nul
   return resp.rows.map((r) => {
     const row: Record<string, string | number | null> = {
       id: String(r.public_id), eingang: String(r.created_at), sprache: String(r.lang), land: r.country == null ? null : String(r.country),
-      land_quelle: r.country_src == null ? null : String(r.country_src), dauer_s: r.duration_s == null ? null : Number(r.duration_s), version: String(r.survey_version),
+      land_quelle: r.country_src == null ? null : String(r.country_src), variante: r.variant == null ? null : String(r.variant), dauer_s: r.duration_s == null ? null : Number(r.duration_s), version: String(r.survey_version),
     };
     const m = byResp.get(Number(r.id));
     for (const q of [...qids].sort()) row[q] = m?.get(q)?.join("|") ?? null;

@@ -37,7 +37,7 @@ const T = {
       p: ["Eine ausschließlich automatisierte Entscheidungsfindung einschließlich Profiling im Sinne des Art. 22 DSGVO findet nicht statt."],
     },
     spam: "Zum Schutz vor automatisierten Missbrauchsversuchen wird eine Spamschutz-Prüfung ohne Cookies und ohne Weitergabe an Dritte durchgeführt (Art. 6 Abs. 1 lit. f DSGVO, berechtigtes Interesse an der Sicherheit und Integrität des Angebots).",
-    local: "Ihre Sprach- und gegebenenfalls Ihre Länderauswahl wird im lokalen Speicher Ihres Endgeräts abgelegt. Das ist für die Funktion des Angebots technisch erforderlich (§ 165 Abs. 3 TKG 2021) und wird nicht an uns oder Dritte übermittelt.",
+    local: "Ihre Sprach-, gegebenenfalls Länder- und Toneinstellung wird im lokalen Speicher Ihres Endgeräts abgelegt. Das ist für die Funktion des Angebots technisch erforderlich (§ 165 Abs. 3 TKG 2021) und wird nicht an uns oder Dritte übermittelt.",
     survey: {
       purpose: {
         h: "Zweck und Rechtsgrundlage",
@@ -120,7 +120,7 @@ const T = {
       p: ["There is no solely automated decision-making, including profiling, within the meaning of Art. 22 GDPR."],
     },
     spam: "To protect against automated abuse, a spam-protection check is carried out without cookies and without passing data on to third parties (Art. 6(1)(f) GDPR, legitimate interest in the security and integrity of the service).",
-    local: "Your language choice and, where applicable, your country choice are stored in your device’s local storage. This is technically necessary for the service to work (§ 165(3) TKG 2021) and is not transmitted to us or to third parties.",
+    local: "Your language, where applicable country and sound settings are stored in your device’s local storage. This is technically necessary for the service to work (§ 165(3) TKG 2021) and is not transmitted to us or to third parties.",
     survey: {
       purpose: {
         h: "Purpose and legal basis",
