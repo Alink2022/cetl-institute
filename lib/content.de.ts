@@ -382,6 +382,7 @@ export const de: ContentBundle = {
     { name: "Tobias Zwingmann", role: "Advisor: AI", initials: "TZ", photo: "/team-tobias.jpg", photoPosition: "center 28%", group: "advisory" },
     { name: "Maria Madlberger", role: "Advisor: Academic Research & Relations", initials: "MM", photo: "/team-maria.webp", photoPosition: "center 30%", group: "advisory" },
     { name: "Mario Meir-Huber", role: "Expert: AI Transformation", initials: "MM", photo: "/team-mario.jpg", group: "advisory" },
+    { name: "Nikolai Rizzo", role: "Advisor: CFO & AI Value", initials: "NR", photo: "/team-nikolai.webp", photoPosition: "center 30%", group: "advisory" },
   ],
 
   PROBLEM_ITEMS: [
