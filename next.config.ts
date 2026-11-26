@@ -31,13 +31,25 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   async rewrites() {
-    return [{ source: "/pulse", destination: "/pulse/index.html" }];
+    return [
+      { source: "/pulse", destination: "/pulse/index.html" },
+      // Vertrauliche Seite, nur mit Passwort lesbar (verschlüsselt, siehe scripts/encrypt-private-page.js)
+      { source: "/SPGxCETL", destination: "/spg/index.html" },
+      { source: "/spgxcetl", destination: "/spg/index.html" },
+    ];
   },
   async headers() {
     return [
       {
         source: "/(.*)",
         headers: securityHeaders,
+      },
+      {
+        source: "/:path(SPGxCETL|spgxcetl|spg/:rest*)",
+        headers: [
+          { key: "X-Robots-Tag", value: "noindex, nofollow, noarchive" },
+          { key: "Cache-Control", value: "no-store" },
+        ],
       },
     ];
   },

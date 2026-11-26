@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vertraulicher Bereich</title>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<style>
+@font-face { font-family: Inter; font-style: normal; font-weight: 100 900; font-display: swap; src: url(/spg/fonts/inter.woff2) format('woff2'); }
+:root { --ink9:#1F0E13; --ink5:#746166; --b7:#7A1A36; --b6:#9B2242; --b3:#E5A9B8; --b1:#F6E3E8; --line:#EBDFE2; --surface:#FBF6F7; }
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; font-family: Inter, 'Segoe UI', Arial, sans-serif; color: var(--ink9); background: var(--surface); }
+body { min-height: 100vh; display: grid; place-items: center; padding: 24px; }
+.card { width: 100%; max-width: 440px; background: #fff; border: 1px solid var(--line); border-radius: 22px; padding: 40px 36px 34px; box-shadow: 0 40px 90px -50px rgba(31,14,19,.45); }
+.logo { display: block; width: 190px; aspect-ratio: 698.78 / 142.17; margin: 0 0 28px; background: var(--b6); -webkit-mask: url(/CETL_Logo_Vertical.svg) no-repeat left center / contain; mask: url(/CETL_Logo_Vertical.svg) no-repeat left center / contain; }
+.eyebrow { margin: 0 0 8px; font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--b7); }
+h1 { margin: 0 0 10px; font-size: 26px; line-height: 1.15; letter-spacing: -.03em; font-weight: 600; }
+p.lead { margin: 0 0 24px; font-size: 15px; line-height: 1.55; color: var(--ink5); }
+label { display: block; font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--ink5); margin-bottom: 8px; }
+input { width: 100%; font: inherit; font-size: 16px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 12px; background: #fff; color: var(--ink9); }
+input:focus { outline: none; border-color: var(--b6); box-shadow: 0 0 0 4px rgba(155,34,66,.12); }
+button { margin-top: 16px; width: 100%; font: inherit; font-size: 16px; font-weight: 600; padding: 14px 18px; border: 0; border-radius: 12px; background: var(--b6); color: #fff; cursor: pointer; }
+button:hover { background: var(--b7); } button:disabled { opacity: .6; cursor: default; }
+.err { min-height: 22px; margin: 12px 0 0; font-size: 14px; font-weight: 500; color: var(--b7); }
+.fine { margin: 18px 0 0; font-size: 12.5px; color: var(--ink5); line-height: 1.5; }
+</style>
+</head>
+<body>
+<main class="card">
+  <span class="logo" role="img" aria-label="CETL Institute"></span>
+  <p class="eyebrow">Vertraulich</p>
+  <h1>Geschützter Bereich</h1>
+  <p class="lead">Diese Seite ist nur für ausgewählte Personen bestimmt. Bitte geben Sie das Passwort ein, das Sie erhalten haben.</p>
+  <form id="f" autocomplete="off">
+    <label for="pw">Passwort</label>
+    <input id="pw" type="password" autocomplete="current-password" autofocus required>
+    <button id="go" type="submit">Öffnen</button>
+    <p class="err" id="err" role="alert"></p>
+  </form>
+  <p class="fine">Der Inhalt wird erst in Ihrem Browser entschlüsselt. Das Passwort wird nicht übertragen.</p>
+</main>
+<script>
+(function () {
+  var f = document.getElementById('f'), pw = document.getElementById('pw'), go = document.getElementById('go'), err = document.getElementById('err');
+  var meta = null;
+  var b64 = function (s) { return Uint8Array.from(atob(s), function (c) { return c.charCodeAt(0); }); };
+
+  function load() {
+    return meta ? Promise.resolve(meta) : fetch('/spg/page.enc.json', { cache: 'no-store' }).then(function (r) { if (!r.ok) throw new Error('load'); return r.json(); }).then(function (j) { meta = j; return j; });
+  }
+  function decrypt(password, m) {
+    var enc = new TextEncoder();
+    return crypto.subtle.importKey('raw', enc.encode(password), 'PBKDF2', false, ['deriveKey']).then(function (km) {
+      return crypto.subtle.deriveKey({ name: 'PBKDF2', salt: b64(m.salt), iterations: m.iter, hash: 'SHA-256' }, km, { name: 'AES-GCM', length: 256 }, false, ['decrypt']);
+    }).then(function (key) {
+      return crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64(m.iv) }, key, b64(m.ct));
+    }).then(function (buf) { return new TextDecoder().decode(buf); });
+  }
+  function open(html, password) {
+    try { sessionStorage.setItem('spg-pw', password); } catch (e) { /* ohne Speicher */ }
+    document.open(); document.write(html); document.close();
+  }
+  function attempt(password, silent) {
+    go.disabled = true; err.textContent = silent ? '' : 'Wird geprüft …';
+    return load().then(function (m) { return decrypt(password, m); }).then(function (html) { open(html, password); })
+      .catch(function (e) {
+        go.disabled = false;
+        if (silent) { try { sessionStorage.removeItem('spg-pw'); } catch (x) {} return; }
+        err.textContent = e && e.message === 'load' ? 'Die Seite konnte nicht geladen werden. Bitte später erneut versuchen.' : 'Das Passwort stimmt nicht.';
+        pw.select();
+      });
+  }
+  f.addEventListener('submit', function (e) { e.preventDefault(); if (pw.value) attempt(pw.value, false); });
+  try { var saved = sessionStorage.getItem('spg-pw'); if (saved) attempt(saved, true); } catch (e) { /* ohne Speicher */ }
+})();
+</script>
+</body>
+</html>

@@ -43,3 +43,6 @@ next-env.d.ts
 
 # lokale Umfrage-Datenbank
 /data/
+
+# vertrauliche Klartext-Seiten (nur verschlüsselt im Repository)
+/.claude/private/
